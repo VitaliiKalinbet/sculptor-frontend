@@ -1,68 +1,28 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1) Клонируете себе dev : 
+	git clone -b dev https://ccылка_на_репозиторий
+2) Переходите в ветку dev. Забираете последние изменения в ветке dev. Потом создаете свою ветку находясь в ветке dev, с названием своей задачи:
+	git checkout dev
+	git pull origin dev
+	git checkout -b name_your_branch
+3) Работаете только в своей ветке, все изменения пушите ТОЛЬКО в нее: 
+	git add .
+	git commit -m “init name_your_branch”
+	git push origin name_your_branch
+4) Когда полностью завершили работу в своей ветке и хотите добавить эти изменения в общий проект:
+	4.1) Переходите в ветку dev (и пулите все изменения которые внесли другие):
+	git checkout dev
+	git pull origin dev
+	4.2) Переходим в свою ветку: 
+	git checkout name_your_branch
+5) Мерджите dev в свою ветку, разрешаешь конфликты которых то и быть не должно на самом деле:
+	git merge dev
+	Если есть конфликты, открываем свой редактор кода и решаем возникшие конфликты (при сложностях обращаемся к team lead’у).
+	git add .
+	git commit -m “пишем название конкретной задачи которую сделали(на английском)”
+6) Пушите свою ветку на удаленку:
+	git push origin name_your_branch
+7) Создаете pull request на слитие с dev там на гитхабе:
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+8) КАЖДЫЙ КАЖДЫЙ РАЗ !!!  при изменениях, которые хотите сделать в общем проекте, повторяете порядок действий с пункта 2 по 7.
