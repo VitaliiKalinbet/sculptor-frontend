@@ -1,5 +1,10 @@
 import { combineReducers } from 'redux';
 
-const rootReducer = combineReducers({});
+// GET TASKS
+import taskReducer from '../../components/Dashboard/reducerDashboard';
+
+const rootReducer = combineReducers({
+  tasks: taskReducer,
+});
 
 export default rootReducer;
