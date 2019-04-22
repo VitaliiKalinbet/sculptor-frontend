@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React from 'react';
 import GoalList from './GoalList/GoalList';
 import s from './Sidebar.module.css';

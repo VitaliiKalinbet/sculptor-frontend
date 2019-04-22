@@ -1,0 +1,18 @@
+/*eslint-disable*/
+.Dashboard {
+  max-width: 128rem;
+}
+.btn {
+  width: 10px;
+  height: 10px;
+}
+
+.Sidebar {
+  width: 80%;
+}
+
+@media (max-width: 320px) {
+  .Sidebar {
+    width: 0%;
+  }
+}
