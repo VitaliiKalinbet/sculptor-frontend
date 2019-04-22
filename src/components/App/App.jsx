@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader/root';
-import Sidebar from '../Sidebar/Sidebar';
+import Dashboard from '../Dashboard/Dashboard';
 import './App.css';
 
 class App extends Component {
@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <Sidebar />
+        <Dashboard />
       </>
     );
   }
