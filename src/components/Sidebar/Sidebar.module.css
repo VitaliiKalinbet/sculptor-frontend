@@ -1,0 +1,19 @@
+.Sidebar {
+  padding: 4.3rem 2.4rem;
+  width: 20%;
+  height: 100vh;
+  background-image: linear-gradient(
+      rgba(38, 63, 96, 0.8),
+      rgba(38, 63, 96, 0.8)
+    ),
+    url('../../assets/images/Mouintains1@1X.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #ffffff;
+}
+.Title {
+  font-size: 16px;
+}
+.Btn {
+  border: 1px solid grey;
+}
