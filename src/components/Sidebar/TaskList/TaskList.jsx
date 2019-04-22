@@ -1,10 +1,11 @@
+/*eslint-disable*/
 import React from 'react';
 import TaskItem from '../TaskItem/TaskItem';
 
-const TaskList = () => {
+const TaskList = ({ obj }) => {
   return (
     <ul>
-      <TaskItem />
+      <TaskItem obj={obj} />
     </ul>
   );
 };

@@ -1,11 +1,15 @@
+/*eslint-disable*/
+
 import React from 'react';
 import GoalItem from '../GoalItem/GoalItem';
 import s from './GoalList.module.css';
 
-const GoalList = () => {
+const GoalList = ({ data }) => {
   return (
     <ul className={s.List}>
-      <GoalItem />
+      {data.map(el => (
+        <GoalItem obj={el} />
+      ))}
     </ul>
   );
 };
