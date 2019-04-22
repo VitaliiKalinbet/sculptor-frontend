@@ -1,9 +1,9 @@
 /* eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
-// import deleteicon1x from './assets/delete/1x/baseline_delete_black_18dp.png';
+import { connect } from 'react-redux';
 
-import IconButtons from './Button';
+import IconButtons from './TrashButton';
 
 const Item = styled.li`
   display: flex;
@@ -43,7 +43,11 @@ const MoveToTrash = styled.div`
 //ItemStatus - получаем статус таски, в зависимости от этого применяем стили
 //ItemDescription - получает текст такси
 
-const TaskItem = () => {
+const TaskItem = props => {
+  const { tasks } = props.tasks;
+
+  console.log(tasks);
+
   return (
     <>
       <Item>
@@ -53,24 +57,12 @@ const TaskItem = () => {
           <IconButtons />
         </MoveToTrash>
       </Item>
-
-      <Item>
-        <ItemStatus />
-        <ItemDescription>Text-2 about task 2</ItemDescription>
-        <MoveToTrash>
-          <IconButtons />
-        </MoveToTrash>
-      </Item>
-
-      <Item>
-        <ItemStatus />
-        <ItemDescription>Text-2 about task 3</ItemDescription>
-        <MoveToTrash>
-          <IconButtons />
-        </MoveToTrash>
-      </Item>
     </>
   );
 };
 
-export default TaskItem;
+const mstp = store => ({
+  tasks: store.tasks,
+});
+
+export default connect(mstp)(TaskItem);

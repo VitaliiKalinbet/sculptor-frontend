@@ -2,11 +2,13 @@
 
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 // components
 import Card from './Card';
+
 // action
-import asyncTasksAction from './actionDashboard';
+import asyncTasksAction from './actionDashboard.js';
 
 // card wrapper
 const Container = styled.div`
@@ -24,7 +26,6 @@ const Container = styled.div`
     height: auto;
     flex-direction: row;
     flex-wrap: wrap;
-
     justify-content: space-around;
     align-items: flex-start;
   }
@@ -49,10 +50,14 @@ const Temporary = styled.div`
   }
 `;
 
-export default class Dashboard extends Component {
+class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   componentDidMount() {
-    const url = '';
-    asyncTasksAction(url);
+    this.props.getTasks();
   }
 
   render() {
@@ -71,3 +76,12 @@ export default class Dashboard extends Component {
     );
   }
 }
+
+const mdtp = dispatch => ({
+  getTasks: () => dispatch(asyncTasksAction()),
+});
+
+export default connect(
+  null,
+  mdtp,
+)(Dashboard);
