@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader/root';
 import './App.css';
+import ModalLogout from '../ModalLogout/ModalLogout';
 
 class App extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class App extends Component {
     return (
       <>
         <h1>Hello</h1>
+        <ModalLogout />
       </>
     );
   }
