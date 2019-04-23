@@ -22,7 +22,9 @@
   .header__date {
     position: absolute;
     top: 29px;
-    width: 100%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
     text-align: center;
   }
   .header__router.logout {
@@ -36,10 +38,5 @@
     position: unset;
     width: 20rem;
     margin-left: 1.4rem;
-    /* top: 79px; */
-    /* display: initial; */
-    /* align-items: center; */
-    /* justify-content: flex-start; */
-    /* margin: 29px 0; */
   }
 }
