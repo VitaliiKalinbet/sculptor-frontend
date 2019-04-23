@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import SVG from 'react-inlinesvg';
 
 import './HeaderMobile.css';
@@ -16,16 +17,18 @@ const Header = () => {
     <header className="header">
       <div className="header__icons">
         <More className="header__icon more" />
-        <a href="localhost/dashboard" className="header__router dashboard">
+        <NavLink to="/dashboard" className="header__router dashboard selected">
           <Dashboard className="header__icon dashboard" />
           <span>Dashboard</span>
-        </a>
+        </NavLink>
+        {/* <a href="localhost/dashboard" className="header__router dashboard">
+				</a> */}
         <DatePicker className="header__date" />
         {/* <p className="header__date">Date</p> */}
-        <a href="localhost/results" className="header__router results">
+        <NavLink to="/results" className="header__router results">
           <Results className="header__icon results" />
           <span>Results</span>
-        </a>
+        </NavLink>
       </div>
       <p className="header__logo">Sculptor</p>
       <a href="localhost/logout" className="header__router logout">
