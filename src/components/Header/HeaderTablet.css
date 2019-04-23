@@ -15,16 +15,10 @@
   }
   .header__date {
     position: initial;
-    /* bottom: 0;
-		height: 6.5rem; */
     background-color: transparent;
     width: 25rem;
     height: 4.3rem;
-    /* outline: 1px solid red; */
-    /* text-align: center; */
-    /* vertical-align: middle; */
     line-height: 4.3rem;
-    /* font-size: 2rem;  */
   }
   .header__router.dashboard {
     margin: 0;
