@@ -1,0 +1,28 @@
+.Title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.SubTitle {
+  font-size: 1.4rem;
+}
+.Description {
+  padding: 1.9rem 0 1.3rem;
+  font-size: 1.2rem;
+}
+.Color {
+  background-color: #eed8f2;
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 50%;
+}
+.Btn {
+  background-image: url('../../../assets/images/icons/edit/edit@1X.png');
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  background-repeat: no-repeat;
+  width: 1.6rem;
+  height: 1.6rem;
+  cursor: pointer;
+}
