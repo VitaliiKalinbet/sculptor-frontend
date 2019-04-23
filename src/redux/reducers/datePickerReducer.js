@@ -1,5 +1,5 @@
 /*eslint-disable*/
-function showSidebar(state = {}, action) {
+function activeDateReducer(state = {}, action) {
   switch (action.type) {
     case 'editDatePicker':
       const newArrayActiveDates = action.newArrDates;
