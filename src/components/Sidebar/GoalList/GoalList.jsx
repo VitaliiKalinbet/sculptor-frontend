@@ -1,16 +1,26 @@
 /*eslint-disable*/
 import React from 'react';
+import { connect } from 'react-redux';
 import GoalItem from '../GoalItem/GoalItem';
 import s from './GoalList.module.css';
 
-const GoalList = ({ data }) => {
+const GoalList = ({ goalsArray }) => {
   return (
     <ul className={s.List}>
-      {data.map(el => (
-        <GoalItem obj={el} />
+      {goalsArray.map(el => (
+        <GoalItem data={el} />
       ))}
     </ul>
   );
 };
 
-export default GoalList;
+function MSTP(state) {
+  return {
+    goalsArray: state.goals,
+  };
+}
+
+export default connect(
+  MSTP,
+  null,
+)(GoalList);

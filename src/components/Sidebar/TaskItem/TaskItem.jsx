@@ -2,10 +2,10 @@
 import React from 'react';
 import s from './TaskItem.module.css';
 
-const TaskItem = ({ obj }) => {
+const TaskItem = ({ tasks }) => {
   return (
     <li>
-      <p className={s.TaskText}>{obj.title}</p>
+      <p className={s.TaskText}>test</p>
     </li>
   );
 };

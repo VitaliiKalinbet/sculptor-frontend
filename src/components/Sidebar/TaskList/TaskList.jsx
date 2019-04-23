@@ -1,13 +1,24 @@
 /*eslint-disable*/
 import React from 'react';
+import { connect } from 'react-redux';
 import TaskItem from '../TaskItem/TaskItem';
 
-const TaskList = ({ obj }) => {
+const TaskList = ({ tasksArray }) => {
   return (
     <ul>
-      <TaskItem obj={obj} />
+      {tasksArray.map(el => (
+        <TaskItem tasks={el} />
+      ))}
     </ul>
   );
 };
 
-export default TaskList;
+function MSTP(state) {
+  return {
+    tasksArray: state.tasks,
+  };
+}
+export default connect(
+  MSTP,
+  null,
+)(TaskList);
