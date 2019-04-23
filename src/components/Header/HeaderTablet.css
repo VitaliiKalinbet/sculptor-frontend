@@ -2,6 +2,7 @@
   .header__icon.more {
     position: absolute;
     top: -70px;
+    margin-left: 0;
   }
   .header__icons {
     position: relative;
@@ -19,7 +20,7 @@
     background-color: transparent;
     width: 25rem;
     height: 4.3rem;
-    outline: 1px solid red;
+    /* outline: 1px solid red; */
     /* text-align: center; */
     /* vertical-align: middle; */
     line-height: 4.3rem;
@@ -31,7 +32,7 @@
   .header__router.logout {
     position: absolute;
     top: 0px;
-    right: 15px;
+    right: 0px;
     line-height: 5.5rem;
   }
   .header__logo {
@@ -47,5 +48,14 @@
   .header__router > span {
     display: initial;
     margin-left: 1rem;
+  }
+  .header__router.dashboard {
+    margin-left: 1.3rem;
+  }
+  .header__router.results {
+    margin-right: 1.6rem;
+  }
+  .header__router.logout {
+    right: 15px;
   }
 }
