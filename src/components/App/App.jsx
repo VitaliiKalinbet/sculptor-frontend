@@ -33,9 +33,9 @@ class App extends Component {
           EDIT GOAL
         </button>
 
-        {editGoal && (
+        {editGoal.editing && (
           <Backdrop>
-            <SetGoalModal />
+            <SetGoalModal modalType={editGoal.modalType} />
           </Backdrop>
         )}
       </>

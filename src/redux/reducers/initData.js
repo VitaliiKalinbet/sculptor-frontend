@@ -10,7 +10,7 @@ function initData(state = data, action) {
           : goal,
       );
     case 'ADD_GOAL':
-      return [...state, action.goal];
+      return [...state, action.updatedGoal];
     default:
       return state;
   }

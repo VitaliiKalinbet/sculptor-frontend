@@ -15,6 +15,8 @@ function goalTitle(state = '', action) {
       return '';
     case 'SAVE_GOAL':
       return '';
+    case 'ADD_GOAL':
+      return '';
     default:
       return state;
   }

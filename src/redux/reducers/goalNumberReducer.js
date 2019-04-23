@@ -10,6 +10,8 @@ function goalNumber(state = 1, action) {
       return state;
     case 'SAVE_GOAL':
       return state;
+    case 'ADD_GOAL':
+      return state;
     default:
       return state;
   }

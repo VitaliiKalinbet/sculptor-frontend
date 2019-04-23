@@ -20,10 +20,14 @@ const SetGoalModal = ({
   goalMotivation,
   goalTasks,
   activeGoalID,
+  modalType,
+  addGoal,
 }) => {
   return (
     <div className="SetGoalModal" onClick={e => e.stopPropagation()}>
-      <h3 className="SetGoalModal__title">Set a Goal</h3>
+      <h3 className="SetGoalModal__title">
+        {modalType === 'SET' ? 'Set' : 'Update'} a Goal
+      </h3>
       <ModalGoalTitle />
       {/* <ModalGoalIconSelect from Yulia/> */}
       <div className="temp-select">select</div>
@@ -33,18 +37,26 @@ const SetGoalModal = ({
       <button
         type="button"
         onClick={() =>
-          saveGoal(
-            goalTitle,
-            goalColor,
-            goalTasks,
-            goalMotivation,
-            goals,
-            activeGoalID,
-          )
+          modalType !== 'SET'
+            ? saveGoal(
+                goalTitle,
+                goalColor,
+                goalTasks,
+                goalMotivation,
+                goals,
+                activeGoalID,
+              )
+            : addGoal(
+                goalTitle,
+                goalColor,
+                goalTasks,
+                goalMotivation,
+                activeGoalID,
+              )
         }
         disabled={!goalTitle.length || !goalColor.length}
       >
-        Save
+        {modalType === 'SET' ? 'Create' : 'Save'}
       </button>
     </div>
   );
@@ -52,7 +64,9 @@ const SetGoalModal = ({
 
 SetGoalModal.propTypes = {
   goalTitle: PropTypes.string.isRequired,
+  modalType: PropTypes.string.isRequired,
   saveGoal: PropTypes.func.isRequired,
+  addGoal: PropTypes.func.isRequired,
   goals: PropTypes.arrayOf(PropTypes.object).isRequired,
   goalColor: PropTypes.string.isRequired,
   goalMotivation: PropTypes.string,
@@ -92,6 +106,16 @@ function mapDispatchToProps(dispatch) {
           goalTasks,
           goalMotivation,
           goals,
+          activeGoalID,
+        ),
+      ),
+    addGoal: (goalTitle, goalColor, goalTasks, goalMotivation, activeGoalID) =>
+      dispatch(
+        GoalActions.addGoal(
+          goalTitle,
+          goalColor,
+          goalTasks,
+          goalMotivation,
           activeGoalID,
         ),
       ),

@@ -1,11 +1,7 @@
 import React from 'react';
 
 const ModalGoalWeekSelect = () => {
-  return (
-    <div>
-      
-    </div>
-  );
+  return <div />;
 };
 
 export default ModalGoalWeekSelect;

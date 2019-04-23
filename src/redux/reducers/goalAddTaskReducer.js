@@ -59,7 +59,6 @@ function goalTasksFunc(state = goalTasks, action) {
           : task;
       });
     case 'DELETE_TASK':
-      console.log(action);
       if (state.length === 1) {
         return goalTasks;
       }
@@ -80,6 +79,8 @@ function goalTasksFunc(state = goalTasks, action) {
     case 'EDIT_GOAL_CANCEL':
       return goalTasks;
     case 'SAVE_GOAL':
+      return goalTasks;
+    case 'ADD_GOAL':
       return goalTasks;
     default:
       return state;
