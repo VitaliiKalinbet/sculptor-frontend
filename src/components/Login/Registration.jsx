@@ -6,7 +6,7 @@ import './Registration.css';
 
 // import { signInWithEmailAndPassword } from '../../server';
 import Grid from '@material-ui/core/Grid';
-import loginInputActions from '../../redux/actions/RegistrationInputActions';
+import loginInputActions from '../../redux/actions/LoginInputActions';
 
 const Registration = ({ inputData, inputs, logedIn }) => {
   const inputValidationRegEx = {
@@ -29,7 +29,7 @@ const Registration = ({ inputData, inputs, logedIn }) => {
               // logedIn();
               console.log(logedIn);
             }}
-            className="form flex-column center-box shadow padding-all-25"
+            className="form flex-column center-box shadow max-width-500 padding-all-25"
             method="post"
           >
             <h2 className="h2 text-center">Sculptor</h2>
@@ -63,47 +63,17 @@ const Registration = ({ inputData, inputs, logedIn }) => {
               placeholder="Password *"
             />
 
-            <input
-              onChange={e => inputData(e)}
-              value={inputs.password}
-              className={
-                inputs.password.length > 0
-                  ? `form-input ${
-                      isPasswordValid ? 'input__valid' : 'input__invalid'
-                    }`
-                  : 'form-input'
-              }
-              type="password"
-              name="passwordConfirmation"
-              placeholder="Password Confirmation*"
-            />
-
-            <input
-              onChange={e => inputData(e)}
-              value={inputs.email}
-              className={
-                inputs.email.length > 0
-                  ? `form-input ${
-                      isEmailValid ? 'input__valid' : 'input__invalid'
-                    }`
-                  : 'form-input'
-              }
-              type="text"
-              name="text"
-              placeholder="Your Name *"
-            />
-
             <button
               disabled={!(isEmailValid && isPasswordValid)}
               className="btn"
               type="submit"
-              label="Register"
+              label="Login"
             >
-              Register
+              Login
             </button>
             <p className="text-center">
-              <NavLink to="/login" className="link">
-                Login
+              <NavLink to="/register" className="link">
+                Register
               </NavLink>
             </p>
           </form>

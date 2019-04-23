@@ -1,17 +1,13 @@
 .Registration {
   height: 100vh;
   background-image: url('../../assets/images/Слой\ 1@1X.png');
-  background-size: 62% 100%;
-  background-repeat: no-repeat;
-  background-position: right;
 }
 
 .form {
   background-color: rgba(255, 255, 255, 1);
   padding: 5rem 7rem;
   height: 100vh;
-  /* width: 49rem; */
-  width: 100%;
+  width: 49rem;
 }
 
 .input__valid {
@@ -50,7 +46,7 @@ small {
 
   transition: all 0.4s;
 
-  margin: 1rem auto;
+  margin: 1rem 0;
 
   border: none;
   background-color: rgb(252, 132, 44);
