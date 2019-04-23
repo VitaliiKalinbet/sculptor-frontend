@@ -12,8 +12,12 @@
   color: #ffffff;
 }
 .Title {
-  font-size: 1.6rem;
   padding: 4.3rem 0 0 2.5rem;
+}
+.Link {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.6rem;
 }
 
 @media (max-width: 1024px) {

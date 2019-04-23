@@ -30,7 +30,14 @@ function FloatingActionButtons(props) {
   const { classes } = props;
   return (
     <div>
-      <Fab variant="extended" aria-label="Delete" className={classes.fab}>
+      <Fab
+        variant="extended"
+        aria-label="Delete"
+        className={classes.fab}
+        onClick={() => {
+          console.log('click!');
+        }}
+      >
         <NavigationIcon className={classes.extendedIcon} />
         Create new Goal
       </Fab>
