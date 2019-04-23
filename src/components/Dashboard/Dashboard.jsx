@@ -77,8 +77,8 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { goals, tasks } = this.props;
-    // console.log(goals, tasks);
+    const { weekTasks } = this.props;
+    console.log(weekTasks);
 
     return (
       <>
@@ -95,6 +95,7 @@ class Dashboard extends Component {
 const mstp = store => ({
   goals: store.goals,
   tasks: store.tasks,
+  weekTasks: store.weekTasks,
 });
 
 const mdtp = dispatch => ({

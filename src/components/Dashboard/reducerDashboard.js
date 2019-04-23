@@ -40,16 +40,39 @@ export const weekTasksReducer = (state = initialState, { type, payload }) => {
     case 'WEEK_TASKS':
       const presentWeek = weekNow();
       const allTasks = payload;
+
       const dayTasks = [];
+      let idx = false;
+      let taskidx;
 
-      console.log(presentWeek);
-      console.log(allTasks);
+      presentWeek.forEach(elem => {
+        idx = false;
 
-      // for(let i =0, max = presentWeek.length; i<max; i++ ){
-      //    for(let i=0, )
-      // }
+        allTasks.forEach(task => {
+          task.activeDays.forEach(subtask => {
+            if (
+              subtask.getDay() === elem.getDay() &&
+              subtask.getMonth() === elem.getMonth() &&
+              subtask.getYear() === elem.getYear()
+            ) {
+              idx = true;
+              taskidx = {
+                id: task.id,
+                color: task.color,
+                goalId: task.goalId,
+                isComplete: task.isComplete,
+                title: task.title,
+              };
+            }
+          });
+        });
 
-      return state;
+        return idx
+          ? dayTasks.push({ ...taskidx, data: elem })
+          : dayTasks.push({ data: elem });
+      });
+
+      return dayTasks;
     default:
       return state;
   }
