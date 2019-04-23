@@ -1,31 +1,28 @@
 /*eslint-disable*/
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
-import Arrow from '../Sidebar/svg/SvgArrow';
-
-import NavigationIcon from '@material-ui/icons/Navigation';
+import Icon from '@material-ui/core/Icon';
+import SvgEdit from '../Sidebar/svg/SvgEdit';
 
 const styles = theme => ({
   fab: {
-    margin: '4.7rem 0 1.5rem 1.2rem',
-    width: '90%',
+    width: '3rem',
+    height: '3rem',
+    minHeight: '0',
+    minWeigth: '0',
     backgroundColor: 'transparent',
-    borderRadius: '0',
-    border: '1px solid #ffff',
-    color: '#ffff',
-    textTransform: 'capitalize',
-    fontSize: '1.4rem',
+    boxShadow: 'none',
     '&:hover': {
-      backgroundColor: '#263f60',
-      color: '#ffff',
+      backgroundColor: 'rgba(255, 255, 255, 0.1)',
     },
   },
   extendedIcon: {
-    marginLeft: '1.6rem',
-    transform: 'rotate(180deg)',
-    fill: '#fff',
+    fill: '#9ea6b2',
+    weight: '1.8rem',
+    height: '1.8rem',
   },
 });
 
@@ -34,15 +31,14 @@ function FloatingActionButtons(props) {
   return (
     <div>
       <Fab
-        variant="extended"
-        aria-label="Delete"
+        color="secondary"
+        aria-label="Edit"
         className={classes.fab}
         onClick={() => {
-          console.log('click!');
+          console.log('click for edit!');
         }}
       >
-        Set a Goal
-        <Arrow className={classes.extendedIcon} />
+        <SvgEdit className={classes.extendedIcon} />
       </Fab>
     </div>
   );

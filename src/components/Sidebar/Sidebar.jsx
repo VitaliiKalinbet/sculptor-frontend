@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import React, { Component } from 'react';
 import GoalList from './GoalList/GoalList';
-import FloatingActionButtons from '../BtnCreateGoal/BtnCreateGoal';
+import CreateBtn from '../BtnCreateGoal/BtnCreateGoal';
 import s from './Sidebar.module.css';
 import data from './data';
 
@@ -18,7 +18,7 @@ class Sidebar extends Component {
             Sculptor
           </a>
         </h2>
-        <FloatingActionButtons />
+        <CreateBtn />
         <GoalList data={data} />
       </div>
     );
