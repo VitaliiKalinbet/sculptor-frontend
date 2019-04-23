@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader/root';
-// import Login from '../../components';
+import Login from '../Login/Login';
 import './App.css';
 
 class App extends Component {
@@ -12,8 +12,7 @@ class App extends Component {
   render() {
     return (
       <>
-        {/* <Login /> */}
-        <h1>...</h1>
+        <Login />
       </>
     );
   }
