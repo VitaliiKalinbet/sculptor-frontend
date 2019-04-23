@@ -1,0 +1,30 @@
+@media only screen and (min-width: 800px) {
+  .header {
+    background-color: transparent;
+    margin: 29px 0;
+  }
+  .header__logo {
+    display: none;
+  }
+  .header__icon.more {
+    display: none;
+  }
+  .header__icons {
+    position: unset;
+    /* top: 79px; */
+    width: initial;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    margin: 29px 0;
+  }
+  .header__date {
+    position: absolute;
+    top: 29px;
+    width: 100%;
+    text-align: center;
+  }
+  .header__router.logout {
+    position: unset;
+  }
+}
