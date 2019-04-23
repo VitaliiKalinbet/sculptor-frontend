@@ -1,11 +1,9 @@
-/* eslint-disable */
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import SVG from 'react-inlinesvg';
 
 import './HeaderMobile.css';
 import './HeaderTablet.css';
-import './HeaderDesctop.css';
+import './HeaderDesktop.css';
 import DatePicker from '../DatePicker/DatePicker';
 
 import { ReactComponent as More } from '../../assets/images/icons/more/baseline-more_vert-24px.svg';
@@ -21,17 +19,14 @@ const Header = () => {
           <Dashboard className="header__icon dashboard" />
           <span>Dashboard</span>
         </NavLink>
-        {/* <a href="localhost/dashboard" className="header__router dashboard">
-				</a> */}
         <DatePicker className="header__date" />
-        {/* <p className="header__date">Date</p> */}
         <NavLink to="/results" className="header__router results">
           <Results className="header__icon results" />
           <span>Results</span>
         </NavLink>
       </div>
       <p className="header__logo">Sculptor</p>
-      <a href="localhost/logout" className="header__router logout">
+      <a href="/logout" className="header__router logout">
         Logout
       </a>
     </header>
@@ -39,15 +34,3 @@ const Header = () => {
 };
 
 export default Header;
-
-// import React from 'react';
-// import PropTypes from 'prop-types';
-// import { hot } from 'react-hot-loader/root';
-
-// const Header = props => {
-//   return <div />;
-// };
-
-// Header.PropTypes = {};
-
-// export default hot(Header);
