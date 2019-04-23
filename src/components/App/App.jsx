@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
+
 import { hot } from 'react-hot-loader/root';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import Backdrop from '../Backdrop/Backdrop';
+import SetGoalModal from '../SetGoalModal/SetGoalModal';
+
+import SetEditGoalModal from '../../redux/actions/toggleSetEditGoalModalActions';
 import './App.css';
 
 class App extends Component {
@@ -9,12 +16,60 @@ class App extends Component {
   }
 
   render() {
+    const { openModal, editGoal, goals } = this.props;
+
     return (
       <>
-        <h1>Hello</h1>
+        {/* <h1>Hello</h1> */}
+        <button type="button" onClick={e => openModal(e, goals, 'SET')}>
+          SET A GOAL
+        </button>
+
+        <button
+          type="button"
+          data-id="5cb9d14ffeb784bcfadde809"
+          onClick={e => openModal(e, goals, 'UPDATE')}
+        >
+          EDIT GOAL
+        </button>
+
+        {editGoal && (
+          <Backdrop>
+            <SetGoalModal />
+          </Backdrop>
+        )}
       </>
     );
   }
 }
 
-export default hot(App);
+App.propTypes = {
+  openModal: PropTypes.func.isRequired,
+  editGoal: PropTypes.bool.isRequired,
+  goals: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+function mapStateToProps(state) {
+  return {
+    editGoal: state.editGoal,
+    goals: state.goals,
+    // goalTitle: state.goalTitle,
+    // goalColor: state.goalColor,
+    // goalMotivation: state.goalMotivation,
+    // goalTasks: state.goalTasks,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    openModal: (e, goals, type) =>
+      dispatch(SetEditGoalModal.openSetEditGoalModal(e, goals, type)),
+  };
+}
+
+export default hot(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(App),
+);
