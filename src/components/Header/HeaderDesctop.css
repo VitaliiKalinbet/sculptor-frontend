@@ -1,7 +1,8 @@
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 768px) {
   .header {
     background-color: transparent;
     margin: 29px 0;
+    height: 4.3rem;
   }
   .header__logo {
     display: none;
@@ -12,10 +13,10 @@
   .header__icons {
     position: unset;
     /* top: 79px; */
-    width: initial;
+    width: 100%;
     display: flex;
     align-items: center;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     margin: 29px 0;
   }
   .header__date {
@@ -26,5 +27,19 @@
   }
   .header__router.logout {
     position: unset;
+    margin-left: 3rem;
+    line-height: 4.3rem;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .header__icons {
+    position: unset;
+    width: 20rem;
+    margin-left: 1.4rem;
+    /* top: 79px; */
+    /* display: initial; */
+    /* align-items: center; */
+    /* justify-content: flex-start; */
+    /* margin: 29px 0; */
   }
 }
