@@ -15,17 +15,7 @@
   font-size: 1.6rem;
   padding: 4.3rem 0 0 2.5rem;
 }
-.Btn {
-  display: block;
-  width: 90%;
-  border: 1px solid #ffffff;
-  color: #ffffff;
-  font-size: 1.4rem;
-  background-color: transparent;
-  padding: 1.4rem 3rem;
-  cursor: pointer;
-  margin: 4.7rem auto 0;
-}
+
 @media (max-width: 1024px) {
   .Sidebar {
     width: 30%;
