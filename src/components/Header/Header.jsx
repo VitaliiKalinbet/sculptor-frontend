@@ -5,6 +5,7 @@ import SVG from 'react-inlinesvg';
 import './HeaderMobile.css';
 import './HeaderTablet.css';
 import './HeaderDesctop.css';
+import DatePicker from '../DatePicker/DatePicker';
 
 import { ReactComponent as More } from '../../assets/images/icons/more/baseline-more_vert-24px.svg';
 import { ReactComponent as Dashboard } from '../../assets/images/icons/dashboard/baseline-dashboard-24px.svg';
@@ -19,7 +20,8 @@ const Header = () => {
           <Dashboard className="header__icon dashboard" />
           <span>Dashboard</span>
         </a>
-        <p className="header__date">Date</p>
+        <DatePicker className="header__date" />
+        {/* <p className="header__date">Date</p> */}
         <a href="localhost/results" className="header__router results">
           <Results className="header__icon results" />
           <span>Results</span>
