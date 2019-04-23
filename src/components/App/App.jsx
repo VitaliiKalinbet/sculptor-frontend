@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader/root';
-import DeleteIcon from '@material-ui/icons/Delete';
-import Button from '../default/Button/Button';
-// import Input from '../default/Input/Input';
+import DeleteButton from '../default/Button/DeleteButton/DeleteButton';
+import LoginButton from '../default/LoginButton/LoginButton';
+import EditButton from '../default/EditButton/EditButton';
+import SetButton from '../default/SetButton/SetButton';
+
 import './App.css';
 
 class App extends Component {
@@ -14,11 +16,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Button color="white" />
-        <Button iconButton>
-          <DeleteIcon />
-        </Button>
-        {/* <Input /> */}
+        <LoginButton color="white" />
+        <DeleteButton />
+        <EditButton />
+        <SetButton />
       </div>
     );
   }
