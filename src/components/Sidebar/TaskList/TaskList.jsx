@@ -3,7 +3,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import TaskItem from '../TaskItem/TaskItem';
 
-const TaskList = ({ tasksArray }) => {
+const TaskList = ({ goalsArray }) => {
+  console.log('goalsArray: ', goalsArray);
+  const tasksArray = goalsArray.map(el => [...el.goalTasks]);
+  console.log('tasksArray: ', tasksArray); // доделать прокидывание тасков. Пока не то, массив в массиве.
   return (
     <ul>
       {tasksArray.map(el => (
@@ -15,7 +18,7 @@ const TaskList = ({ tasksArray }) => {
 
 function MSTP(state) {
   return {
-    tasksArray: state.tasks,
+    goalsArray: state.goals,
   };
 }
 export default connect(

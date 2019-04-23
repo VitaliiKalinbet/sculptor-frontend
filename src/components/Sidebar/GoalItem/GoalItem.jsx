@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import React from 'react';
-import TaskList from '../TaskItem/TaskItem';
+import TaskList from '../TaskList/TaskList';
 import s from './GoalItem.module.css';
 import EditBtn from '../../BtnEditGoal/BtnEditGoal';
 
