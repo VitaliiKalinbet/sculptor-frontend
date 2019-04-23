@@ -22,7 +22,8 @@ const styles = theme => ({
     },
   },
   extendedIcon: {
-    marginRight: theme.spacing.unit,
+    marginLeft: '1.6rem',
+    transform: 'rotate(90deg)',
   },
 });
 
@@ -38,8 +39,8 @@ function FloatingActionButtons(props) {
           console.log('click!');
         }}
       >
-        <NavigationIcon className={classes.extendedIcon} />
         Create new Goal
+        <NavigationIcon className={classes.extendedIcon} />
       </Fab>
     </div>
   );
