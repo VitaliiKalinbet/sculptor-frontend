@@ -9,19 +9,19 @@ import SetGoalModal from '../SetGoalModal/SetGoalModal';
 import SetEditGoalModal from '../../redux/actions/toggleSetEditGoalModalActions';
 import './App.css';
 
+// eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   render() {
-    const { openModal, editGoal, goals } = this.props;
+    const { openModal, editGoal, goals, btnID } = this.props;
 
     return (
       <>
         {/* <h1>Hello</h1> */}
-        <button type="button" onClick={e => openModal(e, goals, 'SET')}>
+        <button
+          type="button"
+          value={btnID}
+          onClick={e => openModal(e, goals, 'SET')}
+        >
           SET A GOAL
         </button>
 
@@ -47,12 +47,14 @@ App.propTypes = {
   openModal: PropTypes.func.isRequired,
   editGoal: PropTypes.bool.isRequired,
   goals: PropTypes.arrayOf(PropTypes.object).isRequired,
+  btnID: PropTypes.string.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
     editGoal: state.editGoal,
     goals: state.goals,
+    btnID: state.goalData.goalTasks[0].id,
     // goalTitle: state.goalTitle,
     // goalColor: state.goalColor,
     // goalMotivation: state.goalMotivation,

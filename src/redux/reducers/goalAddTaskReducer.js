@@ -1,3 +1,6 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-return-assign */
+/* eslint-disable no-case-declarations */
 /* eslint-disable no-underscore-dangle */
 const initialTaskWeekRange = [
   {
@@ -41,6 +44,7 @@ const initialTaskWeekRange = [
 const initialTask = {
   taskTitle: '',
   name: String(Date.now()),
+  id: String(Date.now()),
   taskWeekRange: initialTaskWeekRange,
 };
 
@@ -82,6 +86,13 @@ function goalTasksFunc(state = goalTasks, action) {
       return goalTasks;
     case 'ADD_GOAL':
       return goalTasks;
+    case 'WEEK_SELECTED':
+      const targetTask = state.find(
+        el => el._id === action.id || el.name === action.id,
+      );
+      // console.log(targetTask);
+      targetTask.taskWeekRange[action.name].status = action.checked;
+      return state.map(el => (el._id === action.id ? targetTask : el));
     default:
       return state;
   }

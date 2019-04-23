@@ -11,6 +11,7 @@ import ModalGoalTasks from '../ModalGoalTasks/ModalGoalTasks';
 import ModalGoalMotivation from '../ModalGoalMotivation/ModalGoalMotivation';
 
 import GoalActions from '../../redux/actions/saveGoalActions';
+import ModalGoalIconSelect from '../ModalGoalIconSelect/ModalGoalIconSelect';
 
 const SetGoalModal = ({
   saveGoal,
@@ -29,7 +30,7 @@ const SetGoalModal = ({
         {modalType === 'SET' ? 'Set' : 'Update'} a Goal
       </h3>
       <ModalGoalTitle />
-      {/* <ModalGoalIconSelect from Yulia/> */}
+      <ModalGoalIconSelect />
       <div className="temp-select">select</div>
       <ModalGoalTasks />
       <ModalGoalMotivation />

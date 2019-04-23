@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 
 import Task from '../../redux/actions/goalAddTaskActions';
 
+import ModalGoalWeekSelect from '../ModalGoalWeekSelect/ModalGoalWeekSelect';
+
 import './ModalGoalTasks.css';
 
 const ModalTasks = ({ inputTaskTitle, goalTasks, deleteTask, addTask }) => {
@@ -27,14 +29,14 @@ const ModalTasks = ({ inputTaskTitle, goalTasks, deleteTask, addTask }) => {
           <button
             type="button"
             onClick={e => {
-              console.log();
               const id = task.name || task._id;
               deleteTask(e, id, goalTasks);
             }}
           >
             |x|
           </button>
-          <div className="temp-checkbox">checkbox</div>
+          <ModalGoalWeekSelect id={task.name || task._id} task={task} />
+          {/* <div className="temp-checkbox">checkbox</div> */}
         </div>
       ))}
       {goalTasks.length < 5 && (
