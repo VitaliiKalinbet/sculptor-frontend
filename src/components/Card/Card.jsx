@@ -1,6 +1,10 @@
 /* eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
+// CardTitle
+import CardTitle from '../CardTitle/CardTitle';
+// Task List
+import TaskList from '../TaskList/TaskList';
 
 const CardItem = styled.div`
   background-color: #fff;
@@ -11,11 +15,6 @@ const CardItem = styled.div`
   }
   width: 29.5rem;
 `;
-
-// CardTitle
-import CardTitle from './CardTitle';
-// Task List
-import TaskList from './TaskList';
 
 const Card = () => {
   return (

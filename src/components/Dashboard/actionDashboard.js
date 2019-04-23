@@ -1,11 +1,10 @@
 /* eslint-disable */
-
 const fetchTasks = data => ({
-  type: 'GET_TASKS',
+  type: 'GET_GOALS',
   payload: data,
 });
 
-const asyncTasksAction = () => dispatch => {
+export const asyncTasksAction = () => dispatch => {
   fetch('http://192.168.90.200:8000/api/goal/5cb9963d06b961a1025d6000', {
     method: 'GET',
     headers: {
@@ -19,5 +18,3 @@ const asyncTasksAction = () => dispatch => {
     .then(data => dispatch(fetchTasks(data)))
     .catch(error => console.log(error));
 };
-
-export default asyncTasksAction;

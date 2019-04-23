@@ -1,12 +1,12 @@
 const initialState = [];
 
-const taskReducer = (store = initialState, { type, payload }) => {
+const goalsReducer = (store = initialState, { type, payload }) => {
   switch (type) {
-    case 'GET_TASKS':
+    case 'GET_GOALS':
       return payload.data;
     default:
       return store;
   }
 };
 
-export default taskReducer;
+export default goalsReducer;

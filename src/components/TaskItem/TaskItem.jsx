@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import IconButtons from './TrashButton';
+import IconButtons from '../TrashButton';
 
 const Item = styled.li`
   display: flex;
@@ -44,10 +44,7 @@ const MoveToTrash = styled.div`
 //ItemDescription - получает текст такси
 
 const TaskItem = props => {
-  const { tasks } = props.tasks;
-
-  console.log(tasks);
-
+  const goals = props.goals;
   return (
     <>
       <Item>
@@ -61,8 +58,8 @@ const TaskItem = props => {
   );
 };
 
-const mstp = store => ({
-  tasks: store.tasks,
+const mstp = state => ({
+  goals: state.goals,
 });
 
 export default connect(mstp)(TaskItem);
