@@ -13,4 +13,5 @@ label > span:last-of-type {
 .checkbox label {
   margin: 0;
   color: #040005;
+  font-size: 3rem !important;
 }

@@ -1,10 +1,14 @@
 import { combineReducers } from 'redux';
-import weekRange from './checkboxReducer';
-import goalColor from './radioReducer';
+
+import editGoal from './goalEditModeReducer';
+// import goals from './saveGoalReducer';
+import goals from './initData';
+import goalData from './goalReducer';
 
 const rootReducer = combineReducers({
-  weekRange,
-  goalColor,
+  goalData,
+  editGoal,
+  goals,
 });
 
 export default rootReducer;

@@ -1,5 +1,7 @@
 // eslint-disable-next-line import/prefer-default-export
 export const checkboxAction = e => ({
-  type: 'WEEKSELECTED',
-  target: e.target,
+  type: 'WEEK_SELECTED',
+  id: e.target.value,
+  name: e.target.name,
+  checked: e.target.checked,
 });

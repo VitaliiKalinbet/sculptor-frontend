@@ -42,7 +42,7 @@ const ModalGoalIconSelect = ({ onCheck, goalColor }) => {
     <div className="radio_container">
       {labelColors.map(el => {
         const StyledRadio = styled(Radio)`
-          color: ${el};
+          color: ${el} !important;
         `;
         return (
           <StyledRadio
@@ -64,7 +64,7 @@ const ModalGoalIconSelect = ({ onCheck, goalColor }) => {
 
 function MSTP(state) {
   return {
-    goalColor: state.goalColor,
+    goalColor: state.goalData.goalColor,
   };
 }
 

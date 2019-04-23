@@ -11,29 +11,27 @@ import { checkboxAction } from '../../redux/actions/checkboxAction';
 import './ModalGoalWeekSelect.css';
 
 // eslint-disable-next-line react/prop-types
-const ModalGoalWeekSelect = ({ onChange, weekRange, goalColor }) => {
+const ModalGoalWeekSelect = ({ onChange, goalColor, id, task }) => {
   const styles = {
     small: {
       width: 36,
       height: 36,
-      color: goalColor,
+      color: goalColor || '#dee5e8',
     },
     medium: {
       width: 48,
       height: 48,
-      color: goalColor,
+      color: goalColor || '#dee5e8',
     },
     large: {
       width: 60,
       height: 60,
-      color: goalColor,
+      color: goalColor || '#dee5e8',
     },
   };
   return (
     <div className="checkbox_container">
-      {weekRange.map(el => {
-        // eslint-disable-next-line no-console
-        console.log('radioReducer', goalColor);
+      {task.taskWeekRange.map(el => {
         return (
           <div className="checkbox" key={el.week}>
             <FormControlLabel
@@ -42,10 +40,11 @@ const ModalGoalWeekSelect = ({ onChange, weekRange, goalColor }) => {
                   icon={
                     <RadioButtonUnchecked color="inherit" fontSize="large" />
                   }
-                  checkedIcon={<Lens fontSize="large" />}
+                  checkedIcon={<Lens fontSize="large" color="inherit" />}
                   onChange={onChange}
                   name={el.week - 1}
                   style={styles.small}
+                  value={id}
                 />
               }
               label={el.week}
@@ -60,8 +59,9 @@ const ModalGoalWeekSelect = ({ onChange, weekRange, goalColor }) => {
 
 function MSTP(state) {
   return {
-    weekRange: state.weekRange,
-    goalColor: state.goalColor,
+    // goalTasks: state.goalData.goalTasks,
+    // weekRange: state.goalData.weekRange,
+    goalColor: state.goalData.goalColor,
   };
 }
 
@@ -75,7 +75,7 @@ function MDTP(dispatch) {
 
 ModalGoalWeekSelect.propTypes = {
   onChange: PropTypes.func.isRequired,
-  weekRange: PropTypes.arrayOf(PropTypes.objects).isRequired,
+  // weekRange: PropTypes.arrayOf(PropTypes.objects).isRequired,
   goalColor: PropTypes.string.isRequired,
 };
 
