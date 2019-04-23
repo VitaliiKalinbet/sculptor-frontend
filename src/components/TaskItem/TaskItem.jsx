@@ -45,6 +45,7 @@ const MoveToTrash = styled.div`
 
 const TaskItem = props => {
   const goals = props.goals;
+
   return (
     <>
       <Item>

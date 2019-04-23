@@ -3,18 +3,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-
-import InfiniteCalendar, {
-  Calendar,
-  withMultipleDates,
-  defaultMultipleDateInterpolation,
-} from 'react-infinite-calendar';
-import 'react-infinite-calendar/styles.css';
-import Grid from '@material-ui/core/Grid';
+import { weekNow } from '../../utils/date';
 // components
 import Card from '../Card/Card';
 // action
-import { asyncTasksAction } from './actionDashboard.js';
+import asyncGoalAction from './goalAction';
+import asyncTasksAction from './taskAction';
 
 // card wrapper
 const Container = styled.div`
@@ -59,14 +53,19 @@ const Temporary = styled.div`
 class Dashboard extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       startDate: [new Date(2019, 4, 23)],
       minDate: new Date(2019, 3, 20),
     };
   }
 
-  componentDidMount() {
-    this.props.getTasks();
+  async componentDidMount() {
+    await this.props.getGoals();
+    await this.props.getTasks();
+    const currentWeek = weekNow();
+
+    // console.log(currentWeek);
   }
 
   handlerDatePicker = date => {
@@ -74,47 +73,13 @@ class Dashboard extends Component {
   };
 
   render() {
+    const { goals, tasks } = this.props;
+    // console.log(goals, tasks);
+
     return (
       <>
-        <Grid container>
-          <Grid item>
-            <InfiniteCalendar
-              minDate={this.state.minDate}
-              Component={withMultipleDates(Calendar)}
-              selected={this.state.startDate}
-              interpolateSelection={defaultMultipleDateInterpolation}
-              onSelect={this.handlerDatePicker}
-              keyboardSupport={true}
-              width={window.innerWidth <= 650 ? window.innerWidth : 650}
-              height={window.innerHeight - 250}
-              rowHeight={70}
-              theme={{
-                selectionColor: '#223653',
-                textColor: {
-                  default: '#333',
-                  active: '#FFF',
-                },
-                weekdayColor: '#223653',
-                headerColor: '#223653',
-                floatingNav: {
-                  background: '#223653',
-                  color: '#FFF',
-                  chevron: '#FFA726',
-                },
-              }}
-              displayOptions={{ hideYearsOnSelect: false }}
-              // displayOptions={{
-              //   showHeader: false,
-              // }}
-            />
-          </Grid>
-        </Grid>
         <Temporary />
         <Container>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
           <Card />
         </Container>
         <Temporary />
@@ -123,11 +88,17 @@ class Dashboard extends Component {
   }
 }
 
+const mstp = store => ({
+  goals: store.goals,
+  tasks: store.tasks,
+});
+
 const mdtp = dispatch => ({
+  getGoals: () => dispatch(asyncGoalAction()),
   getTasks: () => dispatch(asyncTasksAction()),
 });
 
 export default connect(
-  null,
+  mstp,
   mdtp,
 )(Dashboard);

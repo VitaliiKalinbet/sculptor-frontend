@@ -1,10 +1,14 @@
 import { combineReducers } from 'redux';
 
 // GET TASKS
-import goalsReducer from '../../components/Dashboard/reducerDashboard';
+import {
+  goalsReducer,
+  taskReducer,
+} from '../../components/Dashboard/reducerDashboard';
 
 const rootReducer = combineReducers({
   goals: goalsReducer,
+  tasks: taskReducer,
 });
 
 export default rootReducer;
