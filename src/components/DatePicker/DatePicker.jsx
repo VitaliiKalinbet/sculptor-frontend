@@ -12,8 +12,8 @@ const DatePicker = props => {
           prev week
         </a>
         <div className="datePicker__dateNow">
-          <p className="dateNow__month">apr</p>
-          <p className="dateNow__day">23</p>
+          <p className="dateNow__month">{Date().slice(4, 7)}</p>
+          <p className="dateNow__day">{new Date().getDate()}</p>
         </div>
         <a href="/next" className="datePicker__arrow">
           next week
