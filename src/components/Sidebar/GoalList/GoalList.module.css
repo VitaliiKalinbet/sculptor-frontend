@@ -1,5 +1,6 @@
 .List {
+  height: calc(100vh - 16rem);
   list-style: none;
-  background-color: rgba(255, 255, 255, 0.1);
+  overflow: scroll;
   padding: 2.3rem 1.2rem;
 }

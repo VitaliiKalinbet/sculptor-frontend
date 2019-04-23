@@ -1,3 +1,9 @@
+.List {
+  margin-top: 2rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+}
+
 .Title {
   display: flex;
   justify-content: space-between;

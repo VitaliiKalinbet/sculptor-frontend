@@ -2,12 +2,10 @@
 import React from 'react';
 import s from './TaskItem.module.css';
 
-const TaskItem = () => {
+const TaskItem = ({ obj }) => {
   return (
     <li>
-      <p className={s.TaskText}>
-        Morning exercizes: daily run at 7:30 up to 8:00
-      </p>
+      <p className={s.TaskText}>{obj.title}</p>
     </li>
   );
 };
