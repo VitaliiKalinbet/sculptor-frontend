@@ -56,7 +56,7 @@ ModalTasks.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    goalTasks: state.goalTasks,
+    goalTasks: state.goalData.goalTasks,
   };
 }
 

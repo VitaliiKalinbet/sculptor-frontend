@@ -23,7 +23,7 @@ Backdrop.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    goalMotivation: state.goalMotivation,
+    goalMotivation: state.goalData.goalMotivation,
   };
 }
 

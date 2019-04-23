@@ -61,10 +61,10 @@ ModalGoalTitle.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    goalTitle: state.goalTitle,
+    goalTitle: state.goalData.goalTitle,
     goals: state.goals,
-    goalColor: state.goalColor,
-    goalNumber: state.goalNumber,
+    goalColor: state.goalData.goalColor,
+    goalNumber: state.goalData.goalNumber,
   };
 }
 

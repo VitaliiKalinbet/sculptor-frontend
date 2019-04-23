@@ -81,11 +81,11 @@ SetGoalModal.defaultProps = {
 function mapStateToProps(state) {
   return {
     goals: state.goals,
-    goalTitle: state.goalTitle,
-    goalColor: state.goalColor,
-    goalMotivation: state.goalMotivation,
-    goalTasks: state.goalTasks,
-    activeGoalID: state.activeGoalID,
+    goalTitle: state.goalData.goalTitle,
+    goalColor: state.goalData.goalColor,
+    goalMotivation: state.goalData.goalMotivation,
+    goalTasks: state.goalData.goalTasks,
+    activeGoalID: state.goalData.activeGoalID,
   };
 }
 

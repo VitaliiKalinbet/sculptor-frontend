@@ -34,7 +34,7 @@ ModalGoalMotivation.defaultProps = {
 
 function mapStateToProps(state) {
   return {
-    goalMotivation: state.goalMotivation,
+    goalMotivation: state.goalData.goalMotivation,
   };
 }
 
