@@ -4,11 +4,13 @@ import { combineReducers } from 'redux';
 import {
   goalsReducer,
   taskReducer,
+  weekTasksReducer,
 } from '../../components/Dashboard/reducerDashboard';
 
 const rootReducer = combineReducers({
   goals: goalsReducer,
   tasks: taskReducer,
+  weekTasks: weekTasksReducer,
 });
 
 export default rootReducer;

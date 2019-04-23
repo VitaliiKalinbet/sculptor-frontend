@@ -3,12 +3,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { weekNow } from '../../utils/date';
+
 // components
 import Card from '../Card/Card';
 // action
 import asyncGoalAction from './goalAction';
 import asyncTasksAction from './taskAction';
+import weekTasksAction from './weekAction';
 
 // card wrapper
 const Container = styled.div`
@@ -63,9 +64,12 @@ class Dashboard extends Component {
   async componentDidMount() {
     await this.props.getGoals();
     await this.props.getTasks();
-    const currentWeek = weekNow();
+  }
 
-    // console.log(currentWeek);
+  componentDidUpdate(prevprops) {
+    if (prevprops.tasks !== this.props.tasks) {
+      this.props.weekTasks(this.props.tasks);
+    }
   }
 
   handlerDatePicker = date => {
@@ -96,6 +100,7 @@ const mstp = store => ({
 const mdtp = dispatch => ({
   getGoals: () => dispatch(asyncGoalAction()),
   getTasks: () => dispatch(asyncTasksAction()),
+  weekTasks: data => dispatch(weekTasksAction(data)),
 });
 
 export default connect(
