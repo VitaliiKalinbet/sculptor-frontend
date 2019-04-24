@@ -19,19 +19,68 @@ class Picker extends Component {
     const actionData = (e, selectedData) => {
       this.props.dataHandler(e, this.props.selectedData);
     };
-    // console.log(this.props.selectedData[1])
-    return (
-      <div
-        className={
-          !this.props.calendarButton
-            ? 'calendar'
-            : 'calendar calendar--disabled'
+    const { actionCalendar, taskObj, taskId } = this.props;
+
+    const userWeeks = taskObj.taskWeekRange.filter(el => !el.status);
+
+    const numUserWeeks = userWeeks.map(el => el.week);
+
+    const taskCreationDate = taskObj.taskCreateDate;
+
+    console.log(numUserWeeks, taskCreationDate);
+
+    function taskDatesFilter(taskCreationDate, numUserWeeks) {
+      const allWeeks = [
+        {
+          date: taskCreationDate,
+          week: 1,
+        },
+      ];
+
+      let date = taskCreationDate;
+      let weekCounter = 1;
+      let dayCounter = 1;
+
+      while (dayCounter !== 63) {
+        date += 86401000;
+
+        const dateObj = {
+          date: date,
+          week: weekCounter,
+        };
+
+        allWeeks.push(dateObj);
+
+        dayCounter += 1;
+
+        if (dayCounter % 7 === 0) {
+          weekCounter += 1;
         }
-      >
-        <button
-          onClick={this.props.calendarButtonFunc}
-          className={'calendar__button'}
-        >
+      }
+
+      const userPickedWeeks = allWeeks.filter(el =>
+        numUserWeeks.includes(el.week),
+      );
+      const userDisabledWeeks = allWeeks.filter(
+        el => !allWeeks.includes(el.week),
+      );
+
+      const datesObject = {
+        allWeeks,
+        userPickedWeeks,
+        userDisabledWeeks,
+        taskId,
+      };
+
+      return datesObject;
+    }
+
+    const userDates = taskDatesFilter(taskCreationDate, numUserWeeks);
+
+    console.log(userDates);
+    return (
+      <div className="calendar">
+        <button onClick={actionCalendar} className={'calendar__button'}>
           X
         </button>
         <InfiniteCalendar
@@ -45,8 +94,8 @@ class Picker extends Component {
           interpolateSelection={defaultMultipleDateInterpolation}
           onSelect={actionData}
           keyboardSupport={true}
-          width={window.innerWidth <= 650 ? window.innerWidth : 650}
-          height={window.innerHeight - 250}
+          width={window.innerWidth <= 650 ? window.innerWidth : 350}
+          height={250}
           rowHeight={70}
           theme={{
             selectionColor: '#223653',

@@ -3,9 +3,14 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Header from '../Header/Header';
+// import TestDashboard from '../TestDashboard/TestDashboard';
+import TestResults from '../TestResults/TestResults';
 
 // components
 import Card from '../Card/Card';
+import Sidebar from '../Sidebar/Sidebar';
 // action
 import asyncGoalAction from './goalAction';
 import asyncTasksAction from './taskAction';
@@ -19,22 +24,23 @@ const Container = styled.div`
   background-color: #eee;
   display: flex;
   flex-direction: column;
+  flex: 0 0 calc(100%-260px);
   height: 44rem;
   overflow: scroll;
   @media (min-width: 767px) {
     overflow: auto;
-    width: 76.8rem;
-    height: auto;
+    width: 100%;
+    height: 80vh;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: flex-start;
   }
   @media (min-width: 1200px) {
-    width: 100.2rem;
+    width: 100%;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
   }
 `;
 
@@ -50,7 +56,11 @@ const Temporary = styled.div`
     width: 100.2rem;
   }
 `;
-
+const Dash = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: auto;
+`;
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -77,17 +87,14 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { weekTasks } = this.props;
-    console.log(weekTasks);
+    const { week, showSidebar } = this.props;
 
     return (
-      <>
-        <Temporary />
+      <Dash>
         <Container>
-          <Card />
+          {week.length > 0 && week.map(day => <Card day={day} />)}
         </Container>
-        <Temporary />
-      </>
+      </Dash>
     );
   }
 }
@@ -95,7 +102,8 @@ class Dashboard extends Component {
 const mstp = store => ({
   goals: store.goals,
   tasks: store.tasks,
-  weekTasks: store.weekTasks,
+  week: store.weekTasks,
+  showSidebar: store.app.showSidebar,
 });
 
 const mdtp = dispatch => ({
