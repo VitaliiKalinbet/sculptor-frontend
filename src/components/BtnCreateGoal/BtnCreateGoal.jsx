@@ -30,16 +30,15 @@ const styles = theme => ({
 });
 
 function FloatingActionButtons(props) {
-  const { classes } = props;
+  const { classes, value, onClick } = props;
   return (
     <div>
       <Fab
         variant="extended"
         aria-label="Delete"
+        value={value}
         className={classes.fab}
-        onClick={() => {
-          console.log('click!');
-        }}
+        onClick={onClick}
       >
         Set a Goal
         <Arrow className={classes.extendedIcon} />

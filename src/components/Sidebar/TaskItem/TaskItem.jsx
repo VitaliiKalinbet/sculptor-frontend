@@ -5,7 +5,7 @@ import { dateAction } from '../../../redux/actions/dateAction';
 import { connect } from 'react-redux';
 
 const TaskItem = ({ tasks, dateAction }) => {
-  console.log('tasks: ', tasks);
+  // console.log('tasks: ', tasks);
   return (
     <li className={s.Item}>
       <p className={s.TaskText} data-date={tasks._id} onClick={dateAction}>
