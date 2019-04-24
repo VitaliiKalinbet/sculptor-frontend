@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from '../Header/Header';
-import TestDashboard from '../TestDashboard/TestDashboard';
+// import TestDashboard from '../TestDashboard/TestDashboard';
 import TestResults from '../TestResults/TestResults';
 
 // components
@@ -14,7 +14,6 @@ import Card from '../Card/Card';
 import asyncGoalAction from './goalAction';
 import asyncTasksAction from './taskAction';
 import weekTasksAction from './weekAction';
-import { showSidebarAction } from '../../redux/actions/sidebarAction';
 
 // card wrapper
 const Container = styled.div`
@@ -92,10 +91,10 @@ class Dashboard extends Component {
     return (
       <Dash>
         <Router>
-          <Header showSidebar={showSidebar} />
+          {/* <Header showSidebar={showSidebar} /> */}
           <div>
-            <Route path="/dashboard" exect component={TestDashboard} />
-            <Route path="/results" component={TestResults} />
+            {/* <Route path="/dashboard" exect component={TestDashboard} />
+            <Route path="/results" component={TestResults} /> */}
           </div>
         </Router>
 
@@ -118,7 +117,6 @@ const mdtp = dispatch => ({
   getGoals: () => dispatch(asyncGoalAction()),
   getTasks: () => dispatch(asyncTasksAction()),
   weekTasks: data => dispatch(weekTasksAction(data)),
-  showSidebar: () => dispatch(showSidebarAction()),
 });
 
 export default connect(

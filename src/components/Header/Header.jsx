@@ -1,11 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import './HeaderMobile.css';
 import './HeaderTablet.css';
 import './HeaderDesktop.css';
 import DatePicker from '../DatePicker/DatePicker';
+
+import { showSidebarAction } from '../../redux/actions/sidebarAction';
 
 import { ReactComponent as More } from '../../assets/images/icons/more/baseline-more_vert-24px.svg';
 import { ReactComponent as Dashboard } from '../../assets/images/icons/dashboard/baseline-dashboard-24px.svg';
@@ -38,4 +41,19 @@ Header.propTypes = {
   showSidebar: PropTypes.func.isRequired,
 };
 
-export default Header;
+function mapStateToProps(state) {
+  return {
+    showSidebar: state.app.showSidebar,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    showSidebar: () => dispatch(showSidebarAction()),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Header);
