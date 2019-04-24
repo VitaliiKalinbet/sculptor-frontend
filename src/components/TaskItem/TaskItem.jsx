@@ -39,18 +39,14 @@ const MoveToTrash = styled.div`
   }
 `;
 
-// ----  тут получаем из СТОРА массив таксов, и размножаем их  ----
-//ItemStatus - получаем статус таски, в зависимости от этого применяем стили
-//ItemDescription - получает текст такси
-
-const TaskItem = props => {
-  const goals = props.goals;
-
+const TaskItem = ({ data }) => {
+  const tasklist = data;
+  console.log(tasklist);
   return (
     <>
       <Item>
-        <ItemStatus />
-        <ItemDescription>Text-1 about task 1</ItemDescription>
+        <ItemStatus color={data.color} />
+        <ItemDescription>{data.title}</ItemDescription>
         <MoveToTrash>
           <IconButtons />
         </MoveToTrash>

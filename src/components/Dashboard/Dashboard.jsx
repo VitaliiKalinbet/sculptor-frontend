@@ -77,14 +77,15 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { weekTasks } = this.props;
-    console.log(weekTasks);
+    const { week } = this.props;
 
     return (
       <>
         <Temporary />
         <Container>
-          <Card />
+          {week.map(task => (
+            <Card data={task} />
+          ))}
         </Container>
         <Temporary />
       </>
@@ -95,7 +96,7 @@ class Dashboard extends Component {
 const mstp = store => ({
   goals: store.goals,
   tasks: store.tasks,
-  weekTasks: store.weekTasks,
+  week: store.weekTasks,
 });
 
 const mdtp = dispatch => ({

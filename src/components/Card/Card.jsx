@@ -1,9 +1,8 @@
 /* eslint-disable */
 import React from 'react';
+import moment from 'moment';
 import styled from 'styled-components';
-// CardTitle
 import CardTitle from '../CardTitle/CardTitle';
-// Task List
 import TaskList from '../TaskList/TaskList';
 
 const CardItem = styled.div`
@@ -16,11 +15,13 @@ const CardItem = styled.div`
   width: 29.5rem;
 `;
 
-const Card = () => {
+const Card = ({ data }) => {
+  const title = String(data.data).substr(0, 10);
+
   return (
     <CardItem>
-      <CardTitle />
-      <TaskList />
+      <CardTitle title={title} />
+      <TaskList data={data} />
     </CardItem>
   );
 };
