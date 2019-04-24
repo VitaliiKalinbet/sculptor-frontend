@@ -1,16 +1,12 @@
 /*eslint-disable */
 
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import Registration from '../components/Registration/Registration';
 
-function mapStateToProps(state) {
-  return {};
-}
+const RegistrationPage = props => (
+  <>
+    <Registration {...props} />
+  </>
+);
 
-class RegistrationPage extends Component {
-  render() {
-    return <div>REGISTRATION</div>;
-  }
-}
-
-export default connect(mapStateToProps)(RegistrationPage);
+export default RegistrationPage;

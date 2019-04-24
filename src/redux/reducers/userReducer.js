@@ -9,10 +9,8 @@ const user = (state = initialState, action) => {
       localStorage.setItem('user', JSON.stringify(action.data));
       return { ...state, user: action.data };
     case 'OK_LOGOUT':
-      localStorage.setItem('user', null);
+      localStorage.clear();
       return { ...state, user: null };
-    case 'REGISTER_USER':
-      return { ...state, [action.name]: action.value };
     default:
       return state;
   }

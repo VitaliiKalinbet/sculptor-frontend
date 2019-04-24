@@ -1,40 +1,15 @@
-/* eslint-disable */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-// import LoginButton from '../Button/LoginButton/LoginButton';
-import './Login.css';
-import './Login768.css';
-import './Login320.css';
+import './Registration.css';
+import './Registration768.css';
+import './Registration320.css';
 
+// import { signInWithEmailAndPassword } from '../../server';
 import Grid from '@material-ui/core/Grid';
-import loginInputActions from '../../redux/actions/LoginInputActions';
-
-const styles = () => ({
-  button: {
-    color: '#ffffff',
-    textTransform: 'capitalize',
-    userSelect: 'none',
-    fontSize: '1.4rem',
-
-    transition: 'all 0.4s',
-
-    margin: '3rem auto',
-
-    border: 'none',
-    backgroundColor: 'rgb(252, 132, 44)',
-    boxShadow: '0px 4px 10px 0px rgba(252, 132, 44, 0.36)',
-    width: '13rem',
-    height: '4rem',
-    // margin: theme.spacing.unit,
-  },
-  input: {
-    display: 'none',
-  },
-});
+import loginInputActions from '../../redux/actions/RegistrationInputActions';
+// import { prototype } from 'react-transition-group/CSSTransition';
 
 const inputValidationRegEx = {
   email: /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim,
@@ -43,36 +18,40 @@ const inputValidationRegEx = {
 
 const isEmailValid = email => inputValidationRegEx.email.test(email);
 
-const isPasswordValid = password => password.length !== 0;
+const isPasswordValid = (password, confirmPassword) =>
+  password.length !== 0 && password === confirmPassword;
 
-class Login extends Component {
+const isNameValid = name => name.length !== 0;
+
+class Registration extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: '',
       email: '',
       password: '',
+      confirmPassword: '',
     };
   }
 
   handlerOnSubmit = e => {
     e.preventDefault();
-    const { addUser, history } = this.props;
-    const { email, password } = this.state;
-    console.log(history);
+    const { history } = this.props;
+    const { name, email, password } = this.state;
 
-    fetch('http://192.168.90.200:8000/api/login', {
+    fetch('http://192.168.90.200:8000/api/register', {
       method: 'POST',
       body: JSON.stringify({
-        username: email,
+        email,
         password,
+        name,
       }),
       headers: { 'content-type': 'application/json' },
     })
       .then(response => {
         response.json().then(data => {
           console.log(data);
-          addUser(data);
-          if (data.success) history.push('/');
+          if (data.success) history.push('/login');
         });
       })
       .catch(err => {
@@ -85,12 +64,11 @@ class Login extends Component {
   };
 
   render() {
-    const { email, password } = this.state;
-    const { classes } = this.props;
+    const { email, password, confirmPassword, name } = this.state;
     return (
-      <div className="Login">
+      <div className="Registration">
         <Grid container>
-          <Grid className="Login-column" item lg={4} sm={4} xs={12}>
+          <Grid className="Registration-column" item lg={4} sm={4} xs={12}>
             <Grid container direction="column">
               <Grid item>
                 <h1 className="h1 text-center">Sculptor</h1>
@@ -125,7 +103,7 @@ class Login extends Component {
                     className={
                       password.length > 0
                         ? `form-input ${
-                            isPasswordValid(password)
+                            isPasswordValid(password, confirmPassword)
                               ? 'input__valid'
                               : 'input__invalid'
                           }`
@@ -137,20 +115,53 @@ class Login extends Component {
                     required
                   />
 
-                  <Button
-                    type="submit"
-                    label="Login"
-                    disabled={
-                      !isEmailValid(email) && !isPasswordValid(password)
+                  <input
+                    onChange={this.handleChange('confirmPassword')}
+                    value={confirmPassword}
+                    className={
+                      confirmPassword.length > 0
+                        ? `form-input ${
+                            isPasswordValid(password, confirmPassword)
+                              ? 'input__valid'
+                              : 'input__invalid'
+                          }`
+                        : 'form-input'
                     }
-                    variant="contained"
-                    className={classes.button}
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="Password Confirmation*"
+                    required
+                  />
+
+                  <input
+                    onChange={this.handleChange('name')}
+                    value={name}
+                    className={
+                      name.length > 3
+                        ? 'input__valid form-input'
+                        : 'input__invalid form-input'
+                    }
+                    type="text"
+                    name="name"
+                    placeholder="Your Name *"
+                    required
+                  />
+
+                  <button
+                    disabled={
+                      !isEmailValid(email) &&
+                      !isPasswordValid(password, confirmPassword) &&
+                      !isNameValid(name)
+                    }
+                    className="btn"
+                    type="submit"
+                    label="Register"
                   >
-                    Login
-                  </Button>
+                    Register
+                  </button>
                   <p className="text-center">
-                    <NavLink to="/registration" className="link">
-                      Register
+                    <NavLink to="/login" className="link">
+                      Login
                     </NavLink>
                   </p>
                 </form>
@@ -175,18 +186,15 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-Login.propTypes = {
-  addUser: PropTypes.func,
-  classes: PropTypes.shape.isRequired,
+Registration.propTypes = {
   history: PropTypes.shape,
 };
 
-Login.defaultProps = {
-  addUser: '',
+Registration.defaultProps = {
   history: '',
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withStyles(styles)(Login));
+)(Registration);
