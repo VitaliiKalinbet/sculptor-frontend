@@ -12,10 +12,12 @@ const List = styled.ul`
   flex-direction: column;
 `;
 
-const TaskList = ({ data }) => {
+const TaskList = ({ items }) => {
   return (
     <List>
-      <TaskItem data={data} />
+      {items.map(item => (
+        <TaskItem data={items} />
+      ))}
     </List>
   );
 };

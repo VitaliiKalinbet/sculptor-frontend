@@ -1,7 +1,6 @@
 /* eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
 
 import IconButtons from '../TrashButton';
 
@@ -39,12 +38,14 @@ const MoveToTrash = styled.div`
   }
 `;
 
+// ----  тут получаем из СТОРА массив таксов, и размножаем их  ----
+//ItemStatus - получаем статус таски, в зависимости от этого применяем стили
+//ItemDescription - получает текст такси
+
 const TaskItem = ({ data }) => {
-  const tasklist = data;
-  console.log(tasklist);
   return (
     <>
-      <Item>
+      <Item key={data.key}>
         <ItemStatus color={data.color} />
         <ItemDescription>{data.title}</ItemDescription>
         <MoveToTrash>
@@ -55,8 +56,4 @@ const TaskItem = ({ data }) => {
   );
 };
 
-const mstp = state => ({
-  goals: state.goals,
-});
-
-export default connect(mstp)(TaskItem);
+export default TaskItem;

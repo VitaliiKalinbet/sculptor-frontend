@@ -77,15 +77,13 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { week } = this.props;
+    const { weekTasks } = this.props;
 
     return (
       <>
         <Temporary />
         <Container>
-          {week.map(task => (
-            <Card data={task} />
-          ))}
+          {weekTasks && weekTasks.map(day => <Card day={day} />)}
         </Container>
         <Temporary />
       </>

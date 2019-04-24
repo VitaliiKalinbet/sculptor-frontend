@@ -15,13 +15,13 @@ const CardItem = styled.div`
   width: 29.5rem;
 `;
 
-const Card = ({ data }) => {
-  const title = String(data.data).substr(0, 10);
+const Card = ({ day }) => {
+  const title = String(day.title).substr(0, 10);
 
   return (
     <CardItem>
       <CardTitle title={title} />
-      <TaskList data={data} />
+      <TaskList items={data} />
     </CardItem>
   );
 };
