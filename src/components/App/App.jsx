@@ -1,3 +1,4 @@
+/*  eslint-disable  */
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader/root';
 import './App.css';
@@ -6,12 +7,8 @@ import Header from '../Header/Header';
 import TestDashboard from '../TestDashboard/TestDashboard';
 import TestResults from '../TestResults/TestResults';
 
+//
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   render() {
     return (
       <>
