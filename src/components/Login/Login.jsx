@@ -55,7 +55,7 @@ class Login extends Component {
 
   handlerOnSubmit = e => {
     e.preventDefault();
-    const { logedIn, addUser } = this.props;
+    const { addUser } = this.props;
     const { email, password } = this.state;
 
     fetch('http://192.168.90.200:8000/api/login', {
@@ -76,15 +76,12 @@ class Login extends Component {
       .catch(err => {
         console.log(err);
       });
-    logedIn();
-    // console.log(logedIn);
   };
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
   };
 
-  // } = ({ inputData, inputs, logedIn, classes }) => {
   render() {
     const { email, password } = this.state;
     const { classes } = this.props;
@@ -172,19 +169,16 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    logedIn: uid => dispatch(loginInputActions.logedIn(uid)),
     addUser: data => dispatch(loginInputActions.addUser(data)),
   };
 }
 
 Login.propTypes = {
-  logedIn: PropTypes.func,
   addUser: PropTypes.func,
   classes: PropTypes.shape.isRequired,
 };
 
 Login.defaultProps = {
-  logedIn: '',
   addUser: '',
 };
 
