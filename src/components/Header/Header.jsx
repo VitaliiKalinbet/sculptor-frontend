@@ -6,6 +6,8 @@ import './HeaderTablet.css';
 import './HeaderDesktop.css';
 import DatePicker from '../DatePicker/DatePicker';
 
+import ModalLogout from '../ModalLogout/ModalLogout';
+
 import { ReactComponent as More } from '../../assets/images/icons/more/baseline-more_vert-24px.svg';
 import { ReactComponent as Dashboard } from '../../assets/images/icons/dashboard/baseline-dashboard-24px.svg';
 import { ReactComponent as Results } from '../../assets/images/icons/chart/baseline-timeline-24px.svg';
@@ -26,9 +28,12 @@ const Header = () => {
         </NavLink>
       </div>
       <p className="header__logo">Sculptor</p>
-      <a href="/logout" className="header__router logout">
+
+      <ModalLogout />
+
+      {/* <a href="/logout" className="header__router logout">
         Logout
-      </a>
+      </a> */}
     </header>
   );
 };

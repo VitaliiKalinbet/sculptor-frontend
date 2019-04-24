@@ -8,6 +8,9 @@ const styles = theme => ({
   button: {
     background: '#46617f',
     color: '#fbf3e7',
+    // width: 50,
+    fontSize: 12,
+    textTransform: 'capitalize',
     '&:hover': {
       background: '#46617f',
     },
@@ -20,20 +23,30 @@ const styles = theme => ({
   },
 });
 
-const CustomButton = ({ classes }) => (
-  <Button variant="contained" color="secondary" className={classes.button}>
-    Set a Goal
+const SetButton = ({ classes, onClick, value, children }) => (
+  <Button
+    variant="contained"
+    color="secondary"
+    className={classes.button}
+    onClick={onClick}
+    value={value}
+  >
+    {children}
     <ArrowForward className={classes.rightIcon} />
   </Button>
 );
-CustomButton.propTypes = {
+
+SetButton.propTypes = {
   classes: PropTypes.shape({
     color: PropTypes.string,
     fontSize: PropTypes.number,
   }),
+  children: PropTypes.element.isRequired,
+  onClick: PropTypes.element.isRequired,
+  value: PropTypes.element.isRequired,
 };
-CustomButton.defaultProps = {
+SetButton.defaultProps = {
   classes: {},
 };
 
-export default withStyles(styles)(CustomButton);
+export default withStyles(styles)(SetButton);
