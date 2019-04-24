@@ -47,8 +47,8 @@ class App extends Component {
           <div className="main__right">
             <Header />
             <Router>
-              <div>
-                <Route path="/" exect render={() => <Dashboard />} />
+              <div className="main__container">
+                <Route exact path="/" component={Dashboard} />
                 <Route exact path="/results" component={Statistics} />
                 {/* <Route path="/results" component={TestResults} /> */}
               </div>

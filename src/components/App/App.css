@@ -9,3 +9,9 @@
 .main__right {
   flex: auto;
 }
+
+@media only screen and (max-width: 768px) {
+  .main__container {
+    margin-top: 10rem;
+  }
+}

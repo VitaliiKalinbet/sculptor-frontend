@@ -8,8 +8,8 @@ import './HeaderTablet.css';
 import './HeaderDesktop.css';
 // import DatePicker from '../DatePicker/DatePicker';
 
-import { showSidebarAction } from '../../redux/actions/sidebarAction';
 import ModalLogout from '../ModalLogout/ModalLogout';
+import { showSidebarAction } from '../../redux/actions/sidebarAction';
 
 import { ReactComponent as More } from '../../assets/images/icons/more/baseline-more_vert-24px.svg';
 import { ReactComponent as Dashboard } from '../../assets/images/icons/dashboard/baseline-dashboard-24px.svg';

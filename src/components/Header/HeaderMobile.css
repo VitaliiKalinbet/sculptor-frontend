@@ -16,6 +16,7 @@
 }
 .header__icon.more {
   margin-left: 0.6rem;
+  cursor: pointer;
 }
 .header__router {
   color: #c5cdcd;

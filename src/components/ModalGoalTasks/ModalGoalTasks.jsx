@@ -15,26 +15,28 @@ const ModalTasks = ({ inputTaskTitle, goalTasks, deleteTask, addTask }) => {
     <div className="ModalTasks">
       {goalTasks.map(task => (
         <div className="ModalTasks__input-container">
-          <input
-            className="ModalTasks__input"
-            key={task.name || task._id}
-            type="text"
-            name={task.name || task._id}
-            value={task.taskTitle}
-            onChange={e => {
-              const id = task.name || task._id;
-              inputTaskTitle(e, id);
-            }}
-          />
-          <button
-            type="button"
-            onClick={e => {
-              const id = task.name || task._id;
-              deleteTask(e, id, goalTasks);
-            }}
-          >
-            |x|
-          </button>
+          <div className="ModalTasks__input-container--left">
+            <input
+              className="ModalTasks__input"
+              key={task.name || task._id}
+              type="text"
+              name={task.name || task._id}
+              value={task.taskTitle}
+              onChange={e => {
+                const id = task.name || task._id;
+                inputTaskTitle(e, id);
+              }}
+            />
+            <button
+              type="button"
+              onClick={e => {
+                const id = task.name || task._id;
+                deleteTask(e, id, goalTasks);
+              }}
+            >
+              |x|
+            </button>
+          </div>
           <ModalGoalWeekSelect id={task.name || task._id} task={task} />
           {/* <div className="temp-checkbox">checkbox</div> */}
         </div>
