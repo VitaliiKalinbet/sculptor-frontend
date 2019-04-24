@@ -77,6 +77,7 @@ function goalTasksFunc(state = goalTasks, action) {
       return [...state, { ...initialTask, name: String(Date.now()) }];
     case 'EDIT_GOAL':
       if (!action.id) {
+        console.log(action);
         return state;
       }
       return action.goals.find(el => el._id === action.id).goalTasks;
