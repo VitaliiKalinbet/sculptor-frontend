@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from 'react';
 import styled from 'styled-components';
 
@@ -10,10 +12,10 @@ const List = styled.ul`
   flex-direction: column;
 `;
 
-const TaskList = () => {
+const TaskList = ({ items }) => {
   return (
     <List>
-      <TaskItem />
+      <TaskItem data={items} />
     </List>
   );
 };

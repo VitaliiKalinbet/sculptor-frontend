@@ -1,7 +1,6 @@
 /* eslint-disable */
 import React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
 
 import IconButtons from '../TrashButton';
 
@@ -43,14 +42,12 @@ const MoveToTrash = styled.div`
 //ItemStatus - получаем статус таски, в зависимости от этого применяем стили
 //ItemDescription - получает текст такси
 
-const TaskItem = props => {
-  const goals = props.goals;
-
+const TaskItem = ({ data }) => {
   return (
     <>
-      <Item>
-        <ItemStatus />
-        <ItemDescription>Text-1 about task 1</ItemDescription>
+      <Item key={data.id}>
+        <ItemStatus color={data.color} />
+        <ItemDescription>{data.title}</ItemDescription>
         <MoveToTrash>
           <IconButtons />
         </MoveToTrash>
@@ -59,8 +56,4 @@ const TaskItem = props => {
   );
 };
 
-const mstp = state => ({
-  goals: state.goals,
-});
-
-export default connect(mstp)(TaskItem);
+export default TaskItem;
