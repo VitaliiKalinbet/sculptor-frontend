@@ -1,5 +1,6 @@
 .Sidebar {
-  width: 20%;
+  flex: 0 0 260px;
+  /* flex: 0 0 calc(100%-260px); */
   height: 100vh;
   background-image: linear-gradient(
       rgba(38, 63, 96, 0.9),
@@ -21,24 +22,14 @@
   font-size: 1.6rem;
 }
 
-@media (max-width: 1024px) {
+@media screen and (max-width: 768px) {
   .Sidebar {
-    width: 30%;
+    position: fixed;
+    left: 0;
+    transform: translateX(-100%);
+    transition: 0.5s ease-in-out;
   }
-}
-@media (max-width: 920px) {
-  .Sidebar {
-    width: 40%;
-  }
-}
-
-@media (max-width: 768px) {
-  .Sidebar {
-    width: 60%;
-  }
-}
-@media (max-width: 320px) {
-  .Sidebar {
-    width: 80%;
+  .Sidebar_show {
+    transform: translateX(0);
   }
 }

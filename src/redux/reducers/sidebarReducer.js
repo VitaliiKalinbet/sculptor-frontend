@@ -1,7 +1,7 @@
 /*eslint-disable*/
 function showSidebar(state = false, action) {
   switch (action.type) {
-    case 'showSidebar':
+    case 'SHOW_SIDEBAR':
       return !state;
     default:
       return state;

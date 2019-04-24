@@ -18,6 +18,7 @@ const GoalList = ({ goalsArray }) => {
 function MSTP(state) {
   return {
     goalsArray: state.goals,
+    tasksArray: state.tasks,
   };
 }
 

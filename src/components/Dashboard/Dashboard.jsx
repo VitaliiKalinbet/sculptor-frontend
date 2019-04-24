@@ -14,6 +14,7 @@ import Card from '../Card/Card';
 import asyncGoalAction from './goalAction';
 import asyncTasksAction from './taskAction';
 import weekTasksAction from './weekAction';
+import { showSidebarAction } from '../../redux/actions/sidebarAction';
 
 // card wrapper
 const Container = styled.div`
@@ -23,6 +24,7 @@ const Container = styled.div`
   background-color: #eee;
   display: flex;
   flex-direction: column;
+  flex: 0 0 calc(100%-260px);
   height: 44rem;
   overflow: scroll;
   @media (min-width: 767px) {
@@ -85,12 +87,12 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { week } = this.props;
+    const { week, showSidebar } = this.props;
 
     return (
       <Dash>
         <Router>
-          <Header />
+          <Header showSidebar={showSidebar} />
           <div>
             <Route path="/dashboard" exect component={TestDashboard} />
             <Route path="/results" component={TestResults} />
@@ -109,12 +111,14 @@ const mstp = store => ({
   goals: store.goals,
   tasks: store.tasks,
   week: store.weekTasks,
+  showSidebar: store.app.showSidebar,
 });
 
 const mdtp = dispatch => ({
   getGoals: () => dispatch(asyncGoalAction()),
   getTasks: () => dispatch(asyncTasksAction()),
   weekTasks: data => dispatch(weekTasksAction(data)),
+  showSidebar: () => dispatch(showSidebarAction()),
 });
 
 export default connect(

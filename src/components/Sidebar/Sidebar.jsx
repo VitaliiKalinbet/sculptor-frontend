@@ -2,11 +2,12 @@
 import React, { Component } from 'react';
 import GoalList from './GoalList/GoalList';
 import CreateBtn from '../BtnCreateGoal/BtnCreateGoal';
+import { connect } from 'react-redux';
 import s from './Sidebar.module.css';
 
-const Sidebar = () => {
+const Sidebar = ({ showSidebar }) => {
   return (
-    <div className={s.Sidebar}>
+    <div className={`${s.Sidebar} ${showSidebar ? s.Sidebar_show : ''}`}>
       <h2 className={s.Title}>
         <a className={s.Link} href="#">
           Sculptor
@@ -18,4 +19,13 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+const MSTP = store => {
+  return {
+    showSidebar: store.app.showSidebar,
+  };
+};
+
+export default connect(
+  MSTP,
+  null,
+)(Sidebar);

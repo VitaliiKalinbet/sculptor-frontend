@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import './HeaderMobile.css';
 import './HeaderTablet.css';
@@ -10,11 +11,11 @@ import { ReactComponent as More } from '../../assets/images/icons/more/baseline-
 import { ReactComponent as Dashboard } from '../../assets/images/icons/dashboard/baseline-dashboard-24px.svg';
 import { ReactComponent as Results } from '../../assets/images/icons/chart/baseline-timeline-24px.svg';
 
-const Header = () => {
+const Header = ({ showSidebar }) => {
   return (
     <header className="header">
       <div className="header__icons">
-        <More className="header__icon more" />
+        <More onClick={showSidebar} className="header__icon more" />
         <NavLink to="/dashboard" className="header__router dashboard selected">
           <Dashboard className="header__icon dashboard" />
           <span>Dashboard</span>
@@ -31,6 +32,10 @@ const Header = () => {
       </a>
     </header>
   );
+};
+
+Header.propTypes = {
+  showSidebar: PropTypes.func.isRequired,
 };
 
 export default Header;

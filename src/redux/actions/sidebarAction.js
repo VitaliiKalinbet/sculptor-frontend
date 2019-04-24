@@ -1,4 +1,4 @@
 /*eslint-disable*/
-export const showSidebar = () => ({
-  type: 'showSidebar',
+export const showSidebarAction = () => ({
+  type: 'SHOW_SIDEBAR',
 });

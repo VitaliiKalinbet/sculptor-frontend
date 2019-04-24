@@ -8,7 +8,7 @@ const GoalItem = ({ data }) => {
   return (
     <li className={s.List}>
       <div className={s.Title}>
-        <span className={s.Color} />
+        <span className={s.Color} style={{ 'background-color': `${data}` }} />
         <h2 className={s.SubTitle}>{data.goalTitle}</h2>
         <EditBtn />
       </div>
