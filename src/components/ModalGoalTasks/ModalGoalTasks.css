@@ -1,0 +1,29 @@
+.ModalTasks {
+  margin-bottom: 2rem;
+}
+
+.ModalTasks__input-container {
+  display: flex;
+  flex: 1;
+  margin-bottom: 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .ModalTasks__input-container {
+    flex-direction: column;
+    width: 100%;
+  }
+  .ModalTasks__input-container--left {
+    display: flex;
+  }
+}
+
+.ModalTasks__input {
+  display: block;
+  flex: 1;
+}
+
+.temp-checkbox {
+  background-color: #aaa;
+  flex: 1;
+}
