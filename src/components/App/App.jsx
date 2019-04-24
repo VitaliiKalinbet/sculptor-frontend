@@ -1,7 +1,7 @@
 /*  eslint-disable  */
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader/root';
-import { connect } from 'react-redux';
+
 // import Container from '../Container/Container';
 import './App.css';
 import Sidebar from '../Sidebar/Sidebar';

@@ -5,7 +5,6 @@ import GoalItem from '../GoalItem/GoalItem';
 import s from './GoalList.module.css';
 
 const GoalList = ({ goalsArray }) => {
-  console.log(goalsArray);
   return (
     <ul className={s.List}>
       {goalsArray.map(el => (

@@ -7,7 +7,7 @@ const TaskList = ({ data }) => {
   return (
     <ul>
       {data.map(el => (
-        <TaskItem tasks={el.taskTitle} />
+        <TaskItem tasks={el} />
       ))}
     </ul>
   );
