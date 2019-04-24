@@ -16,12 +16,12 @@ const CardItem = styled.div`
 `;
 
 const Card = ({ day }) => {
-  const title = String(day.title).substr(0, 10);
+  const title = String(day.data).substr(0, 10);
 
   return (
     <CardItem>
       <CardTitle title={title} />
-      <TaskList items={data} />
+      <TaskList items={day} />
     </CardItem>
   );
 };

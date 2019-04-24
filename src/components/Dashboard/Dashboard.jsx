@@ -22,9 +22,10 @@ const Container = styled.div`
   height: 44rem;
   overflow: scroll;
   @media (min-width: 767px) {
+    margin: 0 auto;
     overflow: auto;
-    width: 76.8rem;
-    height: auto;
+    width: 100vw;
+    height: 80vh;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -77,12 +78,12 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { weekTasks } = this.props;
+    const { week } = this.props;
 
     return (
       <>
         <Container>
-          {weekTasks && weekTasks.map(day => <Card day={day} />)}
+          {week.length > 0 && week.map(day => <Card day={day} />)}
         </Container>
       </>
     );

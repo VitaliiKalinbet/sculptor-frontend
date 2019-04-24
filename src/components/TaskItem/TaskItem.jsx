@@ -45,7 +45,7 @@ const MoveToTrash = styled.div`
 const TaskItem = ({ data }) => {
   return (
     <>
-      <Item key={data.key}>
+      <Item key={data.id}>
         <ItemStatus color={data.color} />
         <ItemDescription>{data.title}</ItemDescription>
         <MoveToTrash>

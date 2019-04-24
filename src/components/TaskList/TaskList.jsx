@@ -15,9 +15,7 @@ const List = styled.ul`
 const TaskList = ({ items }) => {
   return (
     <List>
-      {items.map(item => (
-        <TaskItem data={items} />
-      ))}
+      <TaskItem data={items} />
     </List>
   );
 };
