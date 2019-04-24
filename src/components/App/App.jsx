@@ -1,25 +1,29 @@
-/*  eslint-disable  */
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader/root';
-import './App.css';
+import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import Header from '../Header/Header';
 import TestDashboard from '../TestDashboard/TestDashboard';
 import TestResults from '../TestResults/TestResults';
 
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import Backdrop from '../Backdrop/Backdrop';
 import SetGoalModal from '../SetGoalModal/SetGoalModal';
-import LoginButton from '../Button/LoginButton/LoginButton';
-import DeleteButton from '../Button/DeleteButton/DeleteButton';
-import SetButtonButton from '../Button/SetButton/SetButton';
-import EditButton from '../Button/EditButton/EditButton';
+// import LoginButton from '../Button/LoginButton/LoginButton';
+// import DeleteButton from '../Button/DeleteButton/DeleteButton';
+// import SetButtonButton from '../Button/SetButton/SetButton';
+// import EditButton from '../Button/EditButton/EditButton';
 import SetEditGoalModal from '../../redux/actions/toggleSetEditGoalModalActions';
+
 import './App.css';
 
-//
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
     const { openModal, editGoal, goals, btnID } = this.props;
 
@@ -75,6 +79,8 @@ function mapStateToProps(state) {
     // goalColor: state.goalColor,
     // goalMotivation: state.goalMotivation,
     // goalTasks: state.goalTasks,
+
+    isLogoutModalOpen: state.toggleLogoutModal,
   };
 }
 

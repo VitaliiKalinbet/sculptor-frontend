@@ -1,7 +1,7 @@
 .header {
   background-color: #0c3351;
   color: #c5cdcd;
-  font-size: 1rem;
+  font-size: 1.4rem;
   height: 5.5rem;
   width: 100vw;
   display: flex;
@@ -12,7 +12,7 @@
 .header__icon > span,
 .logout {
   font-family: 'Roboto Bold';
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 .header__icon.more {
   margin-left: 0.6rem;
@@ -23,6 +23,7 @@
 }
 .header__router > span {
   display: none;
+  font-size: 1.2rem;
 }
 .header__router.dashboard {
   margin: 0 2rem 0 1.3rem;
