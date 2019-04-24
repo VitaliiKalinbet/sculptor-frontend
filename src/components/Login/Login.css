@@ -1,12 +1,12 @@
 .Login {
   height: 100vh;
-  background-image: url('../../assets/images/Слой\ 1@1X.png');
+  background-image: url('../../assets/images/Background1280.png');
   background-size: 62% 100%;
   background-repeat: no-repeat;
   background-position: right;
 }
 
-.form {
+.Login-column {
   background-color: rgba(255, 255, 255, 1);
   padding: 5rem 7rem;
   height: 100vh;
@@ -30,7 +30,7 @@
   text-align: center;
 }
 
-.h2 {
+.h1 {
   font-size: 1.6rem;
   font-family: 'Roboto';
   color: rgb(0, 0, 0);
@@ -75,7 +75,7 @@ small {
   font-family: 'Roboto';
   color: rgb(185, 195, 200);
   line-height: 1.286;
-  margin: 2rem;
+  margin: 2rem 0rem;
   border: none;
   border-bottom: 2px solid #f6f6f6;
 }

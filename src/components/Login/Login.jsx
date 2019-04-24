@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import './Login.css';
+import './Login768.css';
+import './Login320.css';
 
 // import { signInWithEmailAndPassword } from '../../server';
 import Grid from '@material-ui/core/Grid';
@@ -33,81 +35,134 @@ const styles = () => ({
   },
 });
 
-const Login = ({ inputData, inputs, logedIn, classes }) => {
-  const inputValidationRegEx = {
-    email: /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim,
-    password: /^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,})\S$/,
-  };
-  const isEmailValid = inputValidationRegEx.email.test(inputs.email);
-  const isPasswordValid = inputs.password.length !== 0;
-
-  return (
-    <div className="Login">
-      <Grid>
-        <Grid item xs={4}>
-          <form
-            onSubmit={e => {
-              e.preventDefault();
-              //   signInWithEmailAndPassword(inputs.email, inputs.password).then(uid =>
-              //     logedIn(uid).catch(err => console.log('BAD')),
-              //   );
-              // logedIn();
-              console.log(logedIn);
-            }}
-            className="form flex-column center-box shadow max-width-500 padding-all-25"
-            method="post"
-          >
-            <h2 className="h2 text-center">Sculptor</h2>
-            <input
-              onChange={e => inputData(e)}
-              value={inputs.email}
-              className={
-                inputs.email.length > 0
-                  ? `form-input ${
-                      isEmailValid ? 'input__valid' : 'input__invalid'
-                    }`
-                  : 'form-input'
-              }
-              type="email"
-              name="email"
-              placeholder="Email Address *"
-            />
-
-            <input
-              onChange={e => inputData(e)}
-              value={inputs.password}
-              className={
-                inputs.password.length > 0
-                  ? `form-input ${
-                      isPasswordValid ? 'input__valid' : 'input__invalid'
-                    }`
-                  : 'form-input'
-              }
-              type="password"
-              name="password"
-              placeholder="Password *"
-            />
-
-            <Button
-              disabled={!(isEmailValid && isPasswordValid)}
-              variant="contained"
-              className={classes.button}
-              type="submit"
-              label="Login"
-            >
-              Login
-            </Button>
-            <p className="text-center">
-              <NavLink to="/register" className="link">
-                Register
-              </NavLink>
-            </p>
-          </form>
-        </Grid>
-      </Grid>
-    </div>
-  );
+const inputValidationRegEx = {
+  email: /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim,
+  password: /^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,})\S$/,
 };
+
+const isEmailValid = email => inputValidationRegEx.email.test(email);
+
+const isPasswordValid = password => password.length !== 0;
+
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+    };
+  }
+
+  handlerOnSubmit = e => {
+    e.preventDefault();
+    const { logedIn, addUser } = this.props;
+    const { email, password } = this.state;
+
+    fetch('http://192.168.90.200:8000/api/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: email,
+        password,
+      }),
+      headers: { 'content-type': 'application/json' },
+    })
+      .then(response => {
+        response.json().then(data => {
+          console.log(data);
+          localStorage.setItem('user', JSON.stringify(data));
+          addUser(data);
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    logedIn();
+    // console.log(logedIn);
+  };
+
+  handleChange = name => event => {
+    this.setState({ [name]: event.target.value });
+  };
+
+  // } = ({ inputData, inputs, logedIn, classes }) => {
+  render() {
+    const { email, password } = this.state;
+    const { classes } = this.props;
+    return (
+      <div className="Login">
+        <Grid container>
+          <Grid className="Login-column" item lg={4} sm={4} xs={12}>
+            <Grid container direction="column">
+              <Grid item>
+                <h1 className="h1 text-center">Sculptor</h1>
+              </Grid>
+              <Grid item>
+                <form
+                  onSubmit={e => this.handlerOnSubmit(e)}
+                  className="form flex-column center-box shadow padding-all-25"
+                  method="post"
+                >
+                  <input
+                    onChange={this.handleChange('email')}
+                    value={email}
+                    className={
+                      email.length > 0
+                        ? `form-input ${
+                            isEmailValid(email)
+                              ? 'input__valid'
+                              : 'input__invalid'
+                          }`
+                        : 'form-input'
+                    }
+                    type="email"
+                    name="email"
+                    placeholder="Email Address *"
+                    required
+                  />
+
+                  <input
+                    onChange={this.handleChange('password')}
+                    value={password}
+                    className={
+                      password.length > 0
+                        ? `form-input ${
+                            isPasswordValid(password)
+                              ? 'input__valid'
+                              : 'input__invalid'
+                          }`
+                        : 'form-input'
+                    }
+                    type="password"
+                    name="password"
+                    placeholder="Password *"
+                    required
+                  />
+
+                  <Button
+                    disabled={
+                      !isEmailValid(email) && !isPasswordValid(password)
+                    }
+                    variant="contained"
+                    className={classes.button}
+                    type="submit"
+                    label="Login"
+                  >
+                    Login
+                  </Button>
+                  <p className="text-center">
+                    <NavLink to="/register" className="link">
+                      Register
+                    </NavLink>
+                  </p>
+                </form>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </div>
+    );
+  }
+}
 
 function mapStateToProps(state) {
   return {
@@ -117,22 +172,20 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    inputData: e => dispatch(loginInputActions.inputData(e)),
     logedIn: uid => dispatch(loginInputActions.logedIn(uid)),
+    addUser: data => dispatch(loginInputActions.addUser(data)),
   };
 }
 
 Login.propTypes = {
-  inputData: PropTypes.shape,
-  inputs: PropTypes.func,
   logedIn: PropTypes.func,
+  addUser: PropTypes.func,
   classes: PropTypes.shape.isRequired,
 };
 
 Login.defaultProps = {
-  inputData: '',
-  inputs: { password: '', email: '' },
   logedIn: '',
+  addUser: '',
 };
 
 export default connect(
