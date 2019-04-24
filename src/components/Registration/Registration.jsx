@@ -148,7 +148,11 @@ class Registration extends Component {
                   />
 
                   <button
-                    disabled={!(isEmailValid && isPasswordValid && isNameValid)}
+                    disabled={
+                      !isEmailValid(email) &&
+                      !isPasswordValid(password, confirmPassword) &&
+                      !isNameValid(name)
+                    }
                     className="btn"
                     type="submit"
                     label="Register"
