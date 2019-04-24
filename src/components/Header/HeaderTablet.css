@@ -1,4 +1,8 @@
 @media only screen and (min-width: 321px) {
+  .header {
+    width: 100vw;
+    font-size: 1.4rem;
+  }
   .header__icon.more {
     position: absolute;
     top: -70px;
@@ -30,7 +34,7 @@
     line-height: 5.5rem;
   }
   .header__logo {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 }
 

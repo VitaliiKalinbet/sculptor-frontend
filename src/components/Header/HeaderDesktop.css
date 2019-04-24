@@ -3,6 +3,7 @@
     background-color: transparent;
     margin: 29px 0;
     height: 4.3rem;
+    width: 93vw;
   }
   .header__logo {
     display: none;
@@ -28,9 +29,13 @@
     text-align: center;
   }
   .header__router.logout {
-    position: unset;
-    margin-left: 3rem;
+    /* position: unset;
+    margin-left: 3rem; */
+    margin: 29px 0;
+    padding: 0;
+    text-align: center;
     line-height: 4.3rem;
+    text-transform: capitalize;
   }
 }
 @media only screen and (min-width: 1280px) {
