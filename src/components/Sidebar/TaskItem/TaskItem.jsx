@@ -4,7 +4,7 @@ import s from './TaskItem.module.css';
 
 const TaskItem = ({ tasks }) => {
   return (
-    <li>
+    <li className={s.Item}>
       <p className={s.TaskText}>{tasks.title}</p>
     </li>
   );
