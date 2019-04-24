@@ -1,16 +1,12 @@
 /*eslint-disable */
 
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import Login from '../components/Login/Login';
 
-function mapStateToProps(state) {
-  return {};
-}
+const LoginPage = props => (
+  <>
+    <Login {...props} />
+  </>
+);
 
-class LoginPage extends Component {
-  render() {
-    return <div>LOGIN</div>;
-  }
-}
-
-export default connect(mapStateToProps)(LoginPage);
+export default LoginPage;
