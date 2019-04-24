@@ -7,6 +7,9 @@ import {
   taskReducer,
   weekTasksReducer,
 } from '../../components/Dashboard/reducerDashboard';
+import editGoal from './goalEditModeReducer';
+import goalData from './goalReducer';
+import goals from './initData';
 
 const rootReducer = combineReducers({
   goals: goalsReducer,
@@ -14,6 +17,9 @@ const rootReducer = combineReducers({
   weekTasks: weekTasksReducer,
   showReducer,
   activeDateReducer,
+  goalData,
+  editGoal,
+  goals,
 });
 
 export default rootReducer;

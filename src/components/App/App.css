@@ -1,3 +1,6 @@
 .App {
   display: flex;
 }
+.box {
+  display: flex;
+}

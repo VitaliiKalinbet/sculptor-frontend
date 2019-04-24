@@ -3,6 +3,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Header from '../Header/Header';
+import TestDashboard from '../TestDashboard/TestDashboard';
+import TestResults from '../TestResults/TestResults';
 
 // components
 import Card from '../Card/Card';
@@ -50,7 +54,11 @@ const Temporary = styled.div`
     width: 100.2rem;
   }
 `;
-
+const Dash = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: auto;
+`;
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -80,11 +88,19 @@ class Dashboard extends Component {
     const { week } = this.props;
 
     return (
-      <>
+      <Dash>
+        <Router>
+          <Header />
+          <div>
+            <Route path="/dashboard" exect component={TestDashboard} />
+            <Route path="/results" component={TestResults} />
+          </div>
+        </Router>
+
         <Container>
           {week.length > 0 && week.map(day => <Card day={day} />)}
         </Container>
-      </>
+      </Dash>
     );
   }
 }

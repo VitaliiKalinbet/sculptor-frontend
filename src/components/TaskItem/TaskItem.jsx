@@ -38,10 +38,6 @@ const MoveToTrash = styled.div`
   }
 `;
 
-// ----  тут получаем из СТОРА массив таксов, и размножаем их  ----
-//ItemStatus - получаем статус таски, в зависимости от этого применяем стили
-//ItemDescription - получает текст такси
-
 const TaskItem = ({ data }) => {
   return (
     <>
