@@ -1,8 +1,23 @@
 /*eslint-disable*/
-function selectedData(state = new Date(), action) {
+function selectedData(
+  state = [String(new Date(new Date().setHours(0, 0, 0, 0)))],
+  action,
+) {
   switch (action.type) {
-    case 'DATA':
-      return (state = action.value);
+    case 'DATASELECTION':
+      console.log('action: ', action);
+      // console.log(action.arr[0].getDate());
+      console.log(action.value.getDate());
+      console.log(typeof action.value.getDate());
+
+      if (action.arr.includes(String(action.value))) {
+        console.log('if: ', action.value);
+        const filtered = action.arr.filter(el => el !== String(action.value));
+        return (state = filtered);
+      } else {
+        console.log('not have: ', action.value);
+        return [...state, String(action.value)];
+      }
     default:
       return state;
   }

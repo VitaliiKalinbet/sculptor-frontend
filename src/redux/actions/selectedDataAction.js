@@ -1,6 +1,7 @@
-const selectedData = event => ({
-  type: 'DATA',
+const selectedData = (event, arr) => ({
+  type: 'DATASELECTION',
   value: event,
+  arr,
 });
 
 export default selectedData;

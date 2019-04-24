@@ -2,6 +2,7 @@
 function userTaskDate(state = {}, action) {
   switch (action.type) {
     case 'CREATIONDATE':
+      const taskId = action.id;
       const allWeeks = [
         {
           date: action.value,
@@ -30,7 +31,9 @@ function userTaskDate(state = {}, action) {
         }
       }
 
-      const userPickedWeeks = allWeeks.filter(el => allWeeks.includes(el.week));
+      const userPickedWeeks = allWeeks.filter(el =>
+        action.taskWeeks.includes(el.week),
+      );
       const userDisabledWeeks = allWeeks.filter(el =>
         allWeeks.includes(el.week),
       );
@@ -39,6 +42,7 @@ function userTaskDate(state = {}, action) {
         allWeeks,
         userPickedWeeks,
         userDisabledWeeks,
+        taskId,
       };
 
       return datesObject;
