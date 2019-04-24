@@ -1,14 +1,15 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+// import LoginButton from '../Button/LoginButton/LoginButton';
 import './Login.css';
 import './Login768.css';
 import './Login320.css';
 
-// import { signInWithEmailAndPassword } from '../../server';
 import Grid from '@material-ui/core/Grid';
 import loginInputActions from '../../redux/actions/LoginInputActions';
 
@@ -26,8 +27,8 @@ const styles = () => ({
     border: 'none',
     backgroundColor: 'rgb(252, 132, 44)',
     boxShadow: '0px 4px 10px 0px rgba(252, 132, 44, 0.36)',
-    width: '133px',
-    height: '38px',
+    width: '13rem',
+    height: '4rem',
     // margin: theme.spacing.unit,
   },
   input: {
@@ -55,8 +56,9 @@ class Login extends Component {
 
   handlerOnSubmit = e => {
     e.preventDefault();
-    const { addUser } = this.props;
+    const { addUser, history } = this.props;
     const { email, password } = this.state;
+    console.log(history);
 
     fetch('http://192.168.90.200:8000/api/login', {
       method: 'POST',
@@ -69,8 +71,8 @@ class Login extends Component {
       .then(response => {
         response.json().then(data => {
           console.log(data);
-          localStorage.setItem('user', JSON.stringify(data));
           addUser(data);
+          if (data.success) history.push('/');
         });
       })
       .catch(err => {
@@ -136,13 +138,13 @@ class Login extends Component {
                   />
 
                   <Button
+                    type="submit"
+                    label="Login"
                     disabled={
                       !isEmailValid(email) && !isPasswordValid(password)
                     }
                     variant="contained"
                     className={classes.button}
-                    type="submit"
-                    label="Login"
                   >
                     Login
                   </Button>
@@ -176,10 +178,12 @@ function mapDispatchToProps(dispatch) {
 Login.propTypes = {
   addUser: PropTypes.func,
   classes: PropTypes.shape.isRequired,
+  history: PropTypes.shape,
 };
 
 Login.defaultProps = {
   addUser: '',
+  history: '',
 };
 
 export default connect(

@@ -42,7 +42,7 @@ small {
   padding-top: 5px;
 }
 
-.btn {
+/* .btn {
   color: #ffffff;
   text-transform: capitalize;
   user-select: none;
@@ -61,7 +61,7 @@ small {
 .btn:disabled {
   background-color: #cccccc;
   color: #666666;
-}
+} */
 .link {
   font-size: 12px;
   font-family: 'Roboto';
