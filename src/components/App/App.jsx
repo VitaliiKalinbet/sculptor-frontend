@@ -17,6 +17,7 @@ import SetButtonButton from '../Button/SetButton/SetButton';
 import EditButton from '../Button/EditButton/EditButton';
 import SetEditGoalModal from '../../redux/actions/toggleSetEditGoalModalActions';
 import './App.css';
+import Statistics from '../Statistics/Statistics';
 
 //
 class App extends Component {
@@ -29,7 +30,7 @@ class App extends Component {
           <Header />
           <div>
             <Route path="/dashboard" exect component={TestDashboard} />
-            <Route path="/results" component={TestResults} />
+            <Route path="/results" component={Statistics} />
           </div>
         </Router>
 
