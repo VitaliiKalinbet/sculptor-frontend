@@ -20,7 +20,7 @@ const Header = ({ showSidebar }) => {
     <header className="header">
       <div className="header__icons">
         <More onClick={showSidebar} className="header__icon more" />
-        <NavLink to="/dashboard" className="header__router dashboard selected">
+        <NavLink to="/" className="header__router dashboard selected">
           <Dashboard className="header__icon dashboard" />
           <span>Dashboard</span>
         </NavLink>

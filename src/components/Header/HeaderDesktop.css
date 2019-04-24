@@ -3,7 +3,7 @@
     background-color: transparent;
     margin: 29px 0;
     height: 4.3rem;
-    width: 93vw;
+    /* width: 93vw; */
   }
   .header__logo {
     display: none;
