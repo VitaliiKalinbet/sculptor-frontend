@@ -1,3 +1,4 @@
+/* eslint-disable */
 function goalInput(state = [], action) {
   switch (action.type) {
     case 'INPUT_TASK_TITLE':
