@@ -22,9 +22,8 @@ const Container = styled.div`
   height: 44rem;
   overflow: scroll;
   @media (min-width: 767px) {
-    margin: 0 auto;
     overflow: auto;
-    width: 100vw;
+    width: 100%;
     height: 80vh;
     flex-direction: row;
     flex-wrap: wrap;
@@ -32,10 +31,10 @@ const Container = styled.div`
     align-items: flex-start;
   }
   @media (min-width: 1200px) {
-    width: 100.2rem;
+    width: 100%;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
   }
 `;
 
