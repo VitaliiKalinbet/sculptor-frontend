@@ -1,8 +1,8 @@
-/*  eslint-disable  */
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader/root';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 // import Container from '../Container/Container';
 import Sidebar from '../Sidebar/Sidebar';
@@ -10,18 +10,24 @@ import Sidebar from '../Sidebar/Sidebar';
 // Dashboard
 import Dashboard from '../Dashboard/Dashboard';
 import Header from '../Header/Header';
-import PropTypes from 'prop-types';
 import Backdrop from '../Backdrop/Backdrop';
 import SetGoalModal from '../SetGoalModal/SetGoalModal';
-import LoginButton from '../Button/LoginButton/LoginButton';
-import DeleteButton from '../Button/DeleteButton/DeleteButton';
-import SetButtonButton from '../Button/SetButton/SetButton';
+
+// import LoginButton from '../Button/LoginButton/LoginButton';
+// import DeleteButton from '../Button/DeleteButton/DeleteButton';
+import SetButton from '../Button/SetButton/SetButton';
 import EditButton from '../Button/EditButton/EditButton';
 import SetEditGoalModal from '../../redux/actions/toggleSetEditGoalModalActions';
 
 import './App.css';
+import Statistics from '../Statistics/Statistics';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
     const { openModal, editGoal, goals, btnID } = this.props;
 
@@ -34,27 +40,26 @@ class App extends Component {
             <Router>
               <div>
                 <Route path="/dashboard" exect component={Dashboard} />
+                <Route path="/results" component={Statistics} />
                 {/* <Route path="/results" component={TestResults} /> */}
               </div>
             </Router>
           </div>
         </div>
 
-        <button
+        <SetButton
           type="button"
           value={btnID}
           onClick={e => openModal(e, goals, 'SET')}
         >
           SET A GOAL
-        </button>
+        </SetButton>
 
-        <button
+        <EditButton
           type="button"
           data-id="5cb9d14ffeb784bcfadde809"
           onClick={e => openModal(e, goals, 'UPDATE')}
-        >
-          EDIT GOAL
-        </button>
+        />
 
         {editGoal.editing && (
           <Backdrop>
@@ -82,6 +87,8 @@ function mapStateToProps(state) {
     // goalColor: state.goalColor,
     // goalMotivation: state.goalMotivation,
     // goalTasks: state.goalTasks,
+
+    isLogoutModalOpen: state.toggleLogoutModal,
   };
 }
 

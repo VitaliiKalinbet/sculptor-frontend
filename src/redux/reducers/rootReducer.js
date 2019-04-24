@@ -7,6 +7,9 @@ import {
   taskReducer,
   weekTasksReducer,
 } from '../../components/Dashboard/reducerDashboard';
+import logout from './ModalLogoutReducer';
+import isLogoutModalOpen from './ToggleLogoutModalReducer';
+
 import editGoal from './goalEditModeReducer';
 import goalData from './goalReducer';
 
@@ -23,6 +26,8 @@ const rootReducer = combineReducers({
   editGoal,
   goals,
   taskArray: dateReducer,
+  logout,
+  isLogoutModalOpen,
 });
 
 export default rootReducer;

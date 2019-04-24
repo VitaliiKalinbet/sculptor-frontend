@@ -8,10 +8,9 @@ const TaskItem = ({ tasks, dateAction }) => {
   console.log('tasks: ', tasks);
   return (
     <li className={s.Item}>
-      <p className={s.TaskText}>{tasks.taskTitle}</p>
-      <button className={s.BtnDate} data-date={tasks._id} onClick={dateAction}>
-        date
-      </button>
+      <p className={s.TaskText} data-date={tasks._id} onClick={dateAction}>
+        {tasks.taskTitle}
+      </p>
     </li>
   );
 };

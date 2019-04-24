@@ -1,12 +1,12 @@
 .datePicker {
-  width: 250px;
+  width: 25rem;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: auto;
 }
 .datePicker__arrow {
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 2rem;
   display: flex;
   color: #c5cdcd;
@@ -20,7 +20,7 @@
   align-items: center;
   justify-content: space-evenly;
   color: #fff;
-  margin: 0 2.3rem;
+  margin: 0 1.6rem;
 }
 .dateNow__month {
   text-transform: uppercase;
