@@ -1,12 +1,16 @@
 /* eslint-disable no-underscore-dangle */
-import data from '../../data';
+// import data from '../../data';
 
-function initData(state = data, action) {
+function initData(state = [], action) {
+  console.log(state);
   switch (action.type) {
     case 'SAVE_GOAL':
       return action.goals.map(goal =>
         goal._id === action.updatedGoal.activeGoalID
-          ? { ...goal, ...action.updatedGoal }
+          ? {
+              ...goal,
+              ...action.updatedGoal,
+            }
           : goal,
       );
     case 'ADD_GOAL':

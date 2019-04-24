@@ -1,16 +1,19 @@
 @media only screen and (min-width: 768px) {
   .header {
     background-color: transparent;
-    margin: 29px 0;
+    margin: 2.8rem 0;
     height: 4.3rem;
     width: 88%;
   }
+
   .header__logo {
     display: none;
   }
+
   .header__icon.more {
     display: none;
   }
+
   .header__icons {
     position: unset;
     /* top: 79px; */
@@ -20,6 +23,7 @@
     justify-content: space-between;
     margin: 29px 0;
   }
+
   .header__date {
     position: absolute;
     top: 29px;
@@ -28,6 +32,7 @@
     margin: 0 auto;
     text-align: center;
   }
+
   .header__router.logout {
     /* position: unset;
     margin-left: 3rem; */
@@ -38,6 +43,7 @@
     text-transform: capitalize;
   }
 }
+
 @media only screen and (min-width: 1280px) {
   .header__icons {
     position: unset;

@@ -21,23 +21,23 @@ class Picker extends Component {
     };
     const { actionCalendar, taskObj, taskId } = this.props;
 
-    const userWeeks = taskObj.taskWeekRange.filter(el => !el.status);
+    const userWeeks = taskObj.taskWeekRange.filter(el => el.status);
 
     const numUserWeeks = userWeeks.map(el => el.week);
 
     const taskCreationDate = taskObj.taskCreateDate;
 
-    console.log(numUserWeeks, taskCreationDate);
+    // console.log(numUserWeeks, taskCreationDate);
 
     function taskDatesFilter(taskCreationDate, numUserWeeks) {
       const allWeeks = [
         {
-          date: taskCreationDate,
+          date: Date.parse(taskCreationDate),
           week: 1,
         },
       ];
 
-      let date = taskCreationDate;
+      let date = Date.parse(taskCreationDate);
       let weekCounter = 1;
       let dayCounter = 1;
 
@@ -58,16 +58,12 @@ class Picker extends Component {
         }
       }
 
-      const userPickedWeeks = allWeeks.filter(el =>
-        numUserWeeks.includes(el.week),
-      );
       const userDisabledWeeks = allWeeks.filter(
-        el => !allWeeks.includes(el.week),
+        el => !numUserWeeks.includes(el.week),
       );
 
       const datesObject = {
         allWeeks,
-        userPickedWeeks,
         userDisabledWeeks,
         taskId,
       };
@@ -77,20 +73,22 @@ class Picker extends Component {
 
     const userDates = taskDatesFilter(taskCreationDate, numUserWeeks);
 
-    console.log(userDates);
+    console.log(new Date(userDates.allWeeks[0].date));
+    // console.log('gfhfhf: ', userPickedWeeks);
+
     return (
       <div className="calendar">
         <button onClick={actionCalendar} className={'calendar__button'}>
           X
         </button>
         <InfiniteCalendar
-          // min={this.props.userTaskDate.allWeeks[0].date - 5184060000}
-          // max={this.props.userTaskDate.allWeeks[63].date + 5184060000}
-          // minDate={999999999999}
-          // maxDate={20200000000000000}
+          min={userDates.allWeeks[0].date}
+          max={userDates.allWeeks[62].date}
+          minDate={userDates.allWeeks[0].date}
+          maxDate={userDates.allWeeks[62].date}
           Component={withMultipleDates(Calendar)}
           selected={this.props.selectedData}
-          // disabledDates={this.props.userTaskDate.userDisabledWeeks.map(el => el.week)}
+          disabledDates={userDates.userDisabledWeeks.map(el => el.date)}
           interpolateSelection={defaultMultipleDateInterpolation}
           onSelect={actionData}
           keyboardSupport={true}

@@ -1,8 +1,5 @@
 /*eslint-disable*/
-function selectedData(
-  state = [String(new Date(new Date().setHours(0, 0, 0, 0)))],
-  action,
-) {
+function selectedData(state = [], action) {
   switch (action.type) {
     case 'DATASELECTION':
       console.log('action: ', action);

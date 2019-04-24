@@ -15,7 +15,7 @@ import isLogoutModalOpen from './ToggleLogoutModalReducer';
 import editGoal from './goalEditModeReducer';
 import goalData from './goalReducer';
 
-import goals from './initData';
+// import goals from './initData';
 import dateReducer from './dateReducer';
 
 const rootReducer = combineReducers({
@@ -29,7 +29,6 @@ const rootReducer = combineReducers({
   activeDateReducer,
   goalData,
   editGoal,
-  goals,
   taskArray: dateReducer,
   logout,
   isLogoutModalOpen,

@@ -2,7 +2,7 @@
 
 const fetchGoals = data => ({
   type: 'GET_GOALS',
-  payload: data,
+  data: data.data,
 });
 
 const asyncGoalAction = () => dispatch => {

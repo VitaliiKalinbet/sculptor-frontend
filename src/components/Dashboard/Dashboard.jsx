@@ -20,7 +20,7 @@ import weekTasksAction from './weekAction';
 const Container = styled.div`
   margin: auto;
   width: 32rem;
-  padding: 0 1.5rem;
+  padding: 3rem 1.5rem;
   background-color: #eee;
   display: flex;
   flex-direction: column;
@@ -30,7 +30,7 @@ const Container = styled.div`
   @media (min-width: 767px) {
     overflow: auto;
     width: 100%;
-    height: 80vh;
+    height: calc(100vh - 12.14rem);
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
