@@ -18,6 +18,7 @@ import SetGoalModal from '../SetGoalModal/SetGoalModal';
 import SetEditGoalModal from '../../redux/actions/toggleSetEditGoalModalActions';
 
 import './App.css';
+import Statistics from '../Statistics/Statistics';
 
 class App extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class App extends Component {
           <Header />
           <div>
             <Route path="/dashboard" exect component={TestDashboard} />
-            <Route path="/results" component={TestResults} />
+            <Route path="/results" component={Statistics} />
           </div>
         </Router>
 
