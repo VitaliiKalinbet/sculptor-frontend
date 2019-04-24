@@ -10,6 +10,7 @@ import TestResults from '../TestResults/TestResults';
 
 // components
 import Card from '../Card/Card';
+import Sidebar from '../Sidebar/Sidebar';
 // action
 import asyncGoalAction from './goalAction';
 import asyncTasksAction from './taskAction';
@@ -90,14 +91,6 @@ class Dashboard extends Component {
 
     return (
       <Dash>
-        <Router>
-          {/* <Header showSidebar={showSidebar} /> */}
-          <div>
-            {/* <Route path="/dashboard" exect component={TestDashboard} />
-            <Route path="/results" component={TestResults} /> */}
-          </div>
-        </Router>
-
         <Container>
           {week.length > 0 && week.map(day => <Card day={day} />)}
         </Container>

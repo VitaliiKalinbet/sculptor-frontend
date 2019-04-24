@@ -11,6 +11,7 @@ import editGoal from './goalEditModeReducer';
 import goalData from './goalReducer';
 
 import goals from './initData';
+import dateReducer from './dateReducer';
 
 const rootReducer = combineReducers({
   goals: goalsReducer,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   goalData,
   editGoal,
   goals,
+  taskArray: dateReducer,
 });
 
 export default rootReducer;
