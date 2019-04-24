@@ -78,13 +78,12 @@ class Dashboard extends Component {
 
   render() {
     const { weekTasks } = this.props;
-    console.log(weekTasks);
 
     return (
       <>
         <Temporary />
         <Container>
-          <Card />
+          {weekTasks && weekTasks.map(day => <Card day={day} />)}
         </Container>
         <Temporary />
       </>
