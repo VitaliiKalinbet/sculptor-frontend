@@ -17,22 +17,30 @@ const styles = () => ({
   },
 });
 
-const CustomButton = ({ classes }) => (
+const LoginButton = ({ classes, onClick, value, children }) => (
   <>
-    <Button variant="contained" className={classes.button}>
-      Login
+    <Button
+      variant="contained"
+      className={classes.button}
+      onClick={onClick}
+      value={value}
+    >
+      {children}
     </Button>
   </>
 );
 
-CustomButton.propTypes = {
+LoginButton.propTypes = {
   classes: PropTypes.shape({
     color: PropTypes.string,
     fontSize: PropTypes.number,
   }),
+  children: PropTypes.element.isRequired,
+  onClick: PropTypes.element.isRequired,
+  value: PropTypes.element.isRequired,
 };
-CustomButton.defaultProps = {
+LoginButton.defaultProps = {
   classes: {},
 };
 
-export default withStyles(styles)(CustomButton);
+export default withStyles(styles)(LoginButton);

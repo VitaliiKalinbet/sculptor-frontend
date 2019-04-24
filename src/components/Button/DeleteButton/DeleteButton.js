@@ -13,19 +13,26 @@ const styles = theme => ({
   },
 });
 
-const CustomButton = ({ classes }) => (
-  <IconButton aria-label="Delete" className={classes.margin}>
+const DeleteButton = ({ classes, onClick, value }) => (
+  <IconButton
+    aria-label="Delete"
+    className={classes.margin}
+    onClick={onClick}
+    value={value}
+  >
     <Delete fontSize="small" />
   </IconButton>
 );
-CustomButton.propTypes = {
+DeleteButton.propTypes = {
   classes: PropTypes.shape({
     color: PropTypes.string,
     fontSize: PropTypes.number,
   }),
+  onClick: PropTypes.element.isRequired,
+  value: PropTypes.element.isRequired,
 };
-CustomButton.defaultProps = {
+DeleteButton.defaultProps = {
   classes: {},
 };
 
-export default withStyles(styles)(CustomButton);
+export default withStyles(styles)(DeleteButton);

@@ -13,19 +13,26 @@ const styles = theme => ({
   },
 });
 
-const CustomButton = ({ classes }) => (
-  <IconButton aria-label="Delete" className={classes.margin}>
+const EditButton = ({ classes, onClick, value }) => (
+  <IconButton
+    aria-label="Delete"
+    className={classes.margin}
+    onClick={onClick}
+    value={value}
+  >
     <Create fontSize="small" />
   </IconButton>
 );
-CustomButton.propTypes = {
+EditButton.propTypes = {
   classes: PropTypes.shape({
     color: PropTypes.string,
     fontSize: PropTypes.number,
   }),
+  onClick: PropTypes.element.isRequired,
+  value: PropTypes.element.isRequired,
 };
-CustomButton.defaultProps = {
+EditButton.defaultProps = {
   classes: {},
 };
 
-export default withStyles(styles)(CustomButton);
+export default withStyles(styles)(EditButton);

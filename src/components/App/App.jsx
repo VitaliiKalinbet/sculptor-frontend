@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Backdrop from '../Backdrop/Backdrop';
 import SetGoalModal from '../SetGoalModal/SetGoalModal';
-import LoginButton from '../Button/LoginButton/LoginButton';
-import DeleteButton from '../Button/DeleteButton/DeleteButton';
-import SetButtonButton from '../Button/SetButton/SetButton';
+import SetButton from '../Button/SetButton/SetButton';
 import EditButton from '../Button/EditButton/EditButton';
 import SetEditGoalModal from '../../redux/actions/toggleSetEditGoalModalActions';
 import './App.css';
@@ -19,26 +17,20 @@ class App extends Component {
     return (
       <>
         {/* <h1>Hello</h1> */}
-        <LoginButton />
-        <DeleteButton />
-        <SetButtonButton />
-        <EditButton />
 
-        <button
+        <SetButton
           type="button"
           value={btnID}
           onClick={e => openModal(e, goals, 'SET')}
         >
           SET A GOAL
-        </button>
+        </SetButton>
 
-        <button
+        <EditButton
           type="button"
           data-id="5cb9d14ffeb784bcfadde809"
           onClick={e => openModal(e, goals, 'UPDATE')}
-        >
-          EDIT GOAL
-        </button>
+        />
 
         {editGoal.editing && (
           <Backdrop>
