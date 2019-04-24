@@ -1,6 +1,6 @@
 @media only screen and (min-width: 321px) {
   .header {
-    width: 100vw;
+    /* width: 100vw; */
     font-size: 1.4rem;
   }
   .header__icon.more {

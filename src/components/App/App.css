@@ -5,3 +5,7 @@
 .main {
   display: flex;
 }
+
+.main__right {
+  flex: auto;
+}

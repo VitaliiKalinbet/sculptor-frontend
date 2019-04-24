@@ -7,6 +7,8 @@ import Fab from '@material-ui/core/Fab';
 import Icon from '@material-ui/core/Icon';
 import SvgEdit from '../Sidebar/svg/SvgEdit';
 
+// import IconButton from '@material-ui/core/IconButton';
+
 const styles = theme => ({
   fab: {
     width: '3rem',
@@ -27,18 +29,21 @@ const styles = theme => ({
 });
 
 function FloatingActionButtons(props) {
-  const { classes } = props;
+  const { classes, onClick, value, btnID } = props;
   return (
     <div>
       <Fab
         color="secondary"
         aria-label="Edit"
         className={classes.fab}
-        onClick={() => {
-          console.log('click for edit!');
-        }}
+        onClick={onClick}
+        value={value}
+        data-id={btnID}
       >
-        <SvgEdit className={classes.extendedIcon} />
+        {/* <SvgEdit className={classes.extendedIcon} data-id={btnID} /> */}
+        <Icon data-id={btnID}>
+          <SvgEdit className={classes.extendedIcon} data-id={btnID} />
+        </Icon>
       </Fab>
     </div>
   );
