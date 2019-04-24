@@ -3,12 +3,12 @@ const initialState = {
   token: null,
 };
 
-const inputs = (state = initialState, action) => {
+const user = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_USER':
-      return { ...state, [action.name]: action.value };
+      return { ...state, user: action.data };
     case 'LOGOUT_USER':
-      return { ...state, [action.name]: action.value };
+      return { ...state, user: null };
     case 'REGISTER_USER':
       return { ...state, [action.name]: action.value };
     default:
@@ -16,4 +16,4 @@ const inputs = (state = initialState, action) => {
   }
 };
 
-export default inputs;
+export default user;

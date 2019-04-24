@@ -9,6 +9,7 @@ import './Registration320.css';
 // import { signInWithEmailAndPassword } from '../../server';
 import Grid from '@material-ui/core/Grid';
 import loginInputActions from '../../redux/actions/RegistrationInputActions';
+// import { prototype } from 'react-transition-group/CSSTransition';
 
 const inputValidationRegEx = {
   email: /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim,
@@ -35,7 +36,7 @@ class Registration extends Component {
 
   handlerOnSubmit = e => {
     e.preventDefault();
-    const { logedIn } = this.props;
+    const { history } = this.props;
     const { name, email, password } = this.state;
 
     fetch('http://192.168.90.200:8000/api/register', {
@@ -50,13 +51,12 @@ class Registration extends Component {
       .then(response => {
         response.json().then(data => {
           console.log(data);
+          if (data.success) history.push('/login');
         });
       })
       .catch(err => {
         console.log(err);
       });
-    logedIn();
-    // console.log(logedIn);
   };
 
   handleChange = name => event => {
@@ -182,16 +182,16 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    logedIn: uid => dispatch(loginInputActions.logedIn(uid)),
+    addUser: data => dispatch(loginInputActions.addUser(data)),
   };
 }
 
 Registration.propTypes = {
-  logedIn: PropTypes.func,
+  history: PropTypes.shape,
 };
 
 Registration.defaultProps = {
-  logedIn: '',
+  history: '',
 };
 
 export default connect(

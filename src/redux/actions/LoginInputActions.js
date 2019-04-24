@@ -1,11 +1,6 @@
-const inputData = ({ target }) => ({
-  type: target.name,
-  name: target.name,
-  value: target.value,
+const addUser = data => ({
+  type: 'ADD_USER',
+  data,
 });
 
-const logedIn = uid => ({
-  type: 'LOGEDIN',
-  uid,
-});
-export default { inputData, logedIn };
+export default { addUser };
