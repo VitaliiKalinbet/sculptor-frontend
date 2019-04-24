@@ -10,6 +10,7 @@ import TestResults from '../TestResults/TestResults';
 
 import Backdrop from '../Backdrop/Backdrop';
 import SetGoalModal from '../SetGoalModal/SetGoalModal';
+
 // import LoginButton from '../Button/LoginButton/LoginButton';
 // import DeleteButton from '../Button/DeleteButton/DeleteButton';
 // import SetButtonButton from '../Button/SetButton/SetButton';
@@ -29,6 +30,7 @@ class App extends Component {
 
     return (
       <>
+        {/* <h1>Hello</h1> */}
         <Router>
           <Header />
           <div>
@@ -37,21 +39,19 @@ class App extends Component {
           </div>
         </Router>
 
-        <button
+        <SetButton
           type="button"
           value={btnID}
           onClick={e => openModal(e, goals, 'SET')}
         >
           SET A GOAL
-        </button>
+        </SetButton>
 
-        <button
+        <EditButton
           type="button"
           data-id="5cb9d14ffeb784bcfadde809"
           onClick={e => openModal(e, goals, 'UPDATE')}
-        >
-          EDIT GOAL
-        </button>
+        />
 
         {editGoal.editing && (
           <Backdrop>
