@@ -81,11 +81,9 @@ class Dashboard extends Component {
 
     return (
       <>
-        <Temporary />
         <Container>
           {weekTasks && weekTasks.map(day => <Card day={day} />)}
         </Container>
-        <Temporary />
       </>
     );
   }

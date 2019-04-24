@@ -1,0 +1,44 @@
+.Sidebar {
+  width: 20%;
+  height: 100vh;
+  background-image: linear-gradient(
+      rgba(38, 63, 96, 0.9),
+      rgba(38, 63, 96, 0.9)
+    ),
+    url('../../assets/images/Mouintains1@1X.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #ffffff;
+}
+
+.Title {
+  padding: 4.3rem 0 0 2.5rem;
+}
+.Link {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.6rem;
+}
+
+@media (max-width: 1024px) {
+  .Sidebar {
+    width: 30%;
+  }
+}
+@media (max-width: 920px) {
+  .Sidebar {
+    width: 40%;
+  }
+}
+
+@media (max-width: 768px) {
+  .Sidebar {
+    width: 60%;
+  }
+}
+@media (max-width: 320px) {
+  .Sidebar {
+    width: 80%;
+  }
+}

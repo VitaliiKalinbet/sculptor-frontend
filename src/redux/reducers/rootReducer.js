@@ -1,6 +1,7 @@
+/*eslint-disable*/
 import { combineReducers } from 'redux';
-
-// GET TASKS
+import showReducer from './sidebarReducer';
+import activeDateReducer from './datePickerReducer';
 import {
   goalsReducer,
   taskReducer,
@@ -11,6 +12,8 @@ const rootReducer = combineReducers({
   goals: goalsReducer,
   tasks: taskReducer,
   weekTasks: weekTasksReducer,
+  showReducer,
+  activeDateReducer,
 });
 
 export default rootReducer;
