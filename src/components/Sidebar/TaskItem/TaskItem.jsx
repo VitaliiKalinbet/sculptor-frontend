@@ -9,7 +9,7 @@ const TaskItem = ({ tasks, dateAction }) => {
   return (
     <li className={s.Item}>
       <p className={s.TaskText}>{tasks.taskTitle}</p>
-      <button className={s.BtnDate} data-date={tasks} onClick={dateAction}>
+      <button className={s.BtnDate} data-date={tasks._id} onClick={dateAction}>
         date
       </button>
     </li>
