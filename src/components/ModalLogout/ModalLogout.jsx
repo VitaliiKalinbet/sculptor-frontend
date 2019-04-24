@@ -33,8 +33,12 @@ const ModalLogout = ({
 }) => {
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={toggleLogoutModal}>
-        Open form dialog
+      <Button
+        color="inherit"
+        onClick={toggleLogoutModal}
+        className="header__router logout"
+      >
+        Logout
       </Button>
       <Grid container>
         <Grid item>
@@ -71,7 +75,9 @@ const ModalLogout = ({
                 </Grid>
                 <Grid item>
                   <Button onClick={okLogout} color="primary">
-                    Logout
+                    <a href="/login" className="header__router logout">
+                      Logout
+                    </a>
                   </Button>
                 </Grid>
               </Grid>
