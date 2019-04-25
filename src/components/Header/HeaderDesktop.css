@@ -21,7 +21,7 @@
     margin: 29px 0;
   }
   .header__date {
-    position: absolute;
+    /* position: absolute; */
     top: 29px;
     left: 0;
     right: 0;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // import Container from '../Container/Container';
@@ -46,13 +46,11 @@ class App extends Component {
           <Sidebar className="main__left" />
           <div className="main__right">
             <Header />
-            <Router>
-              <div className="main__container">
-                <Route exact path="/" component={Dashboard} />
-                <Route exact path="/results" component={Statistics} />
-                {/* <Route path="/results" component={TestResults} /> */}
-              </div>
-            </Router>
+            <div className="main__container">
+              <Route exact path="/" component={Dashboard} />
+              <Route exact path="/results" component={Statistics} />
+              {/* <Route path="/results" component={TestResults} /> */}
+            </div>
           </div>
         </div>
       </>

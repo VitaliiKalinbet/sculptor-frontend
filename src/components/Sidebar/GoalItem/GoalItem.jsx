@@ -15,7 +15,7 @@ const GoalItem = ({ data, goals, openModal }) => {
   return (
     <li className={s.List}>
       <div className={s.Title}>
-        <span className={s.Color} style={{ 'background-color': `${data}` }} />
+        <span className={s.Color} style={{ backgroundColor: `${data}` }} />
         <h2 className={s.SubTitle}>{data.goalTitle}</h2>
         <EditBtn
           onClick={e => openModal(e, goals, 'UPDATE')}
