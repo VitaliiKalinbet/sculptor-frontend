@@ -31,7 +31,6 @@ const SetGoalModal = ({
       </h3>
       <ModalGoalTitle />
       <ModalGoalIconSelect />
-      <div className="temp-select">select</div>
       <ModalGoalTasks />
       <ModalGoalMotivation />
 

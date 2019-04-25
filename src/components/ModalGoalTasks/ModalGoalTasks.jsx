@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import Task from '../../redux/actions/goalAddTaskActions';
 
 import ModalGoalWeekSelect from '../ModalGoalWeekSelect/ModalGoalWeekSelect';
+import DelBtn from '../Button/DeleteButton/DeleteButton';
 
 import './ModalGoalTasks.css';
 
@@ -22,12 +23,21 @@ const ModalTasks = ({ inputTaskTitle, goalTasks, deleteTask, addTask }) => {
               type="text"
               name={task.name || task._id}
               value={task.taskTitle}
+              placeholder="Enter your task"
               onChange={e => {
                 const id = task.name || task._id;
                 inputTaskTitle(e, id);
               }}
             />
-            <button
+            <DelBtn
+              // type="button"
+              className="ModalTasks__del-btn"
+              onClick={e => {
+                const id = task.name || task._id;
+                deleteTask(e, id, goalTasks);
+              }}
+            />
+            {/* <button
               type="button"
               onClick={e => {
                 const id = task.name || task._id;
@@ -35,15 +45,15 @@ const ModalTasks = ({ inputTaskTitle, goalTasks, deleteTask, addTask }) => {
               }}
             >
               |x|
-            </button>
+            </button> */}
           </div>
           <ModalGoalWeekSelect id={task.name || task._id} task={task} />
           {/* <div className="temp-checkbox">checkbox</div> */}
         </div>
       ))}
       {goalTasks.length < 5 && (
-        <button type="button" onClick={addTask}>
-          |+| Add New Task
+        <button type="button" onClick={addTask} className="ModalTasks__add-btn">
+          <span className="ModalTasks__add-btn--plus">+</span> Add New Task
         </button>
       )}
       {/* <TrashButton /> from Dmytro */}
