@@ -11,6 +11,8 @@ import Grid from '@material-ui/core/Grid';
 import loginInputActions from '../../redux/actions/RegistrationInputActions';
 // import { prototype } from 'react-transition-group/CSSTransition';
 
+import API from '../../services/api';
+
 const inputValidationRegEx = {
   email: /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim,
   password: /^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,})\S$/,
@@ -39,14 +41,10 @@ class Registration extends Component {
     const { history } = this.props;
     const { name, email, password } = this.state;
 
-    fetch('http://192.168.90.200:8000/api/register', {
-      method: 'POST',
-      body: JSON.stringify({
-        email,
-        password,
-        name,
-      }),
-      headers: { 'content-type': 'application/json' },
+    API.register({
+      email,
+      password,
+      name,
     })
       .then(response => {
         response.json().then(data => {

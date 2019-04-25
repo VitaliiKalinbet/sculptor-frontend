@@ -25,6 +25,7 @@
 .SetGoalModal__title {
   font-size: 1.6rem;
   font-family: 'Roboto';
+  margin-bottom: 1rem;
 }
 
 .temp-select {

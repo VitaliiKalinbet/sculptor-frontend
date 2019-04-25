@@ -13,6 +13,8 @@ import './Login320.css';
 import Grid from '@material-ui/core/Grid';
 import loginInputActions from '../../redux/actions/LoginInputActions';
 
+import API from '../../services/api';
+
 const styles = () => ({
   button: {
     color: '#ffffff',
@@ -60,24 +62,36 @@ class Login extends Component {
     const { email, password } = this.state;
     console.log(history);
 
-    fetch('http://192.168.90.200:8000/api/login', {
-      method: 'POST',
-      body: JSON.stringify({
-        username: email,
-        password,
-      }),
-      headers: { 'content-type': 'application/json' },
-    })
-      .then(response => {
-        response.json().then(data => {
-          console.log(data);
-          addUser(data);
-          if (data.success) history.push('/');
-        });
+    API.login({ username: email, password })
+      .then(data => {
+        console.log(`data`, data);
+        addUser(data);
+        if (data.data.success) {
+          console.log(`ssss`);
+          history.push('/');
+        }
       })
       .catch(err => {
         console.log(err);
       });
+    // fetch('http://192.168.90.200:8000/api/login', {
+    //   method: 'POST',
+    //   body: JSON.stringify({
+    //     username: email,
+    //     password,
+    //   }),
+    //   headers: { 'content-type': 'application/json' },
+    // })
+    //   .then(response => {
+    //     response.json().then(data => {
+    //       console.log(data);
+    //       addUser(data);
+    //       if (data.success) history.push('/');
+    //     });
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   };
 
   handleChange = name => event => {

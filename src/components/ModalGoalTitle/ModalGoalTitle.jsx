@@ -10,9 +10,10 @@ import './ModalGoalTitle.css';
 const GoalType = styled.h5`
   display: flex;
   align-items: center;
-  margin: 2rem 0;
+  margin: 0;
   font-size: 1.4rem;
   color: rgba(185, 195, 200, 255);
+  width: 15%;
 
   ::before {
     background-color: ${props => props.goalColor || 'gray'};
@@ -33,7 +34,7 @@ const ModalGoalTitle = ({
   goalNumber,
 }) => {
   return (
-    <div>
+    <div className="ModalGoalTitle">
       {/* <InputComponent /> from Alexey */}
 
       <GoalType goalColor={goalColor}>Goal #{goalNumber}</GoalType>
