@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import { combineReducers } from 'redux';
+import userReducer from './userReducer';
 import app from './appReducer';
 import activeDateReducer from './datePickerReducer';
 import {
@@ -17,6 +18,7 @@ import goals from './initData';
 import dateReducer from './dateReducer';
 
 const rootReducer = combineReducers({
+  user: userReducer,
   goals: goalsReducer,
   tasks: taskReducer,
   weekTasks: weekTasksReducer,
