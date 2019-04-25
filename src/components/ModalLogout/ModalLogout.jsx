@@ -75,7 +75,7 @@ const ModalLogout = ({
                 </Grid>
                 <Grid item>
                   <Button onClick={okLogout} color="primary">
-                    <a href="/login" className="">
+                    <a href="/login" className="ModalLogout__btn--logout">
                       Logout
                     </a>
                   </Button>

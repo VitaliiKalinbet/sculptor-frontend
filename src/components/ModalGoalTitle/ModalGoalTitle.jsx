@@ -36,17 +36,16 @@ const ModalGoalTitle = ({
     <div>
       {/* <InputComponent /> from Alexey */}
 
-      <GoalType goalColor={goalColor}>
-        Goal #{goalNumber}
-        <input
-          className="ModalGoalTitle__input"
-          type="text"
-          name="ModalGoalTitle"
-          id="ModalGoalTitle"
-          value={goalTitle}
-          onChange={inputGoalTitle}
-        />
-      </GoalType>
+      <GoalType goalColor={goalColor}>Goal #{goalNumber}</GoalType>
+      <input
+        className="ModalGoalTitle__input"
+        type="text"
+        name="ModalGoalTitle"
+        id="ModalGoalTitle"
+        placeholder="Enter Goal Name"
+        value={goalTitle}
+        onChange={inputGoalTitle}
+      />
     </div>
   );
 };
