@@ -18,11 +18,7 @@ const TaskItem = ({ tasks, dateAction, calendarButtonFunc, taskId }) => {
   return (
     <li className={s.Item}>
       {tasks._id === taskId && (
-        <Picker
-          taskObj={tasks}
-          actionCalendar={actionCalendar}
-          taskId={taskId}
-        />
+        <Picker tasks={tasks} actionCalendar={actionCalendar} taskId={taskId} />
       )}
       <p className={s.TaskText} data-date={tasks._id} onClick={dateAction}>
         {tasks.taskTitle}

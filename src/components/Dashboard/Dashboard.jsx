@@ -87,8 +87,8 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { week, showSidebar } = this.props;
-
+    const { week, showSidebar, selectedData } = this.props;
+    console.log(selectedData);
     return (
       <Dash>
         <Container>
@@ -104,6 +104,7 @@ const mstp = store => ({
   tasks: store.tasks,
   week: store.weekTasks,
   showSidebar: store.app.showSidebar,
+  selectedData: store.selectedData,
 });
 
 const mdtp = dispatch => ({

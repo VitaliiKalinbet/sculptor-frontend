@@ -19,13 +19,13 @@ class Picker extends Component {
     const actionData = (e, selectedData) => {
       this.props.dataHandler(e, this.props.selectedData);
     };
-    const { actionCalendar, taskObj, taskId } = this.props;
+    const { actionCalendar, tasks, taskId } = this.props;
 
-    const userWeeks = taskObj.taskWeekRange.filter(el => el.status);
+    const userWeeks = tasks.taskWeekRange.filter(el => el.status);
 
     const numUserWeeks = userWeeks.map(el => el.week);
 
-    const taskCreationDate = taskObj.taskCreateDate;
+    const taskCreationDate = tasks.taskCreateDate;
 
     // console.log(numUserWeeks, taskCreationDate);
 
@@ -73,8 +73,12 @@ class Picker extends Component {
 
     const userDates = taskDatesFilter(taskCreationDate, numUserWeeks);
 
-    console.log(new Date(userDates.allWeeks[0].date));
+    // console.log(new Date(userDates.allWeeks[0].date));
     // console.log('gfhfhf: ', userPickedWeeks);
+
+    // const taskActiveDates = tasks.find(el => el.id === taskId);
+
+    console.log(tasks.taskActiveDates);
 
     return (
       <div className="calendar">
