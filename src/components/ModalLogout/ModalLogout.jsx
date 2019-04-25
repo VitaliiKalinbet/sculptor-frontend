@@ -12,8 +12,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Draggable from 'react-draggable';
-
 import ModalLogoutActions from '../../redux/actions/ModalLogoutActions';
+import LogoutButton from '../Button/LogoutButton/LogoutButton';
 
 import './ModalLogout.css';
 
@@ -33,13 +33,14 @@ const ModalLogout = ({
 }) => {
   return (
     <div>
-      <Button
-        color="inherit"
+      <LogoutButton
+        // color="inherit"
         onClick={toggleLogoutModal}
         className="header__router logout"
       >
         Logout
-      </Button>
+      </LogoutButton>
+
       <Grid container>
         <Grid item>
           <Dialog
@@ -63,22 +64,24 @@ const ModalLogout = ({
             <DialogActions className="DialogActions">
               <Grid container justify="center">
                 <Grid item>
-                  <Button
+                  <LogoutButton
                     onClick={() => {
                       cancelLogout();
                       toggleLogoutModal();
                     }}
-                    color="primary"
                   >
                     Cancel
-                  </Button>
+                  </LogoutButton>
                 </Grid>
                 <Grid item>
-                  <Button onClick={okLogout} color="primary">
+                  <LogoutButton
+                    onClick={okLogout}
+                    // color="primary"
+                  >
                     <a href="/login" className="">
                       Logout
                     </a>
-                  </Button>
+                  </LogoutButton>
                 </Grid>
               </Grid>
             </DialogActions>
