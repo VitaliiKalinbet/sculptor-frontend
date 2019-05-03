@@ -47,7 +47,6 @@ class Registration extends Component {
       name,
     })
       .then(data => {
-        console.log(data);
         if (data.success) history.push('/login');
       })
       .catch(err => {
