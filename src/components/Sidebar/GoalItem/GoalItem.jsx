@@ -17,10 +17,7 @@ const GoalItem = ({ data, goals, openModal }) => {
       <div className={s.Title}>
         <span className={s.Color} style={{ backgroundColor: `${data}` }} />
         <h2 className={s.SubTitle}>{data.goalTitle}</h2>
-        <EditBtn
-          onClick={e => openModal(e, goals, 'UPDATE')}
-          btnID={data._id}
-        />
+        <EditBtn onClick={e => openModal(e, data, 'UPDATE')} btnID={data._id} />
       </div>
 
       <p className={s.Description}>{data.goalMotivation}</p>

@@ -4,6 +4,7 @@ import { weekNow } from '../../utils/date';
 const initialState = [];
 
 export const goalsReducer = (store = initialState, { type, payload }) => {
+  console.log('DATA', payload);
   switch (type) {
     case 'GET_GOALS':
       return payload.data;

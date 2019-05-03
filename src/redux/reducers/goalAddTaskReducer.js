@@ -75,14 +75,14 @@ function goalTasksFunc(state = goalTasks, action) {
       return action.goalTasks.filter(task => task._id !== action.name);
     case 'ADD_TASK':
       return [...state, { ...initialTask, name: String(Date.now()) }];
-    case 'EDIT_GOAL':
-      if (!action.id) {
-        console.log(action);
-        return state;
-      }
-      return action.goals.find(el => el._id === action.id).goalTasks;
-    case 'EDIT_GOAL_CANCEL':
-      return goalTasks;
+    // case 'EDIT_GOAL':
+    //   if (!action.id) {
+    //     console.log(action);
+    //     return state;
+    //   }
+    //   return action.goals.find(el => el._id === action.id).goalTasks;
+    // case 'EDIT_GOAL_CANCEL':
+    //   return goalTasks;
     case 'SAVE_GOAL':
       return goalTasks;
     case 'ADD_GOAL':

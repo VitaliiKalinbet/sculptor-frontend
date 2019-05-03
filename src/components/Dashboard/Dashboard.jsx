@@ -72,8 +72,12 @@ class Dashboard extends Component {
   }
 
   async componentDidMount() {
-    await this.props.getGoals();
-    await this.props.getTasks();
+    const { user } = this.props;
+    if (user.token) {
+      console.log('USER________', user);
+      this.props.getGoals(user);
+      // this.props.getTasks(user);
+    }
   }
 
   componentDidUpdate(prevprops) {
@@ -104,10 +108,11 @@ const mstp = store => ({
   tasks: store.tasks,
   week: store.weekTasks,
   showSidebar: store.app.showSidebar,
+  user: store.user,
 });
 
 const mdtp = dispatch => ({
-  getGoals: () => dispatch(asyncGoalAction()),
+  getGoals: user => dispatch(asyncGoalAction(user)),
   getTasks: () => dispatch(asyncTasksAction()),
   weekTasks: data => dispatch(weekTasksAction(data)),
 });

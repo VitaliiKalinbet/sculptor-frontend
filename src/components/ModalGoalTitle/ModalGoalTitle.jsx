@@ -32,6 +32,7 @@ const ModalGoalTitle = ({
   // goals,
   goalColor,
   goalNumber,
+  editGoal,
 }) => {
   return (
     <div className="ModalGoalTitle">
@@ -44,7 +45,7 @@ const ModalGoalTitle = ({
         name="ModalGoalTitle"
         id="ModalGoalTitle"
         placeholder="Enter Goal Name"
-        value={goalTitle}
+        defaultValue={editGoal.data.goalTitle || goalTitle}
         onChange={inputGoalTitle}
       />
     </div>
@@ -57,6 +58,7 @@ ModalGoalTitle.propTypes = {
   // goals: PropTypes.arrayOf(PropTypes.object).isRequired,
   goalColor: PropTypes.string.isRequired,
   goalNumber: PropTypes.number.isRequired,
+  editGoal: PropTypes.shape.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -65,6 +67,7 @@ function mapStateToProps(state) {
     goals: state.goals,
     goalColor: state.goalData.goalColor,
     goalNumber: state.goalData.goalNumber,
+    editGoal: state.editGoal,
   };
 }
 
