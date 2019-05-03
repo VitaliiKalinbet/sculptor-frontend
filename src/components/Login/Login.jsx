@@ -64,8 +64,9 @@ class Login extends Component {
 
     API.login({ username: email, password })
       .then(data => {
+        console.log('dataUSer', data);
         addUser(data);
-        if (data.success) {
+        if (data.token) {
           history.push('/');
         }
       })

@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import { radioAction } from '../../redux/actions/radioAction';
 
 // eslint-disable-next-line react/prop-types
-const ModalGoalIconSelect = ({ onCheck, goalColor }) => {
+const ModalGoalIconSelect = ({ onCheck, goalColor, editGoal }) => {
   const labelColors = [
     '#dee5e8',
     '#ffe7d4',
@@ -46,7 +46,9 @@ const ModalGoalIconSelect = ({ onCheck, goalColor }) => {
         `;
         return (
           <StyledRadio
-            checked={el === goalColor}
+            checked={
+              el === goalColor || (!goalColor && el === editGoal.data.goalColor)
+            }
             onChange={e => onCheck(e)}
             value={el}
             key={el}
@@ -65,6 +67,7 @@ const ModalGoalIconSelect = ({ onCheck, goalColor }) => {
 function MSTP(state) {
   return {
     goalColor: state.goalData.goalColor,
+    editGoal: state.editGoal,
   };
 }
 
@@ -79,6 +82,7 @@ function MDTP(dispatch) {
 ModalGoalIconSelect.propTypes = {
   onCheck: PropTypes.func.isRequired,
   goalColor: PropTypes.string.isRequired,
+  editGoal: PropTypes.shape.isRequired,
 };
 
 export default connect(

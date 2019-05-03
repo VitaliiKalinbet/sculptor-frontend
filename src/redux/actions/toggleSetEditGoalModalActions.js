@@ -5,10 +5,10 @@ const closeSetEditGoalModal = e => ({
   id: e.target.dataset.id,
 });
 
-const openSetEditGoalModal = (e, goals, modalType) => ({
+const openSetEditGoalModal = (e, data, modalType) => ({
   type: 'EDIT_GOAL',
   id: e.target.dataset.id,
-  goals,
+  data,
   modalType,
 });
 

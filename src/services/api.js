@@ -13,10 +13,22 @@ const register = ({ email, password, name }) =>
 const login = ({ username, password }) =>
   axiosInstance
     .post('/login', { username, password })
+    .then(res => ({ userId: res.data.userId, token: res.data.token }))
+    .catch(err => err);
+
+const getGoals = ({ userId, token }) =>
+  axiosInstance
+    .get(`/goal/${userId}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then(res => res.data)
     .catch(err => err);
 
 export default {
   register,
   login,
+  getGoals,
 };

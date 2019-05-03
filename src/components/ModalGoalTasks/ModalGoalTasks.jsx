@@ -11,10 +11,16 @@ import DelBtn from '../Button/DeleteButton/DeleteButton';
 
 import './ModalGoalTasks.css';
 
-const ModalTasks = ({ inputTaskTitle, goalTasks, deleteTask, addTask }) => {
+const ModalTasks = ({
+  inputTaskTitle,
+  goalTasks,
+  deleteTask,
+  addTask,
+  editGoal,
+}) => {
   return (
     <div className="ModalTasks">
-      {goalTasks.map(task => (
+      {(editGoal.data.goalTasks || goalTasks).map(task => (
         <div className="ModalTasks__input-container">
           <div className="ModalTasks__input-container--left">
             <input
@@ -66,11 +72,13 @@ ModalTasks.propTypes = {
   inputTaskTitle: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
   addTask: PropTypes.func.isRequired,
+  editGoal: PropTypes.shape.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
     goalTasks: state.goalData.goalTasks,
+    editGoal: state.editGoal,
   };
 }
 
