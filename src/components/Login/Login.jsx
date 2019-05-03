@@ -66,7 +66,7 @@ class Login extends Component {
       .then(data => {
         console.log(`data`, data);
         addUser(data);
-        if (data.data.success) {
+        if (data.success) {
           console.log(`ssss`);
           history.push('/');
         }
@@ -74,24 +74,6 @@ class Login extends Component {
       .catch(err => {
         console.log(err);
       });
-    // fetch('http://192.168.90.200:8000/api/login', {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     username: email,
-    //     password,
-    //   }),
-    //   headers: { 'content-type': 'application/json' },
-    // })
-    //   .then(response => {
-    //     response.json().then(data => {
-    //       console.log(data);
-    //       addUser(data);
-    //       if (data.success) history.push('/');
-    //     });
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
   };
 
   handleChange = name => event => {

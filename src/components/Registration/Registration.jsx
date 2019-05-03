@@ -46,11 +46,9 @@ class Registration extends Component {
       password,
       name,
     })
-      .then(response => {
-        response.json().then(data => {
-          console.log(data);
-          if (data.success) history.push('/login');
-        });
+      .then(data => {
+        console.log(data);
+        if (data.success) history.push('/login');
       })
       .catch(err => {
         console.log(err);
