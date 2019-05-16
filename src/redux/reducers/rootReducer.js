@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import selectedData from '../reducers/selectedDataReducer';
 import userTaskDate from '../reducers/userTaskDateReducer';
 import calendarButton from '../reducers/calendarButtonReducer';
+import userReducer from './userReducer';
 import app from './appReducer';
 import activeDateReducer from './datePickerReducer';
 import {
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   selectedData,
   userTaskDate,
   calendarButton,
+  user: userReducer,
   goals: goalsReducer,
   tasks: taskReducer,
   weekTasks: weekTasksReducer,

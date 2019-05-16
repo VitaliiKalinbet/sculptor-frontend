@@ -23,6 +23,15 @@
   font-size: 1.6rem;
 }
 
+.closeSidebar {
+  position: absolute;
+  top: 15px;
+  left: 7px;
+  margin-left: 0.6rem;
+  cursor: pointer;
+  fill: #c5cdcd;
+}
+
 @media screen and (max-width: 768px) {
   .Sidebar {
     position: fixed;
@@ -32,5 +41,6 @@
   }
   .Sidebar_show {
     transform: translateX(0);
+    z-index: 1000;
   }
 }

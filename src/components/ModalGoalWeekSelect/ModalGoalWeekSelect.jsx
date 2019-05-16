@@ -14,8 +14,8 @@ import './ModalGoalWeekSelect.css';
 const ModalGoalWeekSelect = ({ onChange, goalColor, id, task }) => {
   const styles = {
     small: {
-      width: 36,
-      height: 36,
+      width: 32,
+      height: 32,
       color: goalColor || '#dee5e8',
     },
     medium: {

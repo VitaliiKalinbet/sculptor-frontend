@@ -16,6 +16,7 @@
 }
 .header__icon.more {
   margin-left: 0.6rem;
+  cursor: pointer;
 }
 .header__router {
   color: #c5cdcd;
@@ -45,7 +46,7 @@
 }
 .header__logo {
   position: absolute;
-  width: 100vw;
+  width: 100%;
   text-align: center;
   z-index: 0;
 }

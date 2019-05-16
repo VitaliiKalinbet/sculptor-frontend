@@ -13,55 +13,103 @@ import ModalGoalMotivation from '../ModalGoalMotivation/ModalGoalMotivation';
 import GoalActions from '../../redux/actions/saveGoalActions';
 import ModalGoalIconSelect from '../ModalGoalIconSelect/ModalGoalIconSelect';
 
-const SetGoalModal = ({
-  saveGoal,
-  goalTitle,
-  goalColor = 'a',
-  goals,
-  goalMotivation,
-  goalTasks,
-  activeGoalID,
-  modalType,
-  addGoal,
-}) => {
-  return (
-    <div className="SetGoalModal" onClick={e => e.stopPropagation()}>
-      <h3 className="SetGoalModal__title">
-        {modalType === 'SET' ? 'Set' : 'Update'} a Goal
-      </h3>
-      <ModalGoalTitle />
-      <ModalGoalIconSelect />
-      <div className="temp-select">select</div>
-      <ModalGoalTasks />
-      <ModalGoalMotivation />
+class SetGoalModal extends React.Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
 
-      <button
-        type="button"
-        onClick={() =>
-          modalType !== 'SET'
-            ? saveGoal(
-                goalTitle,
-                goalColor,
-                goalTasks,
-                goalMotivation,
-                goals,
-                activeGoalID,
-              )
-            : addGoal(
-                goalTitle,
-                goalColor,
-                goalTasks,
-                goalMotivation,
-                activeGoalID,
-              )
+  handleAddGoal = ({
+    goalTitle,
+    goalColor,
+    goalTasks,
+    goalMotivation,
+    activeGoalID,
+    user,
+  }) => {
+    const { addGoal } = this.props;
+    fetch(`https://sculptor.vbguard.dev/api/goal`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+      body: JSON.stringify({
+        goalTitle,
+        goalColor,
+        goalTasks,
+        goalMotivation,
+        activeGoalID,
+        userId: user.userId,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          return addGoal(
+            data.data.goalTitle,
+            data.data.goalColor,
+            data.data.goalTasks,
+            data.data.goalMotivation,
+            data.data.activeGoalID,
+          );
         }
-        disabled={!goalTitle.length || !goalColor.length}
-      >
-        {modalType === 'SET' ? 'Create' : 'Save'}
-      </button>
-    </div>
-  );
-};
+        return null;
+      });
+  };
+
+  render() {
+    const {
+      saveGoal,
+      goalTitle,
+      goalColor = 'a',
+      goals,
+      goalMotivation,
+      goalTasks,
+      activeGoalID,
+      modalType,
+      user,
+    } = this.props;
+    return (
+      <div className="SetGoalModal" onClick={e => e.stopPropagation()}>
+        <h3 className="SetGoalModal__title">
+          {modalType === 'SET' ? 'Set' : 'Update'} a Goal
+        </h3>
+        <ModalGoalTitle />
+        <ModalGoalIconSelect />
+        <ModalGoalTasks />
+        <ModalGoalMotivation />
+
+        <button
+          type="button"
+          onClick={() =>
+            modalType !== 'SET'
+              ? saveGoal(
+                  goalTitle,
+                  goalColor,
+                  goalTasks,
+                  goalMotivation,
+                  goals,
+                  activeGoalID,
+                  user,
+                )
+              : this.handleAddGoal({
+                  goalTitle,
+                  goalColor,
+                  goalTasks,
+                  goalMotivation,
+                  activeGoalID,
+                  user,
+                })
+          }
+          disabled={!goalTitle.length || !goalColor.length}
+        >
+          {modalType === 'SET' ? 'Create' : 'Save'}
+        </button>
+      </div>
+    );
+  }
+}
 
 SetGoalModal.propTypes = {
   goalTitle: PropTypes.string.isRequired,
@@ -73,6 +121,7 @@ SetGoalModal.propTypes = {
   goalMotivation: PropTypes.string,
   goalTasks: PropTypes.arrayOf(PropTypes.object).isRequired,
   activeGoalID: PropTypes.string.isRequired,
+  user: PropTypes.shape.isRequired,
 };
 
 SetGoalModal.defaultProps = {
@@ -87,6 +136,7 @@ function mapStateToProps(state) {
     goalMotivation: state.goalData.goalMotivation,
     goalTasks: state.goalData.goalTasks,
     activeGoalID: state.goalData.activeGoalID,
+    user: state.user,
   };
 }
 

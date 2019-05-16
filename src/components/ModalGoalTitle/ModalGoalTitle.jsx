@@ -10,9 +10,10 @@ import './ModalGoalTitle.css';
 const GoalType = styled.h5`
   display: flex;
   align-items: center;
-  margin: 2rem 0;
+  margin: 0;
   font-size: 1.4rem;
   color: rgba(185, 195, 200, 255);
+  width: 15%;
 
   ::before {
     background-color: ${props => props.goalColor || 'gray'};
@@ -31,22 +32,22 @@ const ModalGoalTitle = ({
   // goals,
   goalColor,
   goalNumber,
+  editGoal,
 }) => {
   return (
-    <div>
+    <div className="ModalGoalTitle">
       {/* <InputComponent /> from Alexey */}
 
-      <GoalType goalColor={goalColor}>
-        Goal #{goalNumber}
-        <input
-          className="ModalGoalTitle__input"
-          type="text"
-          name="ModalGoalTitle"
-          id="ModalGoalTitle"
-          value={goalTitle}
-          onChange={inputGoalTitle}
-        />
-      </GoalType>
+      <GoalType goalColor={goalColor}>Goal #{goalNumber}</GoalType>
+      <input
+        className="ModalGoalTitle__input"
+        type="text"
+        name="ModalGoalTitle"
+        id="ModalGoalTitle"
+        placeholder="Enter Goal Name"
+        defaultValue={editGoal.data.goalTitle || goalTitle}
+        onChange={inputGoalTitle}
+      />
     </div>
   );
 };
@@ -57,6 +58,7 @@ ModalGoalTitle.propTypes = {
   // goals: PropTypes.arrayOf(PropTypes.object).isRequired,
   goalColor: PropTypes.string.isRequired,
   goalNumber: PropTypes.number.isRequired,
+  editGoal: PropTypes.shape.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -65,6 +67,7 @@ function mapStateToProps(state) {
     goals: state.goals,
     goalColor: state.goalData.goalColor,
     goalNumber: state.goalData.goalNumber,
+    editGoal: state.editGoal,
   };
 }
 

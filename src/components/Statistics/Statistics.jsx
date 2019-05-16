@@ -159,6 +159,7 @@ class Statistics extends Component {
 
     return (
       <div className="Statistics">
+        <h1>HELLO</h1>
         <div className="Statick_text_wrapper">
           <span className="Statick_circle circle_planned" />
           <p className="Statistics_label planned">Planned</p>

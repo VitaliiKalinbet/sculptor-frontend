@@ -5,8 +5,8 @@ const initialState = [];
 
 export const goalsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'GET_GOALS':
-      return action.data;
+    case 'SET_GOALS':
+      return action.payload;
     case 'SAVE_GOAL':
       return state.map(goal =>
         goal._id === action.updatedGoal.activeGoalID

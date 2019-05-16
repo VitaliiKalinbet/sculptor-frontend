@@ -6,7 +6,7 @@ import Motivation from '../../redux/actions/goalMotivationActions';
 
 import './ModalGoalMotivation.css';
 
-const ModalGoalMotivation = ({ inputMotivation, goalMotivation }) => {
+const ModalGoalMotivation = ({ inputMotivation, goalMotivation, editGoal }) => {
   return (
     <div className="ModalGoalMotivation">
       <label htmlFor="inputMotivation" className="GoalMotivation__label">
@@ -16,7 +16,7 @@ const ModalGoalMotivation = ({ inputMotivation, goalMotivation }) => {
           name="inputMotivation"
           id="inputMotivation"
           onChange={inputMotivation}
-          value={goalMotivation}
+          defaultValue={editGoal.data.goalMotivation || goalMotivation}
         />
       </label>
     </div>
@@ -26,6 +26,7 @@ const ModalGoalMotivation = ({ inputMotivation, goalMotivation }) => {
 ModalGoalMotivation.propTypes = {
   inputMotivation: PropTypes.func.isRequired,
   goalMotivation: PropTypes.string,
+  editGoal: PropTypes.shape.isRequired,
 };
 
 ModalGoalMotivation.defaultProps = {
@@ -35,6 +36,7 @@ ModalGoalMotivation.defaultProps = {
 function mapStateToProps(state) {
   return {
     goalMotivation: state.goalData.goalMotivation,
+    editGoal: state.editGoal,
   };
 }
 

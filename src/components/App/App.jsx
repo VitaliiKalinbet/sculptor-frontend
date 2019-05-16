@@ -1,36 +1,82 @@
 /*eslint-disable*/
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader/root';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+
+import PropTypes from 'prop-types';
 
 import LoginPage from '../../pages/LoginPage';
 import RegistrationPage from '../../pages/RegistrationPage';
 import MainPage from '../../pages/MainPage';
+import loginInputActions from '../../redux/actions/LoginInputActions';
+
+// import Statistics from '../Statistics/Statistics';
 
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { loggedIn: true };
+    this.state = {
+      loaded: false,
+    };
+  }
+
+  componentDidMount() {
+    const { addUser } = this.props;
+    const userData = localStorage.user;
+    console.log('userData', userData);
+    if (userData) {
+      addUser(JSON.parse(userData));
+    }
+    this.setState({ loaded: true });
   }
 
   render() {
-    const { loggedIn } = this.state;
+    const { user } = this.props;
+    const { loaded } = this.state;
+
     return (
       <>
-        <Router>
-          <Route exact path="/login" component={LoginPage} />
+        <Switch>
+          <Route path="/login" component={LoginPage} />
           <Route path="/registration" component={RegistrationPage} />
           <Route
-            exact
             path="/"
-            render={() => (loggedIn ? <MainPage /> : <Redirect to="/login" />)}
-          />
-        </Router>
+            // render={() => (loggedIn ? <MainPage /> : <Redirect to="/login" />)}
+          >
+            {loaded && user.token && <MainPage />}
+            {loaded && !user.token && <Redirect to="/login" />}
+          </Route>
+        </Switch>
       </>
     );
   }
 }
 
-export default hot(App);
+App.propTypes = {
+  addUser: PropTypes.func.isRequired,
+  user: PropTypes.shape.isRequired,
+};
+
+function mapStateToProps(state) {
+  return {
+    user: state.user,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addUser: data => dispatch(loginInputActions.addUser(data)),
+  };
+}
+
+export default withRouter(
+  hot(
+    connect(
+      mapStateToProps,
+      mapDispatchToProps,
+    )(App),
+  ),
+);
