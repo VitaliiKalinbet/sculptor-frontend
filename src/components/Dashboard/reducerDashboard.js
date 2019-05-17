@@ -3,13 +3,23 @@ import { weekNow } from '../../utils/date';
 
 const initialState = [];
 
-export const goalsReducer = (store = initialState, { type, payload }) => {
-  console.log('DATA', payload);
-  switch (type) {
-    case 'GET_GOALS':
-      return payload.data;
+export const goalsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'SET_GOALS':
+      return action.payload;
+    case 'SAVE_GOAL':
+      return state.map(goal =>
+        goal._id === action.updatedGoal.activeGoalID
+          ? {
+              ...goal,
+              ...action.updatedGoal,
+            }
+          : goal,
+      );
+    case 'ADD_GOAL':
+      return [...state, action.updatedGoal];
     default:
-      return store;
+      return state;
   }
 };
 

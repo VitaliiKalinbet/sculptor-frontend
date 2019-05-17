@@ -1,0 +1,7 @@
+.calendar {
+  background-color: #223653;
+}
+
+.calendar--disabled {
+  display: none;
+}

@@ -7,7 +7,7 @@ const TaskList = ({ data }) => {
   return (
     <ul>
       {data.map(el => (
-        <TaskItem tasks={el} />
+        <TaskItem key={el._id} tasks={el} />
       ))}
     </ul>
   );
