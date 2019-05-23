@@ -1,5 +1,8 @@
 /*eslint-disable*/
 import { combineReducers } from 'redux';
+import selectedData from '../reducers/selectedDataReducer';
+import userTaskDate from '../reducers/userTaskDateReducer';
+import calendarButton from '../reducers/calendarButtonReducer';
 import userReducer from './userReducer';
 import app from './appReducer';
 import activeDateReducer from './datePickerReducer';
@@ -10,14 +13,16 @@ import {
 } from '../../components/Dashboard/reducerDashboard';
 import logout from './ModalLogoutReducer';
 import isLogoutModalOpen from './ToggleLogoutModalReducer';
-
 import editGoal from './goalEditModeReducer';
 import goalData from './goalReducer';
 
-import goals from './initData';
+// import goals from './initData';
 import dateReducer from './dateReducer';
 
 const rootReducer = combineReducers({
+  selectedData,
+  userTaskDate,
+  calendarButton,
   user: userReducer,
   goals: goalsReducer,
   tasks: taskReducer,
@@ -26,7 +31,6 @@ const rootReducer = combineReducers({
   activeDateReducer,
   goalData,
   editGoal,
-  goals,
   taskArray: dateReducer,
   logout,
   isLogoutModalOpen,
