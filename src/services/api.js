@@ -34,8 +34,7 @@ const getGoals = ({ userId, token }) =>
         Authorization: `Bearer ${token}`,
       },
     })
-    .then(res => res.data)
-    .catch(err => err);
+    .then(res => res.data);
 
 export default {
   register,

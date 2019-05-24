@@ -8,6 +8,9 @@ const initalWeekState = presentWeek.map(el => ({
   tasks: [],
 }));
 
+const getDateWithoutTime = time =>
+  new Date(new Date(time).setHours(0, 0, 0, 0)).getTime();
+
 export const goalsReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_GOALS':
@@ -65,7 +68,7 @@ export const weekTasksReducer = (
       );
       const allTasks = [...payload];
 
-      console.log('tasks', allTasks);
+      // console.log('tasks', allTasks);
       const activeTasksData = presentWeek.map(el => ({
         data: el,
         tasks: [],
@@ -86,8 +89,8 @@ export const weekTasksReducer = (
         }
       });
 
-      console.log('activeTasks', activeTasks);
-      console.log('weeksMilliseconds', weeksMilliseconds);
+      // console.log('activeTasks', activeTasks);
+      // console.log('weeksMilliseconds', weeksMilliseconds);
       const weekData = activeTasks.map(el => {
         console.log(getDateWithoutTime(el.date));
         const index = weeksMilliseconds.indexOf(
@@ -98,7 +101,7 @@ export const weekTasksReducer = (
         }
       });
 
-      console.log('activeTasksData', activeTasksData);
+      // console.log('activeTasksData', activeTasksData);
 
       // const dayTasks = [];
       // let idx = false;
@@ -135,13 +138,13 @@ export const weekTasksReducer = (
 
       return activeTasksData;
     case 'DASHBOARD_DELETE_TASK':
-      console.log('payload', payload);
-      console.log('store', store);
+      // console.log('payload', payload);
+      // console.log('store', store);
       const newState = store.map(day => {
         if (
           getDateWithoutTime(day.date) === getDateWithoutTime(payload.taskDate)
         ) {
-          console.log('newDayTasks', day.tasks);
+          // console.log('newDayTasks', day.tasks);
           const newDayTasks = day.tasks;
           return {
             date: day.date,
@@ -150,7 +153,7 @@ export const weekTasksReducer = (
         }
         return day;
       });
-      console.log('newState', newState);
+      // console.log('newState', newState);
 
       return newState;
 
