@@ -1,5 +1,7 @@
 /*eslint-disable*/
-export const dateAction = event => ({
+const dateAction = event => ({
   type: 'DATE',
   dateObj: event.target.dataset.date,
 });
+
+export default dateAction;

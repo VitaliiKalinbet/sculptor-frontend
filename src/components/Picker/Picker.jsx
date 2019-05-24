@@ -21,9 +21,6 @@ class Picker extends Component {
   editingArrSelectedData(arr, taskId) {
     const { editWeekDays } = this.props;
     newArr = arr.map(el => ({ date: Date.parse(el), isDone: false }));
-    console.log('newArr', newArr);
-    console.log('taskId', taskId);
-    console.log(JSON.stringify(newArr));
     editWeekDays(taskId, newArr);
   }
 
@@ -100,18 +97,18 @@ class Picker extends Component {
           X
         </button>
         <InfiniteCalendar
-          // min={userDates.allWeeks[0].date}
-          // max={userDates.allWeeks[62].date}
-          // minDate={userDates.allWeeks[0].date}
-          // maxDate={userDates.allWeeks[62].date}
+          min={userDates.allWeeks[0].date}
+          max={userDates.allWeeks[62].date}
+          minDate={userDates.allWeeks[0].date}
+          maxDate={userDates.allWeeks[62].date}
           Component={withMultipleDates(Calendar)}
           selected={this.props.selectedData}
-          // disabledDates={userDates.userDisabledWeeks.map(el => el.date)}
+          disabledDates={userDates.userDisabledWeeks.map(el => el.date)}
           interpolateSelection={defaultMultipleDateInterpolation}
           onSelect={actionData}
           keyboardSupport={true}
           width={window.innerWidth <= 650 ? window.innerWidth : 350}
-          height={250}
+          height={200}
           rowHeight={70}
           theme={{
             selectionColor: '#223653',
