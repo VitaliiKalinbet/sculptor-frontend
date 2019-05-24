@@ -94,19 +94,21 @@ class Picker extends Component {
 
     // const taskActiveDates = tasks.find(el => el.id === taskId);
 
+    console.log(this.props.selectedData);
+
     return (
       <div className="calendar">
         <button onClick={this.handeClose} className={'calendar__button'}>
           X
         </button>
         <InfiniteCalendar
-          // min={userDates.allWeeks[0].date}
-          // max={userDates.allWeeks[62].date}
-          // minDate={userDates.allWeeks[0].date}
-          // maxDate={userDates.allWeeks[62].date}
+          min={userDates.allWeeks[0].date}
+          max={userDates.allWeeks[62].date}
+          minDate={userDates.allWeeks[0].date}
+          maxDate={userDates.allWeeks[62].date}
           Component={withMultipleDates(Calendar)}
           selected={this.props.selectedData}
-          // disabledDates={userDates.userDisabledWeeks.map(el => el.date)}
+          disabledDates={userDates.userDisabledWeeks.map(el => el.date)}
           interpolateSelection={defaultMultipleDateInterpolation}
           onSelect={actionData}
           keyboardSupport={true}

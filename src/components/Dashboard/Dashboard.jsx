@@ -74,7 +74,7 @@ class Dashboard extends Component {
   async componentDidMount() {
     const { user } = this.props;
     if (user.token) {
-      console.log('USER________', user);
+      // console.log('USER________', user);
       this.props.getGoals(user);
       this.props.getTasks(user);
     }
@@ -92,7 +92,7 @@ class Dashboard extends Component {
 
   render() {
     const { week, showSidebar, selectedData } = this.props;
-    console.log(selectedData);
+    console.log(week);
     return (
       <Dash>
         <Container>
@@ -114,7 +114,7 @@ const mstp = store => ({
 
 const mdtp = dispatch => ({
   getGoals: user => dispatch(asyncGoalAction(user)),
-  getTasks: () => dispatch(asyncTasksAction()),
+  getTasks: user => dispatch(asyncTasksAction(user)),
   weekTasks: data => dispatch(weekTasksAction(data)),
 });
 

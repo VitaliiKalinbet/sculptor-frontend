@@ -13,6 +13,7 @@ const CardItem = styled.div`
     margin-bottom: 1.5rem;
   }
   width: 29.5rem;
+  height: 210px;
 `;
 
 const Card = ({ day }) => {
