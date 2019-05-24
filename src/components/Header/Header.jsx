@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import './HeaderMobile.css';
 import './HeaderTablet.css';
 import './HeaderDesktop.css';
-// import DatePicker from '../DatePicker/DatePicker';
+import DatePicker from '../DatePicker/DatePicker.jsx';
 
 import ModalLogout from '../ModalLogout/ModalLogout';
 import { showSidebarAction } from '../../redux/actions/sidebarAction';
@@ -24,15 +24,13 @@ const Header = ({ showSidebar }) => {
           <Dashboard className="header__icon dashboard" />
           <span>Dashboard</span>
         </NavLink>
-        {/* <DatePicker className="header__date" /> */}
-        <p className="header__date">Date</p>
+        <DatePicker className="header__date" />
         <NavLink to="/results" className="header__router results">
           <Results className="header__icon results" />
           <span>Results</span>
         </NavLink>
       </div>
       <p className="header__logo">Sculptor</p>
-
       <ModalLogout />
     </header>
   );

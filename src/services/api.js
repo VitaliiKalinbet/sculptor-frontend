@@ -6,14 +6,24 @@ const axiosInstance = axios.create({
 
 const register = ({ email, password, name }) =>
   axiosInstance
-    .post('/register', { email, password, name })
+    .post('/register', {
+      email,
+      password,
+      name,
+    })
     .then(res => res.data)
     .catch(err => err);
 
 const login = ({ username, password }) =>
   axiosInstance
-    .post('/login', { username, password })
-    .then(res => ({ userId: res.data.userId, token: res.data.token }))
+    .post('/login', {
+      username,
+      password,
+    })
+    .then(res => ({
+      userId: res.data.userId,
+      token: res.data.token,
+    }))
     .catch(err => err);
 
 const getGoals = ({ userId, token }) =>

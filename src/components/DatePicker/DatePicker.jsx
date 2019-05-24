@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import './DatePicker.css';
 import { ReactComponent as Arrow } from '../../assets/images/icons/arrow/baseline-keyboard_backspace-24px.svg';
 
@@ -23,7 +22,5 @@ const DatePicker = props => {
     </div>
   );
 };
-
-// DatePicker.propTypes = {};
 
 export default DatePicker;

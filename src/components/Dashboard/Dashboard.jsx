@@ -76,7 +76,7 @@ class Dashboard extends Component {
     if (user.token) {
       console.log('USER________', user);
       this.props.getGoals(user);
-      // this.props.getTasks(user);
+      this.props.getTasks(user);
     }
   }
 
