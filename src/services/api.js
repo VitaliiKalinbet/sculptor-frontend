@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://sculptor.vbguard.dev/api',
+  baseURL: 'https://sculptor.goit.co.ua/api',
 });
 
 const register = ({ email, password, name }) =>

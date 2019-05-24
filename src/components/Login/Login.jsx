@@ -172,7 +172,7 @@ function mapDispatchToProps(dispatch) {
 
 Login.propTypes = {
   addUser: PropTypes.func,
-  classes: PropTypes.shape.isRequired,
+  classes: PropTypes.func.isRequired,
   history: PropTypes.shape,
 };
 
