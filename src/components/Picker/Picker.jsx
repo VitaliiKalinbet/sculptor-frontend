@@ -19,16 +19,18 @@ let newArr = [];
 
 class Picker extends Component {
   editingArrSelectedData(arr, taskId) {
+    const { editWeekDays } = this.props;
     newArr = arr.map(el => ({ date: Date.parse(el), isDone: false }));
     console.log('newArr', newArr);
     console.log('taskId', taskId);
+    console.log(JSON.stringify(newArr));
+    editWeekDays(taskId, newArr);
   }
 
   handeClose = e => {
     const { actionCalendar, selectedData, taskId } = this.props;
     actionCalendar(e);
     this.editingArrSelectedData(selectedData, taskId);
-    this.editWeekDays(taskId, newArr);
   };
 
   render() {
