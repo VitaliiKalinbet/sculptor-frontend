@@ -13,8 +13,26 @@ import { connect } from 'react-redux';
 import selectedData from '../../redux/actions/selectedDataAction';
 import userTaskDate from '../../redux/actions/userTaskDateAction';
 import calendarButton from '../../redux/actions/calendarButtonAction';
+import AsyncEditWeekDays from '../../redux/actions/editAktivDaysFetch';
+
+let newArr = [];
 
 class Picker extends Component {
+  editingArrSelectedData(arr, taskId) {
+    const { editWeekDays } = this.props;
+    newArr = arr.map(el => ({ date: Date.parse(el), isDone: false }));
+    console.log('newArr', newArr);
+    console.log('taskId', taskId);
+    console.log(JSON.stringify(newArr));
+    editWeekDays(taskId, newArr);
+  }
+
+  handeClose = e => {
+    const { actionCalendar, selectedData, taskId } = this.props;
+    actionCalendar(e);
+    this.editingArrSelectedData(selectedData, taskId);
+  };
+
   render() {
     const actionData = (e, selectedData) => {
       this.props.dataHandler(e, this.props.selectedData);
@@ -26,8 +44,6 @@ class Picker extends Component {
     const numUserWeeks = userWeeks.map(el => el.week);
 
     const taskCreationDate = tasks.taskCreateDate;
-
-    // console.log(numUserWeeks, taskCreationDate);
 
     function taskDatesFilter(taskCreationDate, numUserWeeks) {
       const allWeeks = [
@@ -78,11 +94,9 @@ class Picker extends Component {
 
     // const taskActiveDates = tasks.find(el => el.id === taskId);
 
-    console.log(tasks.taskActiveDates);
-
     return (
       <div className="calendar">
-        <button onClick={actionCalendar} className={'calendar__button'}>
+        <button onClick={this.handeClose} className={'calendar__button'}>
           X
         </button>
         <InfiniteCalendar
@@ -130,6 +144,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    editWeekDays: function(taskId, data) {
+      dispatch(AsyncEditWeekDays(taskId, data));
+    },
     dataHandler: function(event, selected) {
       dispatch(selectedData(event, selected));
     },
