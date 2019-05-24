@@ -21,7 +21,7 @@ const Card = ({ day }) => {
   return (
     <CardItem>
       <CardTitle title={title} />
-      <TaskList items={day} />
+      <TaskList items={day.tasks} />
     </CardItem>
   );
 };

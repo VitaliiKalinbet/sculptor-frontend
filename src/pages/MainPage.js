@@ -33,22 +33,23 @@ class App extends Component {
 
     return (
       <>
+        {' '}
         {editGoal.editing && (
           <Backdrop>
-            <SetGoalModal modalType={editGoal.modalType} />
+            <SetGoalModal modalType={editGoal.modalType} />{' '}
           </Backdrop>
-        )}
+        )}{' '}
         <div className="main">
           <Sidebar className="main__left" />
           <div className="main__right">
             <Header />
             <div className="main__container">
-              <Route exact path="/" component={Dashboard} />
-              <Route exact path="/results" component={Statistics} />
-              {/* <Route path="/results" component={TestResults} /> */}
-            </div>
-          </div>
-        </div>
+              <Route exact path="/" component={Dashboard} />{' '}
+              <Route exact path="/results" component={Statistics} />{' '}
+              {/* <Route path="/results" component={TestResults} /> */}{' '}
+            </div>{' '}
+          </div>{' '}
+        </div>{' '}
       </>
     );
   }
