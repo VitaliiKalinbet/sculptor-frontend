@@ -15,6 +15,7 @@ import logout from './ModalLogoutReducer';
 import isLogoutModalOpen from './ToggleLogoutModalReducer';
 import editGoal from './goalEditModeReducer';
 import goalData from './goalReducer';
+import backDropPickerFlag from './backDropPickerModalReducer';
 
 // import goals from './initData';
 import dateReducer from './dateReducer';
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
   taskArray: dateReducer,
   logout,
   isLogoutModalOpen,
+  backDropPickerFlag,
 });
 
 export default rootReducer;
