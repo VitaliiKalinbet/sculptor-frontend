@@ -21,9 +21,6 @@ class Picker extends Component {
   editingArrSelectedData(arr, taskId) {
     const { editWeekDays } = this.props;
     newArr = arr.map(el => ({ date: Date.parse(el), isDone: false }));
-    console.log('newArr', newArr);
-    console.log('taskId', taskId);
-    console.log(JSON.stringify(newArr));
     editWeekDays(taskId, newArr);
   }
 
@@ -94,6 +91,8 @@ class Picker extends Component {
 
     // const taskActiveDates = tasks.find(el => el.id === taskId);
 
+    console.log(this.props.selectedData);
+
     return (
       <div className="calendar">
         <button onClick={this.handeClose} className={'calendar__button'}>
@@ -106,12 +105,12 @@ class Picker extends Component {
           maxDate={userDates.allWeeks[62].date}
           Component={withMultipleDates(Calendar)}
           selected={this.props.selectedData}
-          // disabledDates={userDates.userDisabledWeeks.map(el => el.date)}
+          disabledDates={userDates.userDisabledWeeks.map(el => el.date)}
           interpolateSelection={defaultMultipleDateInterpolation}
           onSelect={actionData}
           keyboardSupport={true}
           width={window.innerWidth <= 650 ? window.innerWidth : 350}
-          height={250}
+          height={200}
           rowHeight={70}
           theme={{
             selectionColor: '#223653',

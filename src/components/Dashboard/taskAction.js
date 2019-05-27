@@ -1,14 +1,20 @@
 /* eslint-disable */
-import API from '../../services/api';
+import api from '../../services/api';
 
 const getTasks = data => ({
   type: 'ONLY_TASKS',
   payload: data,
 });
 
-const asyncTasksAction = user => dispatch => {
-  API.getGoals(user)
-    .then(data => dispatch(getTasks(data)))
+const asyncTasksAction = ({ userId, token }) => dispatch => {
+  api
+    .getGoals({
+      userId,
+      token,
+    })
+    .then(data => {
+      dispatch(getTasks(data));
+    })
     .catch(error => console.log(error));
 };
 

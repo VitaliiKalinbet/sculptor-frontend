@@ -3,24 +3,20 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Header from '../Header/Header';
-// import TestDashboard from '../TestDashboard/TestDashboard';
-import TestResults from '../TestResults/TestResults';
 
 // components
 import Card from '../Card/Card';
-import Sidebar from '../Sidebar/Sidebar';
+
 // action
 import asyncGoalAction from './goalAction';
 import asyncTasksAction from './taskAction';
-import weekTasksAction from './weekAction';
+import weekTasksActions from './weekAction';
 
 // card wrapper
 const Container = styled.div`
   margin: auto;
   width: 32rem;
-  padding: 3rem 1.5rem;
+  padding: 3rem;
   background-color: #eee;
   display: flex;
   flex-direction: column;
@@ -72,11 +68,12 @@ class Dashboard extends Component {
   }
 
   async componentDidMount() {
-    const { user } = this.props;
+    const { user, tasks } = this.props;
     if (user.token) {
-      console.log('USER________', user);
+      // console.log('USER________', user);
       this.props.getGoals(user);
       this.props.getTasks(user);
+      // this.props.weekTasks(tasks);
     }
   }
 
@@ -91,13 +88,13 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { week, showSidebar, selectedData } = this.props;
-    console.log(selectedData);
-    console.log(week);
+    const { week } = this.props;
+    // console.log(week);
     return (
       <Dash>
         <Container>
-          {week.length > 0 && week.map(day => <Card day={day} />)}
+          {week.arrDays.length > 0 &&
+            week.arrDays.map(day => <Card day={day} />)}
         </Container>
       </Dash>
     );
@@ -116,7 +113,7 @@ const mstp = store => ({
 const mdtp = dispatch => ({
   getGoals: user => dispatch(asyncGoalAction(user)),
   getTasks: user => dispatch(asyncTasksAction(user)),
-  weekTasks: data => dispatch(weekTasksAction(data)),
+  weekTasks: data => dispatch(weekTasksActions.weekTasksAction(data)),
 });
 
 export default connect(

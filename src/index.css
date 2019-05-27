@@ -1,11 +1,6 @@
 @import './assets/fonts/fonts.css';
 @import '../node_modules/normalize.css/normalize.css';
 
-html {
-  box-sizing: border-box;
-  font-size: 62.5%;
-}
-
 *,
 *::before,
 *::after {
@@ -13,6 +8,11 @@ html {
   padding: 0;
   box-sizing: inherit;
   text-decoration: none;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
 }
 
 body {
@@ -29,4 +29,17 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+* ::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track-piece {
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
 }

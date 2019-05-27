@@ -44,14 +44,6 @@
   z-index: 1;
 }
 
-.header__date {
-  position: absolute;
-  bottom: 0;
-  height: 6.5rem;
-  background-color: #0c3351;
-  width: 100vw;
-}
-
 .header__logo {
   position: absolute;
   width: 100%;
@@ -63,12 +55,6 @@
   text-align: right;
   margin-right: 1.5rem;
   z-index: 1;
-}
-
-@media only screen and (max-width: 320px) {
-  .header__date {
-    padding: 1.1rem;
-  }
 }
 
 /* Transitions */

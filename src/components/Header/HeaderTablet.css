@@ -20,14 +20,6 @@
     margin: 29px 13px;
   }
 
-  .header__date {
-    position: initial;
-    background-color: transparent;
-    width: 25rem;
-    height: 4.3rem;
-    line-height: 4.3rem;
-  }
-
   .header__router.dashboard {
     margin: 0;
   }
