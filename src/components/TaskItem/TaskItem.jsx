@@ -8,7 +8,7 @@ const Item = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
+  padding: 0 1.5rem;
 `;
 
 // icon status

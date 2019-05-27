@@ -3,18 +3,14 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Header from '../Header/Header';
-// import TestDashboard from '../TestDashboard/TestDashboard';
-import TestResults from '../TestResults/TestResults';
 
 // components
 import Card from '../Card/Card';
-import Sidebar from '../Sidebar/Sidebar';
+
 // action
 import asyncGoalAction from './goalAction';
 import asyncTasksAction from './taskAction';
-import weekTasksAction from './weekAction';
+import weekTasksActions from './weekAction';
 
 // card wrapper
 const Container = styled.div`
@@ -91,7 +87,7 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { week, showSidebar, selectedData } = this.props;
+    const { week } = this.props;
     console.log(week);
     return (
       <Dash>
@@ -115,7 +111,7 @@ const mstp = store => ({
 const mdtp = dispatch => ({
   getGoals: user => dispatch(asyncGoalAction(user)),
   getTasks: user => dispatch(asyncTasksAction(user)),
-  weekTasks: data => dispatch(weekTasksAction(data)),
+  weekTasks: data => dispatch(weekTasksActions.weekTasksAction(data)),
 });
 
 export default connect(

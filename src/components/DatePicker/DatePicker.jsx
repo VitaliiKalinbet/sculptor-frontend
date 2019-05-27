@@ -1,26 +1,53 @@
+/* eslint-disable */
+
 import React from 'react';
-import './DatePicker.css';
+import { connect } from 'react-redux';
+import styles from './DatePicker.module.css';
 import { ReactComponent as Arrow } from '../../assets/images/icons/arrow/baseline-keyboard_backspace-24px.svg';
 
-const DatePicker = props => {
+import weekTasksActions from '../Dashboard/weekAction';
+
+const DatePicker = ({ weekTasksActionPrev, weekTasksActionNext, tasks }) => {
   return (
-    <div {...props}>
-      <nav className="datePicker">
-        <a href="/prev" className="datePicker__arrow">
-          <Arrow className="arrow__prev" />
+    <div className={styles.header__date}>
+      <nav className={styles.datePicker}>
+        <button
+          onClick={weekTasksActionPrev(tasks)}
+          type="submit"
+          className={styles.datePicker__arrow}
+        >
+          <Arrow className={styles.arrow__prev} />
           prev week
-        </a>
-        <div className="datePicker__dateNow">
-          <p className="dateNow__month">{Date().slice(4, 7)}</p>
-          <p className="dateNow__day">{new Date().getDate()}</p>
+        </button>
+        <div className={styles.datePicker__dateNow}>
+          <p className={styles.dateNow__month}>{Date().slice(4, 7)}</p>
+          <p className={styles.dateNow__day}>{new Date().getDate()}</p>
         </div>
-        <a href="/next" className="datePicker__arrow">
+        <button
+          onClick={weekTasksActionNext(tasks)}
+          type="submit"
+          className={styles.datePicker__arrow}
+        >
           next week
-          <Arrow className="arrow__next" />
-        </a>
+          <Arrow className={styles.arrow__next} />
+        </button>
       </nav>
     </div>
   );
 };
 
-export default DatePicker;
+const mstp = store => ({
+  tasks: store.tasks,
+});
+
+const mdtp = dispatch => ({
+  weekTasksActionNext: data =>
+    dispatch(weekTasksActions.weekTasksActionNext(data)),
+  weekTasksActionPrev: data =>
+    dispatch(weekTasksActions.weekTasksActionPrev(data)),
+});
+
+export default connect(
+  mstp,
+  mdtp,
+)(DatePicker);

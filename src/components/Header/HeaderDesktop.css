@@ -24,16 +24,6 @@
     margin: 29px 0;
   }
 
-  .header__date {
-    width: 30rem;
-    position: absolute;
-    top: 29px;
-    left: 700px;
-    right: 0;
-    /* margin: 0 auto; */
-    text-align: center;
-  }
-
   .header__router.logout {
     position: unset;
     margin-left: 3rem;
