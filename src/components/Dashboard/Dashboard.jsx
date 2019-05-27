@@ -68,11 +68,12 @@ class Dashboard extends Component {
   }
 
   async componentDidMount() {
-    const { user } = this.props;
+    const { user, tasks } = this.props;
     if (user.token) {
       // console.log('USER________', user);
       this.props.getGoals(user);
       this.props.getTasks(user);
+      // this.props.weekTasks(tasks);
     }
   }
 
@@ -88,11 +89,12 @@ class Dashboard extends Component {
 
   render() {
     const { week } = this.props;
-    console.log(week);
+    // console.log(week);
     return (
       <Dash>
         <Container>
-          {week.length > 0 && week.map(day => <Card day={day} />)}
+          {week.arrDays.length > 0 &&
+            week.arrDays.map(day => <Card day={day} />)}
         </Container>
       </Dash>
     );

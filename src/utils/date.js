@@ -2,28 +2,29 @@
 
 import moment from 'moment';
 
-const presentWeek = moment().day('Monday')._d;
+export const nowMilliseconds = () => new Date().getTime();
+export const oneWeekinMilliseconds = 604800000;
 
 export const weekNow = () => {
   const arr = [];
   for (let i = 1; i < 8; i++) {
-    arr.push(moment().day(i)._d);
+    arr.push(moment(nowMilliseconds()).day(i)._d);
   }
   return arr;
 };
 
-export const weekPrev = () => {
-  const arr = [];
-  for (let i = 1; i < -6; i--) {
-    arr.push(moment().day(i)._d);
-  }
-  return arr;
-};
-
-export const weekNext = () => {
+export const weekPrev = currentDate => {
   const arr = [];
   for (let i = 1; i < 8; i++) {
-    arr.push(moment().day(i)._d);
+    arr.push(moment(currentDate - oneWeekinMilliseconds).day(i)._d);
+  }
+  return arr;
+};
+
+export const weekNext = currentDate => {
+  const arr = [];
+  for (let i = 1; i < 8; i++) {
+    arr.push(moment(currentDate + oneWeekinMilliseconds).day(i)._d);
   }
   return arr;
 };

@@ -1,14 +1,23 @@
 /* eslint-disable */
-import { weekNow, weekPrev, weekNext } from '../../utils/date';
+import {
+  weekNow,
+  weekPrev,
+  weekNext,
+  nowMilliseconds,
+  oneWeekinMilliseconds,
+} from '../../utils/date';
+import findActiveTaskOnWeek from '../../utils/findActiveTaskOnWeek';
 
 const initialState = [];
 const presentWeek = weekNow();
-const prevWeek = weekPrev();
-const nextWeek = weekNext();
-const initalWeekState = presentWeek.map(el => ({
-  data: el,
-  tasks: [],
-}));
+
+const initalWeekState = {
+  date: new Date().getTime(),
+  arrDays: presentWeek.map(el => ({
+    data: el,
+    tasks: [],
+  })),
+};
 
 const getDateWithoutTime = time =>
   new Date(new Date(time).setHours(0, 0, 0, 0)).getTime();
@@ -65,23 +74,20 @@ export const weekTasksReducer = (
 ) => {
   switch (type) {
     case 'WEEK_TASKS':
-      const activeTasksData = presentWeek.map(el => ({
-        data: el,
-        tasks: [...payload],
-      }));
-      return activeTasksData;
+      return {
+        date: nowMilliseconds(),
+        arrDays: findActiveTaskOnWeek(weekNow, store.date, payload),
+      };
     case 'WEEK_TASKS_NEXT':
-      const activeTasksDataNext = nextWeek.map(el => ({
-        data: el,
-        tasks: [...payload],
-      }));
-      return activeTasksDataNext;
+      return {
+        date: store.date + oneWeekinMilliseconds,
+        arrDays: findActiveTaskOnWeek(weekNext, store.date, payload),
+      };
     case 'WEEK_TASKS_PREV':
-      const activeTasksDataPrev = prevWeek.map(el => ({
-        data: el,
-        tasks: [...payload],
-      }));
-      return activeTasksDataPrev;
+      return {
+        date: store.date - oneWeekinMilliseconds,
+        arrDays: findActiveTaskOnWeek(weekPrev, store.date, payload),
+      };
     case 'DASHBOARD_DELETE_TASK':
       const newState = store.map(day => {
         if (
