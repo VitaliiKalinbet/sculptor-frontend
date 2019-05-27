@@ -8,6 +8,9 @@ const initalWeekState = presentWeek.map(el => ({
   tasks: [],
 }));
 
+const getDateWithoutTime = time =>
+  new Date(new Date(time).setHours(0, 0, 0, 0)).getTime();
+
 export const goalsReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_GOALS':

@@ -100,10 +100,10 @@ class Picker extends Component {
           X
         </button>
         <InfiniteCalendar
-          // min={userDates.allWeeks[0].date}
-          // max={userDates.allWeeks[62].date}
-          // minDate={userDates.allWeeks[0].date}
-          // maxDate={userDates.allWeeks[62].date}
+          min={userDates.allWeeks[0].date}
+          max={userDates.allWeeks[62].date}
+          minDate={userDates.allWeeks[0].date}
+          maxDate={userDates.allWeeks[62].date}
           Component={withMultipleDates(Calendar)}
           selected={this.props.selectedData}
           // disabledDates={userDates.userDisabledWeeks.map(el => el.date)}
