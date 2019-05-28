@@ -8,7 +8,7 @@ const fetchGoals = data => ({
 
 const asyncGoalAction = user => dispatch => {
   API.getGoals(user)
-    .then(data => dispatch(fetchGoals(data.data)))
+    .then(data => dispatch(fetchGoals(data.goals)))
     .catch(error => console.log(error));
 };
 

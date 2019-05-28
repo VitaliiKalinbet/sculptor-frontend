@@ -6,7 +6,9 @@ const axiosInstance = axios.create({
 
 // set token to all request if Token have
 const getToken = JSON.parse(localStorage.getItem('user'));
-axios.defaults.headers.common.Authorization = `Bearer ${getToken.token}`;
+if (getToken) {
+  axios.defaults.headers.common.Authorization = `Bearer ${getToken.token}`;
+}
 
 const register = ({ email, password, name }) =>
   axiosInstance
