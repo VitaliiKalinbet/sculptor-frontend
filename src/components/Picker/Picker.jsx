@@ -18,22 +18,29 @@ import AsyncEditWeekDays from '../../redux/actions/editAktivDaysFetch';
 let newArr = [];
 
 class Picker extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedData: this.props.selectedData,
+    };
+  }
   editingArrSelectedData(arr, taskId) {
     const { editWeekDays } = this.props;
     newArr = arr.map(el => ({ date: Date.parse(el), isDone: false }));
     editWeekDays(taskId, newArr);
   }
 
-  handeClose = e => {
+  handlerClose = e => {
     const { actionCalendar, selectedData, taskId } = this.props;
     actionCalendar(e);
     this.editingArrSelectedData(selectedData, taskId);
   };
 
+  actionData = (e, selectedData) => {
+    this.props.dataHandler(e, this.props.selectedData);
+  };
+
   render() {
-    const actionData = (e, selectedData) => {
-      this.props.dataHandler(e, this.props.selectedData);
-    };
     const { actionCalendar, tasks, taskId } = this.props;
 
     const userWeeks = tasks.taskWeekRange.filter(el => el.status);
@@ -86,16 +93,12 @@ class Picker extends Component {
 
     const userDates = taskDatesFilter(taskCreationDate, numUserWeeks);
 
-    // console.log(new Date(userDates.allWeeks[0].date));
-    // console.log('gfhfhf: ', userPickedWeeks);
-
-    // const taskActiveDates = tasks.find(el => el.id === taskId);
-
-    console.log(this.props.selectedData);
+    const taskActiveDates = tasks.find(el => el.id === taskId);
+    console.log(taskActiveDates);
 
     return (
       <div className="calendar">
-        <button onClick={this.handeClose} className={'calendar__button'}>
+        <button onClick={this.handlerClose} className={'calendar__button'}>
           X
         </button>
         <InfiniteCalendar
@@ -107,7 +110,7 @@ class Picker extends Component {
           selected={this.props.selectedData}
           disabledDates={userDates.userDisabledWeeks.map(el => el.date)}
           interpolateSelection={defaultMultipleDateInterpolation}
-          onSelect={actionData}
+          onSelect={this.actionData}
           keyboardSupport={true}
           width={window.innerWidth <= 650 ? window.innerWidth : 350}
           height={200}

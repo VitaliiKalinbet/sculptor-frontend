@@ -13,6 +13,8 @@ import ModalGoalMotivation from '../ModalGoalMotivation/ModalGoalMotivation';
 import GoalActions from '../../redux/actions/saveGoalActions';
 import ModalGoalIconSelect from '../ModalGoalIconSelect/ModalGoalIconSelect';
 
+import api from '../../services/api';
+
 class SetGoalModal extends React.Component {
   constructor() {
     super();
@@ -24,38 +26,28 @@ class SetGoalModal extends React.Component {
     goalColor,
     goalTasks,
     goalMotivation,
-    activeGoalID,
     user,
   }) => {
     const { addGoal } = this.props;
-    fetch(`https://sculptor.vbguard.dev/api/goal`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${user.token}`,
-      },
-      body: JSON.stringify({
-        goalTitle,
-        goalColor,
-        goalTasks,
-        goalMotivation,
-        activeGoalID,
-        userId: user.userId,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          return addGoal(
-            data.data.goalTitle,
-            data.data.goalColor,
-            data.data.goalTasks,
-            data.data.goalMotivation,
-            data.data.activeGoalID,
-          );
-        }
-        return null;
-      });
+    const newData = {
+      goalTitle,
+      goalColor,
+      goalTasks,
+      goalMotivation,
+      userId: user.userId,
+    };
+
+    api.newGoal({ data: newData, token: user.token }).then(data => {
+      if (data.success) {
+        return addGoal(
+          data.goals.goalTitle,
+          data.goals.goalColor,
+          data.goals.goalTasks,
+          data.goals.goalMotivation,
+        );
+      }
+      return null;
+    });
   };
 
   render() {
@@ -70,6 +62,7 @@ class SetGoalModal extends React.Component {
       modalType,
       user,
     } = this.props;
+
     return (
       <div className="SetGoalModal" onClick={e => e.stopPropagation()}>
         <h3 className="SetGoalModal__title">
