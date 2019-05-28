@@ -4,6 +4,10 @@ const axiosInstance = axios.create({
   baseURL: 'https://sculptor.goit.co.ua/api',
 });
 
+// set token to all request if Token have
+const getToken = JSON.parse(localStorage.getItem('user'));
+axios.defaults.headers.common.Authorization = `Bearer ${getToken.token}`;
+
 const register = ({ email, password, name }) =>
   axiosInstance
     .post('/register', {
@@ -36,8 +40,17 @@ const getGoals = ({ userId, token }) =>
     })
     .then(res => res.data);
 
+const newGoal = ({ data }) => {
+  return axiosInstance.post('/goal', data).then(res => res.data);
+};
+
+const updateGoal = ({ goalId, fields }) =>
+  axiosInstance.put(`/goal/${goalId}`, fields).then(res => res.data);
+
 export default {
   register,
   login,
   getGoals,
+  newGoal,
+  updateGoal,
 };

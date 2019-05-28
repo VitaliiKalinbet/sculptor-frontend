@@ -899,6 +899,18 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
+"@date-io/core@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@date-io/core/-/core-1.2.0.tgz#da3a46999b8f58dc1d471c4f5373c5bff44b5794"
+  integrity sha512-lp77u8Q0ZP9a8M8CjskVZWxa5U4ixVC7mpsdPKr9kZEYlDPVtk1BXkJrr/Fz4Yt37jz8Al5zYOyr4Q+SMsJwCg==
+
+"@date-io/date-fns@^1.3.5":
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/@date-io/date-fns/-/date-fns-1.3.5.tgz#a4815500211c0ca7151729c17e12ba46520a373f"
+  integrity sha512-PVmvjF9ZsyK2nItwS+0iUTKadvZP7o2vWRRMwdcwo6HKMenWjgU3KbTyiKLoZuG0IlON4k9v8GRHvI0VVFxziA==
+  dependencies:
+    "@date-io/core" "^1.2.0"
+
 "@date-io/moment@^1.3.1":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@date-io/moment/-/moment-1.3.1.tgz#db1b11f10631c3e985e59ca780a64bc94a06f9de"
@@ -3246,7 +3258,7 @@ date-fns@^1.27.2:
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.30.1.tgz#2e71bf0b119153dbb4cc4e88d9ea5acfb50dc05c"
   integrity sha512-hBSVCvSmWC+QypYObzwGOd9wqdDpOt+0wl0KbU+R+uuZBS1jN8VsD1ss3irQDknRj5NvxiTF6oj/nDRnN/UQNw==
 
-date-fns@^2.0.0-alpha.23:
+date-fns@^2.0.0-alpha.21, date-fns@^2.0.0-alpha.23:
   version "2.0.0-alpha.27"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.0-alpha.27.tgz#5ecd4204ef0e7064264039570f6e8afbc014481c"
   integrity sha512-cqfVLS+346P/Mpj2RpDrBv0P4p2zZhWWvfY5fuWrXNR/K38HaAGEkeOwb47hIpQP9Jr/TIxjZ2/sNMQwdXuGMg==
@@ -6716,6 +6728,11 @@ matcher@^1.0.0:
   dependencies:
     escape-string-regexp "^1.0.4"
 
+material-design-icons@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/material-design-icons/-/material-design-icons-3.0.1.tgz#9a71c48747218ebca51e51a66da682038cdcb7bf"
+  integrity sha1-mnHEh0chjrylHlGmbaaCA4zct78=
+
 material-ui-pickers@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/material-ui-pickers/-/material-ui-pickers-2.2.4.tgz#8b33cfc55cbc5b2d520db45abf4b3dc94090dd3c"
@@ -8751,6 +8768,13 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-addons-css-transition-group@^15.6.2:
+  version "15.6.2"
+  resolved "https://registry.yarnpkg.com/react-addons-css-transition-group/-/react-addons-css-transition-group-15.6.2.tgz#9e4376bcf40b5217d14ec68553081cee4b08a6d6"
+  integrity sha1-nkN2vPQLUhfRTsaFUwgc7ksIptY=
+  dependencies:
+    react-transition-group "^1.2.0"
+
 react-app-polyfill@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/react-app-polyfill/-/react-app-polyfill-0.2.2.tgz#a903b61a8bfd9c5e5f16fc63bebe44d6922a44fb"
@@ -8822,6 +8846,14 @@ react-dom@^16.8.6:
     prop-types "^15.6.2"
     scheduler "^0.13.6"
 
+react-draggable@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/react-draggable/-/react-draggable-3.3.0.tgz#2ed7ea3f92e7d742d747f9e6324860606cd4d997"
+  integrity sha512-U7/jD0tAW4T0S7DCPK0kkKLyL0z61sC/eqU+NUfDjnq+JtBKaYKDHpsK2wazctiA4alEzCXUnzkREoxppOySVw==
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.6.0"
+
 react-error-overlay@^5.1.4:
   version "5.1.4"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.4.tgz#88dfb88857c18ceb3b9f95076f850d7121776991"
@@ -8851,7 +8883,7 @@ react-hot-loader@^4.8.4:
     shallowequal "^1.0.2"
     source-map "^0.7.3"
 
-react-infinite-calendar@2.3.1:
+react-infinite-calendar@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/react-infinite-calendar/-/react-infinite-calendar-2.3.1.tgz#97f63983b3ee1ec0df476b36b8227c7db0edbf85"
   integrity sha1-l/Y5g7PuHsDfR2s2uCJ8fbDtv4U=
@@ -8962,7 +8994,7 @@ react-tiny-virtual-list@^2.0.0:
   dependencies:
     prop-types "^15.5.7"
 
-react-transition-group@^1.1.3:
+react-transition-group@^1.1.3, react-transition-group@^1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-1.2.1.tgz#e11f72b257f921b213229a774df46612346c7ca6"
   integrity sha512-CWaL3laCmgAFdxdKbhhps+c0HRGF4c+hdM4H23+FI1QBNUyx/AMeIJGWorehPNSaKnQNOAxL7PQmqMu78CDj3Q==

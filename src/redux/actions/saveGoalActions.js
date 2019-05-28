@@ -5,17 +5,19 @@ const saveGoal = (
   goalMotivation,
   goals,
   activeGoalID,
-) => ({
-  type: 'SAVE_GOAL',
-  updatedGoal: {
-    goalTitle,
-    goalColor,
-    goalTasks,
-    goalMotivation,
-    activeGoalID,
-  },
-  goals,
-});
+) => dispatch => {
+  dispatch({
+    type: 'SAVE_GOAL',
+    updatedGoal: {
+      goalTitle,
+      goalColor,
+      goalTasks,
+      goalMotivation,
+      activeGoalID,
+    },
+    goals,
+  });
+};
 
 const addGoal = (
   goalTitle,
