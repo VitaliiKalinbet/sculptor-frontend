@@ -43,6 +43,7 @@ export const goalsReducer = (state = initialState, action) => {
 };
 
 export const taskReducer = (store = initialState, { type, payload }) => {
+  console.log('payload :', payload);
   switch (type) {
     case 'ONLY_TASKS':
       let tasks = payload.tasks.map(el => ({
@@ -53,7 +54,7 @@ export const taskReducer = (store = initialState, { type, payload }) => {
         activeDays: el.taskActiveDates.map(el => new Date(el.date)),
       }));
 
-      let color = payload.data.find(elem =>
+      let color = payload.goals.find(elem =>
         tasks.filter(el => el.id.includes(elem)),
       ).goalColor;
 
