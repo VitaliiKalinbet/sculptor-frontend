@@ -4,7 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import './SetGoalModal.css';
+import styles from './SetGoalModal.module.css';
 import ModalGoalTitle from '../ModalGoalTitle/ModalGoalTitle';
 // import ModalGoalIconSelect from '../ModalGoalIconSelect/ModalGoalIconSelect';
 import ModalGoalTasks from '../ModalGoalTasks/ModalGoalTasks';
@@ -64,8 +64,8 @@ class SetGoalModal extends React.Component {
     } = this.props;
 
     return (
-      <div className="SetGoalModal" onClick={e => e.stopPropagation()}>
-        <h3 className="SetGoalModal__title">
+      <div className={styles.SetGoalModal} onClick={e => e.stopPropagation()}>
+        <h3 className={styles.SetGoalModal__title}>
           {modalType === 'SET' ? 'Set' : 'Update'} a Goal
         </h3>
         <ModalGoalTitle />

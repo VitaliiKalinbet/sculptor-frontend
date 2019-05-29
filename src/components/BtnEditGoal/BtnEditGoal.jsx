@@ -31,7 +31,7 @@ const styles = theme => ({
 function FloatingActionButtons(props) {
   const { classes, onClick, value, btnID } = props;
   return (
-    <div>
+    <>
       <Fab
         color="secondary"
         aria-label="Edit"
@@ -45,7 +45,7 @@ function FloatingActionButtons(props) {
           <SvgEdit className={classes.extendedIcon} data-id={btnID} />
         </Icon>
       </Fab>
-    </div>
+    </>
   );
 }
 

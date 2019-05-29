@@ -12,6 +12,7 @@ const ModalGoalMotivation = ({ inputMotivation, goalMotivation, editGoal }) => {
       <label htmlFor="inputMotivation" className="GoalMotivation__label">
         Motivation
         <input
+          className="GoalMotivation__input"
           type="text"
           name="inputMotivation"
           id="inputMotivation"

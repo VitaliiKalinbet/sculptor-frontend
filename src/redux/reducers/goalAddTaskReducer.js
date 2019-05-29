@@ -2,6 +2,8 @@
 /* eslint-disable no-return-assign */
 /* eslint-disable no-case-declarations */
 /* eslint-disable no-underscore-dangle */
+import uuid from 'uuid/v4';
+
 const initialTaskWeekRange = [
   {
     week: 1,
@@ -44,7 +46,7 @@ const initialTaskWeekRange = [
 const initialTask = {
   taskTitle: '',
   name: String(Date.now()),
-  id: String(Date.now()),
+  _id: uuid(),
   taskWeekRange: initialTaskWeekRange,
 };
 
@@ -59,7 +61,10 @@ function goalTasksFunc(state = goalTasks, action) {
     case 'INPUT_TASK_TITLE':
       return state.map(task => {
         return action.name === task._id || action.name === task.name
-          ? { ...task, taskTitle: action.value }
+          ? {
+              ...task,
+              taskTitle: action.value,
+            }
           : task;
       });
     case 'DELETE_TASK':
@@ -74,15 +79,14 @@ function goalTasksFunc(state = goalTasks, action) {
 
       return action.goalTasks.filter(task => task._id !== action.name);
     case 'ADD_TASK':
-      return [...state, { ...initialTask, name: String(Date.now()) }];
-    // case 'EDIT_GOAL':
-    //   if (!action.id) {
-    //     console.log(action);
-    //     return state;
-    //   }
-    //   return action.goals.find(el => el._id === action.id).goalTasks;
-    // case 'EDIT_GOAL_CANCEL':
-    //   return goalTasks;
+      return [
+        ...state,
+        {
+          ...initialTask,
+          _id: uuid(),
+          name: String(Date.now()),
+        },
+      ];
     case 'SAVE_GOAL':
       return goalTasks;
     case 'ADD_GOAL':

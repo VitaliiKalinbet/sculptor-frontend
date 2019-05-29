@@ -12,7 +12,18 @@ const openSetEditGoalModal = (e, data, modalType) => ({
   modalType,
 });
 
+const deleteTaskFromEditGoal = id => ({
+  type: 'DELETE_TASK_FROM_EDIT_GOAL',
+  id,
+});
+
+const addTaskInEditGoal = () => ({
+  type: 'ADD_TASK_IN_EDIT_GOAL',
+});
+
 export default {
   closeSetEditGoalModal,
   openSetEditGoalModal,
+  deleteTaskFromEditGoal,
+  addTaskInEditGoal,
 };
