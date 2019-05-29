@@ -93,8 +93,8 @@ class Picker extends Component {
 
     const userDates = taskDatesFilter(taskCreationDate, numUserWeeks);
 
-    const taskActiveDates = tasks.find(el => el.id === taskId);
-    console.log(taskActiveDates);
+    // const taskActiveDates = tasks.find(el => el.id === taskId);
+    // console.log(taskActiveDates);
 
     return (
       <div className="calendar">

@@ -2,6 +2,9 @@ import axios from 'axios';
 
 const axiosInstance = axios.create({
   baseURL: 'https://sculptor.goit.co.ua/api',
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 // set token to all request if Token have
@@ -49,10 +52,13 @@ const newGoal = ({ data }) => {
 const updateGoal = ({ goalId, fields }) =>
   axiosInstance.put(`/goal/${goalId}`, fields).then(res => res.data);
 
+const deleteTaskInEditGoal = taskID => axiosInstance.delete(`/task/${taskID}`);
+
 export default {
   register,
   login,
   getGoals,
   newGoal,
   updateGoal,
+  deleteTaskInEditGoal,
 };

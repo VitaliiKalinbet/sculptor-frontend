@@ -19,7 +19,6 @@ const TaskItem = ({
   flagShowPiker,
   showPicker,
 }) => {
-  console.log('tasks: ', tasks);
   const actionCalendar = event => {
     dateAction(event);
     calendarButtonFunc();
