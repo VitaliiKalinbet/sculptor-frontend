@@ -91,12 +91,18 @@ class Dashboard extends Component {
     const { week } = this.props;
     // console.log(week);
     return (
-      <Dash>
-        <Container>
-          {week.arrDays.length > 0 &&
-            week.arrDays.map(day => <Card day={day} />)}
-        </Container>
-      </Dash>
+      <>
+        <Dash>
+          <Container>
+            {week.arrDays.length > 0 &&
+              week.arrDays.map(day => (
+                <>
+                  <Card day={day} />
+                </>
+              ))}
+          </Container>
+        </Dash>
+      </>
     );
   }
 }

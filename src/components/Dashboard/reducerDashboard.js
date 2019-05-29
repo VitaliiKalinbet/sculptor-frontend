@@ -43,7 +43,6 @@ export const goalsReducer = (state = initialState, action) => {
 };
 
 export const taskReducer = (store = initialState, { type, payload }) => {
-  console.log('payload :', payload);
   switch (type) {
     case 'ONLY_TASKS':
       let tasks = payload.tasks.map(el => ({

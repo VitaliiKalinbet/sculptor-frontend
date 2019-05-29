@@ -9,7 +9,7 @@ import { th } from 'date-fns/esm/locale';
 import { startOfWeek } from 'date-fns';
 import Backdrop from '../../Backdrop/Backdrop';
 import showPicker from '../../../redux/actions/backDropPickerModalAction';
-import BackdropPicker from '../../BackdropPicker/BackdropPicker';
+// import BackdropPicker from '../../BackdropPicker/BackdropPicker';
 
 const TaskItem = ({
   tasks,
@@ -19,11 +19,11 @@ const TaskItem = ({
   flagShowPiker,
   showPicker,
 }) => {
-  console.log('tasks: ', tasks);
   const actionCalendar = event => {
     dateAction(event);
     calendarButtonFunc();
   };
+
   const showPickerAllActions = (event, boolean) => {
     showPicker(boolean);
     dateAction(event);
@@ -32,13 +32,7 @@ const TaskItem = ({
   return (
     <li className={s.Item}>
       {tasks._id === taskId && flagShowPiker && (
-        <BackdropPicker>
-          <Picker
-            tasks={tasks}
-            actionCalendar={actionCalendar}
-            taskId={taskId}
-          />
-        </BackdropPicker>
+        <Picker tasks={tasks} actionCalendar={actionCalendar} taskId={taskId} />
       )}
       <p
         className={s.TaskText}

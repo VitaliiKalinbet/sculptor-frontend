@@ -5,12 +5,10 @@ import './BackdropPicker.css';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import showPicker from '../../redux/actions/backDropPickerModalAction';
-import dateAction from '../../redux/actions/dateAction';
 
-const BackdropPicker = ({ children, showPickerFunc, dateActionFunc }) => {
-  const allShowPickerActions = e => {
+const BackdropPicker = ({ children, showPickerFunc }) => {
+  const allShowPickerActions = () => {
     showPickerFunc();
-    dateActionFunc(e);
   };
 
   return (
@@ -27,7 +25,6 @@ const BackdropPicker = ({ children, showPickerFunc, dateActionFunc }) => {
 BackdropPicker.propTypes = {
   children: PropTypes.func.isRequired,
   showPickerFunc: PropTypes.func.isRequired,
-  dateActionFunc: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -39,7 +36,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     showPickerFunc: () => dispatch(showPicker()),
-    dateActionFunc: e => dispatch(dateAction(e)),
   };
 }
 

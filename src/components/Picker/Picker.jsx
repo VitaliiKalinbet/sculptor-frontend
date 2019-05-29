@@ -10,12 +10,13 @@ import InfiniteCalendar, {
 import 'react-infinite-calendar/styles.css';
 import './Picker.css';
 import { connect } from 'react-redux';
-import selectedData from '../../redux/actions/selectedDataAction';
+import {
+  changeSelectedData,
+  setSelectedDates,
+} from '../../redux/actions/selectedDataAction';
 import userTaskDate from '../../redux/actions/userTaskDateAction';
 import calendarButton from '../../redux/actions/calendarButtonAction';
 import AsyncEditWeekDays from '../../redux/actions/editAktivDaysFetch';
-
-let newArr = [];
 
 class Picker extends Component {
   constructor(props) {
@@ -24,24 +25,40 @@ class Picker extends Component {
       selectedData: this.props.selectedData,
     };
   }
-  editingArrSelectedData(arr, taskId) {
+
+  componentDidMount() {
+    const { tasks, getSelectedDates } = this.props;
+    getSelectedDates(
+      tasks.taskActiveDates.map(day => new Date(day.date).toString()),
+    );
+  }
+
+  editingArrSelectedData(taskId, arr) {
     const { editWeekDays } = this.props;
-    newArr = arr.map(el => ({ date: Date.parse(el), isDone: false }));
-    editWeekDays(taskId, newArr);
+
+    console.log('====================================');
+    console.log(arr);
+    console.log('====================================');
+
+    editWeekDays(
+      taskId,
+      arr.map(el => ({ date: Date.parse(el), isDone: false })),
+    );
   }
 
   handlerClose = e => {
     const { actionCalendar, selectedData, taskId } = this.props;
     actionCalendar(e);
-    this.editingArrSelectedData(selectedData, taskId);
+    this.editingArrSelectedData(taskId, selectedData);
   };
 
-  actionData = (e, selectedData) => {
+  actionData = e => {
+    console.log(e);
     this.props.dataHandler(e, this.props.selectedData);
   };
 
   render() {
-    const { actionCalendar, tasks, taskId } = this.props;
+    const { tasks, taskId } = this.props;
 
     const userWeeks = tasks.taskWeekRange.filter(el => el.status);
 
@@ -93,22 +110,24 @@ class Picker extends Component {
 
     const userDates = taskDatesFilter(taskCreationDate, numUserWeeks);
 
-    const taskActiveDates = tasks.find(el => el.id === taskId);
-    console.log(taskActiveDates);
+    // const taskActiveDates = tasks.find(el => el.id === taskId);
+    // console.log(taskActiveDates);
 
     return (
-      <div className="calendar">
+      <div className="calendar" onClick={e => e.stopPropagation()}>
         <button onClick={this.handlerClose} className={'calendar__button'}>
           X
         </button>
         <InfiniteCalendar
-          min={userDates.allWeeks[0].date}
-          max={userDates.allWeeks[62].date}
-          minDate={userDates.allWeeks[0].date}
-          maxDate={userDates.allWeeks[62].date}
+          min={new Date(userDates.allWeeks[0].date)}
+          max={new Date(userDates.allWeeks[62].date)}
+          minDate={new Date(userDates.allWeeks[0].date)}
+          maxDate={new Date(userDates.allWeeks[62].date)}
           Component={withMultipleDates(Calendar)}
           selected={this.props.selectedData}
-          disabledDates={userDates.userDisabledWeeks.map(el => el.date)}
+          disabledDates={userDates.userDisabledWeeks.map(
+            el => new Date(el.date),
+          )}
           interpolateSelection={defaultMultipleDateInterpolation}
           onSelect={this.actionData}
           keyboardSupport={true}
@@ -146,11 +165,12 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    getSelectedDates: taskDates => dispatch(setSelectedDates(taskDates)),
     editWeekDays: function(taskId, data) {
       dispatch(AsyncEditWeekDays(taskId, data));
     },
     dataHandler: function(event, selected) {
-      dispatch(selectedData(event, selected));
+      dispatch(changeSelectedData(event, selected));
     },
     userTaskDateFunc: function(taskCreationDate) {
       dispatch(userTaskDate(taskCreationDate));

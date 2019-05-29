@@ -8,7 +8,6 @@ import SetEditGoalModal from '../../../redux/actions/toggleSetEditGoalModalActio
 import s from './GoalItem.module.css';
 
 const GoalItem = ({ data, goals, openModal }) => {
-  // console.log(data);
   return (
     <li className={s.List}>
       <div className={s.Title}>
@@ -28,7 +27,6 @@ const GoalItem = ({ data, goals, openModal }) => {
 
 GoalItem.propTypes = {
   openModal: PropTypes.func.isRequired,
-  // editGoal: PropTypes.bool.isRequired,
   goals: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

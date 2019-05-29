@@ -21,9 +21,6 @@ import backDropPickerFlag from './backDropPickerModalReducer';
 import dateReducer from './dateReducer';
 
 const rootReducer = combineReducers({
-  selectedData,
-  userTaskDate,
-  calendarButton,
   user: userReducer,
   goals: goalsReducer,
   tasks: taskReducer,
@@ -33,6 +30,9 @@ const rootReducer = combineReducers({
   goalData,
   editGoal,
   taskArray: dateReducer,
+  selectedData,
+  userTaskDate,
+  calendarButton,
   logout,
   isLogoutModalOpen,
   backDropPickerFlag,

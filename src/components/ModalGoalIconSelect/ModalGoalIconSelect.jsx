@@ -23,6 +23,7 @@ const ModalGoalIconSelect = ({ onCheck, goalColor, editGoal }) => {
     '#c4f6cd',
     '#b9f7fe',
   ];
+
   const styles = {
     small: {
       width: 36,

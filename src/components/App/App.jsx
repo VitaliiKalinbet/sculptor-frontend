@@ -3,16 +3,10 @@ import React, { Component } from 'react';
 import { hot } from 'react-hot-loader/root';
 import { connect } from 'react-redux';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
-
-import PropTypes from 'prop-types';
-
 import LoginPage from '../../pages/LoginPage';
 import RegistrationPage from '../../pages/RegistrationPage';
 import MainPage from '../../pages/MainPage';
 import loginInputActions from '../../redux/actions/LoginInputActions';
-
-// import Statistics from '../Statistics/Statistics';
-
 import './App.css';
 
 class App extends Component {
@@ -26,7 +20,7 @@ class App extends Component {
   componentDidMount() {
     const { addUser } = this.props;
     const userData = localStorage.user;
-    console.log('userData', userData);
+
     if (userData) {
       addUser(JSON.parse(userData));
     }
@@ -54,11 +48,6 @@ class App extends Component {
     );
   }
 }
-
-App.propTypes = {
-  addUser: PropTypes.func.isRequired,
-  user: PropTypes.shape.isRequired,
-};
 
 function mapStateToProps(state) {
   return {
