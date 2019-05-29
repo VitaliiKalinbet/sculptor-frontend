@@ -6,13 +6,6 @@ function goalTitle(state = '', action) {
         return action.value;
       }
       return action.goalTitle;
-    // case 'EDIT_GOAL':
-    //   if (!action.id) {
-    //     return '';
-    //   }
-    //   return action.goals.find(el => el._id === action.id).goalTitle;
-    // case 'EDIT_GOAL_CANCEL':
-    //   return '';
     case 'SAVE_GOAL':
       return '';
     case 'ADD_GOAL':

@@ -1,143 +1,7 @@
 {
   "success": true,
   "message": "User has some Goals",
-  "data": [
-    {
-      "goalNumber": 1,
-      "goalTasks": [
-        {
-          "taskWeekRange": [
-            {
-              "week": 1,
-              "status": true
-            },
-            {
-              "week": 2,
-              "status": false
-            },
-            {
-              "week": 3,
-              "status": false
-            },
-            {
-              "week": 4,
-              "status": false
-            },
-            {
-              "week": 5,
-              "status": false
-            },
-            {
-              "week": 6,
-              "status": false
-            },
-            {
-              "week": 7,
-              "status": false
-            },
-            {
-              "week": 8,
-              "status": false
-            },
-            {
-              "week": 9,
-              "status": false
-            }
-          ],
-          "taskCreateDate": "2019-05-03T17:32:28.000Z",
-          "isComplete": false,
-          "_id": "5ccc24f4364f2a340a3eac51",
-          "taskTitle": "some task title",
-          "taskActiveDates": [
-            {
-              "isDone": false,
-              "_id": "5ccc24f4364f2a340a3eac52",
-              "date": "2019-05-04T17:32:28.000Z"
-            }
-          ],
-          "goalId": "5ccc24f4364f2a340a3eac50",
-          "taskColor": "#dee5e8",
-          "__v": 0,
-          "createdAt": "2019-05-03T11:24:36.823Z",
-          "updatedAt": "2019-05-03T11:24:36.824Z"
-        }
-      ],
-      "goalColor": "#dee5e8",
-      "goalCompleted": false,
-      "_id": "5ccc24f4364f2a340a3eac50",
-      "goalTitle": "Some title of string here",
-      "goalMotivation": "Some motivation of string here",
-      "userId": "5ccc2140c798862ed0ee0817",
-      "__v": 0
-    },
-    {
-      "goalNumber": 2,
-      "goalTasks": [
-        {
-          "taskWeekRange": [
-            {
-              "week": 1,
-              "status": false
-            },
-            {
-              "week": 2,
-              "status": true
-            },
-            {
-              "week": 3,
-              "status": true
-            },
-            {
-              "week": 4,
-              "status": false
-            },
-            {
-              "week": 5,
-              "status": false
-            },
-            {
-              "week": 6,
-              "status": false
-            },
-            {
-              "week": 7,
-              "status": false
-            },
-            {
-              "week": 8,
-              "status": false
-            },
-            {
-              "week": 9,
-              "status": false
-            }
-          ],
-          "taskCreateDate": "2019-05-03T17:32:28.000Z",
-          "isComplete": false,
-          "_id": "5ccc258c364f2a340a3eac54",
-          "taskTitle": "Task secondary",
-          "taskActiveDates": [
-            {
-              "isDone": false,
-              "_id": "5ccc258c364f2a340a3eac55",
-              "date": "2019-05-14T17:32:28.000Z"
-            }
-          ],
-          "goalId": "5ccc258c364f2a340a3eac53",
-          "taskColor": "#ffe7d4",
-          "__v": 0,
-          "createdAt": "2019-05-03T11:27:08.903Z",
-          "updatedAt": "2019-05-03T11:27:08.903Z"
-        }
-      ],
-      "goalColor": "#ffe7d4",
-      "goalCompleted": false,
-      "_id": "5ccc258c364f2a340a3eac53",
-      "goalTitle": "Some goal Secondary",
-      "goalMotivation": "Some motivation of string here",
-      "userId": "5ccc2140c798862ed0ee0817",
-      "__v": 0
-    },
+  "goals": [
     {
       "goalNumber": 3,
       "goalTasks": [
@@ -188,7 +52,7 @@
             {
               "isDone": false,
               "_id": "5ce79d26cb0bee0a8089a7d1",
-              "date": "2017-07-21T17:32:28.000Z"
+              "date": "2019-05-26T17:32:28.000Z"
             }
           ],
           "goalId": "5ce79d26cb0bee0a8089a7cf",
@@ -205,121 +69,133 @@
       "goalMotivation": "TEST MOTIVATION",
       "userId": "5ccc2140c798862ed0ee0817",
       "__v": 0
+    },
+    {
+      "goalNumber": 1,
+      "goalTasks": [
+        {
+          "taskWeekRange": [
+            {
+              "week": 1,
+              "status": false
+            },
+            {
+              "week": 2,
+              "status": true
+            },
+            {
+              "week": 3,
+              "status": true
+            },
+            {
+              "week": 4,
+              "status": false
+            },
+            {
+              "week": 5,
+              "status": false
+            },
+            {
+              "week": 6,
+              "status": false
+            },
+            {
+              "week": 7,
+              "status": false
+            },
+            {
+              "week": 8,
+              "status": false
+            },
+            {
+              "week": 9,
+              "status": false
+            }
+          ],
+          "taskCreateDate": "2019-05-27T23:40:00.786Z",
+          "isComplete": false,
+          "_id": "5cec77e0cf546451dcdc360e",
+          "taskTitle": "das",
+          "goalId": "5cec77e0cf546451dcdc360d",
+          "taskColor": "#ffe7d4",
+          "taskActiveDates": [],
+          "__v": 0,
+          "createdAt": "2019-05-27T23:50:56.826Z",
+          "updatedAt": "2019-05-27T23:50:56.826Z"
+        }
+      ],
+      "goalColor": "#ffe7d4",
+      "goalCompleted": false,
+      "_id": "5cec77e0cf546451dcdc360d",
+      "goalTitle": "Toka BOAKA",
+      "goalMotivation": "das",
+      "userId": "5ccc2140c798862ed0ee0817",
+      "__v": 0
+    },
+    {
+      "goalNumber": 1,
+      "goalTasks": [
+        {
+          "taskWeekRange": [
+            {
+              "week": 1,
+              "status": true
+            },
+            {
+              "week": 2,
+              "status": true
+            },
+            {
+              "week": 3,
+              "status": false
+            },
+            {
+              "week": 4,
+              "status": true
+            },
+            {
+              "week": 5,
+              "status": false
+            },
+            {
+              "week": 6,
+              "status": false
+            },
+            {
+              "week": 7,
+              "status": false
+            },
+            {
+              "week": 8,
+              "status": false
+            },
+            {
+              "week": 9,
+              "status": false
+            }
+          ],
+          "taskCreateDate": "2019-05-28T00:16:01.255Z",
+          "isComplete": false,
+          "_id": "5ced03c93ec12046310eada9",
+          "taskTitle": "New task",
+          "goalId": "5ced03c93ec12046310eada8",
+          "taskColor": "#c4f6cd",
+          "taskActiveDates": [],
+          "__v": 0,
+          "createdAt": "2019-05-28T09:47:53.780Z",
+          "updatedAt": "2019-05-28T09:47:53.781Z"
+        }
+      ],
+      "goalColor": "#c4f6cd",
+      "goalCompleted": false,
+      "_id": "5ced03c93ec12046310eada8",
+      "goalTitle": "New goal",
+      "goalMotivation": "sgf",
+      "userId": "5ccc2140c798862ed0ee0817",
+      "__v": 0
     }
   ],
   "tasks": [
-    {
-      "taskWeekRange": [
-        {
-          "week": 1,
-          "status": true
-        },
-        {
-          "week": 2,
-          "status": false
-        },
-        {
-          "week": 3,
-          "status": false
-        },
-        {
-          "week": 4,
-          "status": false
-        },
-        {
-          "week": 5,
-          "status": false
-        },
-        {
-          "week": 6,
-          "status": false
-        },
-        {
-          "week": 7,
-          "status": false
-        },
-        {
-          "week": 8,
-          "status": false
-        },
-        {
-          "week": 9,
-          "status": false
-        }
-      ],
-      "taskCreateDate": "2019-05-03T17:32:28.000Z",
-      "isComplete": false,
-      "_id": "5ccc24f4364f2a340a3eac51",
-      "taskTitle": "some task title",
-      "taskActiveDates": [
-        {
-          "isDone": false,
-          "_id": "5ccc24f4364f2a340a3eac52",
-          "date": "2019-05-04T17:32:28.000Z"
-        }
-      ],
-      "goalId": "5ccc24f4364f2a340a3eac50",
-      "taskColor": "#dee5e8",
-      "__v": 0,
-      "createdAt": "2019-05-03T11:24:36.823Z",
-      "updatedAt": "2019-05-03T11:24:36.824Z"
-    },
-    {
-      "taskWeekRange": [
-        {
-          "week": 1,
-          "status": false
-        },
-        {
-          "week": 2,
-          "status": true
-        },
-        {
-          "week": 3,
-          "status": true
-        },
-        {
-          "week": 4,
-          "status": false
-        },
-        {
-          "week": 5,
-          "status": false
-        },
-        {
-          "week": 6,
-          "status": false
-        },
-        {
-          "week": 7,
-          "status": false
-        },
-        {
-          "week": 8,
-          "status": false
-        },
-        {
-          "week": 9,
-          "status": false
-        }
-      ],
-      "taskCreateDate": "2019-05-03T17:32:28.000Z",
-      "isComplete": false,
-      "_id": "5ccc258c364f2a340a3eac54",
-      "taskTitle": "Task secondary",
-      "taskActiveDates": [
-        {
-          "isDone": false,
-          "_id": "5ccc258c364f2a340a3eac55",
-          "date": "2019-05-14T17:32:28.000Z"
-        }
-      ],
-      "goalId": "5ccc258c364f2a340a3eac53",
-      "taskColor": "#ffe7d4",
-      "__v": 0,
-      "createdAt": "2019-05-03T11:27:08.903Z",
-      "updatedAt": "2019-05-03T11:27:08.903Z"
-    },
     {
       "taskWeekRange": [
         {
@@ -367,7 +243,7 @@
         {
           "isDone": false,
           "_id": "5ce79d26cb0bee0a8089a7d1",
-          "date": "2017-07-21T17:32:28.000Z"
+          "date": "2019-05-26T17:32:28.000Z"
         }
       ],
       "goalId": "5ce79d26cb0bee0a8089a7cf",
@@ -375,6 +251,106 @@
       "__v": 0,
       "createdAt": "2019-05-24T07:28:38.238Z",
       "updatedAt": "2019-05-24T07:28:38.239Z"
+    },
+    {
+      "taskWeekRange": [
+        {
+          "week": 1,
+          "status": false
+        },
+        {
+          "week": 2,
+          "status": true
+        },
+        {
+          "week": 3,
+          "status": true
+        },
+        {
+          "week": 4,
+          "status": false
+        },
+        {
+          "week": 5,
+          "status": false
+        },
+        {
+          "week": 6,
+          "status": false
+        },
+        {
+          "week": 7,
+          "status": false
+        },
+        {
+          "week": 8,
+          "status": false
+        },
+        {
+          "week": 9,
+          "status": false
+        }
+      ],
+      "taskCreateDate": "2019-05-27T23:40:00.786Z",
+      "isComplete": false,
+      "_id": "5cec77e0cf546451dcdc360e",
+      "taskTitle": "das",
+      "goalId": "5cec77e0cf546451dcdc360d",
+      "taskColor": "#ffe7d4",
+      "taskActiveDates": [],
+      "__v": 0,
+      "createdAt": "2019-05-27T23:50:56.826Z",
+      "updatedAt": "2019-05-27T23:50:56.826Z"
+    },
+    {
+      "taskWeekRange": [
+        {
+          "week": 1,
+          "status": true
+        },
+        {
+          "week": 2,
+          "status": true
+        },
+        {
+          "week": 3,
+          "status": false
+        },
+        {
+          "week": 4,
+          "status": true
+        },
+        {
+          "week": 5,
+          "status": false
+        },
+        {
+          "week": 6,
+          "status": false
+        },
+        {
+          "week": 7,
+          "status": false
+        },
+        {
+          "week": 8,
+          "status": false
+        },
+        {
+          "week": 9,
+          "status": false
+        }
+      ],
+      "taskCreateDate": "2019-05-28T00:16:01.255Z",
+      "isComplete": false,
+      "_id": "5ced03c93ec12046310eada9",
+      "taskTitle": "New task",
+      "goalId": "5ced03c93ec12046310eada8",
+      "taskColor": "#c4f6cd",
+      "taskActiveDates": [],
+      "__v": 0,
+      "createdAt": "2019-05-28T09:47:53.780Z",
+      "updatedAt": "2019-05-28T09:47:53.781Z"
     }
   ]
 }

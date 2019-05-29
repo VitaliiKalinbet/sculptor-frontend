@@ -29,15 +29,12 @@ const GoalType = styled.h5`
 const ModalGoalTitle = ({
   inputGoalTitle,
   goalTitle,
-  // goals,
   goalColor,
   goalNumber,
   editGoal,
 }) => {
   return (
     <div className="ModalGoalTitle">
-      {/* <InputComponent /> from Alexey */}
-
       <GoalType goalColor={goalColor}>Goal #{goalNumber}</GoalType>
       <input
         className="ModalGoalTitle__input"
@@ -53,9 +50,8 @@ const ModalGoalTitle = ({
 };
 
 ModalGoalTitle.propTypes = {
-  goalTitle: PropTypes.string.isRequired,
   inputGoalTitle: PropTypes.func.isRequired,
-  // goals: PropTypes.arrayOf(PropTypes.object).isRequired,
+  goalTitle: PropTypes.string.isRequired,
   goalColor: PropTypes.string.isRequired,
   goalNumber: PropTypes.number.isRequired,
   editGoal: PropTypes.shape.isRequired,
@@ -64,7 +60,6 @@ ModalGoalTitle.propTypes = {
 function mapStateToProps(state) {
   return {
     goalTitle: state.goalData.goalTitle,
-    goals: state.goals,
     goalColor: state.goalData.goalColor,
     goalNumber: state.goalData.goalNumber,
     editGoal: state.editGoal,
