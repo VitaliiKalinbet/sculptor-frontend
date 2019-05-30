@@ -14,8 +14,19 @@ const addTask = () => ({
   type: 'ADD_TASK',
 });
 
+const inputTaskTitleClear = () => ({
+  type: 'INPUT_TASK_TITLE_CLEAR',
+});
+
+const addTasksWhenEditMode = arrTasks => ({
+  type: 'ADD_TASKS_WHEN_EDIT_MODE',
+  arrTasks,
+});
+
 export default {
   inputTaskTitle,
   deleteTask,
   addTask,
+  inputTaskTitleClear,
+  addTasksWhenEditMode,
 };

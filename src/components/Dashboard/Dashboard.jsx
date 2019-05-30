@@ -94,7 +94,7 @@ class Dashboard extends Component {
       <Dash>
         <Container>
           {week.arrDays.length > 0 &&
-            week.arrDays.map(day => <Card day={day} />)}
+            week.arrDays.map(day => <Card key={day.data} day={day} />)}
         </Container>
       </Dash>
     );

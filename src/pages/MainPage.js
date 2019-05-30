@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
@@ -24,12 +26,7 @@ class App extends Component {
   }
 
   render() {
-    const {
-      // openModal,
-      editGoal,
-      // goals,
-      // btnID
-    } = this.props;
+    const { editGoal } = this.props;
 
     return (
       <>
@@ -56,34 +53,16 @@ class App extends Component {
 }
 
 App.propTypes = {
-  // openModal: PropTypes.func.isRequired,
-  editGoal: PropTypes.bool.isRequired,
-  // goals: PropTypes.arrayOf(PropTypes.object).isRequired,
-  // btnID: PropTypes.string.isRequired,
+  editGoal: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
     editGoal: state.editGoal,
-    goals: state.goals,
-    btnID: state.goalData.goalTasks[0].id,
-    // goalTitle: state.goalTitle,
-    // goalColor: state.goalColor,
-    // goalMotivation: state.goalMotivation,
-    // goalTasks: state.goalTasks,
-
-    isLogoutModalOpen: state.toggleLogoutModal,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    openModal: (e, goals, type) =>
-      dispatch(SetEditGoalModal.openSetEditGoalModal(e, goals, type)),
   };
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  null,
 )(App);

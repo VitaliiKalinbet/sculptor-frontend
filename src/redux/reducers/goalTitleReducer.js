@@ -10,6 +10,8 @@ function goalTitle(state = '', action) {
       return '';
     case 'ADD_GOAL':
       return '';
+    case 'INPUT_GOAL_TITLE_CLEAR':
+      return '';
     default:
       return state;
   }

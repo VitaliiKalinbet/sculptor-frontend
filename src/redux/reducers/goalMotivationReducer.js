@@ -10,6 +10,8 @@ function goalMotivation(state = '', action) {
       return '';
     case 'ADD_GOAL':
       return '';
+    case 'INPUT_MOTIVATION_CLEAR':
+      return '';
     default:
       return state;
   }

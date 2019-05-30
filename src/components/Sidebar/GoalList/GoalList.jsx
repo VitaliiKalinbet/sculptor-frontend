@@ -8,7 +8,7 @@ const GoalList = ({ goalsArray }) => {
   return (
     <ul className={s.List}>
       {goalsArray.map(el => (
-        <GoalItem data={el} />
+        <GoalItem key={el._id} data={el} />
       ))}
     </ul>
   );
