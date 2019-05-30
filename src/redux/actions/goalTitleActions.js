@@ -3,6 +3,11 @@ const inputGoalTitle = e => ({
   value: e.target.value,
 });
 
+const inputGoalTitleClear = () => ({
+  type: 'INPUT_GOAL_TITLE_CLEAR',
+});
+
 export default {
   inputGoalTitle,
+  inputGoalTitleClear,
 };

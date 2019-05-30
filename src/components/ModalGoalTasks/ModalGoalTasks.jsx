@@ -59,7 +59,7 @@ const ModalTasks = ({
               }}
             />
           </div>
-          <ModalGoalWeekSelect id={task.name || task._id} task={task} />
+          <ModalGoalWeekSelect id={task._id} task={task} />
         </div>
       ))}
       {(editGoal.modalType === 'SET'
