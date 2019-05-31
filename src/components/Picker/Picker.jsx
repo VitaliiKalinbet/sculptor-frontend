@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import {
   changeSelectedData,
   setSelectedDates,
+  clearSelectedData,
 } from '../../redux/actions/selectedDataAction';
 import userTaskDate from '../../redux/actions/userTaskDateAction';
 import AsyncEditWeekDays from '../../redux/actions/editAktivDaysFetch';
@@ -42,6 +43,7 @@ class Picker extends Component {
       selectedData,
       closePickerModal,
       changeActiveDatesInTask,
+      clearSelectedData,
     } = this.props;
     const { task, goalId } = this.state;
     const taskId = task._id;
@@ -51,9 +53,10 @@ class Picker extends Component {
     }));
     changeActiveDatesInTask({
       taskId,
-      selectedData,
+      selectedData: fixedSelectedData,
       goalId,
     });
+    clearSelectedData();
     closePickerModal();
   };
 
@@ -187,6 +190,7 @@ function mapDispatchToProps(dispatch) {
     userTaskDateFunc: taskCreationDate =>
       dispatch(userTaskDate(taskCreationDate)),
     closePickerModal: () => dispatch(closePickerModal()),
+    clearSelectedData: () => dispatch(clearSelectedData()),
   };
 }
 

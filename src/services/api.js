@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const axiosInstance = axios.create({
   baseURL: 'https://sculptor.goit.co.ua/api',
+  // baseURL: 'http://localhost:8000/api',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -54,6 +55,12 @@ const updateGoal = ({ goalId, fields }) =>
 
 const deleteTaskInEditGoal = taskID => axiosInstance.delete(`/task/${taskID}`);
 
+const updateTaskActiveDates = ({ taskId, taskActiveDates }) =>
+  axiosInstance.put(
+    `/task/dates/${taskId}`,
+    JSON.stringify({ taskActiveDates }),
+  );
+
 export default {
   register,
   login,
@@ -61,4 +68,5 @@ export default {
   newGoal,
   updateGoal,
   deleteTaskInEditGoal,
+  updateTaskActiveDates,
 };

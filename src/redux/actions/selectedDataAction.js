@@ -15,4 +15,4 @@ export const clearSelectedData = () => ({
   type: 'CLEAR_SELECTED_DATA',
 });
 
-export default { changeSelectedData, setSelectedDates };
+export default { changeSelectedData, setSelectedDates, clearSelectedData };

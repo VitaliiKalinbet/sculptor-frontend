@@ -8,8 +8,8 @@ import { connect } from 'react-redux';
 import Card from '../Card/Card';
 
 // action
-import asyncGoalAction from './goalAction';
-import asyncTasksAction from './taskAction';
+import { asyncGoalAction } from './goalAction';
+import { asyncTasksAction } from './taskAction';
 import { weekTasksAction } from './weekAction';
 
 // card wrapper
@@ -73,15 +73,47 @@ class Dashboard extends Component {
       // console.log('USER________', user);
       this.props.getGoals(user);
       this.props.getTasks(user);
+      this.props.weekTasksAction(tasks);
       // this.props.weekTasks(tasks);
     }
   }
 
-  componentDidUpdate(prevprops) {
-    if (prevprops.tasks !== this.props.tasks) {
-      this.props.weekTasksAction(this.props.tasks);
+  // componentDidUpdate(prevprops) {
+  //   // console.log(
+  //   //   prevprops.tasks.some(r => {
+  //   //     console.log(r);
+  //   //     return this.props.tasks.includes(r);
+  //   //   }),
+  //   // );
+
+  //   if (prevprops.tasks !== this.props.tasks) {
+  //     console.log('dash update');
+  //     this.props.weekTasksAction(this.props.tasks);
+  //   }
+  // }
+
+  // object contains subObject
+  partialContains = (object, subObject) => {
+    // Create arrays of property names
+    const objProps = Object.getOwnPropertyNames(object);
+    const subProps = Object.getOwnPropertyNames(subObject);
+
+    if (subProps.length > objProps.length) {
+      return false;
     }
-  }
+
+    for (const subProp of subProps) {
+      if (!object.hasOwnProperty(subProp)) {
+        return false;
+      }
+
+      if (object[subProp] !== subObject[subProp]) {
+        return false;
+      }
+    }
+
+    return true;
+  };
 
   handlerDatePicker = date => {
     console.log('Data selected: ', date);

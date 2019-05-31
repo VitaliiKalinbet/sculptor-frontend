@@ -28,3 +28,11 @@ export const weekNext = currentDate => {
   }
   return arr;
 };
+
+export const weekExented = currentDate => {
+  const arr = [];
+  for (let i = 1; i < 8; i++) {
+    arr.push(moment(new Date(currentDate).getTime()).day(i)._d);
+  }
+  return arr;
+};

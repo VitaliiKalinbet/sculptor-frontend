@@ -13,8 +13,17 @@ export const weekTasksActionPrev = data => ({
   payload: data,
 });
 
+export const updateWeekTasks = ({ tasks, selectedTime }) => ({
+  type: 'UPDATE_WEEK_TASKS',
+  payload: {
+    tasks,
+    selectedTime,
+  },
+});
+
 export default {
   weekTasksAction,
   weekTasksActionNext,
   weekTasksActionPrev,
+  updateWeekTasks,
 };
