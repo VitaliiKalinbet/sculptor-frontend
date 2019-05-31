@@ -48,11 +48,6 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  addUser: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
-};
-
 function mapStateToProps(state) {
   return {
     user: state.user,
