@@ -10,7 +10,7 @@ import Card from '../Card/Card';
 // action
 import asyncGoalAction from './goalAction';
 import asyncTasksAction from './taskAction';
-import weekTasksActions from './weekAction';
+import { weekTasksAction } from './weekAction';
 
 // card wrapper
 const Container = styled.div`
@@ -79,7 +79,7 @@ class Dashboard extends Component {
 
   componentDidUpdate(prevprops) {
     if (prevprops.tasks !== this.props.tasks) {
-      this.props.weekTasks(this.props.tasks);
+      this.props.weekTasksAction(this.props.tasks);
     }
   }
 
@@ -88,14 +88,14 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { week } = this.props;
+    const { weekTasks } = this.props;
     // console.log(week);
     return (
       <>
         <Dash>
           <Container>
-            {week.arrDays.length > 0 &&
-              week.arrDays.map(day => (
+            {weekTasks.arrDays.length > 0 &&
+              weekTasks.arrDays.map(day => (
                 <>
                   <Card day={day} />
                 </>
@@ -110,7 +110,7 @@ class Dashboard extends Component {
 const mstp = store => ({
   goals: store.goals,
   tasks: store.tasks,
-  week: store.weekTasks,
+  weekTasks: store.weekTasks,
   showSidebar: store.app.showSidebar,
   selectedData: store.selectedData,
   user: store.user,
@@ -119,7 +119,7 @@ const mstp = store => ({
 const mdtp = dispatch => ({
   getGoals: user => dispatch(asyncGoalAction(user)),
   getTasks: user => dispatch(asyncTasksAction(user)),
-  weekTasks: data => dispatch(weekTasksActions.weekTasksAction(data)),
+  weekTasksAction: data => dispatch(weekTasksAction(data)),
 });
 
 export default connect(

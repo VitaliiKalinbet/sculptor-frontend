@@ -11,6 +11,7 @@ import Dashboard from '../components/Dashboard/Dashboard';
 import Header from '../components/Header/Header';
 import Backdrop from '../components/Backdrop/Backdrop';
 import SetGoalModal from '../components/SetGoalModal/SetGoalModal';
+import Picker from '../components/Picker/Picker';
 
 import SetEditGoalModal from '../redux/actions/toggleSetEditGoalModalActions';
 
@@ -27,29 +28,30 @@ class App extends Component {
     const {
       // openModal,
       editGoal,
+      showPicker,
       // goals,
       // btnID
     } = this.props;
 
     return (
       <>
-        {' '}
+        {showPicker.openPickerModal && <Picker />}
         {editGoal.editing && (
           <Backdrop>
-            <SetGoalModal modalType={editGoal.modalType} />{' '}
+            <SetGoalModal modalType={editGoal.modalType} />
           </Backdrop>
-        )}{' '}
+        )}
         <div className="main">
           <Sidebar className="main__left" />
           <div className="main__right">
             <Header />
             <div className="main__container">
-              <Route exact path="/" component={Dashboard} />{' '}
-              <Route exact path="/results" component={Statistics} />{' '}
-              {/* <Route path="/results" component={TestResults} /> */}{' '}
-            </div>{' '}
-          </div>{' '}
-        </div>{' '}
+              <Route exact path="/" component={Dashboard} />
+              <Route exact path="/results" component={Statistics} />
+              {/* <Route path="/results" component={TestResults} /> */}
+            </div>
+          </div>
+        </div>
       </>
     );
   }
@@ -58,6 +60,9 @@ class App extends Component {
 App.propTypes = {
   // openModal: PropTypes.func.isRequired,
   editGoal: PropTypes.bool.isRequired,
+  showPicker: PropTypes.shape({
+    openPickerModal: PropTypes.bool,
+  }).isRequired,
   // goals: PropTypes.arrayOf(PropTypes.object).isRequired,
   // btnID: PropTypes.string.isRequired,
 };
@@ -67,6 +72,7 @@ function mapStateToProps(state) {
     editGoal: state.editGoal,
     goals: state.goals,
     btnID: state.goalData.goalTasks[0].id,
+    showPicker: state.showPicker,
     // goalTitle: state.goalTitle,
     // goalColor: state.goalColor,
     // goalMotivation: state.goalMotivation,

@@ -7,7 +7,7 @@ import EditBtn from '../../BtnEditGoal/BtnEditGoal';
 import SetEditGoalModal from '../../../redux/actions/toggleSetEditGoalModalActions';
 import s from './GoalItem.module.css';
 
-const GoalItem = ({ data, goals, openModal }) => {
+const GoalItem = ({ data, openModal }) => {
   return (
     <li className={s.List}>
       <div className={s.Title}>
@@ -27,7 +27,6 @@ const GoalItem = ({ data, goals, openModal }) => {
 
 GoalItem.propTypes = {
   openModal: PropTypes.func.isRequired,
-  goals: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 const MSTP = state => {

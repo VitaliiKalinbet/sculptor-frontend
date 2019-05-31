@@ -3,14 +3,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import TaskItem from '../TaskItem/TaskItem';
 
-const TaskList = ({ data }) => {
+const TaskList = ({ data, goalId }) => {
   return (
     <ul>
-      {data.map((el, i) => (
-        <>
-          <TaskItem key={i} tasks={el} />
-        </>
-      ))}
+      {data.map((el, i) => {
+        return (
+          <>
+            <TaskItem key={i} task={el} goalId={el.goalId} />
+          </>
+        );
+      })}
     </ul>
   );
 };

@@ -1,7 +1,5 @@
 /*eslint-disable*/
-
 import React, { Component, Fragment } from 'react';
-
 import InfiniteCalendar, {
   Calendar,
   withMultipleDates,
@@ -15,141 +13,151 @@ import {
   setSelectedDates,
 } from '../../redux/actions/selectedDataAction';
 import userTaskDate from '../../redux/actions/userTaskDateAction';
-import calendarButton from '../../redux/actions/calendarButtonAction';
 import AsyncEditWeekDays from '../../redux/actions/editAktivDaysFetch';
+import { changeActiveDatesInTask } from './changeActiveDatesInTaskAction';
+import { closePickerModal } from '../../redux/actions/showPickerAction';
 
 class Picker extends Component {
   constructor(props) {
     super(props);
+    console.log('init state');
     this.state = {
+      task: this.props.showPicker.task,
+      goalId: this.props.showPicker.goalId,
       selectedData: this.props.selectedData,
+      userDates: this.taskDatesFilter(),
     };
   }
 
   componentDidMount() {
-    const { tasks, getSelectedDates } = this.props;
+    const { task } = this.state;
+    const { getSelectedDates } = this.props;
     getSelectedDates(
-      tasks.taskActiveDates.map(day => new Date(day.date).toString()),
-    );
-  }
-
-  editingArrSelectedData(taskId, arr) {
-    const { editWeekDays } = this.props;
-
-    console.log('====================================');
-    console.log(arr);
-    console.log('====================================');
-
-    editWeekDays(
-      taskId,
-      arr.map(el => ({ date: Date.parse(el), isDone: false })),
+      task.taskActiveDates.map(day => new Date(day.date).toString()),
     );
   }
 
   handlerClose = e => {
-    const { actionCalendar, selectedData, taskId } = this.props;
-    actionCalendar(e);
-    this.editingArrSelectedData(taskId, selectedData);
+    const {
+      selectedData,
+      closePickerModal,
+      changeActiveDatesInTask,
+    } = this.props;
+    const { task, goalId } = this.state;
+    const taskId = task._id;
+    const fixedSelectedData = selectedData.map(el => ({
+      date: Date.parse(el),
+      isDone: false,
+    }));
+    changeActiveDatesInTask({
+      taskId,
+      selectedData,
+      goalId,
+    });
+    closePickerModal();
   };
 
   actionData = e => {
-    console.log(e);
     this.props.dataHandler(e, this.props.selectedData);
   };
 
-  render() {
-    const { tasks, taskId } = this.props;
-
-    const userWeeks = tasks.taskWeekRange.filter(el => el.status);
-
+  taskDatesFilter = () => {
+    const userWeeks = this.props.showPicker.task.taskWeekRange.filter(
+      el => el.status,
+    );
     const numUserWeeks = userWeeks.map(el => el.week);
+    const taskCreationDate = this.props.showPicker.task.taskCreateDate;
 
-    const taskCreationDate = tasks.taskCreateDate;
+    const allWeeks = [
+      {
+        date: Date.parse(taskCreationDate),
+        week: 1,
+      },
+    ];
 
-    function taskDatesFilter(taskCreationDate, numUserWeeks) {
-      const allWeeks = [
-        {
-          date: Date.parse(taskCreationDate),
-          week: 1,
-        },
-      ];
+    let date = Date.parse(taskCreationDate);
+    let weekCounter = 1;
+    let dayCounter = 1;
 
-      let date = Date.parse(taskCreationDate);
-      let weekCounter = 1;
-      let dayCounter = 1;
+    while (dayCounter !== 63) {
+      date += 86401000;
 
-      while (dayCounter !== 63) {
-        date += 86401000;
-
-        const dateObj = {
-          date: date,
-          week: weekCounter,
-        };
-
-        allWeeks.push(dateObj);
-
-        dayCounter += 1;
-
-        if (dayCounter % 7 === 0) {
-          weekCounter += 1;
-        }
-      }
-
-      const userDisabledWeeks = allWeeks.filter(
-        el => !numUserWeeks.includes(el.week),
-      );
-
-      const datesObject = {
-        allWeeks,
-        userDisabledWeeks,
-        taskId,
+      const dateObj = {
+        date: date,
+        week: weekCounter,
       };
 
-      return datesObject;
+      allWeeks.push(dateObj);
+
+      dayCounter += 1;
+
+      if (dayCounter % 7 === 0) {
+        weekCounter += 1;
+      }
     }
 
-    const userDates = taskDatesFilter(taskCreationDate, numUserWeeks);
+    const userDisabledWeeks = allWeeks.filter(
+      el => !numUserWeeks.includes(el.week),
+    );
 
-    // const taskActiveDates = tasks.find(el => el.id === taskId);
-    // console.log(taskActiveDates);
+    const datesObject = {
+      allWeeks,
+      userDisabledWeeks,
+    };
+
+    return datesObject;
+  };
+
+  render() {
+    const { userDates, task, goalId } = this.state;
 
     return (
-      <div className="calendar" onClick={e => e.stopPropagation()}>
-        <button onClick={this.handlerClose} className={'calendar__button'}>
-          X
-        </button>
-        <InfiniteCalendar
-          min={new Date(userDates.allWeeks[0].date)}
-          max={new Date(userDates.allWeeks[62].date)}
-          minDate={new Date(userDates.allWeeks[0].date)}
-          maxDate={new Date(userDates.allWeeks[62].date)}
-          Component={withMultipleDates(Calendar)}
-          selected={this.props.selectedData}
-          disabledDates={userDates.userDisabledWeeks.map(
-            el => new Date(el.date),
-          )}
-          interpolateSelection={defaultMultipleDateInterpolation}
-          onSelect={this.actionData}
-          keyboardSupport={true}
-          width={window.innerWidth <= 650 ? window.innerWidth : 350}
-          height={200}
-          rowHeight={70}
-          theme={{
-            selectionColor: '#223653',
-            textColor: {
-              default: '#333',
-              active: '#FFF',
-            },
-            weekdayColor: '#223653',
-            headerColor: '#223653',
-            floatingNav: {
-              background: '#223653',
-              color: '#FFF',
-              chevron: '#FFA726',
-            },
-          }}
-          displayOptions={{ hideYearsOnSelect: false }}
-        />
+      <div
+        className="calendarWrapper"
+        onClick={e => {
+          this.handlerClose;
+        }}
+      >
+        <div className="calendar">
+          <button onClick={this.handlerClose} className={'calendar__button'}>
+            X
+          </button>
+          <InfiniteCalendar
+            min={new Date(userDates.allWeeks[0].date)}
+            max={new Date(userDates.allWeeks[62].date)}
+            minDate={new Date(userDates.allWeeks[0].date)}
+            maxDate={new Date(userDates.allWeeks[62].date)}
+            Component={withMultipleDates(Calendar)}
+            selected={this.props.selectedData}
+            disabledDates={userDates.userDisabledWeeks.map(
+              el => new Date(el.date),
+            )}
+            interpolateSelection={defaultMultipleDateInterpolation}
+            onSelect={this.actionData}
+            keyboardSupport={true}
+            width={window.innerWidth <= 650 ? window.innerWidth : 350}
+            height={200}
+            rowHeight={70}
+            theme={{
+              selectionColor: '#223653',
+              textColor: {
+                default: '#333',
+                active: '#FFF',
+              },
+              weekdayColor: '#223653',
+              headerColor: '#223653',
+              floatingNav: {
+                background: '#223653',
+                color: '#FFF',
+                chevron: '#FFA726',
+              },
+            }}
+            displayOptions={{ hideYearsOnSelect: false }}
+            locale={{
+              weekStartsOn: 1,
+            }}
+          />
+        </div>
       </div>
     );
   }
@@ -159,25 +167,26 @@ function mapStateToProps(state) {
   return {
     selectedData: state.selectedData,
     userTaskDate: state.userTaskDate,
-    calendarButton: state.calendarButton,
+    showPicker: state.showPicker,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     getSelectedDates: taskDates => dispatch(setSelectedDates(taskDates)),
-    editWeekDays: function(taskId, data) {
-      dispatch(AsyncEditWeekDays(taskId, data));
-    },
-    dataHandler: function(event, selected) {
-      dispatch(changeSelectedData(event, selected));
-    },
-    userTaskDateFunc: function(taskCreationDate) {
-      dispatch(userTaskDate(taskCreationDate));
-    },
-    calendarButtonFunc: function() {
-      dispatch(calendarButton());
-    },
+    changeActiveDatesInTask: ({ taskId, selectedData, goalId }) =>
+      dispatch(
+        changeActiveDatesInTask({
+          taskId,
+          selectedData,
+          goalId,
+        }),
+      ),
+    dataHandler: (event, selected) =>
+      dispatch(changeSelectedData(event, selected)),
+    userTaskDateFunc: taskCreationDate =>
+      dispatch(userTaskDate(taskCreationDate)),
+    closePickerModal: () => dispatch(closePickerModal()),
   };
 }
 

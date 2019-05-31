@@ -5,7 +5,6 @@ import userTaskDate from '../reducers/userTaskDateReducer';
 import calendarButton from '../reducers/calendarButtonReducer';
 import userReducer from './userReducer';
 import app from './appReducer';
-import activeDateReducer from './datePickerReducer';
 import {
   goalsReducer,
   taskReducer,
@@ -15,7 +14,7 @@ import logout from './ModalLogoutReducer';
 import isLogoutModalOpen from './ToggleLogoutModalReducer';
 import editGoal from './goalEditModeReducer';
 import goalData from './goalReducer';
-import backDropPickerFlag from './backDropPickerModalReducer';
+import showPicker from './showPickerReducer';
 
 // import goals from './initData';
 import dateReducer from './dateReducer';
@@ -26,7 +25,6 @@ const rootReducer = combineReducers({
   tasks: taskReducer,
   weekTasks: weekTasksReducer,
   app,
-  activeDateReducer,
   goalData,
   editGoal,
   taskArray: dateReducer,
@@ -35,7 +33,7 @@ const rootReducer = combineReducers({
   calendarButton,
   logout,
   isLogoutModalOpen,
-  backDropPickerFlag,
+  showPicker,
 });
 
 export default rootReducer;

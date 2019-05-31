@@ -37,15 +37,29 @@ export const goalsReducer = (state = initialState, action) => {
       );
     case 'ADD_GOAL':
       return [...state, action.updatedGoal];
+    case 'GOALS_CHANGE_ACTIVE_DATES_IN_TASK':
+      return state.map(goal => {
+        if (goal._id === action.goalId) {
+          goal.goalTasks.map(task => {
+            if (task._id === action.taskId) {
+              return { ...task, taskActiveDates: action.selectedData };
+            } else {
+              return task;
+            }
+          });
+        } else {
+          return goal;
+        }
+      });
     default:
       return state;
   }
 };
 
-export const taskReducer = (store = initialState, { type, payload }) => {
-  switch (type) {
+export const taskReducer = (store = initialState, action) => {
+  switch (action.type) {
     case 'ONLY_TASKS':
-      let tasks = payload.tasks.map(el => ({
+      let tasks = action.payload.tasks.map(el => ({
         id: el._id,
         title: el.taskTitle,
         isComplete: el.isComplete,
@@ -53,7 +67,7 @@ export const taskReducer = (store = initialState, { type, payload }) => {
         activeDays: el.taskActiveDates.map(el => new Date(el.date)),
       }));
 
-      let color = payload.goals.find(elem =>
+      let color = action.payload.goals.find(elem =>
         tasks.filter(el => el.id.includes(elem)),
       ).goalColor;
 
@@ -63,6 +77,14 @@ export const taskReducer = (store = initialState, { type, payload }) => {
       }));
 
       return tasks;
+    case 'TASKS_CHANGE_ACTIVE_DATES_IN_TASK':
+      return store.map(task => {
+        if (task._id === action.taskId) {
+          return { ...task, taskActiveDates: action.selectedData };
+        } else {
+          return task;
+        }
+      });
     default:
       return store;
   }
