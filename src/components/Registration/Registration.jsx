@@ -50,7 +50,7 @@ class Registration extends Component {
         if (data.success) history.push('/login');
       })
       .catch(err => {
-        console.log(err);
+        throw err;
       });
   };
 

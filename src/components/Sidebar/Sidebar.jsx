@@ -2,11 +2,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import uuid from 'uuid/v4';
 
 import CreateBtn from '../BtnCreateGoal/BtnCreateGoal';
 import GoalList from './GoalList/GoalList';
 import setTask from '../Button/SetButton/SetButton';
 import SetEditGoalModal from '../../redux/actions/toggleSetEditGoalModalActions';
+import { addDefaultColor } from '../../redux/actions/radioAction';
 
 import { showSidebarAction } from '../../redux/actions/sidebarAction';
 
@@ -21,6 +23,7 @@ const Sidebar = ({
   btnID,
   showSidebarAction,
   isSetGoalActive,
+  addDefaultColorFunc,
 }) => {
   return (
     <div
@@ -37,7 +40,13 @@ const Sidebar = ({
           Sculptor
         </a>
       </h2>
-      <CreateBtn onClick={e => openModal(e, goals, 'SET')} value={btnID} />
+      <CreateBtn
+        onClick={e => {
+          openModal(e, goals, 'SET');
+          addDefaultColorFunc();
+        }}
+        value={btnID || uuid()}
+      />
       <GoalList />
     </div>
   );
@@ -48,12 +57,13 @@ Sidebar.propTypes = {
   // editGoal: PropTypes.bool.isRequired,
   goals: PropTypes.arrayOf(PropTypes.object).isRequired,
   btnID: PropTypes.string.isRequired,
+  addDefaultColorFunc: PropTypes.func.isRequired,
 };
 
 const MSTP = state => {
   return {
     showSidebar: state.app.showSidebar,
-    btnID: state.goalData.goalTasks[0].id,
+    btnID: state.goalData.goalTasks[0]._id,
     goals: state.goals,
     isSetGoalActive: state.editGoal.editing,
   };
@@ -64,6 +74,7 @@ function MDTP(dispatch) {
     openModal: (e, goals, type) =>
       dispatch(SetEditGoalModal.openSetEditGoalModal(e, goals, type)),
     showSidebarAction: () => dispatch(showSidebarAction()),
+    addDefaultColorFunc: () => dispatch(addDefaultColor()),
   };
 }
 

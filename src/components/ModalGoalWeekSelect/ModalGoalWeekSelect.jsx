@@ -48,7 +48,6 @@ const ModalGoalWeekSelect = ({ onChange, goalColor, id, task }) => {
                 />
               }
               label={el.week}
-              // weekRange={weekRange}
             />
           </div>
         );
@@ -59,8 +58,6 @@ const ModalGoalWeekSelect = ({ onChange, goalColor, id, task }) => {
 
 function MSTP(state) {
   return {
-    // goalTasks: state.goalData.goalTasks,
-    // weekRange: state.goalData.weekRange,
     goalColor: state.goalData.goalColor,
   };
 }
@@ -75,7 +72,6 @@ function MDTP(dispatch) {
 
 ModalGoalWeekSelect.propTypes = {
   onChange: PropTypes.func.isRequired,
-  // weekRange: PropTypes.arrayOf(PropTypes.objects).isRequired,
   goalColor: PropTypes.string.isRequired,
 };
 

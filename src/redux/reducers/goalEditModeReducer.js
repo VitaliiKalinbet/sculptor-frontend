@@ -47,11 +47,9 @@ const initialTask = {
   taskWeekRange: initialTaskWeekRange,
 };
 
-const goalTasks = [
-  {
-    ...initialTask,
-  },
-];
+// const goalTasks = [{
+//   ...initialTask,
+// }, ];
 
 function editGoal(
   state = {
@@ -109,6 +107,7 @@ function editGoal(
               ...initialTask,
               _id: uuid(),
               name: String(Date.now()),
+              taskWeekRange: initialTaskWeekRange,
             },
           ],
         },

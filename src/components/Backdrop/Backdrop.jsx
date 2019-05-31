@@ -7,10 +7,31 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import toggleSetEditGoalModal from '../../redux/actions/toggleSetEditGoalModalActions';
+import goalMotivationActions from '../../redux/actions/goalMotivationActions';
+import goalTitleActions from '../../redux/actions/goalTitleActions';
+import goalAddTaskActions from '../../redux/actions/goalAddTaskActions';
+import { radioActionClearColor } from '../../redux/actions/radioAction';
 
-const Backdrop = ({ children, closeModal }) => {
+const Backdrop = ({
+  children,
+  closeModal,
+  inputMotivationClear,
+  inputGoalTitleClear,
+  inputTaskTitleClear,
+  clearColor,
+}) => {
   return (
-    <div className="Backdrop" data-id="Backdrop" onClick={e => closeModal(e)}>
+    <div
+      className="Backdrop"
+      data-id="Backdrop"
+      onClick={e => {
+        closeModal(e);
+        inputMotivationClear();
+        inputGoalTitleClear();
+        inputTaskTitleClear();
+        clearColor();
+      }}
+    >
       {children}
     </div>
   );
@@ -19,6 +40,10 @@ const Backdrop = ({ children, closeModal }) => {
 Backdrop.propTypes = {
   children: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
+  inputMotivationClear: PropTypes.func.isRequired,
+  inputGoalTitleClear: PropTypes.func.isRequired,
+  inputTaskTitleClear: PropTypes.func.isRequired,
+  clearColor: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -30,6 +55,12 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     closeModal: e => dispatch(toggleSetEditGoalModal.closeSetEditGoalModal(e)),
+    inputMotivationClear: () =>
+      dispatch(goalMotivationActions.inputMotivationClear()),
+    inputGoalTitleClear: () => dispatch(goalTitleActions.inputGoalTitleClear()),
+    inputTaskTitleClear: () =>
+      dispatch(goalAddTaskActions.inputTaskTitleClear()),
+    clearColor: () => dispatch(radioActionClearColor()),
   };
 }
 

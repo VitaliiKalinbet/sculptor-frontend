@@ -20,7 +20,6 @@ class App extends Component {
   componentDidMount() {
     const { addUser } = this.props;
     const userData = localStorage.user;
-
     if (userData) {
       addUser(JSON.parse(userData));
     }
@@ -48,6 +47,11 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  addUser: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+};
 
 function mapStateToProps(state) {
   return {

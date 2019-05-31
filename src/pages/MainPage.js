@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
@@ -25,13 +27,7 @@ class App extends Component {
   }
 
   render() {
-    const {
-      // openModal,
-      editGoal,
-      showPicker,
-      // goals,
-      // btnID
-    } = this.props;
+    const { editGoal, showPicker } = this.props;
 
     return (
       <>
@@ -58,27 +54,16 @@ class App extends Component {
 }
 
 App.propTypes = {
-  // openModal: PropTypes.func.isRequired,
   editGoal: PropTypes.bool.isRequired,
   showPicker: PropTypes.shape({
     openPickerModal: PropTypes.bool,
   }).isRequired,
-  // goals: PropTypes.arrayOf(PropTypes.object).isRequired,
-  // btnID: PropTypes.string.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
     editGoal: state.editGoal,
-    goals: state.goals,
-    btnID: state.goalData.goalTasks[0].id,
     showPicker: state.showPicker,
-    // goalTitle: state.goalTitle,
-    // goalColor: state.goalColor,
-    // goalMotivation: state.goalMotivation,
-    // goalTasks: state.goalTasks,
-
-    isLogoutModalOpen: state.toggleLogoutModal,
   };
 }
 
@@ -91,5 +76,5 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  null,
 )(App);
