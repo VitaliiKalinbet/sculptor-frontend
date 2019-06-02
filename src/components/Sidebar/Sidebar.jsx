@@ -36,7 +36,7 @@ const Sidebar = ({
       )}
 
       <h2 className={s.Title}>
-        <a className={s.Link} href="#">
+        <a className={s.Link} href="https://sculptor.goit.co.ua">
           Sculptor
         </a>
       </h2>

@@ -8,9 +8,9 @@ import { connect } from 'react-redux';
 import Card from '../Card/Card';
 
 // action
-import asyncGoalAction from './goalAction';
-import asyncTasksAction from './taskAction';
-import weekTasksActions from './weekAction';
+import { asyncGoalAction } from './goalAction';
+import { asyncTasksAction } from './taskAction';
+import { weekTasksAction } from './weekAction';
 
 // card wrapper
 const Container = styled.div`
@@ -73,30 +73,68 @@ class Dashboard extends Component {
       // console.log('USER________', user);
       this.props.getGoals(user);
       this.props.getTasks(user);
+      this.props.weekTasksAction(tasks);
       // this.props.weekTasks(tasks);
     }
   }
 
-  componentDidUpdate(prevprops) {
-    if (prevprops.tasks !== this.props.tasks) {
-      this.props.weekTasks(this.props.tasks);
+  // componentDidUpdate(prevprops) {
+  //   // console.log(
+  //   //   prevprops.tasks.some(r => {
+  //   //     console.log(r);
+  //   //     return this.props.tasks.includes(r);
+  //   //   }),
+  //   // );
+
+  //   if (prevprops.tasks !== this.props.tasks) {
+  //     console.log('dash update');
+  //     this.props.weekTasksAction(this.props.tasks);
+  //   }
+  // }
+
+  // object contains subObject
+  partialContains = (object, subObject) => {
+    // Create arrays of property names
+    const objProps = Object.getOwnPropertyNames(object);
+    const subProps = Object.getOwnPropertyNames(subObject);
+
+    if (subProps.length > objProps.length) {
+      return false;
     }
-  }
+
+    for (const subProp of subProps) {
+      if (!object.hasOwnProperty(subProp)) {
+        return false;
+      }
+
+      if (object[subProp] !== subObject[subProp]) {
+        return false;
+      }
+    }
+
+    return true;
+  };
 
   handlerDatePicker = date => {
     console.log('Data selected: ', date);
   };
 
   render() {
-    const { week } = this.props;
+    const { weekTasks } = this.props;
     // console.log(week);
     return (
-      <Dash>
-        <Container>
-          {week.arrDays.length > 0 &&
-            week.arrDays.map(day => <Card key={day.data} day={day} />)}
-        </Container>
-      </Dash>
+      <>
+        <Dash>
+          <Container>
+            {weekTasks.arrDays.length > 0 &&
+              weekTasks.arrDays.map(day => (
+                <>
+                  <Card day={day} />
+                </>
+              ))}
+          </Container>
+        </Dash>
+      </>
     );
   }
 }
@@ -104,7 +142,7 @@ class Dashboard extends Component {
 const mstp = store => ({
   goals: store.goals,
   tasks: store.tasks,
-  week: store.weekTasks,
+  weekTasks: store.weekTasks,
   showSidebar: store.app.showSidebar,
   selectedData: store.selectedData,
   user: store.user,
@@ -113,7 +151,7 @@ const mstp = store => ({
 const mdtp = dispatch => ({
   getGoals: user => dispatch(asyncGoalAction(user)),
   getTasks: user => dispatch(asyncTasksAction(user)),
-  weekTasks: data => dispatch(weekTasksActions.weekTasksAction(data)),
+  weekTasksAction: data => dispatch(weekTasksAction(data)),
 });
 
 export default connect(

@@ -42,7 +42,6 @@ const GoalItem = ({
 
 GoalItem.propTypes = {
   openModal: PropTypes.func.isRequired,
-  // editGoal: PropTypes.bool.isRequired,
   goals: PropTypes.arrayOf(PropTypes.object).isRequired,
   addGoalColorFunc: PropTypes.func.isRequired,
   addTasksWhenEditMode: PropTypes.func.isRequired,

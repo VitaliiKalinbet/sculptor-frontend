@@ -14,6 +14,7 @@ export default function findActiveTaskOnWeek(arrDate, date, payload) {
   }));
   const activeTasks = [];
   allTasks.forEach(task => {
+    console.log(task.color);
     if (task.activeDays) {
       return task.activeDays.map(el =>
         activeTasks.push({

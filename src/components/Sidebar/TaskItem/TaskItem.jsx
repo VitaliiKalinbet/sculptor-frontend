@@ -1,77 +1,42 @@
 /*eslint-disable*/
 import React from 'react';
-import s from './TaskItem.module.css';
-import dateAction from '../../../redux/actions/dateAction';
 import { connect } from 'react-redux';
 import Picker from '../../Picker/Picker';
-import calendarButton from '../../../redux/actions/calendarButtonAction';
-import { th } from 'date-fns/esm/locale';
 import { startOfWeek } from 'date-fns';
+import { th } from 'date-fns/esm/locale';
 import Backdrop from '../../Backdrop/Backdrop';
-import showPicker from '../../../redux/actions/backDropPickerModalAction';
-import BackdropPicker from '../../BackdropPicker/BackdropPicker';
 
-const TaskItem = ({
-  tasks,
-  dateAction,
-  calendarButtonFunc,
-  taskId,
-  flagShowPiker,
-  showPicker,
-}) => {
-  const actionCalendar = event => {
-    dateAction(event);
-    calendarButtonFunc();
-  };
-  const showPickerAllActions = (event, boolean) => {
-    showPicker(boolean);
-    dateAction(event);
+import { showPickerModal } from '../../../redux/actions/showPickerAction';
+
+import s from './TaskItem.module.css';
+
+const TaskItem = ({ task, showPiker, showPickerModal, goalId }) => {
+  const handleShowPicker = event => {
+    showPickerModal(task, goalId);
   };
 
   return (
-    <li className={s.Item}>
-      {tasks._id === taskId && flagShowPiker && (
-        <BackdropPicker>
-          <Picker
-            tasks={tasks}
-            actionCalendar={actionCalendar}
-            taskId={taskId}
-          />
-        </BackdropPicker>
-      )}
-      <p
-        className={s.TaskText}
-        data-date={tasks._id}
-        onClick={showPickerAllActions}
-      >
-        {tasks.taskTitle}
+    <li className={s.Item} onClick={handleShowPicker}>
+      <p className={s.TaskText} data-date={task._id}>
+        {task.taskTitle}
       </p>
     </li>
   );
 };
 
-function MSTP(state) {
+function mstp(state) {
   return {
-    taskId: state.taskArray,
-    flagShowPiker: state.backDropPickerFlag,
+    showPiker: state.showPicker,
   };
 }
 
-function MDTP(dispatch) {
+function mdtp(dispatch) {
   return {
-    showPicker: function() {
-      dispatch(showPicker());
-    },
-    dateAction: function(event) {
-      dispatch(dateAction(event));
-    },
-    calendarButtonFunc: function() {
-      dispatch(calendarButton());
-    },
+    showPickerModal: (task, goalId) => dispatch(showPickerModal(task, goalId)),
   };
 }
 
 export default connect(
-  MSTP,
-  MDTP,
+  mstp,
+  mdtp,
 )(TaskItem);

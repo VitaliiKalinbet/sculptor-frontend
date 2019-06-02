@@ -1,5 +1,5 @@
 /*eslint-disable*/
-function calendarButton(state = SVGComponentTransferFunctionElement, action) {
+function calendarButton(state = false, action) {
   switch (action.type) {
     case 'CALENDAR':
       return !state;
