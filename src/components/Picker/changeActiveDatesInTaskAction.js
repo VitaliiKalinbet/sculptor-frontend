@@ -7,16 +7,13 @@ export const changeActiveDatesInTask = ({
   selectedData,
   goalId,
 }) => dispatch => {
-  console.log(goalId);
-  console.log(taskId);
-  console.log(selectedData);
-
   api
     .updateTaskActiveDates({ taskId, taskActiveDates: selectedData })
     .then(res => {
-      console.log(res.data);
-      dispatch(updateGoalTaskActiveDates({ taskId, selectedData, goalId }));
-      dispatch(updateTaskActiveDates({ taskId, selectedData }));
+      if (res) {
+        dispatch(updateGoalTaskActiveDates({ taskId, selectedData, goalId }));
+        dispatch(updateTaskActiveDates({ taskId, selectedData }));
+      }
     });
 };
 

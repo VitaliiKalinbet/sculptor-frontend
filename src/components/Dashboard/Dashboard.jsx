@@ -70,27 +70,10 @@ class Dashboard extends Component {
   async componentDidMount() {
     const { user, tasks } = this.props;
     if (user.token) {
-      // console.log('USER________', user);
-      this.props.getGoals(user);
-      this.props.getTasks(user);
-      this.props.weekTasksAction(tasks);
-      // this.props.weekTasks(tasks);
+      await this.props.getGoals(user);
+      await this.props.getTasks(user);
     }
   }
-
-  // componentDidUpdate(prevprops) {
-  //   // console.log(
-  //   //   prevprops.tasks.some(r => {
-  //   //     console.log(r);
-  //   //     return this.props.tasks.includes(r);
-  //   //   }),
-  //   // );
-
-  //   if (prevprops.tasks !== this.props.tasks) {
-  //     console.log('dash update');
-  //     this.props.weekTasksAction(this.props.tasks);
-  //   }
-  // }
 
   // object contains subObject
   partialContains = (object, subObject) => {
@@ -115,26 +98,16 @@ class Dashboard extends Component {
     return true;
   };
 
-  handlerDatePicker = date => {
-    console.log('Data selected: ', date);
-  };
-
   render() {
     const { weekTasks } = this.props;
-    // console.log(week);
+
     return (
-      <>
-        <Dash>
-          <Container>
-            {weekTasks.arrDays.length > 0 &&
-              weekTasks.arrDays.map(day => (
-                <>
-                  <Card day={day} />
-                </>
-              ))}
-          </Container>
-        </Dash>
-      </>
+      <Dash>
+        <Container>
+          {weekTasks.arrDays.length > 0 &&
+            weekTasks.arrDays.map((day, idx) => <Card day={day} key={idx} />)}
+        </Container>
+      </Dash>
     );
   }
 }

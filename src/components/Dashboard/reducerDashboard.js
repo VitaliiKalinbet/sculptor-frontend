@@ -40,10 +40,8 @@ export const goalsReducer = (state = initialState, action) => {
       return [...state, action.updatedGoal];
     case 'GOALS_CHANGE_ACTIVE_DATES_IN_TASK':
       return state.map(goal => {
-        console.log(goal);
         if (goal._id === action.goalId) {
           const goalTasks = goal.goalTasks.map(task => {
-            console.log(task);
             if (task._id === action.taskId) {
               return { ...task, taskActiveDates: action.selectedData };
             } else {
@@ -80,7 +78,6 @@ export const taskReducer = (store = initialState, action) => {
       return tasks;
     case 'TASKS_CHANGE_ACTIVE_DATES_IN_TASK':
       return store.map(task => {
-        console.log(task);
         if (task.id === action.taskId) {
           return {
             ...task,
@@ -101,7 +98,6 @@ export const weekTasksReducer = (
 ) => {
   switch (type) {
     case 'WEEK_TASKS':
-      console.log('GO');
       return {
         date: nowMilliseconds(),
         arrDays: findActiveTaskOnWeek(weekNow, store.date, payload),

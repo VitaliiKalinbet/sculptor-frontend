@@ -16,8 +16,9 @@ import SetGoalModal from '../components/SetGoalModal/SetGoalModal';
 import Picker from '../components/Picker/Picker';
 
 import SetEditGoalModal from '../redux/actions/toggleSetEditGoalModalActions';
+import { asyncGoalAction } from '../components/Dashboard/goalAction';
+import { asyncTasksAction } from '../components/Dashboard/taskAction';
 
-// import './App.css';
 import Statistics from '../components/Statistics/Statistics';
 
 class App extends Component {
@@ -54,7 +55,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  editGoal: PropTypes.bool.isRequired,
+  editGoal: PropTypes.shape().isRequired,
   showPicker: PropTypes.shape({
     openPickerModal: PropTypes.bool,
   }).isRequired,
@@ -64,6 +65,8 @@ function mapStateToProps(state) {
   return {
     editGoal: state.editGoal,
     showPicker: state.showPicker,
+    tasks: state.tasks,
+    user: state.user,
   };
 }
 
@@ -71,6 +74,8 @@ function mapDispatchToProps(dispatch) {
   return {
     openModal: (e, goals, type) =>
       dispatch(SetEditGoalModal.openSetEditGoalModal(e, goals, type)),
+    getGoals: user => dispatch(asyncGoalAction(user)),
+    getTasks: user => dispatch(asyncTasksAction(user)),
   };
 }
 

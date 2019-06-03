@@ -21,7 +21,7 @@ import { closePickerModal } from '../../redux/actions/showPickerAction';
 class Picker extends Component {
   constructor(props) {
     super(props);
-    console.log('init state');
+
     this.state = {
       task: this.props.showPicker.task,
       goalId: this.props.showPicker.goalId,
