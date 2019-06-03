@@ -24,13 +24,7 @@ const DeleteButton = styled.div`
 
 function IconButtons(props) {
   const { classes } = props;
-  return (
-    <DeleteButton>
-      <IconButton className={classes.button} aria-label="Delete">
-        <DeleteIcon />
-      </IconButton>
-    </DeleteButton>
-  );
+  return <DeleteButton />;
 }
 
 export default withStyles(styles)(IconButtons);
