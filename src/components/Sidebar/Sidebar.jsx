@@ -51,7 +51,6 @@ const Sidebar = ({
 Sidebar.propTypes = {
   openModal: PropTypes.func.isRequired,
   goals: PropTypes.arrayOf(PropTypes.object).isRequired,
-  btnID: PropTypes.string.isRequired,
   addDefaultColorFunc: PropTypes.func.isRequired,
 };
 
