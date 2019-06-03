@@ -94,12 +94,8 @@ function goalTasksFunc(state = goalTasks, action) {
       return goalTasks;
     case 'WEEK_SELECTED':
       const targetTask = state.find(el => {
-        console.log(el._id);
-        console.log(action.id);
         return el._id === action.id || el.name === action.id;
       });
-      console.log(state);
-      console.log(targetTask);
       targetTask.taskWeekRange[action.name].status = action.checked;
       return state.map(el => (el.id === action.id ? targetTask : el));
     case 'INPUT_TASK_TITLE_CLEAR':

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -6,12 +7,22 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import RadioButtonUnchecked from '@material-ui/icons/RadioButtonUnchecked';
 import Lens from '@material-ui/icons/Lens';
-import { checkboxAction } from '../../redux/actions/checkboxAction';
+import {
+  checkboxAction,
+  checkboxEditAction,
+} from '../../redux/actions/checkboxAction';
 
 import './ModalGoalWeekSelect.css';
 
 // eslint-disable-next-line react/prop-types
-const ModalGoalWeekSelect = ({ onChange, goalColor, id, task }) => {
+const ModalGoalWeekSelect = ({
+  onChange,
+  goalColor,
+  id,
+  task,
+  onEditChange,
+  mode,
+}) => {
   const styles = {
     small: {
       width: 32,
@@ -41,7 +52,7 @@ const ModalGoalWeekSelect = ({ onChange, goalColor, id, task }) => {
                     <RadioButtonUnchecked color="inherit" fontSize="large" />
                   }
                   checkedIcon={<Lens fontSize="large" color="inherit" />}
-                  onChange={onChange}
+                  onChange={mode === 'UPDATE' ? onEditChange : onChange}
                   name={el.week - 1}
                   style={styles.small}
                   value={id}
@@ -59,6 +70,7 @@ const ModalGoalWeekSelect = ({ onChange, goalColor, id, task }) => {
 function MSTP(state) {
   return {
     goalColor: state.goalData.goalColor,
+    mode: state.editGoal.modalType,
   };
 }
 
@@ -67,12 +79,17 @@ function MDTP(dispatch) {
     onChange(e) {
       dispatch(checkboxAction(e));
     },
+    onEditChange(e) {
+      dispatch(checkboxEditAction(e));
+    },
   };
 }
 
 ModalGoalWeekSelect.propTypes = {
   onChange: PropTypes.func.isRequired,
   goalColor: PropTypes.string.isRequired,
+  onEditChange: PropTypes.func.isRequired,
+  mode: PropTypes.bool.isRequired,
 };
 
 export default connect(

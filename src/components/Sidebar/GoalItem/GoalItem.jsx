@@ -7,6 +7,7 @@ import EditBtn from '../../BtnEditGoal/BtnEditGoal';
 import SetEditGoalModal from '../../../redux/actions/toggleSetEditGoalModalActions';
 import { addGoalColor } from '../../../redux/actions/radioAction';
 import goalAddTaskActions from '../../../redux/actions/goalAddTaskActions';
+import { frozenGoalTasksInEditAction } from '../../../redux/actions/frozenGoalTasksInEditAction';
 import s from './GoalItem.module.css';
 
 const GoalItem = ({
@@ -15,6 +16,7 @@ const GoalItem = ({
   openModal,
   addGoalColorFunc,
   addTasksWhenEditMode,
+  frozenGoalTasksInEditActionFunc,
 }) => {
   return (
     <li className={s.List}>
@@ -29,6 +31,7 @@ const GoalItem = ({
             openModal(e, data, 'UPDATE');
             addGoalColorFunc(data.goalColor);
             addTasksWhenEditMode(data.goalTasks);
+            frozenGoalTasksInEditActionFunc(data.goalTasks);
           }}
           btnID={data._id}
         />
@@ -45,6 +48,7 @@ GoalItem.propTypes = {
   goals: PropTypes.arrayOf(PropTypes.object).isRequired,
   addGoalColorFunc: PropTypes.func.isRequired,
   addTasksWhenEditMode: PropTypes.func.isRequired,
+  frozenGoalTasksInEditActionFunc: PropTypes.func.isRequired,
 };
 
 const MSTP = state => {
@@ -60,6 +64,8 @@ function MDTP(dispatch) {
     addGoalColorFunc: color => dispatch(addGoalColor(color)),
     addTasksWhenEditMode: arrTasks =>
       dispatch(goalAddTaskActions.addTasksWhenEditMode(arrTasks)),
+    frozenGoalTasksInEditActionFunc: arrTasks =>
+      dispatch(frozenGoalTasksInEditAction(arrTasks)),
   };
 }
 
