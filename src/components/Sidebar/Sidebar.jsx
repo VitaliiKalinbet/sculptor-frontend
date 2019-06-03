@@ -38,6 +38,7 @@ const Sidebar = ({
         </a>
       </h2>
       <CreateBtn
+        isDisabled={goals.length >= 3}
         onClick={e => {
           openModal(e, goals, 'SET');
           addDefaultColorFunc();
