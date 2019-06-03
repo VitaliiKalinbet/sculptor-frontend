@@ -1,12 +1,10 @@
 /*eslint-disable*/
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import uuid from 'uuid/v4';
 
 import CreateBtn from '../BtnCreateGoal/BtnCreateGoal';
 import GoalList from './GoalList/GoalList';
-import setTask from '../Button/SetButton/SetButton';
 import SetEditGoalModal from '../../redux/actions/toggleSetEditGoalModalActions';
 import { addDefaultColor } from '../../redux/actions/radioAction';
 
@@ -20,7 +18,6 @@ const Sidebar = ({
   showSidebar,
   openModal,
   goals,
-  btnID,
   showSidebarAction,
   isSetGoalActive,
   addDefaultColorFunc,
@@ -45,7 +42,6 @@ const Sidebar = ({
           openModal(e, goals, 'SET');
           addDefaultColorFunc();
         }}
-        value={btnID || uuid()}
       />
       <GoalList />
     </div>
@@ -54,7 +50,6 @@ const Sidebar = ({
 
 Sidebar.propTypes = {
   openModal: PropTypes.func.isRequired,
-  // editGoal: PropTypes.bool.isRequired,
   goals: PropTypes.arrayOf(PropTypes.object).isRequired,
   btnID: PropTypes.string.isRequired,
   addDefaultColorFunc: PropTypes.func.isRequired,
@@ -63,7 +58,6 @@ Sidebar.propTypes = {
 const MSTP = state => {
   return {
     showSidebar: state.app.showSidebar,
-    btnID: state.goalData.goalTasks[0]._id,
     goals: state.goals,
     isSetGoalActive: state.editGoal.editing,
   };
