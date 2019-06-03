@@ -11,6 +11,7 @@ import goalMotivationActions from '../../redux/actions/goalMotivationActions';
 import goalTitleActions from '../../redux/actions/goalTitleActions';
 import goalAddTaskActions from '../../redux/actions/goalAddTaskActions';
 import { radioActionClearColor } from '../../redux/actions/radioAction';
+import { deleteFrozenGoalTasksInEditAction } from '../../redux/actions/frozenGoalTasksInEditAction';
 
 const Backdrop = ({
   children,
@@ -19,6 +20,7 @@ const Backdrop = ({
   inputGoalTitleClear,
   inputTaskTitleClear,
   clearColor,
+  deleteFrozenGoalTasksInEditActionFunc,
 }) => {
   return (
     <div
@@ -30,6 +32,7 @@ const Backdrop = ({
         inputGoalTitleClear();
         inputTaskTitleClear();
         clearColor();
+        deleteFrozenGoalTasksInEditActionFunc();
       }}
     >
       {children}
@@ -44,6 +47,7 @@ Backdrop.propTypes = {
   inputGoalTitleClear: PropTypes.func.isRequired,
   inputTaskTitleClear: PropTypes.func.isRequired,
   clearColor: PropTypes.func.isRequired,
+  deleteFrozenGoalTasksInEditActionFunc: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -61,6 +65,8 @@ function mapDispatchToProps(dispatch) {
     inputTaskTitleClear: () =>
       dispatch(goalAddTaskActions.inputTaskTitleClear()),
     clearColor: () => dispatch(radioActionClearColor()),
+    deleteFrozenGoalTasksInEditActionFunc: () =>
+      dispatch(deleteFrozenGoalTasksInEditAction()),
   };
 }
 

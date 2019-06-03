@@ -57,7 +57,7 @@ function editGoal(
     modalType: '',
     data: {},
   },
-  { type, modalType, data, id },
+  { type, modalType, data, id, name, checked },
 ) {
   switch (type) {
     case 'EDIT_GOAL':
@@ -97,6 +97,7 @@ function editGoal(
         },
       };
     case 'ADD_TASK_IN_EDIT_GOAL':
+      console.log('initialTaskWeekRange', initialTaskWeekRange);
       return {
         ...state,
         data: {
@@ -104,12 +105,66 @@ function editGoal(
           goalTasks: [
             ...state.data.goalTasks,
             {
-              ...initialTask,
+              taskTitle: '',
               _id: uuid(),
               name: String(Date.now()),
-              taskWeekRange: initialTaskWeekRange,
+              taskWeekRange: [
+                {
+                  week: 1,
+                  status: false,
+                },
+                {
+                  week: 2,
+                  status: false,
+                },
+                {
+                  week: 3,
+                  status: false,
+                },
+                {
+                  week: 4,
+                  status: false,
+                },
+                {
+                  week: 5,
+                  status: false,
+                },
+                {
+                  week: 6,
+                  status: false,
+                },
+                {
+                  week: 7,
+                  status: false,
+                },
+                {
+                  week: 8,
+                  status: false,
+                },
+                {
+                  week: 9,
+                  status: false,
+                },
+              ],
             },
           ],
+        },
+      };
+    case 'WEEK_EDIT_SELECTED':
+      const targetTask = state.data.goalTasks.find(el => {
+        console.log('el._id', el._id);
+        console.log('id', id);
+        return el._id === id || el.name === id;
+      });
+      console.log('targetTask', targetTask);
+      targetTask.taskWeekRange[name].status = checked;
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          goalTasks: state.data.goalTasks.map(el =>
+            el.id === id ? targetTask : el,
+          ),
         },
       };
     default:

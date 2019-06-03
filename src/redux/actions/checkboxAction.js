@@ -5,3 +5,10 @@ export const checkboxAction = e => ({
   name: e.target.name,
   checked: e.target.checked,
 });
+
+export const checkboxEditAction = e => ({
+  type: 'WEEK_EDIT_SELECTED',
+  id: e.target.value,
+  name: e.target.name,
+  checked: e.target.checked,
+});

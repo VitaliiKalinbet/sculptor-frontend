@@ -15,6 +15,7 @@ import isLogoutModalOpen from './ToggleLogoutModalReducer';
 import editGoal from './goalEditModeReducer';
 import goalData from './goalReducer';
 import showPicker from './showPickerReducer';
+import frozenGoalTasksInEdit from './frozenGoalTasksInEditReducer';
 
 // import goals from './initData';
 import dateReducer from './dateReducer';
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
   logout,
   isLogoutModalOpen,
   showPicker,
+  frozenGoalTasksInEdit,
 });
 
 export default rootReducer;
