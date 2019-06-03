@@ -152,11 +152,8 @@ function editGoal(
       };
     case 'WEEK_EDIT_SELECTED':
       const targetTask = state.data.goalTasks.find(el => {
-        console.log('el._id', el._id);
-        console.log('id', id);
         return el._id === id || el.name === id;
       });
-      console.log('targetTask', targetTask);
       targetTask.taskWeekRange[name].status = checked;
       return {
         ...state,

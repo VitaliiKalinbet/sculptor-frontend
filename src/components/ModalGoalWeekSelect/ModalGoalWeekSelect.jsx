@@ -23,6 +23,7 @@ const ModalGoalWeekSelect = ({
   onEditChange,
   mode,
 }) => {
+  console.log('task', task);
   const styles = {
     small: {
       width: 32,
@@ -49,9 +50,19 @@ const ModalGoalWeekSelect = ({
               control={
                 <Checkbox
                   icon={
-                    <RadioButtonUnchecked color="inherit" fontSize="large" />
+                    el.status ? (
+                      <Lens fontSize="large" color="inherit" />
+                    ) : (
+                      <RadioButtonUnchecked color="inherit" fontSize="large" />
+                    )
                   }
-                  checkedIcon={<Lens fontSize="large" color="inherit" />}
+                  checkedIcon={
+                    el.status ? (
+                      <RadioButtonUnchecked color="inherit" fontSize="large" />
+                    ) : (
+                      <Lens fontSize="large" color="inherit" />
+                    )
+                  }
                   onChange={mode === 'UPDATE' ? onEditChange : onChange}
                   name={el.week - 1}
                   style={styles.small}
