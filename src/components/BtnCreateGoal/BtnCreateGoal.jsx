@@ -5,8 +5,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import Arrow from '../Sidebar/svg/SvgArrow';
 
-import NavigationIcon from '@material-ui/icons/Navigation';
-
 const styles = theme => ({
   fab: {
     margin: '4.7rem 0 1.5rem 1.2rem',
@@ -30,13 +28,12 @@ const styles = theme => ({
 });
 
 function FloatingActionButtons(props) {
-  const { classes, value, onClick } = props;
+  const { classes, onClick } = props;
   return (
     <div>
       <Fab
         variant="extended"
         aria-label="Delete"
-        value={value}
         className={classes.fab}
         onClick={onClick}
       >
