@@ -40,15 +40,13 @@ const MoveToTrash = styled.div`
 
 const TaskItem = ({ data }) => {
   return (
-    <>
-      <Item key={data.id + '1'}>
-        <ItemStatus color={data.color} />
-        <ItemDescription>{data.title}</ItemDescription>
-        <MoveToTrash>
-          <IconButtons />
-        </MoveToTrash>
-      </Item>
-    </>
+    <Item key={data.id + '1'}>
+      <ItemStatus color={data.color} />
+      <ItemDescription>{data.title}</ItemDescription>
+      <MoveToTrash>
+        <IconButtons />
+      </MoveToTrash>
+    </Item>
   );
 };
 

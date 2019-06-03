@@ -20,12 +20,10 @@ const Card = ({ day }) => {
   const title = String(day.data).substr(0, 10);
 
   return (
-    <>
-      <CardItem>
-        <CardTitle title={title} />
-        <TaskList items={day.tasks} />
-      </CardItem>
-    </>
+    <CardItem>
+      <CardTitle title={title} />
+      <TaskList items={day.tasks} />
+    </CardItem>
   );
 };
 

@@ -6,13 +6,9 @@ import TaskItem from '../TaskItem/TaskItem';
 const TaskList = ({ data, goalId }) => {
   return (
     <ul>
-      {data.map((el, i) => {
-        return (
-          <>
-            <TaskItem key={i} task={el} goalId={el.goalId} />
-          </>
-        );
-      })}
+      {data.map((el, i) => (
+        <TaskItem key={i.toString()} task={el} goalId={el.goalId} />
+      ))}
     </ul>
   );
 };
