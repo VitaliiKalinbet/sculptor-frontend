@@ -1,14 +1,23 @@
 /* eslint-disable */
 import React from 'react';
+import { connect } from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Checkbox from '@material-ui/core/Checkbox';
+import RadioButtonUnchecked from '@material-ui/icons/RadioButtonUnchecked';
+import CheckCircle from '@material-ui/icons/CheckCircle';
 
-import IconButtons from '../TrashButton';
+import { changeTaskToDone, deleteTaskFromThisDay } from './cardTaskItemAction';
 
 const Item = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 1.5rem;
+  cursor: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png'),
+    auto;
 `;
 
 // icon status
@@ -26,10 +35,11 @@ const ItemDescription = styled.p`
   font-size: 1.4rem;
   font-family: 'Roboto Light';
   flex: 1;
+  text-decoration: ${props => (props.isDone ? 'line-through' : 'none')};
 `;
 
 const MoveToTrash = styled.div`
-  opacity: 0;
+  opacity: 0.3;
   transition: 0.5s;
 
   ${Item}:hover & {
@@ -38,16 +48,62 @@ const MoveToTrash = styled.div`
   }
 `;
 
-const TaskItem = ({ data }) => {
+const StyledCheckBox = styled(Checkbox)`
+  && {
+    color: ${prop => prop.color};
+  }
+`;
+
+const TaskItem = ({ data, changeTaskToDone, deleteTaskFromThisDay }) => {
   return (
-    <Item key={data.id + '1'}>
-      <ItemStatus color={data.color} />
-      <ItemDescription>{data.title}</ItemDescription>
+    <Item
+      isDone={data.isDone}
+      onClick={() =>
+        changeTaskToDone({
+          taskId: data.taskId,
+          taskActiveDayId: data.taskActiveDateId,
+          isDone: !data.isDone,
+          goalId: data.goalId,
+        })
+      }
+    >
+      <StyledCheckBox
+        color={data.color}
+        checked={data.isDone}
+        icon={<RadioButtonUnchecked fontSize="small" />}
+        checkedIcon={<CheckCircle fontSize="small" />}
+      />
+
+      <ItemDescription isDone={data.isDone}>{data.title}</ItemDescription>
       <MoveToTrash>
-        <IconButtons />
+        <IconButton
+          aria-label="Delete"
+          size="small"
+          tabIndex={0}
+          onClick={e => {
+            e.stopPropagation();
+            deleteTaskFromThisDay({
+              taskId: data.taskId,
+              taskActiveDayId: data.taskActiveDateId,
+              goalId: data.goalId,
+            });
+          }}
+        >
+          <DeleteIcon fontSize="small" size="small" />
+        </IconButton>
       </MoveToTrash>
     </Item>
   );
 };
 
-export default TaskItem;
+const mdtp = dispatch => ({
+  changeTaskToDone: ({ taskId, taskActiveDayId, isDone, goalId }) =>
+    dispatch(changeTaskToDone({ taskId, taskActiveDayId, isDone, goalId })),
+  deleteTaskFromThisDay: ({ taskId, taskActiveDayId, goalId }) =>
+    dispatch(deleteTaskFromThisDay({ taskId, taskActiveDayId, goalId })),
+});
+
+export default connect(
+  null,
+  mdtp,
+)(TaskItem);
