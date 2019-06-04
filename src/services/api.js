@@ -58,8 +58,13 @@ const deleteTaskInEditGoal = taskID => axiosInstance.delete(`/task/${taskID}`);
 const updateTaskActiveDates = ({ taskId, taskActiveDates }) =>
   axiosInstance.put(
     `/task/dates/${taskId}`,
-    JSON.stringify({ taskActiveDates }),
+    JSON.stringify({
+      taskActiveDates,
+    }),
   );
+
+const updateAllGoalInfo = ({ goalId, updateObject }) =>
+  axiosInstance.put(`/goal/${goalId}`, JSON.stringify(updateObject));
 
 export default {
   register,
@@ -69,4 +74,5 @@ export default {
   updateGoal,
   deleteTaskInEditGoal,
   updateTaskActiveDates,
+  updateAllGoalInfo,
 };
