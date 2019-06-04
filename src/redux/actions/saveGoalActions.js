@@ -1,3 +1,7 @@
+/* eslint-disable */
+
+import { updateAllGoalInfoHelper } from '../../utils/updateAllGoalInfo';
+
 const saveGoal = (
   goalTitle,
   goalColor,
@@ -37,7 +41,23 @@ const addGoal = (
   },
 });
 
+const saveEditGoal = arrGoals => ({
+  type: 'SAVE_EDIT_GOAL',
+  arrGoals,
+});
+
+const asyncSaveEditGoal = (
+  editGoal,
+  goalData,
+  frozenGoalTasksInEdit,
+) => dispatch => {
+  updateAllGoalInfoHelper(editGoal, goalData, frozenGoalTasksInEdit)
+    .then(data => dispatch(saveEditGoal(data)))
+    .catch(error => console.log(error));
+};
+
 export default {
   saveGoal,
   addGoal,
+  asyncSaveEditGoal,
 };

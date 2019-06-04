@@ -23,7 +23,6 @@ const ModalGoalWeekSelect = ({
   onEditChange,
   mode,
 }) => {
-  console.log('task', task);
   const styles = {
     small: {
       width: 32,

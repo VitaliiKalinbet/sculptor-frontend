@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable */
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -10,6 +11,7 @@ import ModalGoalTitle from '../ModalGoalTitle/ModalGoalTitle';
 import ModalGoalTasks from '../ModalGoalTasks/ModalGoalTasks';
 import ModalGoalMotivation from '../ModalGoalMotivation/ModalGoalMotivation';
 
+import saveGoalActions from '../../redux/actions/saveGoalActions';
 import GoalActions from '../../redux/actions/saveGoalActions';
 import ModalGoalIconSelect from '../ModalGoalIconSelect/ModalGoalIconSelect';
 
@@ -61,6 +63,10 @@ class SetGoalModal extends React.Component {
       activeGoalID,
       modalType,
       user,
+      editGoal,
+      goalData,
+      frozenGoalTasksInEdit,
+      asyncSaveEditGoalFunc,
     } = this.props;
 
     return (
@@ -77,15 +83,7 @@ class SetGoalModal extends React.Component {
           type="button"
           onClick={() =>
             modalType !== 'SET'
-              ? saveGoal(
-                  goalTitle,
-                  goalColor,
-                  goalTasks,
-                  goalMotivation,
-                  goals,
-                  activeGoalID,
-                  user,
-                )
+              ? asyncSaveEditGoalFunc(editGoal, goalData, frozenGoalTasksInEdit)
               : this.handleAddGoal({
                   goalTitle,
                   goalColor,
@@ -115,6 +113,10 @@ SetGoalModal.propTypes = {
   goalTasks: PropTypes.arrayOf(PropTypes.object).isRequired,
   activeGoalID: PropTypes.string.isRequired,
   user: PropTypes.shape.isRequired,
+  editGoal: PropTypes.object.isRequired,
+  goalData: PropTypes.object.isRequired,
+  frozenGoalTasksInEdit: PropTypes.array.isRequired,
+  asyncSaveEditGoalFunc: PropTypes.func.isRequired,
 };
 
 SetGoalModal.defaultProps = {
@@ -130,6 +132,9 @@ function mapStateToProps(state) {
     goalTasks: state.goalData.goalTasks,
     activeGoalID: state.goalData.activeGoalID,
     user: state.user,
+    editGoal: state.editGoal,
+    goalData: state.goalData,
+    frozenGoalTasksInEdit: state.frozenGoalTasksInEdit,
   };
 }
 
@@ -161,6 +166,14 @@ function mapDispatchToProps(dispatch) {
           goalTasks,
           goalMotivation,
           activeGoalID,
+        ),
+      ),
+    asyncSaveEditGoalFunc: (editGoal, goalData, frozenGoalTasksInEdit) =>
+      dispatch(
+        saveGoalActions.asyncSaveEditGoal(
+          editGoal,
+          goalData,
+          frozenGoalTasksInEdit,
         ),
       ),
   };
