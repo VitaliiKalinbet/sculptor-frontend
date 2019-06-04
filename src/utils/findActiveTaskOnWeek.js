@@ -17,12 +17,14 @@ export default function findActiveTaskOnWeek(arrDate, date, payload) {
     if (task.activeDays) {
       return task.activeDays.map(el =>
         activeTasks.push({
-          id: task.id,
+          taskId: task.id,
           color: task.color,
           goalId: task.goalId,
           isComplete: task.isComplete,
           title: task.title,
-          date: el,
+          date: el.date,
+          isDone: el.isDone,
+          taskActiveDateId: el.taskActiveDateId,
         }),
       );
     }
