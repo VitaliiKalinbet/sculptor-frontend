@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  // baseURL: 'https://sculptor.goit.co.ua/api',
-  baseURL: 'http://localhost:8000/api',
+  baseURL: 'https://sculptor.goit.co.ua/api',
+  // baseURL: 'http://localhost:8000/api',
   headers: {
     'Content-Type': 'application/json',
   },
