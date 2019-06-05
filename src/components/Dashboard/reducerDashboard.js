@@ -115,6 +115,7 @@ export const goalsReducer = (state = initialState, action) => {
       });
 
     case 'SAVE_EDIT_GOAL':
+      console.log(action.arrGoals);
       return action.arrGoals;
     default:
       return state;
