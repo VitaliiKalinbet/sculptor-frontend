@@ -28,11 +28,15 @@ class SetGoalModal extends React.Component {
     goalMotivation,
     user,
   }) => {
-    const { addGoal } = this.props;
+    const { addGoal, goals } = this.props;
     const newData = {
       goalTitle,
       goalColor,
-      goalTasks,
+      goalNumber: goals.length + 1,
+      goalTasks: goalTasks.map(task => ({
+        taskTitle: task.taskTitle,
+        taskWeekRange: task.taskWeekRange,
+      })),
       goalMotivation,
       userId: user.userId,
     };
