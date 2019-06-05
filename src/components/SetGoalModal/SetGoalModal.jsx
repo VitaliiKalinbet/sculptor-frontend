@@ -16,6 +16,12 @@ import GoalActions from '../../redux/actions/saveGoalActions';
 import toggleSetEditGoalModal from '../../redux/actions/toggleSetEditGoalModalActions';
 import ModalGoalIconSelect from '../ModalGoalIconSelect/ModalGoalIconSelect';
 
+import goalMotivationActions from '../../redux/actions/goalMotivationActions';
+import goalTitleActions from '../../redux/actions/goalTitleActions';
+import goalAddTaskActions from '../../redux/actions/goalAddTaskActions';
+import { radioActionClearColor } from '../../redux/actions/radioAction';
+import { deleteFrozenGoalTasksInEditAction } from '../../redux/actions/frozenGoalTasksInEditAction';
+
 import api from '../../services/api';
 
 class SetGoalModal extends React.Component {
@@ -58,8 +64,22 @@ class SetGoalModal extends React.Component {
   };
 
   deleteGoalFunc = () => {
-    const { activeGoalID, deleteGoal, closeModal } = this.props;
+    const {
+      activeGoalID,
+      deleteGoal,
+      closeModal,
+      inputMotivationClear,
+      inputGoalTitleClear,
+      inputTaskTitleClear,
+      clearColor,
+      deleteFrozenGoalTasksInEditActionFunc,
+    } = this.props;
     deleteGoal(activeGoalID);
+    inputMotivationClear();
+    inputGoalTitleClear();
+    inputTaskTitleClear();
+    clearColor();
+    deleteFrozenGoalTasksInEditActionFunc();
     closeModal();
   };
 
@@ -70,8 +90,18 @@ class SetGoalModal extends React.Component {
       frozenGoalTasksInEdit,
       asyncSaveEditGoalFunc,
       closeModal,
+      inputMotivationClear,
+      inputGoalTitleClear,
+      inputTaskTitleClear,
+      clearColor,
+      deleteFrozenGoalTasksInEditActionFunc,
     } = this.props;
     asyncSaveEditGoalFunc(editGoal, goalData, frozenGoalTasksInEdit);
+    inputMotivationClear();
+    inputGoalTitleClear();
+    inputTaskTitleClear();
+    clearColor();
+    deleteFrozenGoalTasksInEditActionFunc();
     closeModal();
   };
 
@@ -206,6 +236,14 @@ function mapDispatchToProps(dispatch) {
         ),
       ),
     closeModal: e => dispatch(toggleSetEditGoalModal.closeEditGoalModal(e)),
+    inputMotivationClear: () =>
+      dispatch(goalMotivationActions.inputMotivationClear()),
+    inputGoalTitleClear: () => dispatch(goalTitleActions.inputGoalTitleClear()),
+    inputTaskTitleClear: () =>
+      dispatch(goalAddTaskActions.inputTaskTitleClear()),
+    clearColor: () => dispatch(radioActionClearColor()),
+    deleteFrozenGoalTasksInEditActionFunc: () =>
+      dispatch(deleteFrozenGoalTasksInEditAction()),
   };
 }
 
