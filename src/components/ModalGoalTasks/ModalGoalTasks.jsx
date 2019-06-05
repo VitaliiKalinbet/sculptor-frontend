@@ -34,7 +34,7 @@ const ModalTasks = ({
             <input
               className="ModalTasks__input"
               type="text"
-              name={task.name || task._id}
+              name={task._id || task.name}
               // value={task.taskTitle}
               defaultValue={
                 editGoal.modalType === 'SET'
