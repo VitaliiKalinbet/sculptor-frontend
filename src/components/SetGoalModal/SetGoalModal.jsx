@@ -13,6 +13,7 @@ import ModalGoalMotivation from '../ModalGoalMotivation/ModalGoalMotivation';
 
 import saveGoalActions from '../../redux/actions/saveGoalActions';
 import GoalActions from '../../redux/actions/saveGoalActions';
+import toggleSetEditGoalModal from '../../redux/actions/toggleSetEditGoalModalActions';
 import ModalGoalIconSelect from '../ModalGoalIconSelect/ModalGoalIconSelect';
 
 import api from '../../services/api';
@@ -52,6 +53,18 @@ class SetGoalModal extends React.Component {
     });
   };
 
+  handleOnClickInEdit = () => {
+    const {
+      editGoal,
+      goalData,
+      frozenGoalTasksInEdit,
+      asyncSaveEditGoalFunc,
+      closeModal,
+    } = this.props;
+    asyncSaveEditGoalFunc(editGoal, goalData, frozenGoalTasksInEdit);
+    closeModal();
+  };
+
   render() {
     const {
       saveGoal,
@@ -63,10 +76,6 @@ class SetGoalModal extends React.Component {
       activeGoalID,
       modalType,
       user,
-      editGoal,
-      goalData,
-      frozenGoalTasksInEdit,
-      asyncSaveEditGoalFunc,
     } = this.props;
 
     return (
@@ -83,7 +92,7 @@ class SetGoalModal extends React.Component {
           type="button"
           onClick={() =>
             modalType !== 'SET'
-              ? asyncSaveEditGoalFunc(editGoal, goalData, frozenGoalTasksInEdit)
+              ? this.handleOnClickInEdit()
               : this.handleAddGoal({
                   goalTitle,
                   goalColor,
@@ -93,7 +102,9 @@ class SetGoalModal extends React.Component {
                   user,
                 })
           }
-          disabled={!goalTitle.length || !goalColor.length}
+          disabled={
+            modalType === 'SET' ? !goalTitle.length || !goalColor.length : false
+          }
         >
           {modalType === 'SET' ? 'Create' : 'Save'}
         </button>
@@ -117,6 +128,7 @@ SetGoalModal.propTypes = {
   goalData: PropTypes.object.isRequired,
   frozenGoalTasksInEdit: PropTypes.array.isRequired,
   asyncSaveEditGoalFunc: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
 
 SetGoalModal.defaultProps = {
@@ -176,6 +188,7 @@ function mapDispatchToProps(dispatch) {
           frozenGoalTasksInEdit,
         ),
       ),
+    closeModal: e => dispatch(toggleSetEditGoalModal.closeEditGoalModal(e)),
   };
 }
 

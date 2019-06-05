@@ -63,7 +63,7 @@ const updateTaskActiveDates = ({ taskId, taskActiveDates }) =>
     }),
   );
 
-const updateAllGoalInfo = ({ goalId, updateObject }) =>
+const updateAllGoalInfo = (goalId, updateObject) =>
   axiosInstance.put(`/goal/${goalId}`, JSON.stringify(updateObject));
 
 const deleteOneTaskActiveDate = ({ taskActiveDayId, taskId }) =>

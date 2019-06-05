@@ -52,7 +52,7 @@ const asyncSaveEditGoal = (
   frozenGoalTasksInEdit,
 ) => dispatch => {
   updateAllGoalInfoHelper(editGoal, goalData, frozenGoalTasksInEdit)
-    .then(data => dispatch(saveEditGoal(data)))
+    .then(data => dispatch(saveEditGoal(data.data.goals)))
     .catch(error => console.log(error));
 };
 

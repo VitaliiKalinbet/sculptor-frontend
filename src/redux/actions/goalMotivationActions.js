@@ -7,7 +7,13 @@ const inputMotivationClear = () => ({
   type: 'INPUT_MOTIVATION_CLEAR',
 });
 
+const inputMotivationInEdit = motivation => ({
+  type: 'INPUT_MOTIVATION_IN_EDIT',
+  motivation,
+});
+
 export default {
   inputMotivation,
   inputMotivationClear,
+  inputMotivationInEdit,
 };
