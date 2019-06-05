@@ -103,7 +103,6 @@ function editGoal(
         },
       };
     case 'ADD_TASK_IN_EDIT_GOAL':
-      console.log('initialTaskWeekRange', initialTaskWeekRange);
       return {
         ...state,
         data: {
