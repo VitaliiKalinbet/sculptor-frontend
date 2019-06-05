@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable */
 import React from 'react';
 import { connect } from 'react-redux';
@@ -10,6 +9,7 @@ import ModalGoalTitle from '../ModalGoalTitle/ModalGoalTitle';
 // import ModalGoalIconSelect from '../ModalGoalIconSelect/ModalGoalIconSelect';
 import ModalGoalTasks from '../ModalGoalTasks/ModalGoalTasks';
 import ModalGoalMotivation from '../ModalGoalMotivation/ModalGoalMotivation';
+import deleteGoalAction from '../../redux/actions/deleteGoalAction';
 
 import saveGoalActions from '../../redux/actions/saveGoalActions';
 import GoalActions from '../../redux/actions/saveGoalActions';
@@ -55,6 +55,12 @@ class SetGoalModal extends React.Component {
       }
       return null;
     });
+  };
+
+  deleteGoalFunc = () => {
+    const { activeGoalID, deleteGoal, closeModal } = this.props;
+    deleteGoal(activeGoalID);
+    closeModal();
   };
 
   handleOnClickInEdit = () => {
@@ -112,6 +118,11 @@ class SetGoalModal extends React.Component {
         >
           {modalType === 'SET' ? 'Create' : 'Save'}
         </button>
+        {modalType === 'SET' ? null : (
+          <button type="button" onClick={this.deleteGoalFunc}>
+            Delete
+          </button>
+        )}
       </div>
     );
   }
@@ -122,6 +133,7 @@ SetGoalModal.propTypes = {
   modalType: PropTypes.string.isRequired,
   saveGoal: PropTypes.func.isRequired,
   addGoal: PropTypes.func.isRequired,
+  deleteGoal: PropTypes.func.isRequired,
   goals: PropTypes.arrayOf(PropTypes.object).isRequired,
   goalColor: PropTypes.string.isRequired,
   goalMotivation: PropTypes.string,
@@ -184,6 +196,7 @@ function mapDispatchToProps(dispatch) {
           activeGoalID,
         ),
       ),
+    deleteGoal: id => dispatch(deleteGoalAction.asyncDeleteGoal(id)),
     asyncSaveEditGoalFunc: (editGoal, goalData, frozenGoalTasksInEdit) =>
       dispatch(
         saveGoalActions.asyncSaveEditGoal(

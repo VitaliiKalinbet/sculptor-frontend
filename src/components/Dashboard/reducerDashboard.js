@@ -82,7 +82,6 @@ export const goalsReducer = (state = initialState, action) => {
           return goal;
         }
       });
-
     case 'UPDATE_STATUS_GOAL_TASK_ACTIVE_DAY':
       return state.map(goal => {
         if (goal._id === action.goalId) {
@@ -113,6 +112,8 @@ export const goalsReducer = (state = initialState, action) => {
           return goal;
         }
       });
+    case 'DELETE_GOAL':
+      return state.filter(el => el._id !== action.idGoal);
 
     case 'SAVE_EDIT_GOAL':
       return action.arrGoals;
