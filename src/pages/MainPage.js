@@ -32,12 +32,6 @@ class App extends Component {
 
     return (
       <>
-        {showPicker.openPickerModal && <Picker />}
-        {editGoal.editing && (
-          <Backdrop>
-            <SetGoalModal modalType={editGoal.modalType} />
-          </Backdrop>
-        )}
         <div className="main">
           <Sidebar className="main__left" />
           <div className="main__right">
@@ -49,6 +43,12 @@ class App extends Component {
             </div>
           </div>
         </div>
+        {editGoal.editing && (
+          <Backdrop>
+            <SetGoalModal modalType={editGoal.modalType} />
+          </Backdrop>
+        )}
+        {showPicker.openPickerModal && <Picker />}
       </>
     );
   }

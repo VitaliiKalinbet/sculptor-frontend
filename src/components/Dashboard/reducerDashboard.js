@@ -59,8 +59,64 @@ export const goalsReducer = (state = initialState, action) => {
           return goal;
         }
       });
+    case 'DELETE_GOAL_TASK_ACTIVE_DAY':
+      return state.map(goal => {
+        if (goal._id === action.goalId) {
+          const goalTasks = goal.goalTasks.map(task => {
+            if (task._id === action.taskId) {
+              return {
+                ...task,
+                taskActiveDates: task.taskActiveDates.filter(day => {
+                  return day._id !== action.taskActiveDayId;
+                }),
+              };
+            } else {
+              return task;
+            }
+          });
+          return {
+            ...goal,
+            goalTasks,
+          };
+        } else {
+          return goal;
+        }
+      });
+    case 'UPDATE_STATUS_GOAL_TASK_ACTIVE_DAY':
+      return state.map(goal => {
+        if (goal._id === action.goalId) {
+          const goalTasks = goal.goalTasks.map(task => {
+            if (task._id === action.taskId) {
+              return {
+                ...task,
+                taskActiveDates: task.taskActiveDates.map(day => {
+                  if (day._id === action.taskActiveDayId) {
+                    return {
+                      ...day,
+                      isDone: action.isDone,
+                    };
+                  } else {
+                    return day;
+                  }
+                }),
+              };
+            } else {
+              return task;
+            }
+          });
+          return {
+            ...goal,
+            goalTasks,
+          };
+        } else {
+          return goal;
+        }
+      });
     case 'DELETE_GOAL':
       return state.filter(el => el._id !== action.idGoal);
+
+    case 'SAVE_EDIT_GOAL':
+      return action.arrGoals;
     default:
       return state;
   }
@@ -78,7 +134,11 @@ export const taskReducer = (store = initialState, action) => {
           title: el.taskTitle,
           isComplete: el.isComplete,
           goalId: el.goalId,
-          activeDays: el.taskActiveDates.map(el => new Date(el.date)),
+          activeDays: el.taskActiveDates.map(el => ({
+            date: new Date(el.date),
+            isDone: el.isDone,
+            taskActiveDateId: el._id,
+          })),
           color,
         };
       });
@@ -89,7 +149,44 @@ export const taskReducer = (store = initialState, action) => {
         if (task.id === action.taskId) {
           return {
             ...task,
-            activeDays: action.selectedData.map(el => new Date(el.date)),
+            activeDays: action.selectedData.map(el => ({
+              ...el,
+              taskActiveDateId: el._id,
+              date: new Date(el.date),
+            })),
+          };
+        } else {
+          return task;
+        }
+      });
+    case 'DELETE_TASK_ACTIVE_DAY':
+      return store.map(task => {
+        if (task.id === action.taskId) {
+          return {
+            ...task,
+            activeDays: task.activeDays.filter(
+              day => day.taskActiveDateId !== action.taskActiveDayId,
+            ),
+          };
+        } else {
+          return task;
+        }
+      });
+    case 'UPDATE_STATUS_TASK_ACTIVE_DAY':
+      return store.map(task => {
+        if (task.id === action.taskId) {
+          return {
+            ...task,
+            activeDays: task.activeDays.map(day => {
+              if (day.taskActiveDateId === action.taskActiveDayId) {
+                return {
+                  ...day,
+                  isDone: action.isDone,
+                };
+              } else {
+                return day;
+              }
+            }),
           };
         } else {
           return task;

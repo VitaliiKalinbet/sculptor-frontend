@@ -7,7 +7,13 @@ const inputGoalTitleClear = () => ({
   type: 'INPUT_GOAL_TITLE_CLEAR',
 });
 
+const inputGoalTitleInEdit = title => ({
+  type: 'INPUT_GOAL_TITLE_IN_EDIT',
+  title,
+});
+
 export default {
   inputGoalTitle,
   inputGoalTitleClear,
+  inputGoalTitleInEdit,
 };

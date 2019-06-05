@@ -57,7 +57,7 @@ function editGoal(
     modalType: '',
     data: {},
   },
-  { type, modalType, data, id, name, checked },
+  { type, modalType, data, id, name, checked, value },
 ) {
   switch (type) {
     case 'EDIT_GOAL':
@@ -77,6 +77,12 @@ function editGoal(
       return {
         editing: true,
         modalType,
+      };
+    case 'CLOSE_EDIT_GOAL':
+      return {
+        editing: false,
+        modalType: '',
+        data: {},
       };
     case 'SAVE_GOAL':
       return {
@@ -162,6 +168,21 @@ function editGoal(
           goalTasks: state.data.goalTasks.map(el =>
             el.id === id ? targetTask : el,
           ),
+        },
+      };
+    case 'INPUT_TASK_TITLE_CHANGE_IN_EDIT':
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          goalTasks: state.data.goalTasks.map(task => {
+            return name === task._id || name === task.name
+              ? {
+                  ...task,
+                  taskTitle: value,
+                }
+              : task;
+          }),
         },
       };
     default:

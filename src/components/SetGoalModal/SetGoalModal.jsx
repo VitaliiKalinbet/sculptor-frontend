@@ -11,7 +11,9 @@ import ModalGoalTasks from '../ModalGoalTasks/ModalGoalTasks';
 import ModalGoalMotivation from '../ModalGoalMotivation/ModalGoalMotivation';
 import deleteGoalAction from '../../redux/actions/deleteGoalAction';
 
+import saveGoalActions from '../../redux/actions/saveGoalActions';
 import GoalActions from '../../redux/actions/saveGoalActions';
+import toggleSetEditGoalModal from '../../redux/actions/toggleSetEditGoalModalActions';
 import ModalGoalIconSelect from '../ModalGoalIconSelect/ModalGoalIconSelect';
 
 import api from '../../services/api';
@@ -29,11 +31,15 @@ class SetGoalModal extends React.Component {
     goalMotivation,
     user,
   }) => {
-    const { addGoal } = this.props;
+    const { addGoal, goals } = this.props;
     const newData = {
       goalTitle,
       goalColor,
-      goalTasks,
+      goalNumber: goals.length + 1,
+      goalTasks: goalTasks.map(task => ({
+        taskTitle: task.taskTitle,
+        taskWeekRange: task.taskWeekRange,
+      })),
       goalMotivation,
       userId: user.userId,
     };
@@ -52,8 +58,21 @@ class SetGoalModal extends React.Component {
   };
 
   deleteGoalFunc = () => {
-    const { activeGoalID, deleteGoal } = this.props;
+    const { activeGoalID, deleteGoal, closeModal } = this.props;
     deleteGoal(activeGoalID);
+    closeModal();
+  };
+
+  handleOnClickInEdit = () => {
+    const {
+      editGoal,
+      goalData,
+      frozenGoalTasksInEdit,
+      asyncSaveEditGoalFunc,
+      closeModal,
+    } = this.props;
+    asyncSaveEditGoalFunc(editGoal, goalData, frozenGoalTasksInEdit);
+    closeModal();
   };
 
   render() {
@@ -83,15 +102,7 @@ class SetGoalModal extends React.Component {
           type="button"
           onClick={() =>
             modalType !== 'SET'
-              ? saveGoal(
-                  goalTitle,
-                  goalColor,
-                  goalTasks,
-                  goalMotivation,
-                  goals,
-                  activeGoalID,
-                  user,
-                )
+              ? this.handleOnClickInEdit()
               : this.handleAddGoal({
                   goalTitle,
                   goalColor,
@@ -101,7 +112,9 @@ class SetGoalModal extends React.Component {
                   user,
                 })
           }
-          disabled={!goalTitle.length || !goalColor.length}
+          disabled={
+            modalType === 'SET' ? !goalTitle.length || !goalColor.length : false
+          }
         >
           {modalType === 'SET' ? 'Create' : 'Save'}
         </button>
@@ -127,6 +140,11 @@ SetGoalModal.propTypes = {
   goalTasks: PropTypes.arrayOf(PropTypes.object).isRequired,
   activeGoalID: PropTypes.string.isRequired,
   user: PropTypes.shape.isRequired,
+  editGoal: PropTypes.object.isRequired,
+  goalData: PropTypes.object.isRequired,
+  frozenGoalTasksInEdit: PropTypes.array.isRequired,
+  asyncSaveEditGoalFunc: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
 
 SetGoalModal.defaultProps = {
@@ -142,6 +160,9 @@ function mapStateToProps(state) {
     goalTasks: state.goalData.goalTasks,
     activeGoalID: state.goalData.activeGoalID,
     user: state.user,
+    editGoal: state.editGoal,
+    goalData: state.goalData,
+    frozenGoalTasksInEdit: state.frozenGoalTasksInEdit,
   };
 }
 
@@ -176,6 +197,15 @@ function mapDispatchToProps(dispatch) {
         ),
       ),
     deleteGoal: id => dispatch(deleteGoalAction.asyncDeleteGoal(id)),
+    asyncSaveEditGoalFunc: (editGoal, goalData, frozenGoalTasksInEdit) =>
+      dispatch(
+        saveGoalActions.asyncSaveEditGoal(
+          editGoal,
+          goalData,
+          frozenGoalTasksInEdit,
+        ),
+      ),
+    closeModal: e => dispatch(toggleSetEditGoalModal.closeEditGoalModal(e)),
   };
 }
 
