@@ -43,12 +43,18 @@ export const goalsReducer = (state = initialState, action) => {
         if (goal._id === action.goalId) {
           const goalTasks = goal.goalTasks.map(task => {
             if (task._id === action.taskId) {
-              return { ...task, taskActiveDates: action.selectedData };
+              return {
+                ...task,
+                taskActiveDates: action.selectedData,
+              };
             } else {
               return task;
             }
           });
-          return { ...goal, goalTasks };
+          return {
+            ...goal,
+            goalTasks,
+          };
         } else {
           return goal;
         }
@@ -68,7 +74,10 @@ export const goalsReducer = (state = initialState, action) => {
               return task;
             }
           });
-          return { ...goal, goalTasks };
+          return {
+            ...goal,
+            goalTasks,
+          };
         } else {
           return goal;
         }
@@ -83,7 +92,10 @@ export const goalsReducer = (state = initialState, action) => {
                 ...task,
                 taskActiveDates: task.taskActiveDates.map(day => {
                   if (day._id === action.taskActiveDayId) {
-                    return { ...day, isDone: action.isDone };
+                    return {
+                      ...day,
+                      isDone: action.isDone,
+                    };
                   } else {
                     return day;
                   }
@@ -93,11 +105,17 @@ export const goalsReducer = (state = initialState, action) => {
               return task;
             }
           });
-          return { ...goal, goalTasks };
+          return {
+            ...goal,
+            goalTasks,
+          };
         } else {
           return goal;
         }
       });
+
+    case 'SAVE_EDIT_GOAL':
+      return action.arrGoals;
     default:
       return state;
   }
@@ -154,16 +172,16 @@ export const taskReducer = (store = initialState, action) => {
         }
       });
     case 'UPDATE_STATUS_TASK_ACTIVE_DAY':
-      console.log('start to task update');
       return store.map(task => {
-        console.log({ task, action });
         if (task.id === action.taskId) {
           return {
             ...task,
             activeDays: task.activeDays.map(day => {
               if (day.taskActiveDateId === action.taskActiveDayId) {
-                console.log({ updateDay: day });
-                return { ...day, isDone: action.isDone };
+                return {
+                  ...day,
+                  isDone: action.isDone,
+                };
               } else {
                 return day;
               }
@@ -199,7 +217,6 @@ export const weekTasksReducer = (
         arrDays: findActiveTaskOnWeek(weekPrev, store.date, payload),
       };
     case 'UPDATE_WEEK_TASKS':
-      console.log({ UPDATE_WEEK_TASKS: payload });
       return {
         date: payload.selectedTime,
         arrDays: findActiveTaskOnWeek(

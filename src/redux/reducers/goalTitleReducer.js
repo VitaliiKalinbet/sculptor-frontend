@@ -12,6 +12,8 @@ function goalTitle(state = '', action) {
       return '';
     case 'INPUT_GOAL_TITLE_CLEAR':
       return '';
+    case 'INPUT_GOAL_TITLE_IN_EDIT':
+      return action.title;
     default:
       return state;
   }
