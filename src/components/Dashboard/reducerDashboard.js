@@ -43,16 +43,24 @@ export const goalsReducer = (state = initialState, action) => {
         if (goal._id === action.goalId) {
           const goalTasks = goal.goalTasks.map(task => {
             if (task._id === action.taskId) {
-              return { ...task, taskActiveDates: action.selectedData };
+              return {
+                ...task,
+                taskActiveDates: action.selectedData,
+              };
             } else {
               return task;
             }
           });
-          return { ...goal, goalTasks };
+          return {
+            ...goal,
+            goalTasks,
+          };
         } else {
           return goal;
         }
       });
+    case 'DELETE_GOAL':
+      return state.filter(el => el._id !== action.idGoal);
     default:
       return state;
   }

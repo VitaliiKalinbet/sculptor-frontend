@@ -8,7 +8,10 @@ function initData(state = [], { type, payload, updatedGoal }) {
     case 'SAVE_GOAL':
       return state.map(goal =>
         goal._id === updatedGoal.activeGoalID
-          ? { ...goal, ...updatedGoal }
+          ? {
+              ...goal,
+              ...updatedGoal,
+            }
           : goal,
       );
     case 'ADD_GOAL':
