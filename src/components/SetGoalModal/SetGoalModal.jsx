@@ -13,15 +13,8 @@ import deleteGoalAction from '../../redux/actions/deleteGoalAction';
 
 import saveGoalActions from '../../redux/actions/saveGoalActions';
 import GoalActions from '../../redux/actions/saveGoalActions';
-import toggleSetEditGoalModal from '../../redux/actions/toggleSetEditGoalModalActions';
+import errorAction from '../../redux/actions/errorAction';
 import ModalGoalIconSelect from '../ModalGoalIconSelect/ModalGoalIconSelect';
-
-import goalMotivationActions from '../../redux/actions/goalMotivationActions';
-import goalTitleActions from '../../redux/actions/goalTitleActions';
-import goalAddTaskActions from '../../redux/actions/goalAddTaskActions';
-import { radioActionClearColor } from '../../redux/actions/radioAction';
-import { deleteFrozenGoalTasksInEditAction } from '../../redux/actions/frozenGoalTasksInEditAction';
-
 import api from '../../services/api';
 
 class SetGoalModal extends React.Component {
@@ -37,7 +30,7 @@ class SetGoalModal extends React.Component {
     goalMotivation,
     user,
   }) => {
-    const { addGoal, goals } = this.props;
+    const { addGoal, goals, addError, deleteError } = this.props;
     const newData = {
       goalTitle,
       goalColor,
@@ -50,37 +43,28 @@ class SetGoalModal extends React.Component {
       userId: user.userId,
     };
 
-    api.newGoal({ data: newData, token: user.token }).then(data => {
-      if (data.success) {
-        return addGoal(
-          data.goals.goalTitle,
-          data.goals.goalColor,
-          data.goals.goalTasks,
-          data.goals.goalMotivation,
-        );
-      }
-      return null;
-    });
+    api
+      .newGoal({ data: newData, token: user.token })
+      .then(data => {
+        if (data.success) {
+          addGoal(
+            data.goals.goalTitle,
+            data.goals.goalColor,
+            data.goals.goalTasks,
+            data.goals.goalMotivation,
+          );
+          deleteError();
+        }
+        addError('Goal not create, some proplem with server, please try later');
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   deleteGoalFunc = () => {
-    const {
-      activeGoalID,
-      deleteGoal,
-      closeModal,
-      inputMotivationClear,
-      inputGoalTitleClear,
-      inputTaskTitleClear,
-      clearColor,
-      deleteFrozenGoalTasksInEditActionFunc,
-    } = this.props;
+    const { activeGoalID, deleteGoal } = this.props;
     deleteGoal(activeGoalID);
-    inputMotivationClear();
-    inputGoalTitleClear();
-    inputTaskTitleClear();
-    clearColor();
-    deleteFrozenGoalTasksInEditActionFunc();
-    closeModal();
   };
 
   handleOnClickInEdit = () => {
@@ -89,33 +73,20 @@ class SetGoalModal extends React.Component {
       goalData,
       frozenGoalTasksInEdit,
       asyncSaveEditGoalFunc,
-      closeModal,
-      inputMotivationClear,
-      inputGoalTitleClear,
-      inputTaskTitleClear,
-      clearColor,
-      deleteFrozenGoalTasksInEditActionFunc,
     } = this.props;
     asyncSaveEditGoalFunc(editGoal, goalData, frozenGoalTasksInEdit);
-    inputMotivationClear();
-    inputGoalTitleClear();
-    inputTaskTitleClear();
-    clearColor();
-    deleteFrozenGoalTasksInEditActionFunc();
-    closeModal();
   };
 
   render() {
     const {
-      saveGoal,
       goalTitle,
       goalColor = 'a',
-      goals,
       goalMotivation,
       goalTasks,
       activeGoalID,
       modalType,
       user,
+      error,
     } = this.props;
 
     return (
@@ -153,6 +124,7 @@ class SetGoalModal extends React.Component {
             Delete
           </button>
         )}
+        {error && <p className={styles.error}>{error}</p>}
       </div>
     );
   }
@@ -175,6 +147,9 @@ SetGoalModal.propTypes = {
   frozenGoalTasksInEdit: PropTypes.array.isRequired,
   asyncSaveEditGoalFunc: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired,
+  addError: PropTypes.func.isRequired,
+  deleteError: PropTypes.func.isRequired,
 };
 
 SetGoalModal.defaultProps = {
@@ -193,6 +168,7 @@ function mapStateToProps(state) {
     editGoal: state.editGoal,
     goalData: state.goalData,
     frozenGoalTasksInEdit: state.frozenGoalTasksInEdit,
+    error: state.error,
   };
 }
 
@@ -235,15 +211,8 @@ function mapDispatchToProps(dispatch) {
           frozenGoalTasksInEdit,
         ),
       ),
-    closeModal: e => dispatch(toggleSetEditGoalModal.closeEditGoalModal(e)),
-    inputMotivationClear: () =>
-      dispatch(goalMotivationActions.inputMotivationClear()),
-    inputGoalTitleClear: () => dispatch(goalTitleActions.inputGoalTitleClear()),
-    inputTaskTitleClear: () =>
-      dispatch(goalAddTaskActions.inputTaskTitleClear()),
-    clearColor: () => dispatch(radioActionClearColor()),
-    deleteFrozenGoalTasksInEditActionFunc: () =>
-      dispatch(deleteFrozenGoalTasksInEditAction()),
+    addError: error => dispatch(errorAction.addErrorInStore(error)),
+    deleteError: () => dispatch(errorAction.deleteErrorFromStore()),
   };
 }
 
