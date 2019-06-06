@@ -9,12 +9,14 @@ import ModalGoalTitle from '../ModalGoalTitle/ModalGoalTitle';
 // import ModalGoalIconSelect from '../ModalGoalIconSelect/ModalGoalIconSelect';
 import ModalGoalTasks from '../ModalGoalTasks/ModalGoalTasks';
 import ModalGoalMotivation from '../ModalGoalMotivation/ModalGoalMotivation';
-import deleteGoalAction from '../../redux/actions/deleteGoalAction';
+import BasicButton from '../Button/BasicButton/BasicButton.jsx';
+import ModalDeleteGoal from '../ModalDeleteGoal/ModalDeleteGoal';
 
 import saveGoalActions from '../../redux/actions/saveGoalActions';
 import GoalActions from '../../redux/actions/saveGoalActions';
 import toggleSetEditGoalModal from '../../redux/actions/toggleSetEditGoalModalActions';
 import ModalGoalIconSelect from '../ModalGoalIconSelect/ModalGoalIconSelect';
+import ModalDeleteGoalActions from '../../redux/actions/ModalDeleteGoalActions';
 
 import api from '../../services/api';
 
@@ -43,24 +45,22 @@ class SetGoalModal extends React.Component {
       goalMotivation,
       userId: user.userId,
     };
-
-    api.newGoal({ data: newData, token: user.token }).then(data => {
-      if (data.success) {
-        return addGoal(
-          data.goals.goalTitle,
-          data.goals.goalColor,
-          data.goals.goalTasks,
-          data.goals.goalMotivation,
-        );
-      }
-      return null;
-    });
-  };
-
-  deleteGoalFunc = () => {
-    const { activeGoalID, deleteGoal, closeModal } = this.props;
-    deleteGoal(activeGoalID);
-    closeModal();
+    api
+      .newGoal({ data: newData, token: user.token })
+      .then(data => {
+        if (data.success) {
+          return addGoal(
+            data.goals.goalTitle,
+            data.goals.goalColor,
+            data.goals.goalTasks,
+            data.goals.goalMotivation,
+          );
+        }
+        // return null;
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   handleOnClickInEdit = () => {
@@ -75,17 +75,34 @@ class SetGoalModal extends React.Component {
     closeModal();
   };
 
-  render() {
+  saveGoalFunc = () => {
     const {
-      saveGoal,
       goalTitle,
       goalColor = 'a',
-      goals,
-      goalMotivation,
       goalTasks,
+      goalMotivation,
       activeGoalID,
-      modalType,
       user,
+      modalType,
+    } = this.props;
+    modalType !== 'SET'
+      ? this.handleOnClickInEdit()
+      : this.handleAddGoal({
+          goalTitle,
+          goalColor,
+          goalTasks,
+          goalMotivation,
+          activeGoalID,
+          user,
+        });
+  };
+
+  render() {
+    const {
+      goalTitle,
+      goalColor = 'a',
+      modalType,
+      toggleDeleteGoalModal,
     } = this.props;
 
     return (
@@ -97,32 +114,31 @@ class SetGoalModal extends React.Component {
         <ModalGoalIconSelect />
         <ModalGoalTasks />
         <ModalGoalMotivation />
-
-        <button
-          type="button"
-          onClick={() =>
-            modalType !== 'SET'
-              ? this.handleOnClickInEdit()
-              : this.handleAddGoal({
-                  goalTitle,
-                  goalColor,
-                  goalTasks,
-                  goalMotivation,
-                  activeGoalID,
-                  user,
-                })
-          }
-          disabled={
-            modalType === 'SET' ? !goalTitle.length || !goalColor.length : false
-          }
-        >
-          {modalType === 'SET' ? 'Create' : 'Save'}
-        </button>
-        {modalType === 'SET' ? null : (
-          <button type="button" onClick={this.deleteGoalFunc}>
-            Delete
-          </button>
-        )}
+        <div className={styles.buttonsContainer}>
+          <BasicButton
+            onClickFunc={this.saveGoalFunc}
+            isDisabled={
+              modalType === 'SET'
+                ? !goalTitle.length || !goalColor.length
+                : false
+            }
+            btnColor={'orange'}
+            btnText={modalType === 'SET' ? 'Create' : 'Save'}
+          />
+          {modalType === 'SET' ? null : (
+            <BasicButton
+              onClickFunc={toggleDeleteGoalModal}
+              isDisabled={
+                modalType === 'SET'
+                  ? !goalTitle.length || !goalColor.length
+                  : false
+              }
+              btnColor={'white'}
+              btnText={'Delete'}
+            />
+          )}
+        </div>
+        <ModalDeleteGoal />
       </div>
     );
   }
@@ -196,7 +212,6 @@ function mapDispatchToProps(dispatch) {
           activeGoalID,
         ),
       ),
-    deleteGoal: id => dispatch(deleteGoalAction.asyncDeleteGoal(id)),
     asyncSaveEditGoalFunc: (editGoal, goalData, frozenGoalTasksInEdit) =>
       dispatch(
         saveGoalActions.asyncSaveEditGoal(
@@ -206,6 +221,8 @@ function mapDispatchToProps(dispatch) {
         ),
       ),
     closeModal: e => dispatch(toggleSetEditGoalModal.closeEditGoalModal(e)),
+    toggleDeleteGoalModal: () =>
+      dispatch(ModalDeleteGoalActions.toggleDeleteGoalModal()),
   };
 }
 
