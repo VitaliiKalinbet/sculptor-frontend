@@ -26,15 +26,15 @@ export const updateAllGoalInfoHelper = (
   const onlyUpdateTasks = onlyOldTasks.filter(frozenItem => {
     for (let el of frozenTasks) {
       const changeWeekStatus = frozenItem.taskWeekRange.filter((week, indx) => {
-        console.log(
-          'el.taskWeekRange[indx].status :',
-          el.taskWeekRange[indx].status,
-        );
-        console.log('week :', week);
-        console.log('indx :', indx);
+        // console.log(
+        //   'el.taskWeekRange[indx].status :',
+        //   el.taskWeekRange[indx].status,
+        // );
+        // console.log('week :', week);
+        // console.log('indx :', indx);
         return week.status !== el.taskWeekRange[indx].status;
       });
-      console.log(changeWeekStatus);
+      // console.log(changeWeekStatus);
       if (frozenItem.taskTitle !== el.taskTitle || changeWeekStatus) {
         console.log('true');
         return true;

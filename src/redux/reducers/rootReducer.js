@@ -17,6 +17,7 @@ import editGoal from './goalEditModeReducer';
 import goalData from './goalReducer';
 import showPicker from './showPickerReducer';
 import frozenGoalTasksInEdit from './frozenGoalTasksInEditReducer';
+import error from './errorReducer';
 
 // import goals from './initData';
 import dateReducer from './dateReducer';
@@ -38,6 +39,7 @@ const rootReducer = combineReducers({
   isDeleteGoalModalOpen,
   showPicker,
   frozenGoalTasksInEdit,
+  error,
 });
 
 export default rootReducer;

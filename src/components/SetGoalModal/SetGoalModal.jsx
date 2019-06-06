@@ -14,7 +14,7 @@ import ModalDeleteGoal from '../ModalDeleteGoal/ModalDeleteGoal';
 
 import saveGoalActions from '../../redux/actions/saveGoalActions';
 import GoalActions from '../../redux/actions/saveGoalActions';
-import toggleSetEditGoalModal from '../../redux/actions/toggleSetEditGoalModalActions';
+import errorAction from '../../redux/actions/errorAction';
 import ModalGoalIconSelect from '../ModalGoalIconSelect/ModalGoalIconSelect';
 import ModalDeleteGoalActions from '../../redux/actions/ModalDeleteGoalActions';
 
@@ -33,7 +33,7 @@ class SetGoalModal extends React.Component {
     goalMotivation,
     user,
   }) => {
-    const { addGoal, goals } = this.props;
+    const { addGoal, goals, addError, deleteError } = this.props;
     const newData = {
       goalTitle,
       goalColor,
@@ -45,6 +45,7 @@ class SetGoalModal extends React.Component {
       goalMotivation,
       userId: user.userId,
     };
+
     api
       .newGoal({ data: newData, token: user.token })
       .then(data => {
@@ -55,13 +56,19 @@ class SetGoalModal extends React.Component {
             data.goals.goalTasks,
             data.goals.goalMotivation,
           );
+          deleteError();
         }
-        // return null;
+        addError('Goal not create, some proplem with server, please try later');
       })
       .catch(error => {
         console.log(error);
       });
   };
+
+  // deleteGoalFunc = () => {
+  //   const { activeGoalID, deleteGoal } = this.props;
+  //   deleteGoal(activeGoalID);
+  // };
 
   handleOnClickInEdit = () => {
     const {
@@ -69,18 +76,16 @@ class SetGoalModal extends React.Component {
       goalData,
       frozenGoalTasksInEdit,
       asyncSaveEditGoalFunc,
-      closeModal,
     } = this.props;
     asyncSaveEditGoalFunc(editGoal, goalData, frozenGoalTasksInEdit);
-    closeModal();
   };
 
   saveGoalFunc = () => {
     const {
       goalTitle,
       goalColor = 'a',
-      goalTasks,
       goalMotivation,
+      goalTasks,
       activeGoalID,
       user,
       modalType,
@@ -103,6 +108,7 @@ class SetGoalModal extends React.Component {
       goalColor = 'a',
       modalType,
       toggleDeleteGoalModal,
+      error,
     } = this.props;
 
     return (
@@ -138,6 +144,7 @@ class SetGoalModal extends React.Component {
             />
           )}
         </div>
+        {error && <p className={styles.error}>{error}</p>}
         <ModalDeleteGoal />
       </div>
     );
@@ -161,6 +168,9 @@ SetGoalModal.propTypes = {
   frozenGoalTasksInEdit: PropTypes.array.isRequired,
   asyncSaveEditGoalFunc: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired,
+  addError: PropTypes.func.isRequired,
+  deleteError: PropTypes.func.isRequired,
 };
 
 SetGoalModal.defaultProps = {
@@ -179,6 +189,7 @@ function mapStateToProps(state) {
     editGoal: state.editGoal,
     goalData: state.goalData,
     frozenGoalTasksInEdit: state.frozenGoalTasksInEdit,
+    error: state.error,
   };
 }
 
@@ -220,9 +231,11 @@ function mapDispatchToProps(dispatch) {
           frozenGoalTasksInEdit,
         ),
       ),
-    closeModal: e => dispatch(toggleSetEditGoalModal.closeEditGoalModal(e)),
+    closeModal: () => dispatch(toggleSetEditGoalModal.closeEditGoalModal()),
     toggleDeleteGoalModal: () =>
       dispatch(ModalDeleteGoalActions.toggleDeleteGoalModal()),
+    addError: error => dispatch(errorAction.addErrorInStore(error)),
+    deleteError: () => dispatch(errorAction.deleteErrorFromStore()),
   };
 }
 

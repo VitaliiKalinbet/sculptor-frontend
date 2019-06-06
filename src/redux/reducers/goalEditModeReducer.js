@@ -57,7 +57,7 @@ function editGoal(
     modalType: '',
     data: {},
   },
-  { type, modalType, data, id, name, checked, value },
+  { type, modalType, data, id, name, checked, value, taskId },
 ) {
   switch (type) {
     case 'EDIT_GOAL':
@@ -103,7 +103,6 @@ function editGoal(
         },
       };
     case 'ADD_TASK_IN_EDIT_GOAL':
-      console.log('initialTaskWeekRange', initialTaskWeekRange);
       return {
         ...state,
         data: {
@@ -160,7 +159,8 @@ function editGoal(
       const targetTask = state.data.goalTasks.find(el => {
         return el._id === id || el.name === id;
       });
-      targetTask.taskWeekRange[name].status = checked;
+      targetTask.taskWeekRange[name].status = !targetTask.taskWeekRange[name]
+        .status;
       return {
         ...state,
         data: {
@@ -176,7 +176,7 @@ function editGoal(
         data: {
           ...state.data,
           goalTasks: state.data.goalTasks.map(task => {
-            return name === task._id || name === task.name
+            return taskId === task._id
               ? {
                   ...task,
                   taskTitle: value,
