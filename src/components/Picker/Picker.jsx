@@ -13,6 +13,11 @@ import {
   setSelectedDates,
   clearSelectedData,
 } from '../../redux/actions/selectedDataAction';
+import Close from '@material-ui/icons/Close';
+import Icon from '@material-ui/core/Icon';
+import IconButton from '@material-ui/core/IconButton';
+import Dialog from '@material-ui/core/Dialog';
+import Fade from '@material-ui/core/Fade';
 import userTaskDate from '../../redux/actions/userTaskDateAction';
 import AsyncEditWeekDays from '../../redux/actions/editAktivDaysFetch';
 import { changeActiveDatesInTask } from './changeActiveDatesInTaskAction';
@@ -46,7 +51,7 @@ class Picker extends Component {
       prevDateClass.getFullYear() === newDateClass.getFullYear() &&
       prevDateClass.getMonth() === newDateClass.getMonth() &&
       prevDateClass.getDay() === newDateClass.getDay();
-    // console.log(statusCompare);
+
     return statusCompare;
   };
 
@@ -131,56 +136,63 @@ class Picker extends Component {
   };
 
   render() {
+    const { open } = this.props;
     const { userDates, task, goalId } = this.state;
 
     return (
-      <div
-        className="calendarWrapper"
-        onClick={e => {
-          this.handlerClose;
-        }}
-      >
-        <div className="calendar">
-          <button onClick={this.handlerClose} className={'calendar__button'}>
-            X
-          </button>
-          <InfiniteCalendar
-            min={new Date(userDates.allWeeks[0].date)}
-            max={new Date(userDates.allWeeks[62].date)}
-            minDate={new Date(userDates.allWeeks[0].date)}
-            maxDate={new Date(userDates.allWeeks[62].date)}
-            Component={withMultipleDates(Calendar)}
-            selected={this.props.selectedData}
-            disabledDates={userDates.userDisabledWeeks.map(
-              el => new Date(el.date),
-            )}
-            interpolateSelection={defaultMultipleDateInterpolation}
-            onSelect={this.actionData}
-            keyboardSupport={true}
-            width={window.innerWidth <= 650 ? window.innerWidth : 350}
-            height={200}
-            rowHeight={70}
-            theme={{
-              selectionColor: '#223653',
-              textColor: {
-                default: '#333',
-                active: '#FFF',
-              },
-              weekdayColor: '#223653',
-              headerColor: '#223653',
-              floatingNav: {
-                background: '#223653',
-                color: '#FFF',
-                chevron: '#FFA726',
-              },
-            }}
-            displayOptions={{ hideYearsOnSelect: false }}
-            locale={{
-              weekStartsOn: 1,
-            }}
-          />
-        </div>
-      </div>
+      <Dialog open={open} onClose={this.handlerClose}>
+        <Fade in={open}>
+          <div className="calendar">
+            <IconButton
+              onClick={this.handlerClose}
+              type="button"
+              size="small"
+              color="primary"
+              aria-label="Close"
+              style={{ marginLeft: '85%' }}
+            >
+              <Icon>
+                <Close style={{ fill: '#fff' }} />
+              </Icon>
+            </IconButton>
+            <InfiniteCalendar
+              min={new Date(userDates.allWeeks[0].date)}
+              max={new Date(userDates.allWeeks[62].date)}
+              minDate={new Date(userDates.allWeeks[0].date)}
+              maxDate={new Date(userDates.allWeeks[62].date)}
+              Component={withMultipleDates(Calendar)}
+              selected={this.props.selectedData}
+              disabledDates={userDates.userDisabledWeeks.map(
+                el => new Date(el.date),
+              )}
+              interpolateSelection={defaultMultipleDateInterpolation}
+              onSelect={this.actionData}
+              keyboardSupport={true}
+              width={window.innerWidth <= 650 ? window.innerWidth : 380}
+              height={240}
+              rowHeight={56}
+              theme={{
+                selectionColor: '#223653',
+                textColor: {
+                  default: '#333',
+                  active: '#FFF',
+                },
+                weekdayColor: '#223653',
+                headerColor: '#223653',
+                floatingNav: {
+                  background: '#223653',
+                  color: '#FFF',
+                  chevron: '#FFA726',
+                },
+              }}
+              displayOptions={{ hideYearsOnSelect: false }}
+              locale={{
+                weekStartsOn: 1,
+              }}
+            />
+          </div>
+        </Fade>
+      </Dialog>
     );
   }
 }
