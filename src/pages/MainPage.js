@@ -48,7 +48,9 @@ class App extends Component {
             <SetGoalModal modalType={editGoal.modalType} />
           </Backdrop>
         )}
-        {showPicker.openPickerModal && <Picker />}
+        {showPicker.openPickerModal && (
+          <Picker open={showPicker.openPickerModal} />
+        )}
       </>
     );
   }
