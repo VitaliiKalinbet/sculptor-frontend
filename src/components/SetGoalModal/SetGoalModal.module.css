@@ -7,6 +7,12 @@
   min-width: 70rem;
 }
 
+.buttonsContainer {
+  max-width: 30rem;
+  display: flex;
+  padding-left: 1.4rem;
+}
+
 .error {
   font-size: 1rem;
   margin: 1rem auto;
