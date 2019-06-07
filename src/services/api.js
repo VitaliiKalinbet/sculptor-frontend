@@ -15,26 +15,17 @@ if (getToken) {
 }
 
 const register = ({ email, password, name }) =>
-  axiosInstance
-    .post('/register', {
-      email,
-      password,
-      name,
-    })
-    .then(res => res.data)
-    .catch(err => err);
+  axiosInstance.post('/register', {
+    email,
+    password,
+    name,
+  });
 
 const login = ({ username, password }) =>
-  axiosInstance
-    .post('/login', {
-      username,
-      password,
-    })
-    .then(res => ({
-      userId: res.data.userId,
-      token: res.data.token,
-    }))
-    .catch(err => err);
+  axiosInstance.post('/login', {
+    username,
+    password,
+  });
 
 const getGoals = ({ userId, token }) =>
   axiosInstance
