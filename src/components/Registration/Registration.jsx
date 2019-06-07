@@ -1,10 +1,9 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import './Registration.css';
-import './Registration768.css';
-import './Registration320.css';
+import styles from './Registration.module.css';
 
 // import { signInWithEmailAndPassword } from '../../server';
 import Grid from '@material-ui/core/Grid';
@@ -25,6 +24,9 @@ const isPasswordValid = (password, confirmPassword) =>
 
 const isNameValid = name => name.length !== 0;
 
+const registerErrorUserExist =
+  'This user already exists, enter a different email';
+
 class Registration extends Component {
   constructor(props) {
     super(props);
@@ -33,25 +35,46 @@ class Registration extends Component {
       email: '',
       password: '',
       confirmPassword: '',
+      error: '',
     };
   }
 
   handlerOnSubmit = e => {
     e.preventDefault();
     const { history } = this.props;
-    const { name, email, password } = this.state;
+    const { name, email, password, confirmPassword } = this.state;
 
-    API.register({
-      email,
-      password,
-      name,
-    })
-      .then(data => {
-        if (data.success) history.push('/login');
-      })
-      .catch(err => {
-        throw err;
+    if (password === confirmPassword) {
+      if (password.length >= 6) {
+        console.log('password :', password);
+        console.log('confirmPassword :', confirmPassword);
+        API.register({
+          email,
+          password,
+          name,
+        })
+          .then(res => {
+            if (res.data.success) history.push('/login');
+            this.setState({ error: '' });
+          })
+          .catch(error => {
+            if (error.response) {
+              console.log('error.response.data :', error.response.data);
+              if (!error.response.data.success)
+                this.setState({ error: registerErrorUserExist });
+            }
+            console.log(error);
+          });
+      } else {
+        this.setState({
+          error: 'The password must contain at least 6 characters',
+        });
+      }
+    } else {
+      this.setState({
+        error: 'Different password, please enter correct password',
       });
+    }
   };
 
   handleChange = name => event => {
@@ -59,19 +82,29 @@ class Registration extends Component {
   };
 
   render() {
-    const { email, password, confirmPassword, name } = this.state;
+    const { email, password, confirmPassword, name, error } = this.state;
     return (
-      <div className="Registration">
+      <div className={styles.Registration}>
         <Grid container>
-          <Grid className="Registration-column" item lg={4} sm={4} xs={12}>
+          <Grid
+            className={styles.Registration_column}
+            item
+            lg={4}
+            sm={4}
+            xs={12}
+          >
             <Grid container direction="column">
               <Grid item>
-                <h1 className="h1 text-center">Sculptor</h1>
+                <h1 className={`${styles.h1} ${styles.text_center}`}>
+                  Sculptor
+                </h1>
               </Grid>
               <Grid item>
                 <form
                   onSubmit={e => this.handlerOnSubmit(e)}
-                  className="form flex-column center-box shadow padding-all-25"
+                  className={`${styles.form} ${styles.flex_column} ${
+                    styles.center_box
+                  } ${styles.shadow} ${styles.padding_all_25}`}
                   method="post"
                 >
                   <input
@@ -79,12 +112,12 @@ class Registration extends Component {
                     value={email}
                     className={
                       email.length > 0
-                        ? `form-input ${
+                        ? `${styles.form_input} ${
                             isEmailValid(email)
-                              ? 'input__valid'
-                              : 'input__invalid'
+                              ? `${styles.input__valid}`
+                              : `${styles.input__invalid}`
                           }`
-                        : 'form-input'
+                        : `${styles.form_input}`
                     }
                     type="email"
                     name="email"
@@ -97,12 +130,12 @@ class Registration extends Component {
                     value={password}
                     className={
                       password.length > 0
-                        ? `form-input ${
+                        ? `${styles.form_input} ${
                             isPasswordValid(password, confirmPassword)
-                              ? 'input__valid'
-                              : 'input__invalid'
+                              ? `${styles.input__valid}`
+                              : `${styles.input__invalid}`
                           }`
-                        : 'form-input'
+                        : `${styles.form_input}`
                     }
                     type="password"
                     name="password"
@@ -115,12 +148,12 @@ class Registration extends Component {
                     value={confirmPassword}
                     className={
                       confirmPassword.length > 0
-                        ? `form-input ${
+                        ? `${styles.form_input} ${
                             isPasswordValid(password, confirmPassword)
-                              ? 'input__valid'
-                              : 'input__invalid'
+                              ? `${styles.input__valid}`
+                              : `${styles.input__invalid}`
                           }`
-                        : 'form-input'
+                        : `${styles.form_input}`
                     }
                     type="password"
                     name="confirmPassword"
@@ -133,8 +166,8 @@ class Registration extends Component {
                     value={name}
                     className={
                       name.length > 3
-                        ? 'input__valid form-input'
-                        : 'input__invalid form-input'
+                        ? `${styles.input__valid} ${styles.form_input}`
+                        : `${styles.input__invalid} ${styles.form_input}`
                     }
                     type="text"
                     name="name"
@@ -148,18 +181,19 @@ class Registration extends Component {
                       !isPasswordValid(password, confirmPassword) &&
                       !isNameValid(name)
                     }
-                    className="btn"
+                    className={styles.btn}
                     type="submit"
                     label="Register"
                   >
                     Register
                   </button>
-                  <p className="text-center">
+                  <p className={styles.text_center}>
                     <NavLink to="/login" className="link">
                       Login
                     </NavLink>
                   </p>
                 </form>
+                {error && <p className={styles.Registration_error}>{error}</p>}
               </Grid>
             </Grid>
           </Grid>
