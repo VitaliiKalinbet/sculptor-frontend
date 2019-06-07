@@ -72,7 +72,7 @@ const asyncSaveEditGoal = (
         dispatch(saveEditGoal(data.data.goals));
       } else {
         dispatch(
-          errorAction.addErrorInStore(
+          errorAction.addSaveGoalErrorInStore(
             'Data not saved, some problem with server, please try again later',
           ),
         );
@@ -80,8 +80,10 @@ const asyncSaveEditGoal = (
     })
     .catch(error => {
       console.log(error);
-      errorAction.addErrorInStore(
-        'Data not saved, some problem with server, please try again later',
+      dispatch(
+        errorAction.addSaveGoalErrorInStore(
+          'Data not saved, some problem with server, please try again later',
+        ),
       );
     });
 };

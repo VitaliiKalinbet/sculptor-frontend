@@ -1,5 +1,10 @@
-const addErrorInStore = error => ({
-  type: 'ADD_ERROR_IN_STORE',
+const addSaveGoalErrorInStore = error => ({
+  type: 'ADD_SAVE_GOAL_ERROR_IN_STORE',
+  error,
+});
+
+const addDeleteGoalErrorInStore = error => ({
+  type: 'ADD_DELETE_GOAL_ERROR_IN_STORE',
   error,
 });
 
@@ -8,6 +13,7 @@ const deleteErrorFromStore = () => ({
 });
 
 export default {
-  addErrorInStore,
+  addSaveGoalErrorInStore,
+  addDeleteGoalErrorInStore,
   deleteErrorFromStore,
 };

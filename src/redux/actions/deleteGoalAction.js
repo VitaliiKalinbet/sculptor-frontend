@@ -5,6 +5,8 @@ import goalTitleActions from './goalTitleActions';
 import goalAddTaskActions from './goalAddTaskActions';
 import { radioActionClearColor } from './radioAction';
 import { deleteFrozenGoalTasksInEditAction } from './frozenGoalTasksInEditAction';
+import ModalDeleteGoalActions from './ModalDeleteGoalActions';
+import errorAction from './errorAction';
 
 const deleteGoalFromState = idGoal => ({
   type: 'DELETE_GOAL',
@@ -23,13 +25,24 @@ const asyncDeleteGoal = goalId => dispatch => {
         dispatch(radioActionClearColor());
         dispatch(deleteFrozenGoalTasksInEditAction());
         dispatch(toggleSetEditGoalModal.closeEditGoalModal());
+        dispatch(ModalDeleteGoalActions.toggleDeleteGoalModal());
       } else {
-        // eslint-disable-next-line no-console
-        console.log('!!! error message action is dispatched here !!!');
+        dispatch(
+          errorAction.addDeleteGoalErrorInStore(
+            'Goal not deleted, some problem with server, please try again later',
+          ),
+        );
       }
     })
-    // eslint-disable-next-line no-console
-    .catch(error => console.log(error));
+    .catch(error => {
+      // eslint-disable-next-line no-console
+      console.log(error);
+      dispatch(
+        errorAction.addDeleteGoalErrorInStore(
+          'Goal not deleted, some problem with server, please try again later',
+        ),
+      );
+    });
 };
 
 export default {

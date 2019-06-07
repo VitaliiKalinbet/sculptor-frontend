@@ -13,6 +13,7 @@ import BasicButton from '../Button/BasicButton/BasicButton.jsx';
 
 import ModalDeleteGoalActions from '../../redux/actions/ModalDeleteGoalActions';
 import deleteGoalAction from '../../redux/actions/deleteGoalAction';
+import errorAction from '../../redux/actions/errorAction';
 
 import './ModalDeleteGoal.css';
 
@@ -29,13 +30,18 @@ const ModalDeleteGoal = ({
   toggleDeleteGoalModal,
   deleteGoal,
   activeGoalID,
+  error,
+  deleteError,
 }) => {
   return (
     <Grid container>
       <Grid item>
         <Dialog
           open={isDeleteGoalModalOpen}
-          onClose={toggleDeleteGoalModal}
+          onClose={() => {
+            toggleDeleteGoalModal();
+            deleteError();
+          }}
           PaperComponent={PaperComponent}
           aria-labelledby="draggable-dialog-title"
         >
@@ -52,6 +58,7 @@ const ModalDeleteGoal = ({
                 <BasicButton
                   onClickFunc={() => {
                     toggleDeleteGoalModal();
+                    deleteError();
                   }}
                   isDisabled={false}
                   btnColor={'white'}
@@ -69,6 +76,9 @@ const ModalDeleteGoal = ({
               </Grid>
             </Grid>
           </DialogActions>
+          {error.errorOnDelete && (
+            <p className={'error'}>{error.errorOnDelete}</p>
+          )}
         </Dialog>
       </Grid>
     </Grid>
@@ -79,6 +89,7 @@ function mapStateToProps(state) {
   return {
     isDeleteGoalModalOpen: state.isDeleteGoalModalOpen,
     activeGoalID: state.goalData.activeGoalID,
+    error: state.error,
   };
 }
 
@@ -87,12 +98,14 @@ function mapDispatchToProps(dispatch) {
     deleteGoal: id => dispatch(deleteGoalAction.asyncDeleteGoal(id)),
     toggleDeleteGoalModal: () =>
       dispatch(ModalDeleteGoalActions.toggleDeleteGoalModal()),
+    deleteError: () => dispatch(errorAction.deleteErrorFromStore()),
   };
 }
 
 ModalDeleteGoal.propTypes = {
   isDeleteGoalModalOpen: PropTypes.bool,
   toggleDeleteGoalModal: PropTypes.func.isRequired,
+  deleteError: PropTypes.func.isRequired,
 };
 
 ModalDeleteGoal.defaultProps = {

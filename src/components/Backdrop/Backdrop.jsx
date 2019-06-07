@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
@@ -12,6 +13,7 @@ import goalTitleActions from '../../redux/actions/goalTitleActions';
 import goalAddTaskActions from '../../redux/actions/goalAddTaskActions';
 import { radioActionClearColor } from '../../redux/actions/radioAction';
 import { deleteFrozenGoalTasksInEditAction } from '../../redux/actions/frozenGoalTasksInEditAction';
+import errorAction from '../../redux/actions/errorAction';
 
 const Backdrop = ({
   children,
@@ -21,6 +23,7 @@ const Backdrop = ({
   inputTaskTitleClear,
   clearColor,
   deleteFrozenGoalTasksInEditActionFunc,
+  deleteError,
 }) => {
   return (
     <div
@@ -33,6 +36,7 @@ const Backdrop = ({
         inputTaskTitleClear();
         clearColor();
         deleteFrozenGoalTasksInEditActionFunc();
+        deleteError();
       }}
     >
       {children}
@@ -48,6 +52,7 @@ Backdrop.propTypes = {
   inputTaskTitleClear: PropTypes.func.isRequired,
   clearColor: PropTypes.func.isRequired,
   deleteFrozenGoalTasksInEditActionFunc: PropTypes.func.isRequired,
+  deleteError: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -67,6 +72,7 @@ function mapDispatchToProps(dispatch) {
     clearColor: () => dispatch(radioActionClearColor()),
     deleteFrozenGoalTasksInEditActionFunc: () =>
       dispatch(deleteFrozenGoalTasksInEditAction()),
+    deleteError: () => dispatch(errorAction.deleteErrorFromStore()),
   };
 }
 
