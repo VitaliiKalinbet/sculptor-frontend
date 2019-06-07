@@ -38,6 +38,18 @@ class Picker extends Component {
     );
   }
 
+  compareDate = ({ prevDate, newDate }) => {
+    const prevDateClass = new Date(prevDate);
+    const newDateClass = new Date(newDate);
+
+    const statusCompare =
+      prevDateClass.getFullYear() === newDateClass.getFullYear() &&
+      prevDateClass.getMonth() === newDateClass.getMonth() &&
+      prevDateClass.getDay() === newDateClass.getDay();
+    // console.log(statusCompare);
+    return statusCompare;
+  };
+
   handlerClose = e => {
     const {
       selectedData,
@@ -47,10 +59,17 @@ class Picker extends Component {
     } = this.props;
     const { task, goalId } = this.state;
     const taskId = task._id;
-    const fixedSelectedData = selectedData.map(el => ({
-      date: Date.parse(el),
-      isDone: false,
-    }));
+    const fixedSelectedData = selectedData.map(el => {
+      const getReallyIsDone = task.taskActiveDates.find(date =>
+        this.compareDate({ prevDate: date.date, newDate: el }),
+      );
+
+      const getStatus = getReallyIsDone ? getReallyIsDone.isDone : false;
+      return {
+        date: Date.parse(el),
+        isDone: getStatus,
+      };
+    });
     changeActiveDatesInTask({
       taskId,
       selectedData: fixedSelectedData,
