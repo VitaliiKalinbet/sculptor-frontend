@@ -50,25 +50,26 @@ class SetGoalModal extends React.Component {
       .newGoal({ data: newData, token: user.token })
       .then(data => {
         if (data.success) {
+          deleteError();
           return addGoal(
             data.goals.goalTitle,
             data.goals.goalColor,
             data.goals.goalTasks,
             data.goals.goalMotivation,
           );
-          deleteError();
+        } else {
+          addError(
+            'Goal not created, some problem with server, please try again later',
+          );
         }
-        addError('Goal not create, some proplem with server, please try later');
       })
       .catch(error => {
+        addError(
+          'Goal not created, some problem with server, please try again later',
+        );
         console.log(error);
       });
   };
-
-  // deleteGoalFunc = () => {
-  //   const { activeGoalID, deleteGoal } = this.props;
-  //   deleteGoal(activeGoalID);
-  // };
 
   handleOnClickInEdit = () => {
     const {
@@ -144,7 +145,9 @@ class SetGoalModal extends React.Component {
             />
           )}
         </div>
-        {error && <p className={styles.error}>{error}</p>}
+        {error.errorOnSave && (
+          <p className={styles.error}>{error.errorOnSave}</p>
+        )}
         <ModalDeleteGoal />
       </div>
     );
@@ -234,7 +237,7 @@ function mapDispatchToProps(dispatch) {
     closeModal: () => dispatch(toggleSetEditGoalModal.closeEditGoalModal()),
     toggleDeleteGoalModal: () =>
       dispatch(ModalDeleteGoalActions.toggleDeleteGoalModal()),
-    addError: error => dispatch(errorAction.addErrorInStore(error)),
+    addError: error => dispatch(errorAction.addSaveGoalErrorInStore(error)),
     deleteError: () => dispatch(errorAction.deleteErrorFromStore()),
   };
 }
