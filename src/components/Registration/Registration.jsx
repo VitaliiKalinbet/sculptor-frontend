@@ -42,25 +42,39 @@ class Registration extends Component {
   handlerOnSubmit = e => {
     e.preventDefault();
     const { history } = this.props;
-    const { name, email, password } = this.state;
+    const { name, email, password, confirmPassword } = this.state;
 
-    API.register({
-      email,
-      password,
-      name,
-    })
-      .then(res => {
-        if (res.data.success) history.push('/login');
-        this.setState({ error: '' });
-      })
-      .catch(error => {
-        if (error.response) {
-          console.log('error.response.data :', error.response.data);
-          if (!error.response.data.success)
-            this.setState({ error: registerErrorUserExist });
-        }
-        console.log(error);
+    if (password === confirmPassword) {
+      if (password.length >= 6) {
+        console.log('password :', password);
+        console.log('confirmPassword :', confirmPassword);
+        API.register({
+          email,
+          password,
+          name,
+        })
+          .then(res => {
+            if (res.data.success) history.push('/login');
+            this.setState({ error: '' });
+          })
+          .catch(error => {
+            if (error.response) {
+              console.log('error.response.data :', error.response.data);
+              if (!error.response.data.success)
+                this.setState({ error: registerErrorUserExist });
+            }
+            console.log(error);
+          });
+      } else {
+        this.setState({
+          error: 'The password must contain at least 6 characters',
+        });
+      }
+    } else {
+      this.setState({
+        error: 'Different password, please enter correct password',
       });
+    }
   };
 
   handleChange = name => event => {
