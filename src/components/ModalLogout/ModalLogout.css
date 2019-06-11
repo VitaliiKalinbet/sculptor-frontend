@@ -1,12 +1,8 @@
 .DialogActions {
-  /* margin-bottom: 3rem !important; */
   width: 45rem;
 }
 
 .DialogTitle {
-  /* padding: 4rem !important;
-  font-size: 2.5rem;
-  font-family: 'Roboto'; */
   margin: 4rem auto 0 !important;
   font-size: 2.4rem;
   font-weight: 500;
@@ -16,6 +12,7 @@
   line-height: 1.5;
 }
 
-/* .ModalLogout__btn--logout {
-  color: inherit;
-} */
+.LogoutButton {
+  text-transform: capitalize !important;
+  font-size: 1.2rem !important;
+}

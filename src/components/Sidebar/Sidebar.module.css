@@ -12,6 +12,7 @@
   background-position: center;
   background-repeat: no-repeat;
   color: #ffffff;
+  z-index: 1000;
 }
 
 .Title {
@@ -32,12 +33,13 @@
   fill: #c5cdcd;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 968px) {
   .Sidebar {
     position: fixed;
     left: 0;
     transform: translateX(-100%);
     transition: 0.5s ease-in-out;
+    z-index: 1000;
   }
   .Sidebar_show {
     transform: translateX(0);

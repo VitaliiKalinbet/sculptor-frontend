@@ -36,9 +36,9 @@ const ModalLogout = ({
   return (
     <div>
       <Button
-        color="inherit"
         onClick={toggleLogoutModal}
-        className="header__router logout"
+        color="inherit"
+        className="LogoutButton"
       >
         Logout
       </Button>

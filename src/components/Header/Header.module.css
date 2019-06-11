@@ -1,0 +1,174 @@
+.header {
+  background-color: #0c3351;
+  color: #eee;
+  font-size: 1.4rem;
+  height: 5.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__logo,
+.header__icon > span,
+.logout {
+  font-family: 'Roboto Bold';
+  font-size: 1.4rem;
+}
+
+.header__icon.more {
+  margin-left: 0.6rem;
+  cursor: pointer;
+}
+
+.header__router {
+  color: #c5cdcd;
+  line-height: 100%;
+}
+
+.header__router > span {
+  display: none;
+  font-size: 1.2rem;
+}
+
+.header__router.dashboard {
+  margin: 0 2rem 0 1.3rem;
+}
+
+.header__icons {
+  z-index: 100;
+}
+
+.header__icon {
+  fill: #c5cdcd;
+  z-index: 1;
+}
+
+.header__logo {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  z-index: 0;
+}
+
+.logout__container {
+  position: absolute;
+  right: 0;
+  color: #c5cdcd;
+}
+
+.datepicker__container {
+  position: fixed;
+  bottom: 0;
+}
+
+/* Transitions */
+.header__router > span,
+.header__icon,
+.logout {
+  transition-duration: 0.3s;
+}
+
+.header__router:hover > .header__icon {
+  fill: #f6e;
+}
+
+.header__router:hover {
+  color: #f6e;
+}
+
+/* @media only screen and (min-width: 359px) {
+} */
+
+@media only screen and (min-width: 460px) {
+  .header__icon.more {
+    position: absolute;
+    top: -78px;
+    margin-left: 0;
+  }
+
+  .header__icons {
+    position: relative;
+    top: 79px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 29px 13px;
+  }
+
+  .header__router.dashboard {
+    margin-left: 1.3rem;
+  }
+
+  .header__router.results {
+    margin-right: 1.6rem;
+  }
+
+  .datepicker__container {
+    position: absolute;
+    top: -1rem;
+    left: 50%;
+    margin-left: -125px;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .header__router {
+    display: flex;
+    align-items: center;
+  }
+
+  .header {
+    background-color: transparent;
+    margin: 2.8rem 0;
+    height: 4.3rem;
+  }
+
+  .header__logo {
+    display: none;
+  }
+
+  .header__router > span {
+    display: initial;
+    margin-left: 1rem;
+  }
+  .header__icons {
+    position: relative;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: 100%;
+    margin-left: 1.4rem;
+    margin-right: 1.4rem;
+  }
+
+  .datepicker__container {
+    margin-left: -15rem;
+  }
+
+  .logout__container {
+    margin-right: 1.4rem;
+  }
+}
+@media screen and (min-width: 968px) {
+  .header__icon.more {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .header__icons {
+    width: 100%;
+    justify-content: left;
+  }
+
+  .datepicker__container {
+    position: absolute;
+    left: 50%;
+    margin-left: -15rem;
+  }
+  .header__icons {
+    margin-left: 1.4rem;
+  }
+}

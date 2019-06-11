@@ -15,27 +15,31 @@ import { weekTasksAction } from './weekAction';
 // card wrapper
 const Container = styled.div`
   margin: auto;
-  width: 32rem;
+  // width: 32rem;
+  // width: 100%;
   padding: 3rem;
   background-color: #eee;
   display: flex;
   flex-direction: column;
   flex: 0 0 calc(100%-260px);
-  height: 44rem;
-  overflow: scroll;
+  // height: 44rem;
+  // overflow: scroll;
   @media (min-width: 767px) {
     overflow: auto;
-    width: 100%;
-    height: calc(100vh - 12.14rem);
+    // width: 100%;
+    width: 70rem;
+    // height: calc(100vh - 12.14rem);
+    // height: 100vh;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: flex-start;
   }
-  @media (min-width: 1200px) {
-    width: 100%;
+  @media (min-width: 1280px) {
+    // width: 100%;
+    width: 100rem;
     flex-direction: row;
-    justify-content: space-between;
+    // justify-content: space-between;
     align-items: center;
   }
 `;
@@ -56,6 +60,7 @@ const Dash = styled.div`
   display: flex;
   flex-direction: column;
   width: auto;
+  background-color: #eee;
 `;
 class Dashboard extends Component {
   constructor(props) {
