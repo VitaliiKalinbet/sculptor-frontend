@@ -10,7 +10,7 @@ const CardItem = styled.div`
   box-shadow: 0 0 6px 1px #b9b9b9;
   border-radius: 2px;
   :not(:last-child) {
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
   }
   width: 29.5rem;
   height: 210px;
