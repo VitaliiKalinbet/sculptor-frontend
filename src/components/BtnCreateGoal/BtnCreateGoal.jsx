@@ -13,7 +13,7 @@ const styles = theme => ({
     borderRadius: '0',
     border: '1px solid #ffff',
     color: '#ffff',
-    textTransform: 'capitalize',
+    textTransform: 'none',
     fontSize: '1.4rem',
     '&:hover': {
       backgroundColor: '#263f60',
@@ -27,7 +27,7 @@ const styles = theme => ({
     borderRadius: '0',
     border: 'none',
     color: '#ffff',
-    textTransform: 'capitalize',
+    textTransform: 'none',
     fontSize: '1.4rem',
     '&:hover': {
       backgroundColor: '#263f60',

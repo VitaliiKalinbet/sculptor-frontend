@@ -8,16 +8,24 @@
 
 .main__right {
   flex: auto;
+  background-color: #eee;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (min-width: 460px) {
   .main__container {
     margin-top: 10rem;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .main__container {
+    margin-top: 0;
   }
 }
 
 @media (min-width: 1280px) {
   .main__right {
     background-color: #eee;
+    /* padding: 0 5rem; */
   }
 }

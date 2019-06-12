@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import TaskList from '../TaskList/TaskList';
 import EditBtn from '../../BtnEditGoal/BtnEditGoal';
+import Lens from '@material-ui/icons/Lens';
+
 import SetEditGoalModal from '../../../redux/actions/toggleSetEditGoalModalActions';
 import { addGoalColor } from '../../../redux/actions/radioAction';
 import goalAddTaskActions from '../../../redux/actions/goalAddTaskActions';
@@ -25,10 +27,9 @@ const GoalItem = ({
   return (
     <li className={s.List}>
       <div className={s.Title}>
-        <span
-          className={s.Color}
-          style={{ backgroundColor: `${data.goalColor}` }}
-        />
+        <div style={{ color: `${data.goalColor}` }}>
+          <Lens fontSize="large" color="inherit" />
+        </div>
         <h2 className={s.SubTitle}>{data.goalTitle}</h2>
         <EditBtn
           onClick={e => {
