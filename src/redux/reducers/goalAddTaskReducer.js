@@ -70,7 +70,7 @@ function goalTasksFunc(state = goalTasks, action) {
       });
     case 'DELETE_TASK':
       if (state.length === 1) {
-        return goalTasks;
+        return [];
       }
 
       if (action.name.length === 13) {
@@ -78,6 +78,8 @@ function goalTasksFunc(state = goalTasks, action) {
         return action.goalTasks.filter(task => action.name !== task.name);
       }
 
+      console.log('action.name :', action.name);
+      console.log('task._id :', task._id);
       return action.goalTasks.filter(task => task._id !== action.name);
     case 'ADD_TASK':
       return [
