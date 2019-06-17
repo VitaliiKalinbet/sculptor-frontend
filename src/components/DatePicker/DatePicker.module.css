@@ -1,9 +1,8 @@
 .header__date {
-  position: absolute;
-  bottom: 0;
   height: 6.5rem;
   background-color: #0c3351;
   width: 100vw;
+  padding: 1.1rem;
 }
 
 .datePicker {
@@ -76,29 +75,17 @@
   fill: #f6e;
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and (min-width: 460px) {
   .header__date {
-    padding: 1.1rem;
-  }
-}
-
-@media only screen and (min-width: 321px) {
-  .header__date {
-    position: initial;
+    padding: 0;
     background-color: transparent;
     width: 25rem;
     height: 4.3rem;
-    line-height: 4.3rem;
   }
 }
 
 @media only screen and (min-width: 769px) {
   .header__date {
     width: 30rem;
-    position: absolute;
-    top: 0;
-    left: 390px;
-    right: 0;
-    text-align: center;
   }
 }

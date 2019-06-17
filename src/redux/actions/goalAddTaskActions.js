@@ -23,10 +23,18 @@ const addTasksWhenEditMode = arrTasks => ({
   arrTasks,
 });
 
+const onchangeActionInEdit = (e, name) => ({
+  type: 'INPUT_TASK_TITLE_CHANGE_IN_EDIT',
+  value: e.target.value,
+  taskId: e.target.name,
+  name,
+});
+
 export default {
   inputTaskTitle,
   deleteTask,
   addTask,
   inputTaskTitleClear,
   addTasksWhenEditMode,
+  onchangeActionInEdit,
 };

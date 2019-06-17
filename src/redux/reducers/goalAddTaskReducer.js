@@ -70,7 +70,7 @@ function goalTasksFunc(state = goalTasks, action) {
       });
     case 'DELETE_TASK':
       if (state.length === 1) {
-        return goalTasks;
+        return [];
       }
 
       if (action.name.length === 13) {
@@ -78,14 +78,54 @@ function goalTasksFunc(state = goalTasks, action) {
         return action.goalTasks.filter(task => action.name !== task.name);
       }
 
+      console.log('action.name :', action.name);
+      console.log('task._id :', task._id);
       return action.goalTasks.filter(task => task._id !== action.name);
     case 'ADD_TASK':
       return [
         ...state,
         {
-          ...initialTask,
+          taskTitle: '',
           _id: uuid(),
           name: String(Date.now()),
+          taskWeekRange: [
+            {
+              week: 1,
+              status: false,
+            },
+            {
+              week: 2,
+              status: false,
+            },
+            {
+              week: 3,
+              status: false,
+            },
+            {
+              week: 4,
+              status: false,
+            },
+            {
+              week: 5,
+              status: false,
+            },
+            {
+              week: 6,
+              status: false,
+            },
+            {
+              week: 7,
+              status: false,
+            },
+            {
+              week: 8,
+              status: false,
+            },
+            {
+              week: 9,
+              status: false,
+            },
+          ],
         },
       ];
     case 'SAVE_GOAL':
@@ -99,7 +139,51 @@ function goalTasksFunc(state = goalTasks, action) {
       targetTask.taskWeekRange[action.name].status = action.checked;
       return state.map(el => (el.id === action.id ? targetTask : el));
     case 'INPUT_TASK_TITLE_CLEAR':
-      return goalTasks;
+      return [
+        {
+          taskTitle: '',
+          _id: uuid(),
+          name: String(Date.now()),
+          taskWeekRange: [
+            {
+              week: 1,
+              status: false,
+            },
+            {
+              week: 2,
+              status: false,
+            },
+            {
+              week: 3,
+              status: false,
+            },
+            {
+              week: 4,
+              status: false,
+            },
+            {
+              week: 5,
+              status: false,
+            },
+            {
+              week: 6,
+              status: false,
+            },
+            {
+              week: 7,
+              status: false,
+            },
+            {
+              week: 8,
+              status: false,
+            },
+            {
+              week: 9,
+              status: false,
+            },
+          ],
+        },
+      ];
     case 'ADD_TASKS_WHEN_EDIT_MODE':
       return action.arrTasks;
     default:

@@ -12,10 +12,12 @@ import {
 } from '../../components/Dashboard/reducerDashboard';
 import logout from './ModalLogoutReducer';
 import isLogoutModalOpen from './ToggleLogoutModalReducer';
+import isDeleteGoalModalOpen from './ToggleDeleteGoalModalReducer';
 import editGoal from './goalEditModeReducer';
 import goalData from './goalReducer';
 import showPicker from './showPickerReducer';
 import frozenGoalTasksInEdit from './frozenGoalTasksInEditReducer';
+import error from './errorReducer';
 
 // import goals from './initData';
 import dateReducer from './dateReducer';
@@ -34,8 +36,10 @@ const rootReducer = combineReducers({
   calendarButton,
   logout,
   isLogoutModalOpen,
+  isDeleteGoalModalOpen,
   showPicker,
   frozenGoalTasksInEdit,
+  error,
 });
 
 export default rootReducer;

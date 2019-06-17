@@ -4,10 +4,14 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import TaskList from '../TaskList/TaskList';
 import EditBtn from '../../BtnEditGoal/BtnEditGoal';
+import Lens from '@material-ui/icons/Lens';
+
 import SetEditGoalModal from '../../../redux/actions/toggleSetEditGoalModalActions';
 import { addGoalColor } from '../../../redux/actions/radioAction';
 import goalAddTaskActions from '../../../redux/actions/goalAddTaskActions';
 import { frozenGoalTasksInEditAction } from '../../../redux/actions/frozenGoalTasksInEditAction';
+import goalTitleActions from '../../../redux/actions/goalTitleActions';
+import goalMotivationActions from '../../../redux/actions/goalMotivationActions';
 import s from './GoalItem.module.css';
 
 const GoalItem = ({
@@ -17,14 +21,15 @@ const GoalItem = ({
   addGoalColorFunc,
   addTasksWhenEditMode,
   frozenGoalTasksInEditActionFunc,
+  inputGoalTitleInEditFunc,
+  inputMotivationInEditFunc,
 }) => {
   return (
     <li className={s.List}>
       <div className={s.Title}>
-        <span
-          className={s.Color}
-          style={{ backgroundColor: `${data.goalColor}` }}
-        />
+        <div style={{ color: `${data.goalColor}` }}>
+          <Lens fontSize="large" color="inherit" />
+        </div>
         <h2 className={s.SubTitle}>{data.goalTitle}</h2>
         <EditBtn
           onClick={e => {
@@ -32,6 +37,8 @@ const GoalItem = ({
             addGoalColorFunc(data.goalColor);
             addTasksWhenEditMode(data.goalTasks);
             frozenGoalTasksInEditActionFunc(data.goalTasks);
+            inputGoalTitleInEditFunc(data.goalTitle);
+            inputMotivationInEditFunc(data.goalMotivation);
           }}
           btnID={data._id}
         />
@@ -49,6 +56,8 @@ GoalItem.propTypes = {
   addGoalColorFunc: PropTypes.func.isRequired,
   addTasksWhenEditMode: PropTypes.func.isRequired,
   frozenGoalTasksInEditActionFunc: PropTypes.func.isRequired,
+  inputGoalTitleInEditFunc: PropTypes.func.isRequired,
+  inputMotivationInEditFunc: PropTypes.func.isRequired,
 };
 
 const MSTP = state => {
@@ -66,6 +75,10 @@ function MDTP(dispatch) {
       dispatch(goalAddTaskActions.addTasksWhenEditMode(arrTasks)),
     frozenGoalTasksInEditActionFunc: arrTasks =>
       dispatch(frozenGoalTasksInEditAction(arrTasks)),
+    inputGoalTitleInEditFunc: title =>
+      dispatch(goalTitleActions.inputGoalTitleInEdit(title)),
+    inputMotivationInEditFunc: motivation =>
+      dispatch(goalMotivationActions.inputMotivationInEdit(motivation)),
   };
 }
 

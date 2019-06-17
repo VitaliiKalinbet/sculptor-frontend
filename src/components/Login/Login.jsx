@@ -6,26 +6,21 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 // import LoginButton from '../Button/LoginButton/LoginButton';
-import './Login.css';
-import './Login768.css';
-import './Login320.css';
+import styles from './Login.module.css';
 
 import Grid from '@material-ui/core/Grid';
 import loginInputActions from '../../redux/actions/LoginInputActions';
 
 import API from '../../services/api';
 
-const styles = () => ({
+const style = () => ({
   button: {
     color: '#ffffff',
     textTransform: 'capitalize',
     userSelect: 'none',
     fontSize: '1.4rem',
-
     transition: 'all 0.4s',
-
     margin: '3rem auto',
-
     border: 'none',
     backgroundColor: 'rgb(252, 132, 44)',
     boxShadow: '0px 4px 10px 0px rgba(252, 132, 44, 0.36)',
@@ -53,6 +48,7 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
+      error: '',
     };
   }
 
@@ -60,18 +56,22 @@ class Login extends Component {
     e.preventDefault();
     const { addUser, history } = this.props;
     const { email, password } = this.state;
-    console.log(history);
 
     API.login({ username: email, password })
-      .then(data => {
-        console.log('dataUSer', data);
-        addUser(data);
-        if (data.token) {
+      .then(res => {
+        console.log('dataUSer', res);
+        addUser(res.data);
+        if (res.data.token) {
           history.push('/');
+          this.setState({ error: '' });
         }
       })
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        if (error.response) {
+          console.log('error.response.data :', error.response.data);
+          this.setState({ error: error.response.data.message });
+        }
+        console.log(error);
       });
   };
 
@@ -80,20 +80,24 @@ class Login extends Component {
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, error } = this.state;
     const { classes } = this.props;
     return (
-      <div className="Login">
+      <div className={styles.Login}>
         <Grid container>
-          <Grid className="Login-column" item lg={4} sm={4} xs={12}>
+          <Grid className={styles.Login_column} item lg={4} sm={4} xs={12}>
             <Grid container direction="column">
               <Grid item>
-                <h1 className="h1 text-center">Sculptor</h1>
+                <h1 className={`${styles.h1} ${styles.text_center}`}>
+                  Sculptor
+                </h1>
               </Grid>
               <Grid item>
                 <form
                   onSubmit={e => this.handlerOnSubmit(e)}
-                  className="form flex-column center-box shadow padding-all-25"
+                  className={`${styles.form} ${styles.flex_column} ${
+                    styles.center_box
+                  } ${styles.shadow} ${styles.padding_all_25}`}
                   method="post"
                 >
                   <input
@@ -101,12 +105,12 @@ class Login extends Component {
                     value={email}
                     className={
                       email.length > 0
-                        ? `form-input ${
+                        ? `${styles.form_input} ${
                             isEmailValid(email)
-                              ? 'input__valid'
-                              : 'input__invalid'
+                              ? `${styles.input__valid}`
+                              : `${styles.input__invalid}`
                           }`
-                        : 'form-input'
+                        : `${styles.form_input}`
                     }
                     type="email"
                     name="email"
@@ -119,12 +123,12 @@ class Login extends Component {
                     value={password}
                     className={
                       password.length > 0
-                        ? `form-input ${
+                        ? `${styles.form_input} ${
                             isPasswordValid(password)
-                              ? 'input__valid'
-                              : 'input__invalid'
+                              ? `${styles.input__valid}`
+                              : `${styles.input__invalid}`
                           }`
-                        : 'form-input'
+                        : `${styles.form_input}`
                     }
                     type="password"
                     name="password"
@@ -143,12 +147,13 @@ class Login extends Component {
                   >
                     Login
                   </Button>
-                  <p className="text-center">
-                    <NavLink to="/registration" className="link">
+                  <p className={styles.text_center}>
+                    <NavLink to="/registration" className={styles.link}>
                       Register
                     </NavLink>
                   </p>
                 </form>
+                {error && <p className={styles.Login_error}>{error}</p>}
               </Grid>
             </Grid>
           </Grid>
@@ -184,4 +189,4 @@ Login.defaultProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withStyles(styles)(Login));
+)(withStyles(style)(Login));

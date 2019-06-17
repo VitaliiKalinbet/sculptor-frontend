@@ -5,6 +5,10 @@ const closeSetEditGoalModal = e => ({
   id: e.target.dataset.id,
 });
 
+const closeEditGoalModal = () => ({
+  type: 'CLOSE_EDIT_GOAL',
+});
+
 const openSetEditGoalModal = (e, data, modalType) => ({
   type: 'EDIT_GOAL',
   id: e.target.dataset.id,
@@ -26,4 +30,5 @@ export default {
   openSetEditGoalModal,
   deleteTaskFromEditGoal,
   addTaskInEditGoal,
+  closeEditGoalModal,
 };

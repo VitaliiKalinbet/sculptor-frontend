@@ -12,6 +12,8 @@ function goalMotivation(state = '', action) {
       return '';
     case 'INPUT_MOTIVATION_CLEAR':
       return '';
+    case 'INPUT_MOTIVATION_IN_EDIT':
+      return action.motivation;
     default:
       return state;
   }

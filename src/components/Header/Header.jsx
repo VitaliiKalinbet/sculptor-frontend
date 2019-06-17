@@ -3,9 +3,6 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import './HeaderMobile.css';
-import './HeaderTablet.css';
-import './HeaderDesktop.css';
 import DatePicker from '../DatePicker/DatePicker';
 
 import ModalLogout from '../ModalLogout/ModalLogout';
@@ -15,23 +12,41 @@ import { ReactComponent as More } from '../../assets/images/icons/more/baseline-
 import { ReactComponent as Dashboard } from '../../assets/images/icons/dashboard/baseline-dashboard-24px.svg';
 import { ReactComponent as Results } from '../../assets/images/icons/chart/baseline-timeline-24px.svg';
 
+import styles from './Header.module.css';
+
 const Header = ({ showSidebar }) => {
   return (
-    <header className="header">
-      <div className="header__icons">
-        <More onClick={showSidebar} className="header__icon more" />
-        <NavLink to="/" className="header__router dashboard selected">
-          <Dashboard className="header__icon dashboard" />
+    <header className={styles.header}>
+      <div className={styles.header__icons}>
+        <More
+          onClick={showSidebar}
+          className={`${styles.header__icon} ${styles.more}`}
+        />
+        <NavLink
+          to="/"
+          className={`${styles.header__router} ${styles.dashboard} ${
+            styles.selected
+          }`}
+        >
+          <Dashboard className={`${styles.header__icon} ${styles.dashboard}`} />
           <span>Dashboard</span>
         </NavLink>
-        <DatePicker />
-        <NavLink to="/results" className="header__router results">
-          <Results className="header__icon results" />
+        <NavLink
+          to="/results"
+          className={`${styles.header__router} ${styles.results}`}
+        >
+          <Results className={`${styles.header__icon} ${styles.results}`} />
           <span>Results</span>
         </NavLink>
+        <div className={styles.datepicker__container}>
+          <DatePicker />
+        </div>
       </div>
-      <p className="header__logo">Sculptor</p>
-      <ModalLogout />
+
+      <p className={styles.header__logo}>Sculptor</p>
+      <div className={styles.logout__container}>
+        <ModalLogout />
+      </div>
     </header>
   );
 };

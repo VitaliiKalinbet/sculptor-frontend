@@ -20,6 +20,7 @@ import { asyncGoalAction } from '../components/Dashboard/goalAction';
 import { asyncTasksAction } from '../components/Dashboard/taskAction';
 
 import Statistics from '../components/Statistics/Statistics';
+import SidebarBackdrop from '../components/SidebarBackdrop/SidebarBackdrop';
 
 class App extends Component {
   constructor(props) {
@@ -28,13 +29,14 @@ class App extends Component {
   }
 
   render() {
-    const { editGoal, showPicker } = this.props;
+    const { editGoal, showPicker, isSidebarShown } = this.props;
 
     return (
       <>
         <div className="main">
           <Sidebar className="main__left" />
           <div className="main__right">
+            {isSidebarShown && <SidebarBackdrop />}
             <Header />
             <div className="main__container">
               <Route exact path="/" component={Dashboard} />
@@ -48,7 +50,9 @@ class App extends Component {
             <SetGoalModal modalType={editGoal.modalType} />
           </Backdrop>
         )}
-        {showPicker.openPickerModal && <Picker />}
+        {showPicker.openPickerModal && (
+          <Picker open={showPicker.openPickerModal} />
+        )}
       </>
     );
   }
@@ -64,6 +68,7 @@ App.propTypes = {
 function mapStateToProps(state) {
   return {
     editGoal: state.editGoal,
+    isSidebarShown: state.app.showSidebar,
     showPicker: state.showPicker,
     tasks: state.tasks,
     user: state.user,
@@ -81,5 +86,5 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
 )(App);

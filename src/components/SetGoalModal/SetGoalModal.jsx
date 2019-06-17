@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable */
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -9,9 +9,14 @@ import ModalGoalTitle from '../ModalGoalTitle/ModalGoalTitle';
 // import ModalGoalIconSelect from '../ModalGoalIconSelect/ModalGoalIconSelect';
 import ModalGoalTasks from '../ModalGoalTasks/ModalGoalTasks';
 import ModalGoalMotivation from '../ModalGoalMotivation/ModalGoalMotivation';
+import BasicButton from '../Button/BasicButton/BasicButton.jsx';
+import ModalDeleteGoal from '../ModalDeleteGoal/ModalDeleteGoal';
 
+import saveGoalActions from '../../redux/actions/saveGoalActions';
 import GoalActions from '../../redux/actions/saveGoalActions';
+import errorAction from '../../redux/actions/errorAction';
 import ModalGoalIconSelect from '../ModalGoalIconSelect/ModalGoalIconSelect';
+import ModalDeleteGoalActions from '../../redux/actions/ModalDeleteGoalActions';
 
 import api from '../../services/api';
 
@@ -28,42 +33,84 @@ class SetGoalModal extends React.Component {
     goalMotivation,
     user,
   }) => {
-    const { addGoal, goals } = this.props;
-    const getLengthGoals = goals.length + 1;
-    console.log(getLengthGoals);
+    const { addGoal, goals, addError, deleteError } = this.props;
     const newData = {
       goalNumber: getLengthGoals,
       goalTitle,
       goalColor,
-      goalTasks,
+      goalNumber: goals.length + 1,
+      goalTasks: goalTasks.map(task => ({
+        taskTitle: task.taskTitle,
+        taskWeekRange: task.taskWeekRange,
+      })),
       goalMotivation,
       userId: user.userId,
     };
 
-    api.newGoal({ data: newData, token: user.token }).then(data => {
-      if (data.success) {
-        return addGoal(
-          data.goals.goalTitle,
-          data.goals.goalColor,
-          data.goals.goalTasks,
-          data.goals.goalMotivation,
+    api
+      .newGoal({ data: newData, token: user.token })
+      .then(data => {
+        if (data.success) {
+          deleteError();
+          return addGoal(
+            data.goals.goalTitle,
+            data.goals.goalColor,
+            data.goals.goalTasks,
+            data.goals.goalMotivation,
+          );
+        } else {
+          addError(
+            'Goal not created, some problem with server, please try again later',
+          );
+        }
+      })
+      .catch(error => {
+        addError(
+          'Goal not created, some problem with server, please try again later',
         );
-      }
-      return null;
-    });
+        console.log(error);
+      });
+  };
+
+  handleOnClickInEdit = () => {
+    const {
+      editGoal,
+      goalData,
+      frozenGoalTasksInEdit,
+      asyncSaveEditGoalFunc,
+    } = this.props;
+    asyncSaveEditGoalFunc(editGoal, goalData, frozenGoalTasksInEdit);
+  };
+
+  saveGoalFunc = () => {
+    const {
+      goalTitle,
+      goalColor = 'a',
+      goalMotivation,
+      goalTasks,
+      activeGoalID,
+      user,
+      modalType,
+    } = this.props;
+    modalType !== 'SET'
+      ? this.handleOnClickInEdit()
+      : this.handleAddGoal({
+          goalTitle,
+          goalColor,
+          goalTasks,
+          goalMotivation,
+          activeGoalID,
+          user,
+        });
   };
 
   render() {
     const {
-      saveGoal,
       goalTitle,
       goalColor = 'a',
-      goals,
-      goalMotivation,
-      goalTasks,
-      activeGoalID,
       modalType,
-      user,
+      toggleDeleteGoalModal,
+      error,
     } = this.props;
     console.log(this.props);
     return (
@@ -75,33 +122,34 @@ class SetGoalModal extends React.Component {
         <ModalGoalIconSelect />
         <ModalGoalTasks />
         <ModalGoalMotivation />
-
-        <button
-          type="button"
-          onClick={() =>
-            modalType !== 'SET'
-              ? saveGoal(
-                  goalTitle,
-                  goalColor,
-                  goalTasks,
-                  goalMotivation,
-                  goals,
-                  activeGoalID,
-                  user,
-                )
-              : this.handleAddGoal({
-                  goalTitle,
-                  goalColor,
-                  goalTasks,
-                  goalMotivation,
-                  activeGoalID,
-                  user,
-                })
-          }
-          disabled={!goalTitle.length || !goalColor.length}
-        >
-          {modalType === 'SET' ? 'Create' : 'Save'}
-        </button>
+        <div className={styles.buttonsContainer}>
+          <BasicButton
+            onClickFunc={this.saveGoalFunc}
+            isDisabled={
+              modalType === 'SET'
+                ? !goalTitle.length || !goalColor.length
+                : false
+            }
+            btnColor={'orange'}
+            btnText={modalType === 'SET' ? 'Create' : 'Save'}
+          />
+          {modalType === 'SET' ? null : (
+            <BasicButton
+              onClickFunc={toggleDeleteGoalModal}
+              isDisabled={
+                modalType === 'SET'
+                  ? !goalTitle.length || !goalColor.length
+                  : false
+              }
+              btnColor={'white'}
+              btnText={'Delete'}
+            />
+          )}
+        </div>
+        {error.errorOnSave && (
+          <p className={styles.error}>{error.errorOnSave}</p>
+        )}
+        <ModalDeleteGoal />
       </div>
     );
   }
@@ -112,12 +160,21 @@ SetGoalModal.propTypes = {
   modalType: PropTypes.string.isRequired,
   saveGoal: PropTypes.func.isRequired,
   addGoal: PropTypes.func.isRequired,
+  deleteGoal: PropTypes.func.isRequired,
   goals: PropTypes.arrayOf(PropTypes.object).isRequired,
   goalColor: PropTypes.string.isRequired,
   goalMotivation: PropTypes.string,
   goalTasks: PropTypes.arrayOf(PropTypes.object).isRequired,
   activeGoalID: PropTypes.string.isRequired,
   user: PropTypes.shape.isRequired,
+  editGoal: PropTypes.object.isRequired,
+  goalData: PropTypes.object.isRequired,
+  frozenGoalTasksInEdit: PropTypes.array.isRequired,
+  asyncSaveEditGoalFunc: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired,
+  addError: PropTypes.func.isRequired,
+  deleteError: PropTypes.func.isRequired,
 };
 
 SetGoalModal.defaultProps = {
@@ -133,6 +190,10 @@ function mapStateToProps(state) {
     goalTasks: state.goalData.goalTasks,
     activeGoalID: state.goalData.activeGoalID,
     user: state.user,
+    editGoal: state.editGoal,
+    goalData: state.goalData,
+    frozenGoalTasksInEdit: state.frozenGoalTasksInEdit,
+    error: state.error,
   };
 }
 
@@ -166,6 +227,19 @@ function mapDispatchToProps(dispatch) {
           activeGoalID,
         ),
       ),
+    asyncSaveEditGoalFunc: (editGoal, goalData, frozenGoalTasksInEdit) =>
+      dispatch(
+        saveGoalActions.asyncSaveEditGoal(
+          editGoal,
+          goalData,
+          frozenGoalTasksInEdit,
+        ),
+      ),
+    closeModal: () => dispatch(toggleSetEditGoalModal.closeEditGoalModal()),
+    toggleDeleteGoalModal: () =>
+      dispatch(ModalDeleteGoalActions.toggleDeleteGoalModal()),
+    addError: error => dispatch(errorAction.addSaveGoalErrorInStore(error)),
+    deleteError: () => dispatch(errorAction.deleteErrorFromStore()),
   };
 }
 

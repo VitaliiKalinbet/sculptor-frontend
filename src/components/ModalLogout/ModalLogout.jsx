@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
+import BasicButton from '../Button/BasicButton/BasicButton.jsx';
+
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 // import DialogContent from '@material-ui/core/DialogContent';
@@ -34,9 +36,9 @@ const ModalLogout = ({
   return (
     <div>
       <Button
-        color="inherit"
         onClick={toggleLogoutModal}
-        className="header__router logout"
+        color="inherit"
+        className="LogoutButton"
       >
         Logout
       </Button>
@@ -63,22 +65,25 @@ const ModalLogout = ({
             <DialogActions className="DialogActions">
               <Grid container justify="center">
                 <Grid item>
-                  <Button
-                    onClick={() => {
+                  <BasicButton
+                    onClickFunc={() => {
                       cancelLogout();
                       toggleLogoutModal();
                     }}
-                    color="primary"
-                  >
-                    Cancel
-                  </Button>
+                    isDisabled={false}
+                    btnColor={'white'}
+                    btnText={'Cancel'}
+                  />
                 </Grid>
                 <Grid item>
-                  <Button onClick={okLogout} color="primary">
-                    <a href="/login" className="ModalLogout__btn--logout">
-                      Logout
-                    </a>
-                  </Button>
+                  <a href="/login">
+                    <BasicButton
+                      onClickFunc={okLogout}
+                      isDisabled={false}
+                      btnColor={'orange'}
+                      btnText={'Logout'}
+                    />
+                  </a>
                 </Grid>
               </Grid>
             </DialogActions>

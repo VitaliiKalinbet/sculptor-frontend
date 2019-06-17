@@ -57,7 +57,7 @@ function editGoal(
     modalType: '',
     data: {},
   },
-  { type, modalType, data, id, name, checked },
+  { type, modalType, data, id, name, checked, value, taskId },
 ) {
   switch (type) {
     case 'EDIT_GOAL':
@@ -78,6 +78,12 @@ function editGoal(
         editing: true,
         modalType,
       };
+    case 'CLOSE_EDIT_GOAL':
+      return {
+        editing: false,
+        modalType: '',
+        data: {},
+      };
     case 'SAVE_GOAL':
       return {
         editing: false,
@@ -97,7 +103,6 @@ function editGoal(
         },
       };
     case 'ADD_TASK_IN_EDIT_GOAL':
-      console.log('initialTaskWeekRange', initialTaskWeekRange);
       return {
         ...state,
         data: {
@@ -154,7 +159,8 @@ function editGoal(
       const targetTask = state.data.goalTasks.find(el => {
         return el._id === id || el.name === id;
       });
-      targetTask.taskWeekRange[name].status = checked;
+      targetTask.taskWeekRange[name].status = !targetTask.taskWeekRange[name]
+        .status;
       return {
         ...state,
         data: {
@@ -162,6 +168,21 @@ function editGoal(
           goalTasks: state.data.goalTasks.map(el =>
             el.id === id ? targetTask : el,
           ),
+        },
+      };
+    case 'INPUT_TASK_TITLE_CHANGE_IN_EDIT':
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          goalTasks: state.data.goalTasks.map(task => {
+            return taskId === task._id
+              ? {
+                  ...task,
+                  taskTitle: value,
+                }
+              : task;
+          }),
         },
       };
     default:

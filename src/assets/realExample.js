@@ -363,3 +363,34 @@ const goalTasks = [
     ],
   },
 ];
+
+const onlyOldTasks = [];
+const onlyNewTasks = [...goalTasks];
+
+for (let oldTask of frozenTasks) {
+  onlyNewTasks.map((task, index) => {
+    if (task._id === oldTask._id) {
+      const splicedElement = onlyNewTasks.splice(index, 1);
+      onlyOldTasks.push(splicedElement[0]);
+    }
+    return onlyNewTasks;
+  });
+}
+
+const updateTasks = frozenTasks.filter(frozenItem => {
+  for (el of onlyOldTasks) {
+    console.log('title ', frozenItem.taskTitle === el.taskTitle);
+    console.log('weekRange ', frozenItem.taskWeekRange === el.taskWeekRange);
+    return (
+      frozenItem.taskTitle !== el.taskTitle ||
+      frozenItem.taskWeekRange.forEach(
+        (week, indx) => week.status !== el.taskWeekRange[indx].status,
+      )
+    );
+  }
+});
+
+console.log('updateTasks :', updateTasks);
+
+console.log('onlyOldTasks: ', onlyOldTasks);
+console.log('onlyNewTasks: ', onlyNewTasks);
