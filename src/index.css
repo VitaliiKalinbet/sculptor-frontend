@@ -11,6 +11,9 @@
 }
 
 html {
+  width: 100vw;
+  height: 100%;
+  /* overflow: hidden; */
   box-sizing: border-box;
   font-size: 62.5%;
 }
@@ -18,6 +21,7 @@ html {
 body {
   margin: 0;
   padding: 0;
+  width: 100vw;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -31,9 +35,9 @@ code {
     monospace;
 }
 
-* ::-webkit-scrollbar {
+/* * ::-webkit-scrollbar {
   width: 5px;
-}
+} */
 
 ::-webkit-scrollbar-track-piece {
   height: 50px;

@@ -45,7 +45,7 @@ const GoalItem = ({
       </div>
 
       <p className={s.Description}>{data.goalMotivation}</p>
-      <TaskList data={data.goalTasks} />
+      <TaskList data={data.goalTasks} color={data.goalColor} />
     </li>
   );
 };

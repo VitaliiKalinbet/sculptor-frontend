@@ -36,7 +36,6 @@ const addGoal = (
   goalColor,
   goalTasks,
   goalMotivation,
-  goals,
   activeGoalID,
 ) => ({
   type: 'ADD_GOAL',
@@ -45,7 +44,7 @@ const addGoal = (
     goalColor,
     goalTasks,
     goalMotivation,
-    activeGoalID,
+    _id: activeGoalID,
   },
 });
 

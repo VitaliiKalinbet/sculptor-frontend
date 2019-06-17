@@ -34,6 +34,7 @@ class SetGoalModal extends React.Component {
     user,
   }) => {
     const { addGoal, goals, addError, deleteError } = this.props;
+
     const newData = {
       goalNumber: getLengthGoals,
       goalTitle,
@@ -57,6 +58,7 @@ class SetGoalModal extends React.Component {
             data.goals.goalColor,
             data.goals.goalTasks,
             data.goals.goalMotivation,
+            data.goals._id,
           );
         } else {
           addError(
