@@ -89,6 +89,7 @@ export const goalsReducer = (state = initialState, action) => {
             if (task._id === action.taskId) {
               return {
                 ...task,
+                isComplete: action.isComplete,
                 taskActiveDates: task.taskActiveDates.map(day => {
                   if (day._id === action.taskActiveDayId) {
                     return {

@@ -1,8 +1,9 @@
 .Sidebar {
   /* width: 26rem; */
   flex: 0 0 260px;
+  align-self: stretch;
   /* flex: 0 0 calc(100%-260px); */
-  height: 100vh;
+  height: auto;
   background-image: linear-gradient(
       rgba(38, 63, 96, 0.9),
       rgba(38, 63, 96, 0.9)
@@ -12,7 +13,7 @@
   background-position: center;
   background-repeat: no-repeat;
   color: #ffffff;
-  z-index: 1000;
+  z-index: 0;
 }
 
 .Title {
@@ -35,6 +36,7 @@
 
 @media screen and (max-width: 968px) {
   .Sidebar {
+    height: 100%;
     position: fixed;
     left: 0;
     transform: translateX(-100%);

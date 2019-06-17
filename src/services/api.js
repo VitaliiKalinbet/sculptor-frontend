@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://sculptor.goit.co.ua/api',
-  // baseURL: 'http://localhost:8000/api',
+  // baseURL: 'https://sculptor.goit.co.ua/api',
+  baseURL: 'http://localhost:8000/api',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -69,12 +69,10 @@ const deleteOneTaskActiveDate = ({ taskActiveDayId, taskId }) =>
     .then(res => res.data);
 
 const changeStatusOneTaskActiveDate = ({ taskActiveDayId, isDone, taskId }) =>
-  axiosInstance
-    .put(`/task/active/${taskId}`, {
-      taskActiveDayId,
-      isDone,
-    })
-    .then(res => res.data);
+  axiosInstance.put(`/task/active/${taskId}`, {
+    taskActiveDayId,
+    isDone,
+  });
 
 export default {
   register,
