@@ -11,12 +11,13 @@ import CheckCircle from '@material-ui/icons/CheckCircle';
 
 import { changeTaskToDone, deleteTaskFromThisDay } from './cardTaskItemAction';
 
+import deleteSign from '../../assets/images/cursorIcon/delete-sign-50.png';
 const Item = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 1.5rem;
-  cursor: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png'),
+  cursor: url(require('../../assets/images/cursorIcon/itask-completed-50.png')),
     auto;
 `;
 
@@ -41,6 +42,7 @@ const ItemDescription = styled.p`
 const MoveToTrash = styled.div`
   opacity: 0.3;
   transition: 0.5s;
+  cursor: url(${deleteSign}), auto;
 
   ${Item}:hover & {
     opacity: 1;
