@@ -5,22 +5,60 @@ import Picker from '../../Picker/Picker';
 import { startOfWeek } from 'date-fns';
 import { th } from 'date-fns/esm/locale';
 import Backdrop from '../../Backdrop/Backdrop';
+import styled from 'styled-components';
+import Checkbox from '@material-ui/core/Checkbox';
+import RadioButtonUnchecked from '@material-ui/icons/RadioButtonUnchecked';
+import CheckCircle from '@material-ui/icons/CheckCircle';
 
 import { showPickerModal } from '../../../redux/actions/showPickerAction';
 
 import s from './TaskItem.module.css';
 
-const TaskItem = ({ task, showPiker, showPickerModal, goalId }) => {
+const StyledParagraph = styled.p`
+  text-decoration: ${prop => (prop.isComplete ? 'line-through' : 'none')};
+`;
+
+const StyledCheckBox = styled(Checkbox)`
+  && {
+    padding: 0;
+    margin-right: 5px;
+    color: ${prop => prop.color};
+  }
+`;
+
+const StyledItem = styled.li`
+  display: flex;
+  background-color: #284060;
+  margin-bottom: 5px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`;
+
+const TaskItem = ({ task, showPiker, showPickerModal, goalId, color }) => {
   const handleShowPicker = event => {
     showPickerModal(task, goalId);
   };
 
   return (
-    <li className={s.Item} onClick={handleShowPicker}>
-      <p className={s.TaskText} data-date={task._id}>
+    <StyledItem className={s.Item} onClick={handleShowPicker}>
+      <StyledParagraph
+        isComplete={task.isComplete}
+        className={s.TaskText}
+        data-date={task._id}
+      >
+        {task.isComplete && (
+          <StyledCheckBox
+            color={color}
+            checked={task.isComplete}
+            icon={<RadioButtonUnchecked fontSize="small" />}
+            checkedIcon={<CheckCircle fontSize="small" />}
+          />
+        )}
         {task.taskTitle}
-      </p>
-    </li>
+      </StyledParagraph>
+    </StyledItem>
   );
 };
 

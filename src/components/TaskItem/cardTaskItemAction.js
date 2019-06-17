@@ -18,8 +18,9 @@ export const changeTaskToDone = ({
 }) => (dispatch, getState) => {
   api
     .changeStatusOneTaskActiveDate({ taskActiveDayId, isDone, taskId })
-    .then(res => {
-      if (res) {
+    .then(res => res.data)
+    .then(data => {
+      if (data) {
         dispatch({
           type: 'UPDATE_STATUS_TASK_ACTIVE_DAY',
           taskId,
@@ -32,6 +33,7 @@ export const changeTaskToDone = ({
           taskActiveDayId,
           goalId,
           isDone,
+          isComplete: data.updatedTask.isComplete,
         });
 
         const state = getState();
@@ -49,7 +51,7 @@ export const deleteTaskFromThisDay = ({ taskId, taskActiveDayId, goalId }) => (
   dispatch,
   getState,
 ) => {
-  console.log(taskActiveDayId);
+  // console.log(taskActiveDayId);
   api.deleteOneTaskActiveDate({ taskActiveDayId, taskId }).then(res => {
     if (res) {
       dispatch({

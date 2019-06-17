@@ -69,12 +69,10 @@ const deleteOneTaskActiveDate = ({ taskActiveDayId, taskId }) =>
     .then(res => res.data);
 
 const changeStatusOneTaskActiveDate = ({ taskActiveDayId, isDone, taskId }) =>
-  axiosInstance
-    .put(`/task/active/${taskId}`, {
-      taskActiveDayId,
-      isDone,
-    })
-    .then(res => res.data);
+  axiosInstance.put(`/task/active/${taskId}`, {
+    taskActiveDayId,
+    isDone,
+  });
 
 export default {
   register,
