@@ -11,46 +11,57 @@ import CheckCircle from '@material-ui/icons/CheckCircle';
 
 import { changeTaskToDone, deleteTaskFromThisDay } from './cardTaskItemAction';
 
+import deleteSign from '../../assets/images/cursorIcon/removing-sign-50.png';
+import completeIcon from '../../assets/images/cursorIcon/calendar-with-ok-sign-50.png';
+
 const Item = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 1.5rem;
-  cursor: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/happy.png'),
-    auto;
+  cursor: url(${completeIcon}), auto;
+
+  &:hover {
+    border: 0.5px solid #00000020;
+  }
 `;
 
-// icon status
-const ItemStatus = styled.span`
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-  background: ${props => props.color || '#fff'};
-  border: 1px solid ${props => props.color || '#ccc'};
-`;
 // text
 const ItemDescription = styled.p`
   padding-left: 1.5rem;
-  color: #454545;
+  color: ${props => (props.isDone ? '#45454550' : '#454545')};
   font-size: 1.4rem;
   font-family: 'Roboto Light';
   flex: 1;
   text-decoration: ${props => (props.isDone ? 'line-through' : 'none')};
+
+  &:hover {
+    color: #454545;
+  }
 `;
 
 const MoveToTrash = styled.div`
   opacity: 0.3;
   transition: 0.5s;
+  cursor: url(${deleteSign}), auto;
 
   ${Item}:hover & {
     opacity: 1;
     transition: 0.5s;
+    cursor: url(${deleteSign}), auto;
   }
 `;
 
 const StyledCheckBox = styled(Checkbox)`
   && {
     color: ${prop => prop.color};
+    cursor: url(${completeIcon}), auto;
+  }
+`;
+
+const StyledIconButton = styled(IconButton)`
+  && {
+    cursor: url(${deleteSign}), auto;
   }
 `;
 
@@ -76,7 +87,7 @@ const TaskItem = ({ data, changeTaskToDone, deleteTaskFromThisDay }) => {
 
       <ItemDescription isDone={data.isDone}>{data.title}</ItemDescription>
       <MoveToTrash>
-        <IconButton
+        <StyledIconButton
           aria-label="Delete"
           size="small"
           tabIndex={0}
@@ -90,7 +101,7 @@ const TaskItem = ({ data, changeTaskToDone, deleteTaskFromThisDay }) => {
           }}
         >
           <DeleteIcon fontSize="small" size="small" />
-        </IconButton>
+        </StyledIconButton>
       </MoveToTrash>
     </Item>
   );

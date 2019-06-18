@@ -37,9 +37,8 @@ const getGoals = ({ userId, token }) =>
     })
     .then(res => res.data);
 
-const newGoal = ({ data }) => {
-  return axiosInstance.post('/goal', data).then(res => res.data);
-};
+const newGoal = ({ data }) =>
+  axiosInstance.post('/goal', data).then(res => res.data);
 
 const updateGoal = ({ goalId, fields }) =>
   axiosInstance.put(`/goal/${goalId}`, fields).then(res => res.data);

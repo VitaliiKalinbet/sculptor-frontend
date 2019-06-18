@@ -36,6 +36,7 @@ class SetGoalModal extends React.Component {
     const { addGoal, goals, addError, deleteError } = this.props;
 
     const newData = {
+      goalNumber: getLengthGoals,
       goalTitle,
       goalColor,
       goalNumber: goals.length + 1,
@@ -113,7 +114,7 @@ class SetGoalModal extends React.Component {
       toggleDeleteGoalModal,
       error,
     } = this.props;
-
+    console.log(this.props);
     return (
       <div className={styles.SetGoalModal} onClick={e => e.stopPropagation()}>
         <h3 className={styles.SetGoalModal__title}>
