@@ -36,7 +36,6 @@ class SetGoalModal extends React.Component {
     const { addGoal, goals, addError, deleteError } = this.props;
 
     const newData = {
-      goalNumber: getLengthGoals,
       goalTitle,
       goalColor,
       goalNumber: goals.length + 1,

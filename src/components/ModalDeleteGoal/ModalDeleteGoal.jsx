@@ -33,6 +33,7 @@ const ModalDeleteGoal = ({
   error,
   deleteError,
 }) => {
+  console.log({ 'NOT HAVE ID!!!': activeGoalID });
   return (
     <Grid container>
       <Grid item>
