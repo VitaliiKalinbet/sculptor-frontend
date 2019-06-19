@@ -79,8 +79,9 @@ class SetGoalModal extends React.Component {
       goalData,
       frozenGoalTasksInEdit,
       asyncSaveEditGoalFunc,
+      user,
     } = this.props;
-    asyncSaveEditGoalFunc(editGoal, goalData, frozenGoalTasksInEdit);
+    asyncSaveEditGoalFunc(editGoal, goalData, frozenGoalTasksInEdit, user);
   };
 
   saveGoalFunc = () => {
@@ -228,12 +229,13 @@ function mapDispatchToProps(dispatch) {
           activeGoalID,
         ),
       ),
-    asyncSaveEditGoalFunc: (editGoal, goalData, frozenGoalTasksInEdit) =>
+    asyncSaveEditGoalFunc: (editGoal, goalData, frozenGoalTasksInEdit, user) =>
       dispatch(
         saveGoalActions.asyncSaveEditGoal(
           editGoal,
           goalData,
           frozenGoalTasksInEdit,
+          user,
         ),
       ),
     closeModal: () => dispatch(toggleSetEditGoalModal.closeEditGoalModal()),

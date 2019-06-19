@@ -32,8 +32,14 @@ export const updateTaskActiveDates = ({ taskId, selectedData }) => (
   });
   const state = getState();
   dispatch(
-    updateWeekTasks({ selectedTime: state.weekTasks.date, tasks: state.tasks }),
+    updateWeekTasks({
+      selectedTime: state.weekTasks.date,
+      tasks: state.tasks,
+    }),
   );
 };
 
-export default { asyncTasksAction, updateTaskActiveDates };
+export default {
+  asyncTasksAction,
+  updateTaskActiveDates,
+};
