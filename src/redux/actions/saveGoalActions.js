@@ -9,6 +9,7 @@ import { radioActionClearColor } from '../../redux/actions/radioAction';
 import { deleteFrozenGoalTasksInEditAction } from '../../redux/actions/frozenGoalTasksInEditAction';
 import toggleSetEditGoalModal from '../../redux/actions/toggleSetEditGoalModalActions';
 import errorAction from './errorAction';
+import { asyncTasksAction } from '../../components/Dashboard/taskAction';
 
 const saveGoal = (
   goalTitle,
@@ -57,6 +58,7 @@ const asyncSaveEditGoal = (
   editGoal,
   goalData,
   frozenGoalTasksInEdit,
+  user,
 ) => dispatch => {
   updateAllGoalInfoHelper(editGoal, goalData, frozenGoalTasksInEdit)
     .then(data => {
@@ -69,6 +71,7 @@ const asyncSaveEditGoal = (
         dispatch(toggleSetEditGoalModal.closeEditGoalModal());
         dispatch(errorAction.deleteErrorFromStore());
         dispatch(saveEditGoal(data.data.goals));
+        dispatch(asyncTasksAction(user));
       } else {
         dispatch(
           errorAction.addSaveGoalErrorInStore(

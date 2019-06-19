@@ -32,6 +32,7 @@ const ModalDeleteGoal = ({
   activeGoalID,
   error,
   deleteError,
+  user,
 }) => {
   console.log({ 'NOT HAVE ID!!!': activeGoalID });
   return (
@@ -69,7 +70,7 @@ const ModalDeleteGoal = ({
 
               <Grid item>
                 <BasicButton
-                  onClickFunc={() => deleteGoal(activeGoalID)}
+                  onClickFunc={() => deleteGoal(activeGoalID, user)}
                   isDisabled={false}
                   btnColor={'orange'}
                   btnText={'Delete'}
@@ -91,12 +92,14 @@ function mapStateToProps(state) {
     isDeleteGoalModalOpen: state.isDeleteGoalModalOpen,
     activeGoalID: state.goalData.activeGoalID,
     error: state.error,
+    user: state.user,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    deleteGoal: id => dispatch(deleteGoalAction.asyncDeleteGoal(id)),
+    deleteGoal: (id, user) =>
+      dispatch(deleteGoalAction.asyncDeleteGoal(id, user)),
     toggleDeleteGoalModal: () =>
       dispatch(ModalDeleteGoalActions.toggleDeleteGoalModal()),
     deleteError: () => dispatch(errorAction.deleteErrorFromStore()),

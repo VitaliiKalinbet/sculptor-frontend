@@ -10,7 +10,6 @@ import Card from '../Card/Card';
 // action
 import { asyncGoalAction } from './goalAction';
 import { asyncTasksAction } from './taskAction';
-import { weekTasksAction } from './weekAction';
 
 // card wrapper
 const Container = styled.div`
@@ -129,7 +128,6 @@ const mstp = store => ({
 const mdtp = dispatch => ({
   getGoals: user => dispatch(asyncGoalAction(user)),
   getTasks: user => dispatch(asyncTasksAction(user)),
-  weekTasksAction: data => dispatch(weekTasksAction(data)),
 });
 
 export default connect(
