@@ -54,7 +54,7 @@ const MoveToTrash = styled.div`
 
 const StyledCheckBox = styled(Checkbox)`
   && {
-    color: ${prop => prop.color};
+    color: ${prop => prop.colorPrime};
     cursor: url(${completeIcon}), auto;
   }
 `;
@@ -79,7 +79,7 @@ const TaskItem = ({ data, changeTaskToDone, deleteTaskFromThisDay }) => {
       }
     >
       <StyledCheckBox
-        color={data.color}
+        colorPrime={data.color}
         checked={data.isDone}
         icon={<RadioButtonUnchecked fontSize="small" />}
         checkedIcon={<CheckCircle fontSize="small" />}

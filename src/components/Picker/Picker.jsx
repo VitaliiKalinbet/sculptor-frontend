@@ -32,6 +32,7 @@ class Picker extends Component {
       goalId: this.props.showPicker.goalId,
       selectedData: this.props.selectedData,
       userDates: this.taskDatesFilter(),
+      initData: this.props.showPicker.task.taskActiveDates,
     };
   }
 
@@ -75,11 +76,13 @@ class Picker extends Component {
         isDone: getStatus,
       };
     });
+    console.log(fixedSelectedData);
     changeActiveDatesInTask({
       taskId,
       selectedData: fixedSelectedData,
       goalId,
     });
+
     clearSelectedData();
     closePickerModal();
   };
@@ -138,7 +141,7 @@ class Picker extends Component {
   render() {
     const { open } = this.props;
     const { userDates, task, goalId } = this.state;
-
+    console.log(this.state.initData);
     return (
       <Dialog open={open} onClose={this.handlerClose}>
         <Fade in={open}>

@@ -39,7 +39,7 @@ const ModalLogout = ({
         onClick={toggleLogoutModal}
         color="inherit"
         className="LogoutButton"
-        tabindex="2"
+        tabIndex="2"
       >
         Logout
       </Button>
