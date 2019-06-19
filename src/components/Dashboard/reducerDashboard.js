@@ -45,6 +45,7 @@ export const goalsReducer = (state = initialState, action) => {
             if (task._id === action.taskId) {
               return {
                 ...task,
+                isComplete: action.isComplete,
                 taskActiveDates: action.selectedData,
               };
             } else {
@@ -66,6 +67,7 @@ export const goalsReducer = (state = initialState, action) => {
             if (task._id === action.taskId) {
               return {
                 ...task,
+                isComplete: action.isComplete,
                 taskActiveDates: task.taskActiveDates.filter(day => {
                   return day._id !== action.taskActiveDayId;
                 }),

@@ -54,6 +54,8 @@ export const deleteTaskFromThisDay = ({ taskId, taskActiveDayId, goalId }) => (
   // console.log(taskActiveDayId);
   api.deleteOneTaskActiveDate({ taskActiveDayId, taskId }).then(res => {
     if (res) {
+      const { data } = res;
+
       dispatch({
         type: 'DELETE_TASK_ACTIVE_DAY',
         taskId,
@@ -64,6 +66,7 @@ export const deleteTaskFromThisDay = ({ taskId, taskActiveDayId, goalId }) => (
         taskId,
         taskActiveDayId,
         goalId,
+        isComplete: data.updatedTask.isComplete,
       });
 
       const state = getState();
