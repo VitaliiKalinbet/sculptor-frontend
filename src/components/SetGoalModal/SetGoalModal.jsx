@@ -93,17 +93,21 @@ class SetGoalModal extends React.Component {
       activeGoalID,
       user,
       modalType,
+      addError,
+      deleteError,
     } = this.props;
     modalType !== 'SET'
       ? this.handleOnClickInEdit()
-      : this.handleAddGoal({
+      : goalTasks.length === 0 || goalTasks[0].taskTitle.length > 1
+      ? this.handleAddGoal({
           goalTitle,
           goalColor,
           goalTasks,
           goalMotivation,
           activeGoalID,
           user,
-        });
+        })
+      : addError('Delete the task or enter the title');
   };
 
   render() {
@@ -112,9 +116,10 @@ class SetGoalModal extends React.Component {
       goalColor = 'a',
       modalType,
       toggleDeleteGoalModal,
+      goalMotivation,
       error,
+      goalTasks,
     } = this.props;
-    console.log(this.props);
     return (
       <div className={styles.SetGoalModal} onClick={e => e.stopPropagation()}>
         <h3 className={styles.SetGoalModal__title}>
@@ -129,7 +134,7 @@ class SetGoalModal extends React.Component {
             onClickFunc={this.saveGoalFunc}
             isDisabled={
               modalType === 'SET'
-                ? !goalTitle.length || !goalColor.length
+                ? !(goalMotivation.length >= 1) || !(goalTitle.length >= 1)
                 : false
             }
             btnColor={'orange'}
