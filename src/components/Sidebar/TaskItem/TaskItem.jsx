@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import Checkbox from '@material-ui/core/Checkbox';
 import RadioButtonUnchecked from '@material-ui/icons/RadioButtonUnchecked';
 import CheckCircle from '@material-ui/icons/CheckCircle';
+import Icon from '@material-ui/core/Icon';
 
 import { showPickerModal } from '../../../redux/actions/showPickerAction';
 
@@ -36,6 +37,20 @@ const StyledItem = styled.li`
   }
 `;
 
+const StyledIcon = styled(Icon)`
+  && {
+    color: ${prop => prop.colorPrime};
+  }
+`;
+
+const StyledCheckCircle = styled(CheckCircle)`
+  color: ${prop => prop.htmlcolor};
+`;
+
+const StyledRadioButtonUnchecked = styled(RadioButtonUnchecked)`
+  color: ${prop => prop.htmlcolor};
+`;
+
 const TaskItem = ({ task, showPiker, showPickerModal, goalId, color }) => {
   const handleShowPicker = event => {
     showPickerModal(task, goalId);
@@ -48,13 +63,14 @@ const TaskItem = ({ task, showPiker, showPickerModal, goalId, color }) => {
         className={s.TaskText}
         data-date={task._id}
       >
-        {task.isComplete && (
-          <StyledCheckBox
-            color={color}
-            checked={task.isComplete}
-            icon={<RadioButtonUnchecked fontSize="small" />}
-            checkedIcon={<CheckCircle fontSize="small" />}
-          />
+        {task.isComplete ? (
+          <StyledIcon>
+            <StyledCheckCircle htmlcolor={color} fontSize="small" />
+          </StyledIcon>
+        ) : (
+          <StyledIcon>
+            <StyledRadioButtonUnchecked htmlcolor={color} fontSize="small" />
+          </StyledIcon>
         )}
         {task.taskTitle}
       </StyledParagraph>
