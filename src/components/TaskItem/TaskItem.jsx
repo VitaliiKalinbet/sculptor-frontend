@@ -8,6 +8,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Checkbox from '@material-ui/core/Checkbox';
 import RadioButtonUnchecked from '@material-ui/icons/RadioButtonUnchecked';
 import CheckCircle from '@material-ui/icons/CheckCircle';
+import Icon from '@material-ui/core/Icon';
 
 import { changeTaskToDone, deleteTaskFromThisDay } from './cardTaskItemAction';
 
@@ -52,17 +53,24 @@ const MoveToTrash = styled.div`
   }
 `;
 
-const StyledCheckBox = styled(Checkbox)`
-  && {
-    color: ${prop => prop.colorPrime};
-    cursor: url(${completeIcon}), auto;
-  }
-`;
-
 const StyledIconButton = styled(IconButton)`
   && {
     cursor: url(${deleteSign}), auto;
   }
+`;
+
+const StyledIcon = styled(Icon)`
+  && {
+    color: ${prop => prop.colorPrime};
+  }
+`;
+
+const StyledCheckCircle = styled(CheckCircle)`
+  color: ${prop => prop.htmlcolor};
+`;
+
+const StyledRadioButtonUnchecked = styled(RadioButtonUnchecked)`
+  color: ${prop => prop.htmlcolor};
 `;
 
 const TaskItem = ({ data, changeTaskToDone, deleteTaskFromThisDay }) => {
@@ -78,12 +86,15 @@ const TaskItem = ({ data, changeTaskToDone, deleteTaskFromThisDay }) => {
         })
       }
     >
-      <StyledCheckBox
-        colorPrime={data.color}
-        checked={data.isDone}
-        icon={<RadioButtonUnchecked fontSize="small" />}
-        checkedIcon={<CheckCircle fontSize="small" />}
-      />
+      {data.isDone ? (
+        <StyledIcon>
+          <StyledCheckCircle htmlcolor={data.color} fontSize="small" />
+        </StyledIcon>
+      ) : (
+        <StyledIcon>
+          <StyledRadioButtonUnchecked htmlcolor={data.color} fontSize="small" />
+        </StyledIcon>
+      )}
 
       <ItemDescription isDone={data.isDone}>{data.title}</ItemDescription>
       <MoveToTrash>
