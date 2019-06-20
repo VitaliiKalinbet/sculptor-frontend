@@ -16,11 +16,13 @@ export const updateGoalTaskActiveDates = ({
   goalId,
   taskId,
   selectedData,
+  isComplete,
 }) => ({
   type: 'GOALS_CHANGE_ACTIVE_DATES_IN_TASK',
   goalId,
   taskId,
   selectedData,
+  isComplete,
 });
 
 export default { asyncGoalAction, updateGoalTaskActiveDates };
