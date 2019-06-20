@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-// import LoginButton from '../Button/LoginButton/LoginButton';
+import Logo from '../../assets/images/icons/logo png/logo black.png';
 import styles from './Login.module.css';
 
 import Grid from '@material-ui/core/Grid';
@@ -88,8 +88,11 @@ class Login extends Component {
           <Grid className={styles.Login_column} item lg={4} sm={4} xs={12}>
             <Grid container direction="column">
               <Grid item>
-                <h1 className={`${styles.h1} ${styles.text_center}`}>
+                {/* <h1 className={`${styles.h1} ${styles.text_center}`}>
                   Sculptor
+                </h1> */}
+                <h1>
+                  <img className={styles.logo} src={Logo} alt="logo sculptor" />
                 </h1>
               </Grid>
               <Grid item>
@@ -136,17 +139,17 @@ class Login extends Component {
                     required
                   />
 
-                  <Button
-                    type="submit"
-                    label="Login"
+                  <button
                     disabled={
                       !isEmailValid(email) && !isPasswordValid(password)
                     }
-                    variant="contained"
-                    className={classes.button}
+                    className={styles.btn}
+                    type="submit"
+                    label="Login"
                   >
                     Login
-                  </Button>
+                  </button>
+
                   <p className={styles.text_center}>
                     <NavLink to="/registration" className={styles.link}>
                       Register

@@ -5,10 +5,9 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './Registration.module.css';
 
-// import { signInWithEmailAndPassword } from '../../server';
 import Grid from '@material-ui/core/Grid';
 import loginInputActions from '../../redux/actions/RegistrationInputActions';
-// import { prototype } from 'react-transition-group/CSSTransition';
+import Logo from '../../assets/images/icons/logo png/logo black.png';
 
 import API from '../../services/api';
 
@@ -95,8 +94,11 @@ class Registration extends Component {
           >
             <Grid container direction="column">
               <Grid item>
-                <h1 className={`${styles.h1} ${styles.text_center}`}>
+                {/* <h1 className={`${styles.h1} ${styles.text_center}`}>
                   Sculptor
+                </h1> */}
+                <h1>
+                  <img className={styles.logo} src={Logo} alt="logo sculptor" />
                 </h1>
               </Grid>
               <Grid item>
@@ -187,8 +189,9 @@ class Registration extends Component {
                   >
                     Register
                   </button>
+
                   <p className={styles.text_center}>
-                    <NavLink to="/login" className="link">
+                    <NavLink to="/login" className={styles.link}>
                       Login
                     </NavLink>
                   </p>
