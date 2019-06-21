@@ -17,6 +17,7 @@ import GoalActions from '../../redux/actions/saveGoalActions';
 import errorAction from '../../redux/actions/errorAction';
 import ModalGoalIconSelect from '../ModalGoalIconSelect/ModalGoalIconSelect';
 import ModalDeleteGoalActions from '../../redux/actions/ModalDeleteGoalActions';
+import { asyncTasksAction } from '../Dashboard/taskAction';
 
 import api from '../../services/api';
 
@@ -33,7 +34,13 @@ class SetGoalModal extends React.Component {
     goalMotivation,
     user,
   }) => {
-    const { addGoal, goals, addError, deleteError } = this.props;
+    const {
+      addGoal,
+      goals,
+      addError,
+      deleteError,
+      asyncTasksActionFunc,
+    } = this.props;
 
     const newData = {
       goalTitle,
@@ -49,16 +56,17 @@ class SetGoalModal extends React.Component {
 
     api
       .newGoal({ data: newData, token: user.token })
-      .then(data => {
+      .then(async data => {
         if (data.success) {
-          deleteError();
-          return addGoal(
+          await addGoal(
             data.goals.goalTitle,
             data.goals.goalColor,
             data.goals.goalTasks,
             data.goals.goalMotivation,
             data.goals._id,
           );
+          await deleteError();
+          await asyncTasksActionFunc(user);
         } else {
           addError(
             'Goal not created, some problem with server, please try again later',
@@ -94,7 +102,6 @@ class SetGoalModal extends React.Component {
       user,
       modalType,
       addError,
-      deleteError,
     } = this.props;
     modalType !== 'SET'
       ? this.handleOnClickInEdit()
@@ -118,7 +125,6 @@ class SetGoalModal extends React.Component {
       toggleDeleteGoalModal,
       goalMotivation,
       error,
-      goalTasks,
     } = this.props;
     return (
       <div className={styles.SetGoalModal} onClick={e => e.stopPropagation()}>
@@ -248,6 +254,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(ModalDeleteGoalActions.toggleDeleteGoalModal()),
     addError: error => dispatch(errorAction.addSaveGoalErrorInStore(error)),
     deleteError: () => dispatch(errorAction.deleteErrorFromStore()),
+    asyncTasksActionFunc: user => dispatch(asyncTasksAction(user)),
   };
 }
 

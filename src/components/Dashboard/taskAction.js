@@ -14,6 +14,7 @@ export const asyncTasksAction = ({ userId, token }) => (dispatch, getState) => {
       token,
     })
     .then(data => {
+      console.log('asyncTasksAction work!');
       dispatch(getTasks(data));
       const state = getState();
       dispatch(weekTasksAction(state.tasks));

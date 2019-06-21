@@ -1,8 +1,6 @@
 .Sidebar {
-  /* width: 26rem; */
   flex: 0 0 260px;
   align-self: stretch;
-  /* flex: 0 0 calc(100%-260px); */
   height: auto;
   background-image: linear-gradient(
       rgba(38, 63, 96, 0.9),
@@ -17,8 +15,13 @@
 }
 
 .Title {
-  padding: 4.3rem 0 0 2.5rem;
+  width: 260px;
+  padding: 4rem 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
 .Link {
   text-decoration: none;
   color: #ffffff;
@@ -34,6 +37,12 @@
   fill: #c5cdcd;
 }
 
+.icon {
+  fill: #c5cdcd;
+  width: 24px;
+  height: 24px;
+}
+
 @media screen and (max-width: 968px) {
   .Sidebar {
     height: 100%;
@@ -43,6 +52,7 @@
     transition: 0.5s ease-in-out;
     z-index: 1000;
   }
+
   .Sidebar_show {
     transform: translateX(0);
     z-index: 1000;
