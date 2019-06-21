@@ -21,6 +21,7 @@ import { asyncTasksAction } from '../components/Dashboard/taskAction';
 
 import Statistics from '../components/Statistics/Statistics';
 import SidebarBackdrop from '../components/SidebarBackdrop/SidebarBackdrop';
+import Information from '../components/Information/Information';
 
 class App extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class App extends Component {
             <div className="main__container">
               <Route exact path="/" component={Dashboard} />
               <Route exact path="/results" component={Statistics} />
-              {/* <Route path="/results" component={TestResults} /> */}
+              <Route path="/information" component={Information} />
             </div>
           </div>
         </div>
