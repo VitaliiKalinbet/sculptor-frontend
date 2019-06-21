@@ -1,16 +1,26 @@
 .Registration {
   height: 100vh;
   background-image: url('../../assets/images/Background1280.png');
-  background-size: 62% 100%;
+  background-size: 67% 100%;
   background-repeat: no-repeat;
   background-position: right;
 }
 
 .Registration_column {
   background-color: rgba(255, 255, 255, 1);
-  padding: 5rem 7rem;
+  padding: 70px 70px;
   height: 100vh;
   width: 100%;
+}
+
+.gridItem {
+  flex: 1 0 100px;
+}
+
+@media (min-device-width: 1280px) and (min-device-height: 800px) {
+  .gridItem {
+    flex: 1 0 140px;
+  }
 }
 
 .flex_column {
@@ -101,9 +111,13 @@ small {
 
   .Registration_column {
     background-color: rgba(255, 255, 255, 1);
-    padding: 5rem 7rem;
+    padding: 50px 50px;
     height: 100vh;
     width: 100%;
+  }
+
+  .gridItem {
+    flex: 1 0 100px;
   }
 
   .flex_column {
@@ -190,6 +204,10 @@ small {
     padding-top: 20px;
     height: 100vh;
     width: 100%;
+  }
+
+  .gridItem {
+    flex: 1 0 auto;
   }
 
   .flex_column {

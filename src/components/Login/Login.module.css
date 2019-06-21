@@ -1,16 +1,20 @@
 .Login {
   height: 100vh;
   background-image: url('../../assets/images/Background1280.png');
-  background-size: 62% 100%;
+  background-size: 67% 100%;
   background-repeat: no-repeat;
   background-position: right;
 }
 
 .Login_column {
   background-color: rgba(255, 255, 255, 1);
-  padding: 94px 70px;
+  padding: 70px 70px;
   height: 100vh;
   width: 100%;
+}
+
+.gridItem {
+  flex: 1 0 160px;
 }
 
 .flex_column {
@@ -47,6 +51,7 @@ small {
   box-shadow: 0px 4px 10px 0px rgba(252, 132, 44, 0.36);
   width: 133px;
   height: 38px;
+  cursor: pointer;
 }
 
 .link {
@@ -92,7 +97,7 @@ small {
   height: 33px;
 }
 
-@media (min-device-width: 481px) and (max-device-width: 1024) {
+@media (min-device-width: 481px) and (max-device-width: 1024px) {
   .Login {
     height: 100vh;
     background-image: url('../../assets/images/Background768.png');
@@ -102,9 +107,13 @@ small {
 
   .Login_column {
     background-color: rgba(255, 255, 255, 1);
-    padding: 5rem 7rem;
+    padding: 70px 70px;
     height: 100vh;
     width: 100%;
+  }
+
+  .gridItem {
+    flex: 1 0 140px;
   }
 
   .flex_column {
@@ -167,7 +176,7 @@ small {
   }
 
   .form_input {
-    font-size: 14px;
+    font-size: 16px;
     font-family: 'Roboto';
     color: rgb(185, 195, 200);
     line-height: 1.286;
@@ -188,8 +197,8 @@ small {
   }
 
   .logo {
-    width: 103px;
-    height: 22px;
+    width: 164px;
+    height: auto;
   }
 }
 
@@ -197,12 +206,15 @@ small {
   /* .Login {
     height: 100vh;
   } */
+  .gridItem {
+    flex: 1 0 70px;
+  }
 
   .Login_column {
     background-color: rgba(255, 255, 255, 1);
     padding-left: 30px;
     padding-right: 30px;
-    padding-top: 50px;
+    padding-top: 30px;
     width: 100%;
   }
 
@@ -283,7 +295,7 @@ small {
   }
 
   .logo {
-    width: 103px;
+    width: 104px;
     height: 22px;
   }
 }

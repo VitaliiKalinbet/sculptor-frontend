@@ -66,19 +66,23 @@ class Login extends Component {
           <Grid
             className={styles.Login_column}
             item
-            xl={5}
-            lg={5}
+            xl={4}
+            lg={4}
             sm={12}
-            md={6}
+            md={5}
             xs={12}
           >
-            <Grid container direction="column" justify="center">
-              <Grid item>
+            <Grid container justify="center" direction="column">
+              <Grid
+                item
+                className={styles.gridItem}
+                // style={{ flex: '1 0 150px', alignSelf: 'center' }}
+              >
                 <h1>
                   <img className={styles.logo} src={Logo} alt="logo sculptor" />
                 </h1>
               </Grid>
-              <Grid item>
+              <Grid item style={{ flex: '1 0 auto' }}>
                 <form
                   onSubmit={e => this.handlerOnSubmit(e)}
                   className={`${styles.form} ${styles.flex_column} ${

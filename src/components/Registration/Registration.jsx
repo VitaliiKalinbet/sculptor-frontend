@@ -88,25 +88,20 @@ class Registration extends Component {
           <Grid
             className={styles.Registration_column}
             item
+            direction="column"
             xl={4}
             lg={4}
-            md={5}
             sm={12}
+            md={5}
             xs={12}
           >
-            <Grid
-              container
-              direction="column"
-              justify="center"
-              // alignItems="center"
-              alignContent="center"
-            >
-              <Grid item>
+            <Grid container justify="center" direction="column">
+              <Grid item className={styles.gridItem}>
                 <h1>
                   <img className={styles.logo} src={Logo} alt="logo sculptor" />
                 </h1>
               </Grid>
-              <Grid item>
+              <Grid item style={{ flex: '1 0 auto' }}>
                 <form
                   onSubmit={e => this.handlerOnSubmit(e)}
                   className={`${styles.form} ${styles.flex_column} ${
