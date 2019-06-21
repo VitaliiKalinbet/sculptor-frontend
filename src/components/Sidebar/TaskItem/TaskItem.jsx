@@ -16,6 +16,7 @@ import { showPickerModal } from '../../../redux/actions/showPickerAction';
 import s from './TaskItem.module.css';
 
 const StyledParagraph = styled.p`
+  color: ${prop => (prop.isComplete ? 'rgb(238, 216, 242)' : '#fff')};
   text-decoration: ${prop => (prop.isComplete ? 'line-through' : 'none')};
 `;
 
@@ -40,6 +41,8 @@ const StyledItem = styled.li`
 const StyledIcon = styled(Icon)`
   && {
     color: ${prop => prop.colorPrime};
+    margin-right: 15px;
+    filter: drop-shadow(0px 5px 7px ${prop => prop.htmlcolor}60);
   }
 `;
 
@@ -63,16 +66,18 @@ const TaskItem = ({ task, showPiker, showPickerModal, goalId, color }) => {
         className={s.TaskText}
         data-date={task._id}
       >
-        {task.isComplete ? (
-          <StyledIcon>
-            <StyledCheckCircle htmlcolor={color} fontSize="small" />
-          </StyledIcon>
-        ) : (
-          <StyledIcon>
-            <StyledRadioButtonUnchecked htmlcolor={color} fontSize="small" />
-          </StyledIcon>
-        )}
-        {task.taskTitle}
+        <div className={s.itemWrap}>
+          {task.isComplete ? (
+            <StyledIcon htmlcolor={color}>
+              <StyledCheckCircle htmlcolor={color} fontSize="small" />
+            </StyledIcon>
+          ) : (
+            <StyledIcon htmlcolor={color}>
+              <StyledRadioButtonUnchecked htmlcolor={color} fontSize="small" />
+            </StyledIcon>
+          )}
+          {task.taskTitle}
+        </div>
       </StyledParagraph>
     </StyledItem>
   );

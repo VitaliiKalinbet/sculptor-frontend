@@ -14,6 +14,7 @@ import { showSidebarAction } from '../../redux/actions/sidebarAction';
 import { ReactComponent as More } from '../../assets/images/icons/more/baseline-more_vert-24px.svg';
 import { ReactComponent as InfoSvg } from '../../assets/images/information.svg';
 
+import Logo from '../../assets/images/icons/logo png/logo-white.png';
 import s from './Sidebar.module.css';
 
 const Sidebar = ({
@@ -36,7 +37,7 @@ const Sidebar = ({
 
       <h2 className={s.Title}>
         <a className={s.Link} href="https://sculptor.goit.co.ua">
-          Sculptor
+          <img className={s.logo} src={Logo} alt="logo sculptor" />
         </a>
         <NavLink to="/information">
           <InfoSvg className={s.icon} />
