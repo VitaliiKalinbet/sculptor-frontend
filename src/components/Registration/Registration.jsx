@@ -88,15 +88,20 @@ class Registration extends Component {
           <Grid
             className={styles.Registration_column}
             item
+            xl={4}
             lg={4}
-            sm={4}
+            md={5}
+            sm={12}
             xs={12}
           >
-            <Grid container direction="column">
+            <Grid
+              container
+              direction="column"
+              justify="center"
+              // alignItems="center"
+              alignContent="center"
+            >
               <Grid item>
-                {/* <h1 className={`${styles.h1} ${styles.text_center}`}>
-                  Sculptor
-                </h1> */}
                 <h1>
                   <img className={styles.logo} src={Logo} alt="logo sculptor" />
                 </h1>

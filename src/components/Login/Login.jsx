@@ -3,35 +3,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+
+import loginInputActions from '../../redux/actions/LoginInputActions';
+
 import Logo from '../../assets/images/icons/logo png/logo black.png';
 import styles from './Login.module.css';
 
-import Grid from '@material-ui/core/Grid';
-import loginInputActions from '../../redux/actions/LoginInputActions';
-
 import API from '../../services/api';
-
-const style = () => ({
-  button: {
-    color: '#ffffff',
-    textTransform: 'capitalize',
-    userSelect: 'none',
-    fontSize: '1.4rem',
-    transition: 'all 0.4s',
-    margin: '3rem auto',
-    border: 'none',
-    backgroundColor: 'rgb(252, 132, 44)',
-    boxShadow: '0px 4px 10px 0px rgba(252, 132, 44, 0.36)',
-    width: '13rem',
-    height: '4rem',
-    // margin: theme.spacing.unit,
-  },
-  input: {
-    display: 'none',
-  },
-});
 
 const inputValidationRegEx = {
   email: /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim,
@@ -81,16 +60,20 @@ class Login extends Component {
 
   render() {
     const { email, password, error } = this.state;
-    const { classes } = this.props;
     return (
       <div className={styles.Login}>
         <Grid container>
-          <Grid className={styles.Login_column} item lg={4} sm={4} xs={12}>
-            <Grid container direction="column">
+          <Grid
+            className={styles.Login_column}
+            item
+            xl={5}
+            lg={5}
+            sm={12}
+            md={6}
+            xs={12}
+          >
+            <Grid container direction="column" justify="center">
               <Grid item>
-                {/* <h1 className={`${styles.h1} ${styles.text_center}`}>
-                  Sculptor
-                </h1> */}
                 <h1>
                   <img className={styles.logo} src={Logo} alt="logo sculptor" />
                 </h1>
@@ -101,7 +84,6 @@ class Login extends Component {
                   className={`${styles.form} ${styles.flex_column} ${
                     styles.center_box
                   } ${styles.shadow} ${styles.padding_all_25}`}
-                  method="post"
                 >
                   <input
                     onChange={this.handleChange('email')}
@@ -139,14 +121,7 @@ class Login extends Component {
                     required
                   />
 
-                  <button
-                    disabled={
-                      !isEmailValid(email) && !isPasswordValid(password)
-                    }
-                    className={styles.btn}
-                    type="submit"
-                    label="Login"
-                  >
+                  <button className={styles.btn} type="submit" label="Login">
                     Login
                   </button>
 
@@ -192,4 +167,4 @@ Login.defaultProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withStyles(style)(Login));
+)(Login);
