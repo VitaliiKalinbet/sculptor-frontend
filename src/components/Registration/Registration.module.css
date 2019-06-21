@@ -49,11 +49,6 @@ small {
   height: 38px;
 }
 
-.btn:disabled {
-  background-color: #cccccc;
-  color: #666666;
-}
-
 .link {
   font-size: 12px;
   font-family: 'Roboto';
@@ -63,13 +58,26 @@ small {
 }
 
 .form_input {
-  font-size: 14px;
+  height: 30px;
+  font-size: 16px;
   font-family: 'Roboto';
-  color: rgb(185, 195, 200);
+  color: rgb(0, 0, 0);
   line-height: 1.286;
   margin: 2rem 0rem;
   border: none;
+  border-radius: none;
   border-bottom: 2px solid #f6f6f6;
+  padding: 20px;
+  outline: none;
+}
+
+.form_input::placeholder {
+  color: rgb(185, 195, 200);
+}
+
+.form_input:focus {
+  transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 0.8s;
+  border-bottom: 2px solid rgb(252, 132, 44);
 }
 
 .Registration_error {
@@ -84,7 +92,7 @@ small {
   height: 33px;
 }
 
-@media (max-width: 768px) {
+@media (min-device-width: 481px) and (max-device-width: 1024) {
   .Registration {
     height: 100vh;
     background-repeat: no-repeat;
@@ -170,14 +178,16 @@ small {
   }
 }
 
-@media (max-width: 320px) {
+@media (min-width: 320px) and (max-device-width: 481px) {
   .Registration {
     height: 100vh;
   }
 
   .Registration_column {
     background-color: rgba(255, 255, 255, 1);
-    padding: 5rem 7rem;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
     height: 100vh;
     width: 100%;
   }
@@ -218,11 +228,6 @@ small {
     height: 38px;
   }
 
-  .btn:disabled {
-    background-color: #cccccc;
-    color: #666666;
-  }
-
   .link {
     font-size: 12px;
     font-family: 'Roboto';
@@ -236,7 +241,7 @@ small {
     font-family: 'Roboto';
     color: rgb(185, 195, 200);
     line-height: 1.286;
-    margin: 2rem 0rem;
+    margin: 10px 0rem;
     border: none;
     border-bottom: 2px solid #f6f6f6;
   }
