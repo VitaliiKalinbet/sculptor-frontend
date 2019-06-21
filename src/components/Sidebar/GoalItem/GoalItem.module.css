@@ -8,11 +8,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 12px;
+}
+
+.Title h2 {
+  flex: 2 0 auto;
+  max-width: 110px;
 }
 .SubTitle {
-  font-size: 1.4rem;
+  font-size: 14px;
+  font-family: 'Roboto';
+  color: rgb(255, 255, 255);
+  line-height: 1.2;
+  margin-left: 12px;
 }
 .Description {
-  padding: 1.9rem 0 1.3rem;
-  font-size: 1.2rem;
+  padding-left: 6px;
+  font-size: 12px;
+  font-family: 'Roboto';
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  line-height: 1.5;
+  margin-bottom: 12px;
 }

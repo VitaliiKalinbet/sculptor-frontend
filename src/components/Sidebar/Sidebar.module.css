@@ -2,24 +2,29 @@
   flex: 0 0 260px;
   align-self: stretch;
   height: auto;
-  background-image: linear-gradient(
-      rgba(38, 63, 96, 0.9),
-      rgba(38, 63, 96, 0.9)
-    ),
-    url('../../assets/images/Mouintains1@1X.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-image: url('../../assets/images/Mouintains1@1X.png');
+  background-color: #111b2a;
+  background-size: cover, cover;
+  background-blend-mode: soft-light;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
   color: #ffffff;
   z-index: 0;
+  padding-top: 40px;
 }
 
 .Title {
   width: 260px;
-  padding: 4rem 1.5rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+.logo {
+  width: 140px;
+  height: auto;
 }
 
 .Link {

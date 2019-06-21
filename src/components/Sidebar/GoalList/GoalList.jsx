@@ -6,11 +6,13 @@ import s from './GoalList.module.css';
 
 const GoalList = ({ goalsArray }) => {
   return (
-    <ul className={s.List}>
-      {goalsArray.map(el => (
-        <GoalItem key={el._id} data={el} />
-      ))}
-    </ul>
+    <div className={s.container}>
+      <ul className={s.List}>
+        {goalsArray.map(el => (
+          <GoalItem key={el._id} data={el} />
+        ))}
+      </ul>
+    </div>
   );
 };
 
