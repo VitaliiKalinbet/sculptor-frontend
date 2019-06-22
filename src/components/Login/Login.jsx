@@ -41,7 +41,7 @@ class Login extends Component {
         console.log('dataUSer', res);
         addUser(res.data);
         if (res.data.token) {
-          history.push('/');
+          history.push('/dashboard');
           this.setState({ error: '' });
         }
       })

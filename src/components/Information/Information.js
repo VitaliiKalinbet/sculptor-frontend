@@ -64,7 +64,7 @@ const Information = () => {
         &quot;better&ldquo; that is where you will find the meaning in your
         life. Which is the antidote to the suffering. © JP
       </p>
-      <NavLink to="/" className={s.button_container}>
+      <NavLink to="/dashboard" className={s.button_container}>
         <button className={s.button} type="submit">
           to dashboard
         </button>

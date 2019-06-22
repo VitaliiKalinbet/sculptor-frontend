@@ -7,7 +7,7 @@ import Arrow from '../Sidebar/svg/SvgArrow';
 
 const styles = theme => ({
   fab: {
-    margin: '4.7rem 0 1.5rem 1.2rem',
+    margin: '4rem 0 1.5rem 1.2rem',
     width: '90%',
     backgroundColor: 'transparent',
     borderRadius: '0',
