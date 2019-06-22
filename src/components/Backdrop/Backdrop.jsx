@@ -2,10 +2,10 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
-import './Backdrop.css';
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import s from './Backdrop.module.css';
 
 import toggleSetEditGoalModal from '../../redux/actions/toggleSetEditGoalModalActions';
 import goalMotivationActions from '../../redux/actions/goalMotivationActions';
@@ -27,7 +27,7 @@ const Backdrop = ({
 }) => {
   return (
     <div
-      className="Backdrop"
+      className={s.Backdrop}
       data-id="Backdrop"
       onClick={e => {
         closeModal(e);

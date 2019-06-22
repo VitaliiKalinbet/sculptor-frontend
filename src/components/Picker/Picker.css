@@ -1,5 +1,4 @@
 .calendar {
-  /* z-index: 2001; */
   background-color: #223653;
 }
 
@@ -7,7 +6,7 @@
   display: none;
 }
 
-.calendarWrapper {
+/* .calendarWrapper {
   background-color: #00000030;
   position: fixed;
   left: 0;
@@ -18,12 +17,12 @@
   justify-content: center;
   align-items: center;
   z-index: 20;
-}
+} */
 
-.Cal__Today__root {
+/* .Cal__Today__root {
   border-top: 0.5px solid #fff;
-}
+} */
 
-.Cal__Today__chevron {
+/* .Cal__Today__chevron {
   left: 60%;
-}
+} */

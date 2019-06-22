@@ -4,6 +4,7 @@
 
 .main {
   display: flex;
+  background-color: #eee;
 }
 
 .main__right {
@@ -11,13 +12,13 @@
   background-color: #eee;
 }
 
-@media only screen and (min-width: 460px) {
+@media only screen and (min-width: 500px) {
   .main__container {
     margin-top: 10rem;
   }
 }
 
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: 969px) {
   .main__container {
     margin-top: 0;
   }
