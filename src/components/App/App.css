@@ -1,20 +1,45 @@
-.App {
-  display: flex;
+.main__container {
+  max-height: calc(100vh - 8rem);
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #b9c3c840 transparent;
 }
 
-.main {
-  width: 100vw;
-  height: auto;
-  display: flex;
+.main__container::-webkit-scrollbar-track {
+  background-color: transparent;
 }
 
-.main__right {
-  flex: auto;
-  background-color: #eee;
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track-piece {
+  height: 50px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #b9c3c840;
+  border-radius: 15px;
+  max-height: 30px;
+  outline: none;
 }
 
 @media only screen and (min-width: 460px) {
+  .main {
+    display: flex;
+  }
+
+  .main__right {
+    flex: auto;
+    background-color: #eee;
+  }
   .main__container {
+    overflow-y: scroll;
     margin-top: 10rem;
   }
 }
