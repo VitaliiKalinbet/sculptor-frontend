@@ -19,24 +19,21 @@ const Container = styled.div`
   background-color: #eee;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding-top: 16px;
+  padding-bottom: 60px;
 
   @media (min-width: 767px) {
     overflow: auto;
-    width: 70rem;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-start;
-  }
-  @media (min-width: 768px) {
-    padding: 3rem;
   }
 
   @media (min-width: 1280px) {
-    /* // width: 100%; */
     width: 100rem;
     flex-direction: row;
-    /* // justify-content: space-between; */
     align-items: center;
   }
 `;

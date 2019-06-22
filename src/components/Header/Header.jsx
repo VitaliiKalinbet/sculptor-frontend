@@ -11,7 +11,7 @@ import { showSidebarAction } from '../../redux/actions/sidebarAction';
 import { ReactComponent as More } from '../../assets/images/icons/more/baseline-more_vert-24px.svg';
 import { ReactComponent as Dashboard } from '../../assets/images/icons/dashboard/baseline-dashboard-24px.svg';
 import { ReactComponent as Results } from '../../assets/images/icons/chart/baseline-timeline-24px.svg';
-
+import Logo from '../../assets/images/icons/logo png/logo-white.png';
 import styles from './Header.module.css';
 
 const Header = ({ showSidebar }) => {
@@ -24,10 +24,11 @@ const Header = ({ showSidebar }) => {
         />
         <div className={styles.navWrap}>
           <NavLink
-            to="/"
+            to="/dashboard"
             className={`${styles.header__router} ${styles.dashboard} ${
               styles.selected
             }`}
+            activeClassName={styles.activeLink}
           >
             <Dashboard
               className={`${styles.header__icon} ${styles.dashboard} ${
@@ -39,6 +40,7 @@ const Header = ({ showSidebar }) => {
           <NavLink
             to="/results"
             className={`${styles.header__router} ${styles.results}`}
+            activeClassName={styles.activeLink}
           >
             <Results className={`${styles.header__icon} ${styles.results}`} />
             <span>Results</span>
@@ -47,7 +49,14 @@ const Header = ({ showSidebar }) => {
             <DatePicker />
           </div>
         </div>
-        <p className={styles.header__logo}>Sculptor</p>
+        {/* <p className={styles.header__logo}>Sculptor</p> */}
+        <a className={styles.header__logo} href="https://sculptor.goit.co.ua">
+          <img
+            className={styles.header__image}
+            src={Logo}
+            alt="logo sculptor"
+          />
+        </a>
         <div className={styles.logout__container}>
           <ModalLogout />
         </div>

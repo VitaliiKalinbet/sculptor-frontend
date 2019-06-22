@@ -11,9 +11,15 @@ const List = styled.ul`
   list-style: none;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  ${'' /* justify-content: center; */}
+  ${'' /* align-items: center; */}
   overflow-x: hidden;
   overflow-y: auto;
   padding: 0.5rem;
+
+  @media screen and (min-width: 767px) {
+  }
 `;
 
 const TaskList = ({ items }) => {

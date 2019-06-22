@@ -38,10 +38,6 @@
     flex: auto;
     background-color: #eee;
   }
-  .main__container {
-    overflow-y: scroll;
-    margin-top: 10rem;
-  }
 }
 
 @media only screen and (min-width: 969px) {

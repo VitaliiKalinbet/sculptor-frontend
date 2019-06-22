@@ -40,7 +40,7 @@ class App extends Component {
             {isSidebarShown && <SidebarBackdrop />}
             <Header />
             <div className="main__container">
-              <Route exact path="/" component={Dashboard} />
+              <Route exact strict path="/dashboard" component={Dashboard} />
               <Route exact path="/results" component={Statistics} />
               <Route path="/information" component={Information} />
             </div>

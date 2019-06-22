@@ -16,6 +16,7 @@
 
 .navWrap {
   display: flex;
+  z-index: 1;
 }
 
 .header_result {
@@ -36,8 +37,9 @@
 
 .header__router {
   flex: 0 0 auto;
-  color: #c5cdcd;
+  color: #b9c3c8;
   line-height: 100%;
+  opacity: 0.6;
 }
 
 .header__router > span {
@@ -51,7 +53,17 @@
 
 .header__icon {
   flex: 0 1 auto;
-  fill: #c5cdcd;
+  fill: #b9c3c8;
+}
+
+.activeLink {
+  opacity: 1;
+  color: #000;
+}
+
+.activeLink > .header__icon {
+  opacity: 1;
+  fill: #fff;
 }
 
 .header__logo {
@@ -63,9 +75,14 @@
   text-align: center;
 }
 
+.header__image {
+  width: 100px;
+  height: auto;
+}
+
 .logout__container {
   flex: 0 0 auto;
-  color: #c5cdcd;
+  color: #b9c3c8;
 }
 
 .datepicker__container {
@@ -95,6 +112,11 @@
     background-position-y: -66px;
   }
 
+  .activeLink > .header__icon {
+    opacity: 0.5;
+    fill: #000;
+  }
+
   .header__container {
     flex-wrap: wrap;
     height: auto;
@@ -106,6 +128,11 @@
     order: 4;
     flex: 0 0 87%;
     justify-content: space-between;
+  }
+
+  .header__image {
+    width: 120px;
+    height: auto;
   }
 
   .datepicker__container {
@@ -133,8 +160,8 @@
 }
 @media screen and (min-width: 1024px) {
   .header {
-    height: 8rem;
-    background-position-y: 0px;
+    height: 7rem;
+    background: transparent;
   }
 
   .header__container {
@@ -166,7 +193,7 @@
   }
 }
 
-@media only screen and (min-width: 1280px) {
+@media only screen and (min-width: 1279px) {
   .header__container {
     max-width: 100%;
     order: 1;
@@ -182,6 +209,9 @@
 
   .header__router .results {
     margin-right: 0;
+  }
+  .results {
+    margin-left: 5px;
   }
 
   .header__router .dashboard {

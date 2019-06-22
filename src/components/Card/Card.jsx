@@ -12,8 +12,13 @@ const CardItem = styled.div`
   :not(:last-child) {
     margin-bottom: 3rem;
   }
+  flex: 0 0 29.5rem;
   width: 29.5rem;
   height: 210px;
+
+  @media screen and (min-width: 767px) {
+    margin-left: 3rem;
+  }
 `;
 
 const Card = ({ day }) => {
