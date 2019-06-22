@@ -38,6 +38,10 @@
   margin: 0 2rem 0 1.3rem;
 }
 
+.header__icons {
+  z-index: 1;
+}
+
 .header__icon {
   fill: #c5cdcd;
   z-index: 1;

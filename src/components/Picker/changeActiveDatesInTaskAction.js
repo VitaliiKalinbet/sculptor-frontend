@@ -12,8 +12,18 @@ export const changeActiveDatesInTask = ({
     .updateTaskActiveDates({ taskId, taskActiveDates: selectedData })
     .then(res => {
       if (res) {
-        selectedData = res.data.taskActiveDates;
-        dispatch(updateGoalTaskActiveDates({ taskId, selectedData, goalId }));
+        selectedData = res.data.updatedTask.taskActiveDates;
+
+        const { isComplete } = res.data.updatedTask;
+
+        dispatch(
+          updateGoalTaskActiveDates({
+            taskId,
+            selectedData,
+            goalId,
+            isComplete,
+          }),
+        );
         dispatch(updateTaskActiveDates({ taskId, selectedData }));
       }
     });

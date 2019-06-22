@@ -10,7 +10,8 @@ import Card from '../Card/Card';
 // action
 import { asyncGoalAction } from './goalAction';
 import { asyncTasksAction } from './taskAction';
-import { weekTasksAction } from './weekAction';
+
+import axios from 'axios';
 
 // card wrapper
 const Container = styled.div`
@@ -77,6 +78,8 @@ class Dashboard extends Component {
     if (user.token) {
       await this.props.getGoals(user);
       await this.props.getTasks(user);
+      const getToken = JSON.parse(localStorage.getItem('user'));
+      axios.defaults.headers.common.Authorization = `Bearer ${getToken.token}`;
     }
   }
 
@@ -129,7 +132,6 @@ const mstp = store => ({
 const mdtp = dispatch => ({
   getGoals: user => dispatch(asyncGoalAction(user)),
   getTasks: user => dispatch(asyncTasksAction(user)),
-  weekTasksAction: data => dispatch(weekTasksAction(data)),
 });
 
 export default connect(

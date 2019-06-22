@@ -34,63 +34,58 @@ const ModalLogout = ({
   toggleLogoutModal,
 }) => {
   return (
-    <div>
+    <>
       <Button
         onClick={toggleLogoutModal}
         color="inherit"
         className="LogoutButton"
+        tabIndex="2"
       >
         Logout
       </Button>
-      <Grid container>
-        <Grid item>
-          <Dialog
-            open={isLogoutModalOpen}
-            onClose={toggleLogoutModal}
-            PaperComponent={PaperComponent}
-            aria-labelledby="draggable-dialog-title"
-          >
-            <DialogTitle
-              id="draggable-dialog-title"
-              disableTypography
-              className="DialogTitle"
-            >
-              Are you sure you want to leave?
-            </DialogTitle>
-            {/* <DialogContent>
+      {/* <Grid container>
+        <Grid item> */}
+      <Dialog
+        open={isLogoutModalOpen}
+        onClose={toggleLogoutModal}
+        PaperComponent={PaperComponent}
+        aria-labelledby="draggable-dialog-title"
+      >
+        <DialogTitle id="draggable-dialog-title" className="DialogTitle">
+          Are you sure you want to leave?
+        </DialogTitle>
+        {/* <DialogContent>
             <DialogContentText>
               Are you sure you want to leave?
             </DialogContentText>
           </DialogContent> */}
-            <DialogActions className="DialogActions">
-              <Grid container justify="center">
-                <Grid item>
-                  <BasicButton
-                    onClickFunc={() => {
-                      cancelLogout();
-                      toggleLogoutModal();
-                    }}
-                    isDisabled={false}
-                    btnColor={'white'}
-                    btnText={'Cancel'}
-                  />
-                </Grid>
-                <Grid item>
-                  <a href="/login">
-                    <BasicButton
-                      onClickFunc={okLogout}
-                      isDisabled={false}
-                      btnColor={'orange'}
-                      btnText={'Logout'}
-                    />
-                  </a>
-                </Grid>
-              </Grid>
-            </DialogActions>
-          </Dialog>
-        </Grid>
-      </Grid>
-    </div>
+        <DialogActions className="DialogActions">
+          <Grid container justify="center">
+            <Grid item>
+              <BasicButton
+                onClickFunc={() => {
+                  cancelLogout();
+                  toggleLogoutModal();
+                }}
+                btnColor={'white'}
+                btnText={'Cancel'}
+              />
+            </Grid>
+            <Grid item>
+              <a href="/login">
+                <BasicButton
+                  onClickFunc={okLogout}
+                  btnColor={'orange'}
+                  btnText={'Logout'}
+                />
+              </a>
+            </Grid>
+          </Grid>
+        </DialogActions>
+      </Dialog>
+      {/* </Grid> */}
+      {/* </Grid> */}
+    </>
   );
 };
 

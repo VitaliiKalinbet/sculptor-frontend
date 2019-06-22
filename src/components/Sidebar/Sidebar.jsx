@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 import CreateBtn from '../BtnCreateGoal/BtnCreateGoal';
 import GoalList from './GoalList/GoalList';
@@ -11,7 +12,9 @@ import { addDefaultColor } from '../../redux/actions/radioAction';
 import { showSidebarAction } from '../../redux/actions/sidebarAction';
 
 import { ReactComponent as More } from '../../assets/images/icons/more/baseline-more_vert-24px.svg';
+import { ReactComponent as InfoSvg } from '../../assets/images/information.svg';
 
+import Logo from '../../assets/images/icons/logo png/logo-white.png';
 import s from './Sidebar.module.css';
 
 const Sidebar = ({
@@ -34,8 +37,11 @@ const Sidebar = ({
 
       <h2 className={s.Title}>
         <a className={s.Link} href="https://sculptor.goit.co.ua">
-          Sculptor
+          <img className={s.logo} src={Logo} alt="logo sculptor" />
         </a>
+        <NavLink to="/information">
+          <InfoSvg className={s.icon} />
+        </NavLink>
       </h2>
       <CreateBtn
         isDisabled={goals.length >= 3}

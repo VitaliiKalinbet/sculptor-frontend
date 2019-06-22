@@ -1,28 +1,30 @@
 .Sidebar {
   flex: 0 0 260px;
-  height: 100vh;
-  background-image: linear-gradient(
-      rgba(38, 63, 96, 0.9),
-      rgba(38, 63, 96, 0.9)
-    ),
-    url('../../assets/images/Mouintains1@1X.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  align-self: stretch;
+  height: auto;
+  background-image: url('../../assets/images/Mouintains1@1X.png');
+  background-color: #111b2a;
+  background-size: cover, cover;
+  background-blend-mode: soft-light;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
   color: #ffffff;
-  z-index: 10;
-  position: fixed;
-  left: 0;
-  transform: translateX(-100%);
-  transition: 0.5s ease-in-out;
-}
-.Sidebar_show {
-  transform: translateX(0);
-  z-index: 100;
+  z-index: 0;
+  padding-top: 40px;
 }
 
 .Title {
-  padding: 4rem 0 0 2.5rem;
+  width: 260px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+.logo {
+  width: 140px;
+  height: auto;
 }
 
 .Link {
@@ -38,21 +40,24 @@
   fill: #c5cdcd;
 }
 
-@media screen and (min-width: 969px) {
+.icon {
+  fill: #c5cdcd;
+  width: 24px;
+  height: 24px;
+}
+
+@media screen and (max-width: 968px) {
   .Sidebar {
-    position: initial;
-    transform: none;
-    z-index: 10;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    transform: translateX(-100%);
+    transition: 0.5s ease-in-out;
+    z-index: 1000;
   }
 
-  .Link {
-    display: block;
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 1.6rem;
-  }
-
-  .closeSidebar {
-    display: none;
+  .Sidebar_show {
+    transform: translateX(0);
+    z-index: 1000;
   }
 }

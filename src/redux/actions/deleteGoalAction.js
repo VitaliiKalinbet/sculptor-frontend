@@ -7,13 +7,14 @@ import { radioActionClearColor } from './radioAction';
 import { deleteFrozenGoalTasksInEditAction } from './frozenGoalTasksInEditAction';
 import ModalDeleteGoalActions from './ModalDeleteGoalActions';
 import errorAction from './errorAction';
+import { asyncTasksAction } from '../../components/Dashboard/taskAction';
 
 const deleteGoalFromState = idGoal => ({
   type: 'DELETE_GOAL',
   idGoal,
 });
 
-const asyncDeleteGoal = goalId => dispatch => {
+const asyncDeleteGoal = (goalId, user) => dispatch => {
   api
     .deleteGoalFromDb(goalId)
     .then(data => {
@@ -26,6 +27,7 @@ const asyncDeleteGoal = goalId => dispatch => {
         dispatch(deleteFrozenGoalTasksInEditAction());
         dispatch(toggleSetEditGoalModal.closeEditGoalModal());
         dispatch(ModalDeleteGoalActions.toggleDeleteGoalModal());
+        dispatch(asyncTasksAction(user));
       } else {
         dispatch(
           errorAction.addDeleteGoalErrorInStore(

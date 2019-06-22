@@ -37,9 +37,8 @@ const getGoals = ({ userId, token }) =>
     })
     .then(res => res.data);
 
-const newGoal = ({ data }) => {
-  return axiosInstance.post('/goal', data).then(res => res.data);
-};
+const newGoal = ({ data }) =>
+  axiosInstance.post('/goal', data).then(res => res.data);
 
 const updateGoal = ({ goalId, fields }) =>
   axiosInstance.put(`/goal/${goalId}`, fields).then(res => res.data);
@@ -60,21 +59,17 @@ const updateAllGoalInfo = (goalId, updateObject) =>
   axiosInstance.put(`/goal/${goalId}`, JSON.stringify(updateObject));
 
 const deleteOneTaskActiveDate = ({ taskActiveDayId, taskId }) =>
-  axiosInstance
-    .delete(`/task/active/${taskId}`, {
-      data: {
-        taskActiveDayId,
-      },
-    })
-    .then(res => res.data);
+  axiosInstance.delete(`/task/active/${taskId}`, {
+    data: {
+      taskActiveDayId,
+    },
+  });
 
 const changeStatusOneTaskActiveDate = ({ taskActiveDayId, isDone, taskId }) =>
-  axiosInstance
-    .put(`/task/active/${taskId}`, {
-      taskActiveDayId,
-      isDone,
-    })
-    .then(res => res.data);
+  axiosInstance.put(`/task/active/${taskId}`, {
+    taskActiveDayId,
+    isDone,
+  });
 
 export default {
   register,

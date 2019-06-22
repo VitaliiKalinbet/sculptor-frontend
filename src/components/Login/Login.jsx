@@ -3,35 +3,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-// import LoginButton from '../Button/LoginButton/LoginButton';
-import styles from './Login.module.css';
-
 import Grid from '@material-ui/core/Grid';
+
 import loginInputActions from '../../redux/actions/LoginInputActions';
 
-import API from '../../services/api';
+import Logo from '../../assets/images/icons/logo png/logo black.png';
+import styles from './Login.module.css';
 
-const style = () => ({
-  button: {
-    color: '#ffffff',
-    textTransform: 'capitalize',
-    userSelect: 'none',
-    fontSize: '1.4rem',
-    transition: 'all 0.4s',
-    margin: '3rem auto',
-    border: 'none',
-    backgroundColor: 'rgb(252, 132, 44)',
-    boxShadow: '0px 4px 10px 0px rgba(252, 132, 44, 0.36)',
-    width: '13rem',
-    height: '4rem',
-    // margin: theme.spacing.unit,
-  },
-  input: {
-    display: 'none',
-  },
-});
+import API from '../../services/api';
 
 const inputValidationRegEx = {
   email: /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim,
@@ -81,24 +60,34 @@ class Login extends Component {
 
   render() {
     const { email, password, error } = this.state;
-    const { classes } = this.props;
     return (
       <div className={styles.Login}>
         <Grid container>
-          <Grid className={styles.Login_column} item lg={4} sm={4} xs={12}>
-            <Grid container direction="column">
-              <Grid item>
-                <h1 className={`${styles.h1} ${styles.text_center}`}>
-                  Sculptor
+          <Grid
+            className={styles.Login_column}
+            item
+            xl={4}
+            lg={4}
+            sm={12}
+            md={5}
+            xs={12}
+          >
+            <Grid container justify="center" direction="column">
+              <Grid
+                item
+                className={styles.gridItem}
+                // style={{ flex: '1 0 150px', alignSelf: 'center' }}
+              >
+                <h1>
+                  <img className={styles.logo} src={Logo} alt="logo sculptor" />
                 </h1>
               </Grid>
-              <Grid item>
+              <Grid item style={{ flex: '1 0 auto' }}>
                 <form
                   onSubmit={e => this.handlerOnSubmit(e)}
                   className={`${styles.form} ${styles.flex_column} ${
                     styles.center_box
                   } ${styles.shadow} ${styles.padding_all_25}`}
-                  method="post"
                 >
                   <input
                     onChange={this.handleChange('email')}
@@ -136,17 +125,10 @@ class Login extends Component {
                     required
                   />
 
-                  <Button
-                    type="submit"
-                    label="Login"
-                    disabled={
-                      !isEmailValid(email) && !isPasswordValid(password)
-                    }
-                    variant="contained"
-                    className={classes.button}
-                  >
+                  <button className={styles.btn} type="submit" label="Login">
                     Login
-                  </Button>
+                  </button>
+
                   <p className={styles.text_center}>
                     <NavLink to="/registration" className={styles.link}>
                       Register
@@ -189,4 +171,4 @@ Login.defaultProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withStyles(style)(Login));
+)(Login);

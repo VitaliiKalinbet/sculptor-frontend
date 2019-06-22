@@ -17,6 +17,7 @@ import GoalActions from '../../redux/actions/saveGoalActions';
 import errorAction from '../../redux/actions/errorAction';
 import ModalGoalIconSelect from '../ModalGoalIconSelect/ModalGoalIconSelect';
 import ModalDeleteGoalActions from '../../redux/actions/ModalDeleteGoalActions';
+import { asyncTasksAction } from '../Dashboard/taskAction';
 
 import api from '../../services/api';
 
@@ -33,7 +34,14 @@ class SetGoalModal extends React.Component {
     goalMotivation,
     user,
   }) => {
-    const { addGoal, goals, addError, deleteError } = this.props;
+    const {
+      addGoal,
+      goals,
+      addError,
+      deleteError,
+      asyncTasksActionFunc,
+    } = this.props;
+
     const newData = {
       goalTitle,
       goalColor,
@@ -48,15 +56,17 @@ class SetGoalModal extends React.Component {
 
     api
       .newGoal({ data: newData, token: user.token })
-      .then(data => {
+      .then(async data => {
         if (data.success) {
-          deleteError();
-          return addGoal(
+          await addGoal(
             data.goals.goalTitle,
             data.goals.goalColor,
             data.goals.goalTasks,
             data.goals.goalMotivation,
+            data.goals._id,
           );
+          await deleteError();
+          await asyncTasksActionFunc(user);
         } else {
           addError(
             'Goal not created, some problem with server, please try again later',
@@ -77,8 +87,9 @@ class SetGoalModal extends React.Component {
       goalData,
       frozenGoalTasksInEdit,
       asyncSaveEditGoalFunc,
+      user,
     } = this.props;
-    asyncSaveEditGoalFunc(editGoal, goalData, frozenGoalTasksInEdit);
+    asyncSaveEditGoalFunc(editGoal, goalData, frozenGoalTasksInEdit, user);
   };
 
   saveGoalFunc = () => {
@@ -90,17 +101,20 @@ class SetGoalModal extends React.Component {
       activeGoalID,
       user,
       modalType,
+      addError,
     } = this.props;
     modalType !== 'SET'
       ? this.handleOnClickInEdit()
-      : this.handleAddGoal({
+      : goalTasks.length === 0 || goalTasks[0].taskTitle.length > 1
+      ? this.handleAddGoal({
           goalTitle,
           goalColor,
           goalTasks,
           goalMotivation,
           activeGoalID,
           user,
-        });
+        })
+      : addError('Delete the task or enter the title');
   };
 
   render() {
@@ -109,9 +123,9 @@ class SetGoalModal extends React.Component {
       goalColor = 'a',
       modalType,
       toggleDeleteGoalModal,
+      goalMotivation,
       error,
     } = this.props;
-
     return (
       <div className={s.SetGoalModal} onClick={e => e.stopPropagation()}>
         <h3 className={s.title}>
@@ -126,7 +140,7 @@ class SetGoalModal extends React.Component {
             onClickFunc={this.saveGoalFunc}
             isDisabled={
               modalType === 'SET'
-                ? !goalTitle.length || !goalColor.length
+                ? !(goalMotivation.length >= 1) || !(goalTitle.length >= 1)
                 : false
             }
             btnColor={'orange'}
@@ -224,12 +238,13 @@ function mapDispatchToProps(dispatch) {
           activeGoalID,
         ),
       ),
-    asyncSaveEditGoalFunc: (editGoal, goalData, frozenGoalTasksInEdit) =>
+    asyncSaveEditGoalFunc: (editGoal, goalData, frozenGoalTasksInEdit, user) =>
       dispatch(
         saveGoalActions.asyncSaveEditGoal(
           editGoal,
           goalData,
           frozenGoalTasksInEdit,
+          user,
         ),
       ),
     closeModal: () => dispatch(toggleSetEditGoalModal.closeEditGoalModal()),
@@ -237,6 +252,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(ModalDeleteGoalActions.toggleDeleteGoalModal()),
     addError: error => dispatch(errorAction.addSaveGoalErrorInStore(error)),
     deleteError: () => dispatch(errorAction.deleteErrorFromStore()),
+    asyncTasksActionFunc: user => dispatch(asyncTasksAction(user)),
   };
 }
 

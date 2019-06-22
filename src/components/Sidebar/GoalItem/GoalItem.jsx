@@ -30,7 +30,12 @@ const GoalItem = ({
   return (
     <li className={s.List}>
       <div className={s.Title}>
-        <div style={{ color: `${data.goalColor}` }}>
+        <div
+          style={{
+            color: `${data.goalColor}`,
+            filter: `drop-shadow(0px 5px 7px ${data.goalColor}40)`,
+          }}
+        >
           <Lens fontSize="large" color="inherit" />
         </div>
         <h2 className={s.SubTitle}>{data.goalTitle}</h2>
@@ -49,7 +54,7 @@ const GoalItem = ({
       </div>
 
       <p className={s.Description}>{data.goalMotivation}</p>
-      <TaskList data={data.goalTasks} />
+      <TaskList data={data.goalTasks} color={data.goalColor} />
     </li>
   );
 };
