@@ -4,7 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import styles from './SetGoalModal.module.css';
+import s from './SetGoalModal.module.css';
 import ModalGoalTitle from '../ModalGoalTitle/ModalGoalTitle';
 // import ModalGoalIconSelect from '../ModalGoalIconSelect/ModalGoalIconSelect';
 import ModalGoalTasks from '../ModalGoalTasks/ModalGoalTasks';
@@ -127,15 +127,15 @@ class SetGoalModal extends React.Component {
       error,
     } = this.props;
     return (
-      <div className={styles.SetGoalModal} onClick={e => e.stopPropagation()}>
-        <h3 className={styles.SetGoalModal__title}>
+      <div className={s.SetGoalModal} onClick={e => e.stopPropagation()}>
+        <h3 className={s.title}>
           {modalType === 'SET' ? 'Set' : 'Update'} a Goal
         </h3>
         <ModalGoalTitle />
         <ModalGoalIconSelect />
         <ModalGoalTasks />
         <ModalGoalMotivation />
-        <div className={styles.buttonsContainer}>
+        <div className={s.buttonsContainer}>
           <BasicButton
             onClickFunc={this.saveGoalFunc}
             isDisabled={
@@ -159,9 +159,7 @@ class SetGoalModal extends React.Component {
             />
           )}
         </div>
-        {error.errorOnSave && (
-          <p className={styles.error}>{error.errorOnSave}</p>
-        )}
+        {error.errorOnSave && <p className={s.error}>{error.errorOnSave}</p>}
         <ModalDeleteGoal />
       </div>
     );

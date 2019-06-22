@@ -28,9 +28,7 @@
 }
 
 .Link {
-  text-decoration: none;
-  color: #ffffff;
-  font-size: 1.6rem;
+  display: none;
 }
 
 .closeSidebar {

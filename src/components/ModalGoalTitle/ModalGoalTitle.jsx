@@ -1,30 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import Lens from '@material-ui/icons/Lens';
 
 import GoalTitle from '../../redux/actions/goalTitleActions';
 
-import './ModalGoalTitle.css';
-
-const GoalType = styled.h5`
-  display: flex;
-  align-items: center;
-  margin: 0;
-  font-size: 1.4rem;
-  color: rgba(185, 195, 200, 255);
-  width: 15%;
-
-  ::before {
-    background-color: ${props => props.goalColor || 'gray'};
-    content: '';
-    display: block;
-    border-radius: 50%;
-    width: 2.5rem;
-    height: 2.5rem;
-    margin-right: 1.2rem;
-  }
-`;
+import s from './ModalGoalTitle.module.css';
 
 const ModalGoalTitle = ({
   inputGoalTitle,
@@ -33,11 +14,31 @@ const ModalGoalTitle = ({
   goalNumber,
   editGoal,
 }) => {
+  const styles = {
+    small: {
+      width: 32,
+      height: 32,
+      color: goalColor || '#dee5e8',
+    },
+    medium: {
+      width: 48,
+      height: 48,
+      color: goalColor || '#dee5e8',
+    },
+    large: {
+      width: 60,
+      height: 60,
+      color: goalColor || '#dee5e8',
+    },
+  };
   return (
-    <div className="ModalGoalTitle">
-      <GoalType goalColor={goalColor}>Goal #{goalNumber}</GoalType>
+    <div className={s.ModalGoalTitle}>
+      <div className={s.circle} style={{ color: `${goalColor}` }}>
+        <Lens fontSize="large" color="inherit" style={styles.small} />
+      </div>
+      <h5 className={s.label}>Goal #{goalNumber}:</h5>
       <input
-        className="ModalGoalTitle__input"
+        className={s.input}
         type="text"
         name="ModalGoalTitle"
         id="ModalGoalTitle"

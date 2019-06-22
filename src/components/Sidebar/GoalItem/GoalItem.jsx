@@ -12,6 +12,8 @@ import goalAddTaskActions from '../../../redux/actions/goalAddTaskActions';
 import { frozenGoalTasksInEditAction } from '../../../redux/actions/frozenGoalTasksInEditAction';
 import goalTitleActions from '../../../redux/actions/goalTitleActions';
 import goalMotivationActions from '../../../redux/actions/goalMotivationActions';
+import { sidebarBackdropAction } from '../../../redux/actions/sidebarBackdropAction';
+
 import s from './GoalItem.module.css';
 
 const GoalItem = ({
@@ -23,6 +25,7 @@ const GoalItem = ({
   frozenGoalTasksInEditActionFunc,
   inputGoalTitleInEditFunc,
   inputMotivationInEditFunc,
+  hideSidebarBackdrop,
 }) => {
   return (
     <li className={s.List}>
@@ -44,6 +47,7 @@ const GoalItem = ({
             frozenGoalTasksInEditActionFunc(data.goalTasks);
             inputGoalTitleInEditFunc(data.goalTitle);
             inputMotivationInEditFunc(data.goalMotivation);
+            hideSidebarBackdrop();
           }}
           btnID={data._id}
         />
@@ -63,6 +67,7 @@ GoalItem.propTypes = {
   frozenGoalTasksInEditActionFunc: PropTypes.func.isRequired,
   inputGoalTitleInEditFunc: PropTypes.func.isRequired,
   inputMotivationInEditFunc: PropTypes.func.isRequired,
+  closeSidebar: PropTypes.func.isRequired,
 };
 
 const MSTP = state => {
@@ -84,6 +89,7 @@ function MDTP(dispatch) {
       dispatch(goalTitleActions.inputGoalTitleInEdit(title)),
     inputMotivationInEditFunc: motivation =>
       dispatch(goalMotivationActions.inputMotivationInEdit(motivation)),
+    hideSidebarBackdrop: () => dispatch(sidebarBackdropAction()),
   };
 }
 

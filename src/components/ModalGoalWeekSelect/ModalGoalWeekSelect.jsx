@@ -12,7 +12,7 @@ import {
   checkboxEditAction,
 } from '../../redux/actions/checkboxAction';
 
-import './ModalGoalWeekSelect.css';
+import s from './ModalGoalWeekSelect.module.css';
 
 // eslint-disable-next-line react/prop-types
 const ModalGoalWeekSelect = ({
@@ -41,25 +41,41 @@ const ModalGoalWeekSelect = ({
     },
   };
   return (
-    <div className="checkbox_container">
+    <div className={s.checkboxContainer}>
       {task.taskWeekRange.map(el => {
         return (
-          <div className="checkbox" key={el.week}>
+          <div className={s.checkbox} key={el.week}>
             <FormControlLabel
               control={
                 <Checkbox
                   icon={
                     el.status ? (
-                      <Lens fontSize="large" color="inherit" />
+                      <Lens
+                        // fontSize="large"
+                        color="inherit"
+                        style={styles.small}
+                      />
                     ) : (
-                      <RadioButtonUnchecked color="inherit" fontSize="large" />
+                      <RadioButtonUnchecked
+                        color="inherit"
+                        // fontSize="large"
+                        style={styles.small}
+                      />
                     )
                   }
                   checkedIcon={
                     el.status ? (
-                      <RadioButtonUnchecked color="inherit" fontSize="large" />
+                      <RadioButtonUnchecked
+                        color="inherit"
+                        // fontSize="large"
+                        style={styles.small}
+                      />
                     ) : (
-                      <Lens fontSize="large" color="inherit" />
+                      <Lens
+                        // fontSize="large"
+                        color="inherit"
+                        style={styles.small}
+                      />
                     )
                   }
                   onChange={mode === 'UPDATE' ? onEditChange : onChange}
