@@ -17,35 +17,40 @@ import styles from './Header.module.css';
 const Header = ({ showSidebar }) => {
   return (
     <header className={styles.header}>
-      <div className={styles.header__icons}>
+      <div className={styles.header__container}>
         <More
           onClick={showSidebar}
           className={`${styles.header__icon} ${styles.more}`}
         />
-        <NavLink
-          to="/"
-          className={`${styles.header__router} ${styles.dashboard} ${
-            styles.selected
-          }`}
-        >
-          <Dashboard className={`${styles.header__icon} ${styles.dashboard}`} />
-          <span>Dashboard</span>
-        </NavLink>
-        <NavLink
-          to="/results"
-          className={`${styles.header__router} ${styles.results}`}
-        >
-          <Results className={`${styles.header__icon} ${styles.results}`} />
-          <span>Results</span>
-        </NavLink>
-        <div className={styles.datepicker__container}>
-          <DatePicker />
+        <div className={styles.navWrap}>
+          <NavLink
+            to="/"
+            className={`${styles.header__router} ${styles.dashboard} ${
+              styles.selected
+            }`}
+          >
+            <Dashboard
+              className={`${styles.header__icon} ${styles.dashboard} ${
+                styles.header__result
+              }`}
+            />
+            <span>Dashboard</span>
+          </NavLink>
+          <NavLink
+            to="/results"
+            className={`${styles.header__router} ${styles.results}`}
+          >
+            <Results className={`${styles.header__icon} ${styles.results}`} />
+            <span>Results</span>
+          </NavLink>
+          <div className={styles.datepicker__container}>
+            <DatePicker />
+          </div>
         </div>
-      </div>
-
-      <p className={styles.header__logo}>Sculptor</p>
-      <div className={styles.logout__container}>
-        <ModalLogout />
+        <p className={styles.header__logo}>Sculptor</p>
+        <div className={styles.logout__container}>
+          <ModalLogout />
+        </div>
       </div>
     </header>
   );

@@ -16,31 +16,27 @@ import axios from 'axios';
 // card wrapper
 const Container = styled.div`
   margin: auto;
-  // width: 32rem;
-  // width: 100%;
-  padding: 3rem;
   background-color: #eee;
   display: flex;
   flex-direction: column;
-  flex: 0 0 calc(100%-260px);
-  // height: 44rem;
-  // overflow: scroll;
+
   @media (min-width: 767px) {
     overflow: auto;
-    // width: 100%;
     width: 70rem;
-    // height: calc(100vh - 12.14rem);
-    // height: 100vh;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
   }
+  @media (min-width: 768px) {
+    padding: 3rem;
+  }
+
   @media (min-width: 1280px) {
-    // width: 100%;
+    /* // width: 100%; */
     width: 100rem;
     flex-direction: row;
-    // justify-content: space-between;
+    /* // justify-content: space-between; */
     align-items: center;
   }
 `;
@@ -56,12 +52,6 @@ const Temporary = styled.div`
   @media (min-width: 1200px) {
     width: 100.2rem;
   }
-`;
-const Dash = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: auto;
-  background-color: #eee;
 `;
 class Dashboard extends Component {
   constructor(props) {
@@ -110,12 +100,10 @@ class Dashboard extends Component {
     const { weekTasks } = this.props;
 
     return (
-      <Dash>
-        <Container>
-          {weekTasks.arrDays.length > 0 &&
-            weekTasks.arrDays.map((day, idx) => <Card day={day} key={idx} />)}
-        </Container>
-      </Dash>
+      <Container>
+        {weekTasks.arrDays.length > 0 &&
+          weekTasks.arrDays.map((day, idx) => <Card day={day} key={idx} />)}
+      </Container>
     );
   }
 }

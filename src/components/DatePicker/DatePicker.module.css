@@ -75,7 +75,7 @@
   fill: #f6e;
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 768px) {
   .header__date {
     padding: 0;
     background-color: transparent;
