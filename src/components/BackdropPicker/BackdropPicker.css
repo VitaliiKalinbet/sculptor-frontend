@@ -1,19 +1,18 @@
-.BackdropPicker {
+/* .BackdropPicker {
   position: fixed;
   top: 0;
   left: 0;
   z-index: 3;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(0, 0, 0, 0.507);
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-@media only screen and (max-width: 420px) {
+@media only screen and (min-width: 420px) {
   .BackdropPicker {
-    /* height: 81vh; */
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.507);
   }
-}
+} */

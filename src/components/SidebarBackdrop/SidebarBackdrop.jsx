@@ -2,12 +2,10 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
-import './SidebarBackdrop.css';
-
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
 import { showSidebarAction } from '../../redux/actions/sidebarAction';
+import './SidebarBackdrop.css';
 
 const SidebarBackdrop = ({ children, closeSidebar }) => {
   return (

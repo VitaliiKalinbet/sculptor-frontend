@@ -44,7 +44,7 @@
   }
 }
 
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: 969px) {
   .main__container {
     margin-top: 0;
   }
@@ -53,6 +53,5 @@
 @media (min-width: 1280px) {
   .main__right {
     background-color: #eee;
-    /* padding: 0 5rem; */
   }
 }

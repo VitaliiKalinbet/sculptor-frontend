@@ -4,22 +4,20 @@ import PropTypes from 'prop-types';
 
 import Motivation from '../../redux/actions/goalMotivationActions';
 
-import './ModalGoalMotivation.css';
+import s from './ModalGoalMotivation.module.css';
 
 const ModalGoalMotivation = ({ inputMotivation, goalMotivation, editGoal }) => {
   return (
-    <div className="ModalGoalMotivation">
-      <label htmlFor="inputMotivation" className="GoalMotivation__label">
-        Motivation
-        <input
-          className="GoalMotivation__input"
-          type="text"
-          name="inputMotivation"
-          id="inputMotivation"
-          onChange={inputMotivation}
-          defaultValue={editGoal.data.goalMotivation || goalMotivation}
-        />
-      </label>
+    <div className={s.ModalGoalMotivation}>
+      <h5 className={s.label}>Motivation:</h5>
+      <input
+        className={s.input}
+        type="text"
+        name="inputMotivation"
+        id="inputMotivation"
+        onChange={inputMotivation}
+        defaultValue={editGoal.data.goalMotivation || goalMotivation}
+      />
     </div>
   );
 };

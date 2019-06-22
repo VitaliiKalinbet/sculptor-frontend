@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import Radio from '@material-ui/core/Radio';
 import Lens from '@material-ui/icons/Lens';
 import CheckCircle from '@material-ui/icons/CheckCircle';
-import './ModalGoalIconSelect.css';
 import styled from 'styled-components';
 import { radioAction } from '../../redux/actions/radioAction';
+import s from './ModalGoalIconSelect.module.css';
 
 // eslint-disable-next-line react/prop-types
 const ModalGoalIconSelect = ({ onCheck, goalColor, editGoal }) => {
@@ -26,8 +26,8 @@ const ModalGoalIconSelect = ({ onCheck, goalColor, editGoal }) => {
 
   const styles = {
     small: {
-      width: 36,
-      height: 36,
+      width: 32,
+      height: 32,
     },
     medium: {
       width: 48,
@@ -40,27 +40,32 @@ const ModalGoalIconSelect = ({ onCheck, goalColor, editGoal }) => {
   };
 
   return (
-    <div className="radio_container">
-      {labelColors.map(el => {
-        const StyledRadio = styled(Radio)`
-          color: ${el} !important;
-        `;
-        return (
-          <StyledRadio
-            checked={
-              el === goalColor || (!goalColor && el === editGoal.data.goalColor)
-            }
-            onChange={e => onCheck(e)}
-            value={el}
-            key={el}
-            name="radio-button"
-            icon={<Lens fontSize="large" />}
-            checkedIcon={<CheckCircle fontSize="large" />}
-            style={styles.small}
-            color="default"
-          />
-        );
-      })}
+    <div className={s.colorContainer}>
+      <p className={s.captionSmall}>Choose color:</p>
+      <div className={s.colors}>
+        {labelColors.map(el => {
+          const StyledRadio = styled(Radio)`
+            color: ${el} !important;
+          `;
+          return (
+            <StyledRadio
+              checked={
+                el === goalColor ||
+                (!goalColor && el === editGoal.data.goalColor)
+              }
+              onChange={e => onCheck(e)}
+              value={el}
+              key={el}
+              name="radio-button"
+              icon={<Lens style={styles.small} />}
+              checkedIcon={<CheckCircle style={styles.small} />}
+              // fontSize="large"
+              style={styles.small}
+              color="default"
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

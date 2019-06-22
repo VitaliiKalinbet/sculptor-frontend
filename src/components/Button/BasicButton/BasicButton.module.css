@@ -5,14 +5,10 @@
   font-size: 1.4rem;
   font-weight: 600;
   transition: all 0.4s;
-  margin: 3rem auto;
+  margin: 2rem auto;
   width: 133px;
   height: 38px;
   cursor: pointer;
-}
-
-.btn:first-child {
-  margin-left: -1.4rem;
 }
 
 .btn:last-child {
@@ -41,12 +37,8 @@
   box-shadow: none;
 }
 
-/* @media (max-width: 320px) {
-  .btn {
+@media only screen and (min-width: 500px) {
+  .btn:first-child {
+    margin-left: -1.4rem;
   }
 }
-
-@media (max-width: 768px) {
-  .btn {
-  }
-} */

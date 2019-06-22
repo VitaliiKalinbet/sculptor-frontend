@@ -11,7 +11,7 @@ import GoalDataAction from '../../redux/actions/toggleSetEditGoalModalActions';
 import ModalGoalWeekSelect from '../ModalGoalWeekSelect/ModalGoalWeekSelect';
 import DelBtn from '../Button/DeleteButton/DeleteButton';
 
-import './ModalGoalTasks.css';
+import s from './ModalGoalTasks.module.css';
 
 const ModalTasks = ({
   inputTaskTitle,
@@ -24,18 +24,15 @@ const ModalTasks = ({
   onchangeActionInEditFunc,
 }) => {
   return (
-    <div className="ModalTasks">
+    <div className={s.ModalTasks}>
       {(editGoal.data.goalTasks || goalTasks).map((task, idx) => (
-        <div
-          className="ModalTasks__input-container"
-          key={task.name || task._id}
-        >
-          <div className="ModalTasks__input-container--left">
+        <div className={s.taskContainer} key={task.name || task._id}>
+          <div className={s.inputContainer}>
+            <p className={s.captionLarge}>Task {idx + 1}</p>
             <input
-              className="ModalTasks__input"
+              className={s.input}
               type="text"
               name={task._id || task.name}
-              // value={task.taskTitle}
               defaultValue={
                 editGoal.modalType === 'SET'
                   ? task.taskTitle
@@ -49,8 +46,7 @@ const ModalTasks = ({
               }}
             />
             <DelBtn
-              // type="button"
-              className="ModalTasks__del-btn"
+              className={s.delBtn}
               onClick={e => {
                 if (editGoal.modalType === 'UPDATE') {
                   api.deleteTaskInEditGoal(task._id);
@@ -62,7 +58,18 @@ const ModalTasks = ({
               }}
             />
           </div>
-          <ModalGoalWeekSelect id={task._id} task={task} />
+          <div className={s.weekSelectionContainer}>
+            <p
+              className={
+                idx === 0
+                  ? s.captionSmall
+                  : `${s.captionSmall} ${s.hiddenOnFullScreen}`
+              }
+            >
+              Choose week:
+            </p>
+            <ModalGoalWeekSelect id={task._id} task={task} />
+          </div>
         </div>
       ))}
       {(editGoal.modalType === 'SET'
@@ -73,9 +80,9 @@ const ModalTasks = ({
           onClick={
             editGoal.modalType === 'UPDATE' ? addTaskInEditGoal : addTask
           }
-          className="ModalTasks__add-btn"
+          className={s.addBtn}
         >
-          <span className="ModalTasks__add-btn--plus">+</span> Add New Task
+          <span className={s.addBtnPlus}>+</span> Add New Task
         </button>
       )}
     </div>

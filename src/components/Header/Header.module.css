@@ -89,9 +89,6 @@
   color: #f6e;
 }
 
-/* @media only screen and (min-width: 359px) {
-} */
-
 @media only screen and (min-width: 768px) {
   .header {
     height: 12rem;

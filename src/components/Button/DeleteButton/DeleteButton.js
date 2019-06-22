@@ -19,8 +19,9 @@ const DeleteButton = ({ classes, onClick, value, className }) => (
     className={`${classes.margin} ${className}`}
     onClick={onClick}
     value={value}
+    color="inhherit"
   >
-    <Delete fontSize="small" />
+    <Delete fontSize="small" color="inherit" />
   </IconButton>
 );
 DeleteButton.propTypes = {
