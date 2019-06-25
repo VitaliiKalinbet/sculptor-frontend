@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 
 import loginInputActions from '../../redux/actions/LoginInputActions';
@@ -38,7 +37,6 @@ class Login extends Component {
 
     API.login({ username: email, password })
       .then(res => {
-        console.log('dataUSer', res);
         addUser(res.data);
         if (res.data.token) {
           history.push('/dashboard');
@@ -47,7 +45,6 @@ class Login extends Component {
       })
       .catch(error => {
         if (error.response) {
-          console.log('error.response.data :', error.response.data);
           this.setState({ error: error.response.data.message });
         }
         console.log(error);
@@ -156,17 +153,6 @@ function mapDispatchToProps(dispatch) {
     addUser: data => dispatch(loginInputActions.addUser(data)),
   };
 }
-
-Login.propTypes = {
-  addUser: PropTypes.func,
-  classes: PropTypes.func.isRequired,
-  history: PropTypes.shape,
-};
-
-Login.defaultProps = {
-  addUser: '',
-  history: '',
-};
 
 export default connect(
   mapStateToProps,

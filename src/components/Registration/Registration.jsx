@@ -218,14 +218,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-Registration.propTypes = {
-  history: PropTypes.shape,
-};
-
-Registration.defaultProps = {
-  history: '',
-};
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
