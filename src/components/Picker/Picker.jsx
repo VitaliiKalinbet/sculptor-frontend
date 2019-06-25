@@ -33,6 +33,7 @@ class Picker extends Component {
       selectedData: this.props.selectedData,
       userDates: this.taskDatesFilter(),
       initData: this.props.showPicker.task.taskActiveDates,
+      widthScreen: null,
     };
   }
 
@@ -42,6 +43,7 @@ class Picker extends Component {
     getSelectedDates(
       task.taskActiveDates.map(day => new Date(day.date).toString()),
     );
+    this.setState({ widthScreen: window.innerWidth < 400 ? true : false });
   }
 
   compareDate = ({ prevDate, newDate }) => {
@@ -134,10 +136,15 @@ class Picker extends Component {
 
   render() {
     const { open } = this.props;
-    const { userDates, task, goalId } = this.state;
+    const { userDates, task, goalId, widthScreen } = this.state;
 
     return (
-      <Dialog open={open} onClose={this.handlerClose}>
+      <Dialog
+        open={open}
+        onClose={this.handlerClose}
+        transitionDuration={1000}
+        fullScreen={widthScreen}
+      >
         <Fade in={open}>
           <div className="calendar">
             <IconButton
@@ -146,7 +153,7 @@ class Picker extends Component {
               size="small"
               color="primary"
               aria-label="Close"
-              style={{ marginLeft: '85%' }}
+              style={{ marginLeft: '85%', paddingTop: '10px' }}
             >
               <Icon>
                 <Close style={{ fill: '#fff' }} />
@@ -165,8 +172,8 @@ class Picker extends Component {
               interpolateSelection={defaultMultipleDateInterpolation}
               onSelect={this.actionData}
               keyboardSupport={true}
-              width={window.innerWidth <= 650 ? window.innerWidth : 380}
-              height={240}
+              width={window.innerWidth <= 400 ? window.innerWidth : 380}
+              height={280}
               rowHeight={56}
               theme={{
                 selectionColor: '#223653',
