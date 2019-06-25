@@ -49,7 +49,6 @@ const Header = ({ showSidebar }) => {
             <DatePicker />
           </div>
         </div>
-        {/* <p className={styles.header__logo}>Sculptor</p> */}
         <a className={styles.header__logo} href="https://sculptor.goit.co.ua">
           <img
             className={styles.header__image}

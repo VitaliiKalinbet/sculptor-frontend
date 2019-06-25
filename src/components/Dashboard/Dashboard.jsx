@@ -54,8 +54,8 @@ class Dashboard extends Component {
   }
 
   async componentDidMount() {
-    const { user, tasks } = this.props;
-    if (user.token) {
+    const { user, goals } = this.props;
+    if (user.token && goals.length === 0) {
       await this.props.getGoals(user);
       await this.props.getTasks(user);
       const getToken = JSON.parse(localStorage.getItem('user'));
