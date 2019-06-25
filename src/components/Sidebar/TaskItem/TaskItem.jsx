@@ -32,6 +32,7 @@ const StyledItem = styled.li`
   display: flex;
   background-color: #284060;
   margin-bottom: 5px;
+  list-style: none;
 
   &:last-child {
     margin-bottom: 0;

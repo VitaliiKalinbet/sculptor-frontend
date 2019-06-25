@@ -67,7 +67,6 @@ GoalItem.propTypes = {
   frozenGoalTasksInEditActionFunc: PropTypes.func.isRequired,
   inputGoalTitleInEditFunc: PropTypes.func.isRequired,
   inputMotivationInEditFunc: PropTypes.func.isRequired,
-  closeSidebar: PropTypes.func.isRequired,
 };
 
 const MSTP = state => {

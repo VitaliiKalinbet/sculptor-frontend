@@ -15,7 +15,7 @@ import ModalDeleteGoalActions from '../../redux/actions/ModalDeleteGoalActions';
 import deleteGoalAction from '../../redux/actions/deleteGoalAction';
 import errorAction from '../../redux/actions/errorAction';
 
-import './ModalDeleteGoal.css';
+import s from './ModalDeleteGoal.module.css';
 
 function PaperComponent(props) {
   return (
@@ -34,7 +34,6 @@ const ModalDeleteGoal = ({
   deleteError,
   user,
 }) => {
-  console.log({ 'NOT HAVE ID!!!': activeGoalID });
   return (
     <Grid container>
       <Grid item>
@@ -50,36 +49,36 @@ const ModalDeleteGoal = ({
           <DialogTitle
             id="draggable-dialog-title"
             disableTypography
-            className="DialogTitle"
+            className={s.DialogTitle}
           >
             Are you sure you want to delete this goal?
           </DialogTitle>
-          <DialogActions className="DialogActions">
+          <DialogActions className={s.DialogActions}>
             <Grid container justify="center">
               <Grid item>
-                <BasicButton
-                  onClickFunc={() => {
+                <button
+                  className={s.btn1}
+                  onClick={() => {
                     toggleDeleteGoalModal();
                     deleteError();
                   }}
-                  isDisabled={false}
-                  btnColor={'white'}
-                  btnText={'Cancel'}
-                />
+                >
+                  Cancel
+                </button>
               </Grid>
 
               <Grid item>
-                <BasicButton
-                  onClickFunc={() => deleteGoal(activeGoalID, user)}
-                  isDisabled={false}
-                  btnColor={'orange'}
-                  btnText={'Delete'}
-                />
+                <button
+                  className={s.btn2}
+                  onClick={() => deleteGoal(activeGoalID, user)}
+                >
+                  Delete
+                </button>
               </Grid>
             </Grid>
           </DialogActions>
           {error.errorOnDelete && (
-            <p className={'error'}>{error.errorOnDelete}</p>
+            <p className={s.error}>{error.errorOnDelete}</p>
           )}
         </Dialog>
       </Grid>

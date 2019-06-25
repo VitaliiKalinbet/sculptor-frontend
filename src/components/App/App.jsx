@@ -36,10 +36,7 @@ class App extends Component {
           <Redirect exact path="/" to="/dashboard" />
           <Route path="/login" component={LoginPage} />
           <Route path="/registration" component={RegistrationPage} />
-          <Route
-            path="/"
-            // render={() => (loggedIn ? <MainPage /> : <Redirect to="/login" />)}
-          >
+          <Route path="/">
             {loaded && user.token && <MainPage />}
             {loaded && !user.token && <Redirect to="/login" />}
           </Route>

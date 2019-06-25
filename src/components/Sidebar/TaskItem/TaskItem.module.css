@@ -1,7 +1,3 @@
-.Item {
-  list-style: none;
-}
-
 .TaskText {
   padding: 12px;
   cursor: pointer;
@@ -10,6 +6,7 @@
   font-style: italic;
   line-height: 1.2;
 }
+
 .itemWrap {
   display: flex;
   justify-content: flex-start;
