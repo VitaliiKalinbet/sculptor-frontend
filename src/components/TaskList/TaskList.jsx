@@ -7,19 +7,12 @@ import styled from 'styled-components';
 import TaskItem from '../TaskItem/TaskItem';
 
 const List = styled.ul`
-  height: 150px;
+  height: 170px;
   list-style: none;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  ${'' /* justify-content: center; */}
-  ${'' /* align-items: center; */}
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: auto;
   padding: 0.5rem;
-
-  @media screen and (min-width: 767px) {
-  }
 `;
 
 const TaskList = ({ items }) => {

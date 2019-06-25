@@ -1,6 +1,5 @@
 /* eslint-disable */
 import React from 'react';
-import moment from 'moment';
 import styled from 'styled-components';
 import CardTitle from '../CardTitle/CardTitle';
 import TaskList from '../TaskList/TaskList';
@@ -12,12 +11,23 @@ const CardItem = styled.div`
   :not(:last-child) {
     margin-bottom: 3rem;
   }
-  flex: 0 0 29.5rem;
+  flex: 0 0 22rem;
   width: 29.5rem;
   height: 210px;
+  overflow: hidden;
 
   @media screen and (min-width: 767px) {
+    flex: 0 0 29.5rem;
     margin-left: 3rem;
+  }
+
+  @media screen and (min-width: 1240px) {
+    margin-left: 0;
+  }
+
+  @media (min-width: 1900px) {
+    margin-left: 8rem;
+    margin-right: 8rem;
   }
 `;
 

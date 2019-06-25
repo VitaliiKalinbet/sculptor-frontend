@@ -3,6 +3,27 @@
   padding: 3rem;
   width: 100%;
   height: 105rem;
+  position: relative;
+}
+
+.close_btn {
+  width: 24px;
+  height: 24px;
+  margin: 15px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  outline: none;
+  background-color: white;
+  background-image: url('../../assets/images/icons/close/close.svg');
+  block-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.close_btn:hover {
+  background-color: rgb(231, 228, 228);
 }
 
 .title {
@@ -52,7 +73,7 @@
 
 @media only screen and (min-width: 840px) {
   .SetGoalModal {
-    padding: 5rem 7rem 3rem 5rem;
+    padding: 3rem 7rem 3rem 3rem;
     min-width: 85rem;
     max-width: 120rem;
   }

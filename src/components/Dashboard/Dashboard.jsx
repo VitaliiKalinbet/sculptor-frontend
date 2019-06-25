@@ -31,25 +31,18 @@ const Container = styled.div`
     align-items: flex-start;
   }
 
-  @media (min-width: 1280px) {
-    width: 100rem;
+  @media (min-width: 1240px) {
+    width: 95rem;
     flex-direction: row;
-    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+  }
+
+  @media (min-width: 1900px) {
+    width: 90%;
   }
 `;
 
-const Temporary = styled.div`
-  height: 7rem;
-  margin: auto;
-  width: 32rem;
-  background-color: #eee;
-  @media (min-width: 767px) {
-    width: 76.8rem;
-  }
-  @media (min-width: 1200px) {
-    width: 100.2rem;
-  }
-`;
 class Dashboard extends Component {
   constructor(props) {
     super(props);

@@ -17,7 +17,8 @@ import Draggable from 'react-draggable';
 
 import ModalLogoutActions from '../../redux/actions/ModalLogoutActions';
 
-import './ModalLogout.css';
+// import './ModalLogout.css';
+import s from './ModalLogout.module.css';
 
 function PaperComponent(props) {
   return (
@@ -38,28 +39,21 @@ const ModalLogout = ({
       <Button
         onClick={toggleLogoutModal}
         color="inherit"
-        className="LogoutButton"
+        className={s.LogoutButton}
         tabIndex="2"
       >
         Logout
       </Button>
-      {/* <Grid container>
-        <Grid item> */}
       <Dialog
         open={isLogoutModalOpen}
         onClose={toggleLogoutModal}
         PaperComponent={PaperComponent}
         aria-labelledby="draggable-dialog-title"
       >
-        <DialogTitle id="draggable-dialog-title" className="DialogTitle">
+        <DialogTitle id="draggable-dialog-title" className={s.DialogTitle}>
           Are you sure you want to leave?
         </DialogTitle>
-        {/* <DialogContent>
-            <DialogContentText>
-              Are you sure you want to leave?
-            </DialogContentText>
-          </DialogContent> */}
-        <DialogActions className="DialogActions">
+        <DialogActions className={s.DialogActions}>
           <Grid container justify="center">
             <Grid item>
               <BasicButton
@@ -83,8 +77,6 @@ const ModalLogout = ({
           </Grid>
         </DialogActions>
       </Dialog>
-      {/* </Grid> */}
-      {/* </Grid> */}
     </>
   );
 };
