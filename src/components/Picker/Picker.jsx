@@ -165,7 +165,7 @@ class Picker extends Component {
               interpolateSelection={defaultMultipleDateInterpolation}
               onSelect={this.actionData}
               keyboardSupport={true}
-              width={window.innerWidth <= 650 ? window.innerWidth : 380}
+              width={window.innerWidth <= 650 ? '320px' : '380px'}
               height={240}
               rowHeight={56}
               theme={{
