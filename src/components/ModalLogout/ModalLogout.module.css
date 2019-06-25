@@ -16,3 +16,16 @@
   text-transform: capitalize !important;
   font-size: 1.2rem !important;
 }
+
+/*
+@media (min-width: 768px) {
+  .DialogActions {
+    width: 40rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .DialogActions {
+    width: 45rem;
+  }
+} */

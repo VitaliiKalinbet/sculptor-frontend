@@ -3,6 +3,7 @@
   overflow-y: scroll;
   scrollbar-width: thin;
   scrollbar-color: #b9c3c840 transparent;
+  padding-bottom: 2rem;
 }
 
 .container::-webkit-scrollbar-track {
