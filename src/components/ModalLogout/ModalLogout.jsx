@@ -56,22 +56,21 @@ const ModalLogout = ({
         <DialogActions className={s.DialogActions}>
           <Grid container justify="center">
             <Grid item>
-              <BasicButton
-                onClickFunc={() => {
+              <button
+                className={s.btn1}
+                onClick={() => {
                   cancelLogout();
                   toggleLogoutModal();
                 }}
-                btnColor={'white'}
-                btnText={'Cancel'}
-              />
+              >
+                Cancel
+              </button>
             </Grid>
             <Grid item>
               <a href="/login">
-                <BasicButton
-                  onClickFunc={okLogout}
-                  btnColor={'orange'}
-                  btnText={'Logout'}
-                />
+                <button className={s.btn2} onClick={okLogout}>
+                  Logout
+                </button>
               </a>
             </Grid>
           </Grid>
