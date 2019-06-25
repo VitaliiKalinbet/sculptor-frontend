@@ -5,12 +5,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { showSidebarAction } from '../../redux/actions/sidebarAction';
-import './SidebarBackdrop.css';
+import s from './SidebarBackdrop.module.css';
 
 const SidebarBackdrop = ({ children, closeSidebar }) => {
   return (
     <div
-      className="Backdrop"
+      className={s.Backdrop}
       data-id="Backdrop"
       onClick={() => {
         closeSidebar();

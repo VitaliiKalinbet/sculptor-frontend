@@ -1,8 +1,8 @@
 .SetGoalModal {
   background-color: #fff;
-  padding: 3rem;
+  padding: 3rem 1.5rem;
   width: 100%;
-  height: 105rem;
+  min-height: 125rem;
   position: relative;
 }
 
@@ -45,6 +45,12 @@
   color: red;
 }
 
+@media only screen and (min-width: 480px) {
+  .SetGoalModal {
+    padding: 3rem;
+  }
+}
+
 @media only screen and (min-width: 500px) {
   .SetGoalModal {
     box-shadow: 0 0rem 1rem #999;
@@ -63,11 +69,12 @@
 
 @media only screen and (min-width: 768px) {
   .SetGoalModal {
-    height: auto;
-    padding: 3rem;
+    padding: 2rem 3rem;
     border-radius: 0.1rem;
     box-shadow: 0 0.5rem 1.5rem #333;
     width: 75rem;
+    min-height: 80vh;
+    overflow: auto;
   }
 }
 
