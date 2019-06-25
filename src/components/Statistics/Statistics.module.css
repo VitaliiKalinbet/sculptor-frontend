@@ -2,8 +2,11 @@
   padding-top: 1rem;
   margin: 2rem auto 1rem;
   width: 80%;
-  height: 50vh;
-  align-items: flex-end;
+  height: 80vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: space-around;
 }
 
 .Statistics_label {

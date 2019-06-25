@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 .header {
   background: linear-gradient(left, #0c3351, #0c3351) no-repeat 0px 0px;
   display: flex;
@@ -142,6 +144,7 @@
   .header__router .results {
     margin-right: 1.6rem;
   }
+
   .results {
     order: 3;
     flex-direction: row-reverse;
@@ -158,6 +161,7 @@
     margin-left: 1rem;
   }
 }
+
 @media screen and (min-width: 1024px) {
   .header {
     height: 7rem;
@@ -184,6 +188,7 @@
     order: 3;
     margin-left: 20px;
   }
+
   .header__icon.more {
     display: none;
   }
@@ -210,6 +215,7 @@
   .header__router .results {
     margin-right: 0;
   }
+
   .results {
     margin-left: 5px;
   }

@@ -33,6 +33,7 @@ class App extends Component {
     return (
       <>
         <Switch>
+          <Redirect exact path="/" to="/dashboard" />
           <Route path="/login" component={LoginPage} />
           <Route path="/registration" component={RegistrationPage} />
           <Route

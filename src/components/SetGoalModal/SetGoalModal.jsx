@@ -19,6 +19,13 @@ import ModalGoalIconSelect from '../ModalGoalIconSelect/ModalGoalIconSelect';
 import ModalDeleteGoalActions from '../../redux/actions/ModalDeleteGoalActions';
 import { asyncTasksAction } from '../Dashboard/taskAction';
 
+import toggleSetEditGoalModal from '../../redux/actions/toggleSetEditGoalModalActions';
+import goalMotivationActions from '../../redux/actions/goalMotivationActions';
+import goalTitleActions from '../../redux/actions/goalTitleActions';
+import goalAddTaskActions from '../../redux/actions/goalAddTaskActions';
+import { radioActionClearColor } from '../../redux/actions/radioAction';
+import { deleteFrozenGoalTasksInEditAction } from '../../redux/actions/frozenGoalTasksInEditAction';
+
 import api from '../../services/api';
 
 class SetGoalModal extends React.Component {
@@ -117,6 +124,25 @@ class SetGoalModal extends React.Component {
       : addError('Delete the task or enter the title');
   };
 
+  onCloseModal = () => {
+    const {
+      closeModal,
+      inputMotivationClear,
+      inputGoalTitleClear,
+      inputTaskTitleClear,
+      clearColor,
+      deleteFrozenGoalTasksInEditActionFunc,
+      deleteError,
+    } = this.props;
+    closeModal();
+    inputMotivationClear();
+    inputGoalTitleClear();
+    inputTaskTitleClear();
+    clearColor();
+    deleteFrozenGoalTasksInEditActionFunc();
+    deleteError();
+  };
+
   render() {
     const {
       goalTitle,
@@ -128,6 +154,7 @@ class SetGoalModal extends React.Component {
     } = this.props;
     return (
       <div className={s.SetGoalModal} onClick={e => e.stopPropagation()}>
+        <button onClick={this.onCloseModal} className={s.close_btn} />
         <h3 className={s.title}>
           {modalType === 'SET' ? 'Set' : 'Update'} a Goal
         </h3>
@@ -185,6 +212,12 @@ SetGoalModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
   error: PropTypes.string.isRequired,
   addError: PropTypes.func.isRequired,
+  deleteError: PropTypes.func.isRequired,
+  inputMotivationClear: PropTypes.func.isRequired,
+  inputGoalTitleClear: PropTypes.func.isRequired,
+  inputTaskTitleClear: PropTypes.func.isRequired,
+  clearColor: PropTypes.func.isRequired,
+  deleteFrozenGoalTasksInEditActionFunc: PropTypes.func.isRequired,
   deleteError: PropTypes.func.isRequired,
 };
 
@@ -253,6 +286,15 @@ function mapDispatchToProps(dispatch) {
     addError: error => dispatch(errorAction.addSaveGoalErrorInStore(error)),
     deleteError: () => dispatch(errorAction.deleteErrorFromStore()),
     asyncTasksActionFunc: user => dispatch(asyncTasksAction(user)),
+    inputMotivationClear: () =>
+      dispatch(goalMotivationActions.inputMotivationClear()),
+    inputGoalTitleClear: () => dispatch(goalTitleActions.inputGoalTitleClear()),
+    inputTaskTitleClear: () =>
+      dispatch(goalAddTaskActions.inputTaskTitleClear()),
+    clearColor: () => dispatch(radioActionClearColor()),
+    deleteFrozenGoalTasksInEditActionFunc: () =>
+      dispatch(deleteFrozenGoalTasksInEditAction()),
+    deleteError: () => dispatch(errorAction.deleteErrorFromStore()),
   };
 }
 
