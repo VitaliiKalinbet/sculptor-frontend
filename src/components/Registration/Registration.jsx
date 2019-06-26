@@ -45,8 +45,6 @@ class Registration extends Component {
 
     if (password === confirmPassword) {
       if (password.length >= 6) {
-        console.log('password :', password);
-        console.log('confirmPassword :', confirmPassword);
         API.register({
           email,
           password,
@@ -58,7 +56,6 @@ class Registration extends Component {
           })
           .catch(error => {
             if (error.response) {
-              console.log('error.response.data :', error.response.data);
               if (!error.response.data.success)
                 this.setState({ error: registerErrorUserExist });
             }

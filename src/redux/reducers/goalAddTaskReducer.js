@@ -77,9 +77,6 @@ function goalTasksFunc(state = goalTasks, action) {
         // the length of Date.now (means theese elements haven't been sent to DB yet, so they don't have _id)
         return action.goalTasks.filter(task => action.name !== task.name);
       }
-
-      console.log('action.name :', action.name);
-      console.log('task._id :', task._id);
       return action.goalTasks.filter(task => task._id !== action.name);
     case 'ADD_TASK':
       return [

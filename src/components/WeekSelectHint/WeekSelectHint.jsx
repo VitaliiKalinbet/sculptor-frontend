@@ -51,7 +51,6 @@ const WeekSelectHint = props => {
     const date = taskCreated ? new Date(taskCreated) : new Date(Date.now());
 
     if (week >= 2) {
-      console.log(week);
       date.setDate(date.getDate() + (week - 1) * 7);
     }
     const datePlusWeek = new Date(date);
