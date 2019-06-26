@@ -3,10 +3,25 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-const StyledUserInfo = styled.div`
+const StyledWrap = styled.div`
   order: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto';
+  font-size: 1.4rem;
+  color: #b9c3c8;
+  text-transform: capitalize;
+
+  @media screen and (min-width: 1024px) {
+    margin-left: 26px;
+    margin-right: 0px;
+    order: 2;
+  }
+`;
+const StyledUserInfo = styled.div`
   margin-left: 10px;
-  margin-right: 10px;
+  margin-right: 4px;
   background-color: ${window.innerWidth > 1024 ? '#0c3351' : '#fff'};
   border-radius: 50%;
   width: 30px;
@@ -17,17 +32,16 @@ const StyledUserInfo = styled.div`
   line-height: 30px;
   text-align: center;
   box-shadow: 0 0 0 #fff;
-
-  @media screen and (min-width: 1024px) {
-    margin-left: 26px;
-    margin-right: 0px;
-    order: 2;
-  }
 `;
 
 const UserInfo = props => {
   const { user } = props;
-  return <StyledUserInfo>{user.userName[0]}</StyledUserInfo>;
+  return (
+    <StyledWrap>
+      <StyledUserInfo>{user.userName[0]}</StyledUserInfo>
+      {window.innerWidth > 767 && `${user.userName}`}
+    </StyledWrap>
+  );
 };
 
 UserInfo.propTypes = {
