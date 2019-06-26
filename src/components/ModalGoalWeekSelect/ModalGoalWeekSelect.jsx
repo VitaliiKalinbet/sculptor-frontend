@@ -7,6 +7,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import RadioButtonUnchecked from '@material-ui/icons/RadioButtonUnchecked';
 import Lens from '@material-ui/icons/Lens';
+import WeekSelectHint from '../WeekSelectHint/WeekSelectHint';
+
 import {
   checkboxAction,
   checkboxEditAction,
@@ -45,20 +47,20 @@ const ModalGoalWeekSelect = ({
       {task.taskWeekRange.map(el => {
         return (
           <div className={s.checkbox} key={el.week}>
+            <WeekSelectHint
+              style={s.hint}
+              taskCreated={task.createdAt}
+              week={el.week}
+            />
             <FormControlLabel
               control={
                 <Checkbox
                   icon={
                     el.status ? (
-                      <Lens
-                        // fontSize="large"
-                        color="inherit"
-                        style={styles.small}
-                      />
+                      <Lens color="inherit" style={styles.small} />
                     ) : (
                       <RadioButtonUnchecked
                         color="inherit"
-                        // fontSize="large"
                         style={styles.small}
                       />
                     )
@@ -67,15 +69,10 @@ const ModalGoalWeekSelect = ({
                     el.status ? (
                       <RadioButtonUnchecked
                         color="inherit"
-                        // fontSize="large"
                         style={styles.small}
                       />
                     ) : (
-                      <Lens
-                        // fontSize="large"
-                        color="inherit"
-                        style={styles.small}
-                      />
+                      <Lens color="inherit" style={styles.small} />
                     )
                   }
                   onChange={mode === 'UPDATE' ? onEditChange : onChange}
