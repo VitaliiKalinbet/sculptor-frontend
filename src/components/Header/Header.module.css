@@ -5,6 +5,7 @@
   display: flex;
   justify-content: center;
   height: 5.5rem;
+  user-select: none;
 }
 
 .header__container {

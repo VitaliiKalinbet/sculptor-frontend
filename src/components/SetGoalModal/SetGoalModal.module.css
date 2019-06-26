@@ -4,6 +4,7 @@
   width: 100%;
   min-height: 125rem;
   position: relative;
+  user-select: none;
 }
 
 .close_btn {
