@@ -11,6 +11,7 @@
   color: #ffffff;
   z-index: 0;
   padding-top: 40px;
+  user-select: none;
 }
 
 .Title {
@@ -20,6 +21,7 @@
   align-items: center;
   padding-left: 22px;
   padding-right: 22px;
+  user-select: none;
 }
 
 .logo {

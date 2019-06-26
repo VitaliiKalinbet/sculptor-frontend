@@ -22,6 +22,7 @@
   display: flex;
   color: #c5cdcd;
   cursor: pointer;
+  user-select: none;
 }
 
 .datePicker__dateNow {
@@ -34,6 +35,7 @@
   justify-content: space-evenly;
   color: #fff;
   margin: 0 1.6rem;
+  user-select: none;
 }
 
 .dateNow__month {

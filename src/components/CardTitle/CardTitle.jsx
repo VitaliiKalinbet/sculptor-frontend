@@ -10,6 +10,7 @@ const Title = styled.h2`
   font-family: 'Roboto';
   color: #b9c3c8;
   text-transform: uppercase;
+  user-select: none;
 `;
 
 const CardTitle = ({ title }) => {

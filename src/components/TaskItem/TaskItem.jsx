@@ -35,6 +35,7 @@ const ItemDescription = styled.p`
   font-family: 'Roboto Light';
   flex: 1;
   text-decoration: ${props => (props.isDone ? 'line-through' : 'none')};
+  user-select: none;
 
   &:hover {
     color: #454545;
