@@ -108,6 +108,12 @@
   color: #f6e;
 }
 
+@media only screen and (max-width: 1024px) {
+  .header__container {
+    flex-wrap: wrap;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .header {
     height: 12rem;
@@ -120,7 +126,6 @@
   }
 
   .header__container {
-    flex-wrap: wrap;
     height: auto;
     justify-content: center;
     /* min-height: 50px; */
@@ -176,7 +181,7 @@
 
   .navWrap {
     order: 1;
-    flex: 0 0 87%;
+    flex: 0 0 80%;
     justify-content: space-between;
   }
 
@@ -208,7 +213,7 @@
 
   .navWrap {
     order: 1;
-    flex: 0 0 87%;
+    flex: 0 0 84%;
     padding-left: 16px;
   }
 

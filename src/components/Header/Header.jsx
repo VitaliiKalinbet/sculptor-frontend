@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import DatePicker from '../DatePicker/DatePicker';
+import UserInfo from '../UserInfo/UserInfo';
 
 import ModalLogout from '../ModalLogout/ModalLogout';
 import { showSidebarAction } from '../../redux/actions/sidebarAction';
@@ -56,6 +57,7 @@ const Header = ({ showSidebar }) => {
             alt="logo sculptor"
           />
         </a>
+        {window.innerWidth > 400 && <UserInfo />}
         <div className={styles.logout__container}>
           <ModalLogout />
         </div>
