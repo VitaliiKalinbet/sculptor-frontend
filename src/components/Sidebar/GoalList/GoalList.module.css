@@ -4,6 +4,7 @@
   scrollbar-width: thin;
   scrollbar-color: #b9c3c840 transparent;
   padding-bottom: 2rem;
+  position: relative;
 }
 
 .container::-webkit-scrollbar-track {
@@ -14,6 +15,14 @@
   padding-left: 22px;
   padding-right: 14px;
   list-style: none;
+}
+
+.loader {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: calc(50% - 50px);
+  left: calc(50% - 50px);
 }
 
 ::-webkit-scrollbar {

@@ -42,7 +42,7 @@ const ModalGoalTitle = ({
         type="text"
         name="ModalGoalTitle"
         id="ModalGoalTitle"
-        placeholder="Enter Goal Name"
+        placeholder="Write here your goal"
         defaultValue={editGoal.data.goalTitle || goalTitle}
         onChange={inputGoalTitle}
       />
