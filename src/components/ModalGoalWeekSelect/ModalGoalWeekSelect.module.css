@@ -18,6 +18,48 @@ label > span:last-of-type {
   display: inline-block;
 }
 
+.checkbox:hover > .hint {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+}
+
+.checkbox:active {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+}
+
+@keyframes cssAnimation {
+  to {
+    overflow: hidden;
+    display: none;
+    opacity: 0;
+  }
+}
+@-webkit-keyframes cssAnimation {
+  to {
+    visibility: hidden;
+    display: none;
+    opacity: 0;
+  }
+}
+
+.hint {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  -moz-animation: cssAnimation 0s ease-in 3s forwards;
+  /* Firefox */
+  -webkit-animation: cssAnimation 0s ease-in 3s forwards;
+  /* Safari and Chrome */
+  -o-animation: cssAnimation 0s ease-in 3s forwards;
+  /* Opera */
+  animation: cssAnimation 0s ease-in 3s forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
 .checkbox label {
   margin: 0;
 }
