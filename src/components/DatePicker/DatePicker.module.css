@@ -1,5 +1,4 @@
 .header__date {
-  height: 6.5rem;
   background-color: #0c3351;
   width: 100vw;
   padding: 1.1rem;
@@ -36,6 +35,12 @@
   color: #fff;
   margin: 0 1.6rem;
   user-select: none;
+}
+
+.datePicker__dateNow__wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .dateNow__month {
@@ -77,12 +82,29 @@
   fill: #f6e;
 }
 
+.today {
+  outline: none;
+  border: none;
+  margin-top: 4px;
+  flex: 0 0 auto;
+  font-size: 10px;
+  line-height: 14px;
+  width: 50px;
+  text-align: center;
+  color: #fff;
+  background-color: #fc842c;
+  cursor: pointer;
+}
+
+.today:hover {
+  box-shadow: 2px 2px 1px #0c335160;
+}
+
 @media only screen and (min-width: 768px) {
   .header__date {
     padding: 0;
     background-color: transparent;
     width: 25rem;
-    height: 4.3rem;
   }
 }
 

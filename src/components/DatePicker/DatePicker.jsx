@@ -11,6 +11,7 @@ import weekTasksActions from '../Dashboard/weekAction';
 const DatePicker = ({
   weekTasksActionPrev,
   weekTasksActionNext,
+  weekTasksActionNow,
   tasks,
   weekTasks,
 }) => {
@@ -25,15 +26,24 @@ const DatePicker = ({
           <Arrow className={styles.arrow__prev} />
           prev week
         </button>
-        <div className={styles.datePicker__dateNow}>
-          <p className={styles.dateNow__month}>
-            {new Date(weekTasks.date).toLocaleString('en-us', {
-              month: 'short',
-            })}
-          </p>
-          <p className={styles.dateNow__day}>
-            {new Date(weekTasks.date).getDate()}
-          </p>
+        <div className={styles.datePicker__dateNow__wrap}>
+          <div className={styles.datePicker__dateNow}>
+            <p className={styles.dateNow__month}>
+              {new Date(weekTasks.date).toLocaleString('en-us', {
+                month: 'short',
+              })}
+            </p>
+            <p className={styles.dateNow__day}>
+              {new Date(weekTasks.date).getDate()}
+            </p>
+          </div>
+          <button
+            className={styles.today}
+            type="button"
+            onClick={() => weekTasksActionNow(tasks)}
+          >
+            go today
+          </button>
         </div>
         <button
           onClick={() => weekTasksActionNext(tasks)}
@@ -58,6 +68,7 @@ const mdtp = dispatch => ({
     dispatch(weekTasksActions.weekTasksActionNext(data)),
   weekTasksActionPrev: data =>
     dispatch(weekTasksActions.weekTasksActionPrev(data)),
+  weekTasksActionNow: data => dispatch(weekTasksActions.weekTasksAction(data)),
 });
 
 export default connect(

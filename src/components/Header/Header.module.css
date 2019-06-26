@@ -118,7 +118,7 @@
 @media only screen and (min-width: 768px) {
   .header {
     height: 12rem;
-    background-position-y: -66px;
+    background-position-y: -72px;
   }
 
   .activeLink > .header__icon {
@@ -170,7 +170,7 @@
 
 @media screen and (min-width: 1024px) {
   .header {
-    height: 7rem;
+    height: 8rem;
     background: transparent;
   }
 
@@ -182,7 +182,7 @@
 
   .navWrap {
     order: 1;
-    flex: 0 0 80%;
+    flex: 0 0 74%;
     justify-content: space-between;
   }
 
@@ -214,7 +214,7 @@
 
   .navWrap {
     order: 1;
-    flex: 0 0 84%;
+    flex: 0 0 80%;
     padding-left: 16px;
   }
 
