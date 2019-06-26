@@ -1,5 +1,6 @@
 .info_container {
   padding: 3rem;
+  user-select: none;
 }
 
 .title {

@@ -5,6 +5,8 @@
   align-items: center;
   flex-direction: column;
 }
+
 .TestDashboard {
   font-size: 6.4rem;
+  color: #eee;
 }
