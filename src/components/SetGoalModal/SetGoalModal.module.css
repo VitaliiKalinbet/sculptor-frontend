@@ -23,6 +23,14 @@
   cursor: pointer;
 }
 
+.hint {
+  color: rgb(184, 178, 178);
+  position: absolute;
+  left: 0;
+  bottom: -15px;
+  font-size: 1.5rem;
+}
+
 .close_btn:hover {
   background-color: rgb(231, 228, 228);
 }
@@ -38,11 +46,12 @@
   max-width: 30rem;
   display: flex;
   padding-left: 1.4rem;
+  position: relative;
 }
 
 .error {
-  font-size: 1rem;
-  margin: 1rem auto;
+  font-size: 1.2rem;
+  margin: 2rem auto;
   color: red;
 }
 

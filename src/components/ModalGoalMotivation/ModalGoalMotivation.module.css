@@ -22,12 +22,14 @@
   font-size: 1.4rem;
   font-weight: 500;
   line-height: 32px;
+  padding: 0 1rem;
 }
 
 @media only screen and (min-width: 500px) {
   .ModalGoalMotivation {
     flex-wrap: nowrap;
   }
+
   .input {
     margin-top: 0;
     margin-left: 1rem;
@@ -38,6 +40,7 @@
   .label {
     width: 11.5rem;
   }
+
   .input {
     width: 50%;
   }

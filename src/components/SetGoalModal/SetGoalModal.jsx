@@ -173,6 +173,12 @@ class SetGoalModal extends React.Component {
             btnColor={'orange'}
             btnText={modalType === 'SET' ? 'Create' : 'Save'}
           />
+          {(modalType === 'SET' && !goalTitle.length) ||
+          (modalType === 'SET' && !goalMotivation.length) ? (
+            <p className={s.hint}>
+              * enter goal and motivation title and then button be active
+            </p>
+          ) : null}
           {modalType === 'SET' ? null : (
             <BasicButton
               onClickFunc={toggleDeleteGoalModal}
