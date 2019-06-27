@@ -5,10 +5,10 @@ import Loader from 'react-loader-spinner';
 import GoalItem from '../GoalItem/GoalItem';
 import s from './GoalList.module.css';
 
-const GoalList = ({ goalsArray }) => {
+const GoalList = ({ goalsArray, loaderState }) => {
   return (
     <div className={s.container}>
-      {goalsArray.length === 0 ? (
+      {loaderState ? (
         <div className={s.loader}>
           <Loader type="Watch" color="#eee" height="80" width="80" />
         </div>
@@ -27,6 +27,7 @@ function MSTP(state) {
   return {
     goalsArray: state.goals,
     tasksArray: state.tasks,
+    loaderState: state.loader,
   };
 }
 
