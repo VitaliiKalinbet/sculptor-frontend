@@ -1,5 +1,5 @@
+/*eslint-disable*/
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -19,6 +19,7 @@ const StyledWrap = styled.div`
     order: 2;
   }
 `;
+
 const StyledUserInfo = styled.div`
   margin-left: 10px;
   margin-right: 4px;
@@ -42,10 +43,6 @@ const UserInfo = props => {
       {window.innerWidth > 767 && `${user.userName}`}
     </StyledWrap>
   );
-};
-
-UserInfo.propTypes = {
-  user: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({

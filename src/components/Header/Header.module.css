@@ -243,5 +243,6 @@
     display: flex;
     justify-content: flex-end;
     order: 3;
+    margin-left: 0;
   }
 }

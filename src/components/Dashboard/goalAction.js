@@ -1,5 +1,6 @@
 /* eslint-disable */
 import API from '../../services/api';
+import loaderAction from '../../redux/actions/loaderAction';
 
 const fetchGoals = data => ({
   type: 'SET_GOALS',
@@ -7,9 +8,16 @@ const fetchGoals = data => ({
 });
 
 export const asyncGoalAction = user => dispatch => {
+  dispatch(loaderAction.loaderOn());
   API.getGoals(user)
-    .then(data => dispatch(fetchGoals(data.goals)))
-    .catch(error => console.log(error));
+    .then(data => {
+      dispatch(fetchGoals(data.goals));
+      dispatch(loaderAction.loaderOff());
+    })
+    .catch(error => {
+      console.log(error);
+      dispatch(loaderAction.loaderOff());
+    });
 };
 
 export const updateGoalTaskActiveDates = ({
@@ -25,4 +33,7 @@ export const updateGoalTaskActiveDates = ({
   isComplete,
 });
 
-export default { asyncGoalAction, updateGoalTaskActiveDates };
+export default {
+  asyncGoalAction,
+  updateGoalTaskActiveDates,
+};
