@@ -121,7 +121,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ModalTasks);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalTasks);

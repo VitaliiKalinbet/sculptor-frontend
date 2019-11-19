@@ -126,7 +126,4 @@ const mdtp = dispatch => ({
     dispatch(deleteTaskFromThisDay({ taskId, taskActiveDayId, goalId })),
 });
 
-export default connect(
-  null,
-  mdtp,
-)(TaskItem);
+export default connect(null, mdtp)(TaskItem);

@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 .header {
-  background: linear-gradient(left, #0c3351, #0c3351) no-repeat 0px 0px;
+  background: linear-gradient(to left, #0c3351, #0c3351) no-repeat 0px 0px;
   display: flex;
   justify-content: center;
   height: 5.5rem;
