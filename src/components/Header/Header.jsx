@@ -26,15 +26,11 @@ const Header = ({ showSidebar }) => {
         <div className={styles.navWrap}>
           <NavLink
             to="/dashboard"
-            className={`${styles.header__router} ${styles.dashboard} ${
-              styles.selected
-            }`}
+            className={`${styles.header__router} ${styles.dashboard} ${styles.selected}`}
             activeClassName={styles.activeLink}
           >
             <Dashboard
-              className={`${styles.header__icon} ${styles.dashboard} ${
-                styles.header__result
-              }`}
+              className={`${styles.header__icon} ${styles.dashboard} ${styles.header__result}`}
             />
             <span>Dashboard</span>
           </NavLink>
@@ -82,7 +78,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

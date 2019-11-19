@@ -73,7 +73,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ModalGoalTitle);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalGoalTitle);

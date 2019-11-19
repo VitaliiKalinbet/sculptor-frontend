@@ -91,7 +91,4 @@ ModalGoalIconSelect.propTypes = {
   editGoal: PropTypes.shape.isRequired,
 };
 
-export default connect(
-  MSTP,
-  MDTP,
-)(ModalGoalIconSelect);
+export default connect(MSTP, MDTP)(ModalGoalIconSelect);

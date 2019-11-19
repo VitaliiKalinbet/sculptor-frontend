@@ -76,7 +76,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Backdrop);
+export default connect(mapStateToProps, mapDispatchToProps)(Backdrop);

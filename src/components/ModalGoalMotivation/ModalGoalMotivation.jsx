@@ -16,7 +16,7 @@ const ModalGoalMotivation = ({ inputMotivation, goalMotivation, editGoal }) => {
         name="inputMotivation"
         id="inputMotivation"
         onChange={inputMotivation}
-        placeholder="Write here motivatin"
+        placeholder="Write here motivation"
         defaultValue={editGoal.data.goalMotivation || goalMotivation}
       />
     </div>

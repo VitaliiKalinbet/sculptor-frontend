@@ -16,6 +16,7 @@ const styles = theme => ({
 const DeleteButton = ({ classes, onClick, value, className }) => (
   <IconButton
     aria-label="Delete"
+    // eslint-disable-next-line react/prop-types
     className={`${classes.margin} ${className}`}
     onClick={onClick}
     value={value}
@@ -24,6 +25,7 @@ const DeleteButton = ({ classes, onClick, value, className }) => (
     <Delete fontSize="small" color="inherit" />
   </IconButton>
 );
+
 DeleteButton.propTypes = {
   classes: PropTypes.shape({
     color: PropTypes.string,
@@ -33,6 +35,7 @@ DeleteButton.propTypes = {
   value: PropTypes.element.isRequired,
   className: PropTypes.string,
 };
+
 DeleteButton.defaultProps = {
   classes: {},
   className: '',
