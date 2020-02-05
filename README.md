@@ -13,6 +13,6 @@ https://sculptor.goit.co.ua/
 
 ## Information
 
-The maiden branch is the main and most relevant in the project, the deployment
+The "dev" branch is the main and most relevant in the project, the deployment
 was made from it to gh-page and then added to the server (project working link
 above).
